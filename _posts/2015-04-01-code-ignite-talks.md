@@ -45,6 +45,7 @@ Si vous êtes accro de vim, allez y les yeux fermés.
 Pour suivre Michaël, [c'est là](http://agileek.github.io/).
 Vous risquez fort d'y trouver un certain nombre d'articles sur Docker.
 
-###### PS
+###### PS :
 
-La présentation de Swiip au Toulouse JUG sur Yeoman est [dispo sur Parleys](https://www.parleys.com/talk/yeoman).  
+* Ce site a besoin d'un nom, si  vous en avez un sympa en tête je suis preneur.  
+* La présentation de Swiip au Toulouse JUG sur Yeoman est [dispo sur Parleys](https://www.parleys.com/talk/yeoman).  
