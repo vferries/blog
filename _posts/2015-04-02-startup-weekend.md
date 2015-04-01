@@ -27,7 +27,7 @@ Les organisateurs ont alors fait le décompte pour chaque sujet des voix obtenue
 
 ### Lean Startup
 
-Ce weekend a en partie été pour moi l'occasion de mettre en pratique les bases du Lean Startup, concept auquel je m'intéresse depuis un petit moment désormais. Je vous conseille d'ailleurs les présentation de Nicolas Deverge à ce sujet, et en plus, comme moi c'est un bagger[^2]. On a donc rempli notre lean canvas, travaillé nos avantages concurrentiels, réduit le scope qu'on devait adresser dans un premier temps, identifié des barrières et des problèmes possibles.
+Ce weekend a en partie été pour moi l'occasion de mettre en pratique les bases du Lean Startup, concept auquel je m'intéresse depuis un petit moment désormais. Je vous conseille d'ailleurs les présentations de Nicolas Deverge à ce sujet, et en plus, comme moi c'est un bagger[^2]. On a donc rempli notre lean canvas, travaillé nos avantages concurrentiels, réduit le scope qu'on devait adresser dans un premier temps, identifié des barrières et des problèmes possibles.
 
 [^2]: Je vous ferai un topo plus complet là dessus bientôt, en attendant cela se passe ici : <http://www.brownbaglunch.fr/baggers.html#Toulouse>
 
