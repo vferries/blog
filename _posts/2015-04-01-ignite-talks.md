@@ -3,7 +3,7 @@ layout: post
 title: Comment tout cela a commencé
 excerpt: "Ou comment j'aurais certainement mieux fait de l'ouvrir moins grande."
 tags: [ignite talk, pari, défi]
-modified: 2015-03-01
+modified: 2015-04-01
 comments: true
 ---
 
