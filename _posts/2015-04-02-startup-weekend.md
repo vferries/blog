@@ -7,7 +7,7 @@ modified: 2015-04-02
 comments: true
 ---
 
-![Startup Weekend Toulouse](/images/startup-weekend.jpg)
+![Startup Weekend Toulouse]({{site.url}}/images/startup-weekend.jpg)
 
 Après une semaine de folie, j'avais décidé de me reposer paisiblement. C'était sans compter sur mon inscription au startup weekend, événement que je guettais depuis quelques temps. J'avais déjà raté le précédent de peu (plus de place pour les professionnels quand j'avais voulu réserver à l'époque) et tenais vraiment à participer cette fois ci. Me voila parti le 27 mars au soir pour deux jours et demi de folie.
 
@@ -66,7 +66,7 @@ Quelques mots sur les lauréats qui le méritent bien plus que moi.
 
 #### And the winner is... Loliplop !
 
-![Lisbé qui présente Loliplop](/images/loliplop.jpg)
+![Lisbé qui présente Loliplop]({{site.url}}/images/loliplop.jpg)
 
 C'était mon coup de coeur d'entrée de jeu quand Lisbé me l'a présenté. Simple, efficace et parfaitement raccord avec l'actualité : une application qui ressemble fortement à Scratch (je n'ai pas bien compris si c'était basé dessus ou pas par contre, le système de briques conditionnelles est le même en tout cas). Celle-ci est adaptée à un public plus jeune. Avec les nouvelles lois sur les activités périscolaires et les déclarations en faveur de l'apprentissage du code à l'école, il y a un vrai créneau à prendre. Elle a en plus pensé aux fiches pédagogiques pour accompagner le tout, je lui souhaite vraiment le meilleur et c'est bien parti.
 
