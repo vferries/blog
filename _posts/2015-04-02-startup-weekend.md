@@ -64,7 +64,9 @@ Le passage de coachs spécialisés dans des domaines variés nous a été vraime
 
 Quelques mots sur les lauréats qui le méritent bien plus que moi.
 
-#### Vainqueur : Loliplop
+#### And the winner is... Loliplop !
+
+![Lisbé qui présente Loliplop](/images/loliplop.jpg)
 
 C'était mon coup de coeur d'entrée de jeu quand Lisbé me l'a présenté. Simple, efficace et parfaitement raccord avec l'actualité : une application qui ressemble fortement à Scratch (je n'ai pas bien compris si c'était basé dessus ou pas par contre, le système de briques conditionnelles est le même en tout cas). Celle-ci est adaptée à un public plus jeune. Avec les nouvelles lois sur les activités périscolaires et les déclarations en faveur de l'apprentissage du code à l'école, il y a un vrai créneau à prendre. Elle a en plus pensé aux fiches pédagogiques pour accompagner le tout, je lui souhaite vraiment le meilleur et c'est bien parti.
 
