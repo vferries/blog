@@ -9,7 +9,7 @@ comments: true
 
 ![Agile Tour Toulouse 2012]({{site.url}}/images/at2012.jpg)
 
-C’est avec grand plaisir que je me retrouve pour la seconde fois présent à l’Agile Tour Toulouse, à l’espace de congrès Diagora. Pour rappel, vous pouvez retrouver mon compte rendu de la précédente édition à l’adresse suivante : [Agile Tour Toulouse 2011](/agile-tour-toulouse-2011/)
+C’est avec grand plaisir que je me retrouve pour la seconde fois présent à l’Agile Tour Toulouse, à l’espace de congrès Diagora. Pour rappel, vous pouvez retrouver mon compte rendu de la précédente édition à l’adresse suivante : [Agile Tour Toulouse 2011]({{site.url}}/agile-tour-toulouse-2011/)
 
 Je ne ferai donc pas ici de redite des notions déjà présentées dans mon précédent billet.
 
