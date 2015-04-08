@@ -103,7 +103,7 @@ Le kata en question est décrit sur [une application sur Heroku](http://archkata
 
 Plus de 60 dessins d'architecture ont été soumis et on les a passés en revue brièvement. En voila un petit exemple.
 
-![Dessins]({{site.urk}}/images/sketch.jpg)
+![Dessins]({{site.url}}/images/sketch.jpg)
 
 Les deux présentateurs nous ont ensuite montré une [petite application de démo](https://github.com/cyriux/hexagonal-sentimental) disponible sur le repository Github de Cyrille.
 
