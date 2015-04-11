@@ -156,4 +156,4 @@ J'avais l'idée secrète qu'on pourrait partager quelques bonnes idées entre gr
 
 ![Compte rendu du BOF SCP]({{site.url}}/images/compterendu.jpg)
 
-Ah, j'ai ouï dire que personne ne lisait les articles en entier. Si vous pouviez me contredire en commentaires, j'en serais ravi et continuerai volontiers à conserver le même type de contenus !
+Ah, j'ai ouï dire que personne ne lisait les articles trop longs en entier. Si vous pouviez me contredire en commentaires, j'en serais ravi et continuerai volontiers à conserver le même type de contenus !
