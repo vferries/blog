@@ -126,7 +126,7 @@ A priori, il est déjà prévu que la version 2 se base directement sur Angular 
 
 #### Aurelia
 
-Reprenons un peu d'historique, je ne sais pas si vous en avez entendu parler, mais un concurrent sérieux et discret d'AngularJS se nommait Durandal. Son concepteur a été recruté par les équipes de Google et a intégré l'équipe en charge de l'écriture d'Angular 2. Des désaccords ont animé l'équipe, notamment sur la syntaxe à adopter, les évolutions à prendre en considération, et TODO RETROUVER SON NOM a finalement décidé de quitter l'équipe pour créer un nouveau framework du nom d'Aurelia.
+Reprenons un peu d'historique, je ne sais pas si vous en avez entendu parler, mais un concurrent sérieux et discret d'AngularJS se nommait Durandal. Son concepteur a été recruté par les équipes de Google et a intégré l'équipe en charge de l'écriture d'Angular 2. Des désaccords ont animé l'équipe, notamment sur la syntaxe à adopter, les évolutions à prendre en considération, et Rob Eisenberg a finalement décidé de quitter l'équipe pour créer un nouveau framework du nom d'Aurelia.
 
 D'après ses dires, celui-ci se veut plus proche des spécifications en cours, notamment celles des web components et d'ES6. Il est sorti en version béta.
 
