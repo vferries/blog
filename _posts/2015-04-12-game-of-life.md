@@ -18,7 +18,7 @@ J'ai découvert le Jeu de la vie lors de mon premier Code Retreat, il y a quelqu
 
 L'énoncé, bien que simpliste cache en fait une grande complexité en terme de choix d'implémentation. Doit-on représenter l'univers ? Avec une grille ? Une map ? L'univers est-il fini ? La grande question sur la vie, l'univers et le reste donc.
 
-### Génèse
+### Genèse
 
 J'ai déjà fait des comptes rendus de [mes Code Retreats]({{site.url}}/code-retreat-2011/) précédemment, mais la seule fois où j'ai réussi à venir à bout du problème était lors de la dernière session (fin 2014 donc). J'étais alors en binôme avec Gilles Debunne et on a décidé de prendre une approche purement fonctionnelle et de tenter le coup en Haskell.
 
