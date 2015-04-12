@@ -7,6 +7,8 @@ modified: 2015-04-12
 comments: true
 ---
 
+![Haskel]({{site.url}}/images/Haskell-Logo.svg)
+
 J'ai découvert le Jeu de la vie lors de mon premier Code Retreat, il y a quelques années de cela. Il est fait de 4 règles simples :
 
 * Une cellule qui a moins de 2 voisins meurt de sous-population
