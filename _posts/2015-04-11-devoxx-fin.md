@@ -161,3 +161,4 @@ Quelques liens vers les présentations compilés depuis Twitter :
 * [Tools in Action RxJava](https://github.com/dwursteisen/tools-in-action-rxjava-devoxx)
 * Atelier Ionic, [les slides ici](http://fr.slideshare.net/loicknuchel/devoxx-2015-ionic-chat-46884464) et [le repository Github](https://github.com/loicknuchel/devoxx-2015-ionic-chat). Je n'y suis pas allé, je l'avais préparé en béta test auparavant.
 * [Secure your product](http://dev.unhandledexpression.com/slides/devoxxfr-2015/security/) et [From API to protocol](http://dev.unhandledexpression.com/slides/devoxxfr-2015/protocols/)
+* Slides [GitFlow in Action](http://fr.slideshare.net/cecilia_bossard/git-flow-in-action)
