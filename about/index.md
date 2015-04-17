@@ -5,7 +5,7 @@ tags: [about, blog, theme, responsive]
 modified: 2015-03-31T22:25:07.573882-04:00
 comments: true
 image:
-  feature: sample-image-2.jpg
+  feature: peinard.jpg
 ---
 
 Ce blog est en complète construction.
