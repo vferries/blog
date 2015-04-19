@@ -60,9 +60,9 @@ J'ai déjà dit quelques mots sur Aurelia dans mes comptes-rendus sur Devoxx Fra
 
 #### Premier gros problème
 
-Si vous utilisez le squelette d'application fourni par Aurelia, vous allez vous retrouver avec une application basée sur jspm et ça Cordova n'aime pas du tout. On va donc être obligé de gérer nos dépendances _à l'ancienne_ avec du RequireJS et bower. Cela va impacter notre code. On va d'abord commencer par utiliser uniquement ES5 (oui, je sais c'est dommage, on verra plus tard si on peut y remédier et intégrer BabelJS).
+Si vous utilisez le squelette d'application fourni par Aurelia, vous allez vous retrouver avec une application basée sur jspm et ça Cordova n'aime pas du tout. On va donc être obligé de gérer nos dépendances _à l'ancienne_ avec du RequireJS et bower. Cela va impacter notre code.
 
-On commence installer bower si ce n'est pas déjà le cas et initialiser notre projet dans un sous-répertoire :
+On commence par installer bower si ce n'est pas déjà le cas et initialiser notre projet dans un sous-répertoire _src_:
 
 ~~~
 npm install -g bower
@@ -86,10 +86,10 @@ bower install aurelia-http-client --save
 
 Attention l'ordre est important, sinon aurelia bootstrapper ne s'intallera pas correctement.
 
-On n'en a pas vraiment besoin, mais on va rajouter de quoi rendre le tout un peu joli. Vu que bootstrap c'est sooo 2011, on va tenter le coup avec materialize à la place, histoire de tenter le [Material Design](http://www.google.com/design/) prôné par Google. On met aussi du fontawesome, manière de.
+On n'en a pas vraiment besoin, mais on va rajouter de quoi rendre le tout un peu joli. Poiur l'instant on va utiliser bootstrap. On essaiera peut être de faire du [Material Design](http://www.google.com/design/) un peu plus tard. On met aussi du fontawesome, manière de.
 
 ~~~
-bower install materialize --save
+bower install bootstrap --save
 bower install fontawesome --save
 ~~~
 
