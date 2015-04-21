@@ -45,7 +45,7 @@ __Tous__ les MOOC que j'ai suivis m'ont été utiles dans mon travail de tous le
 
 ### Partager
 
-Je pense que c'est le point le plus important. Seul, on n'apprend pas grand chose. C'est en montrant son code et en rencontrant des gens qu'on en apprend le plus. Encouragez les revues de code dans votre entreprise. Cela uniformera la façon de coder entre vous sans avoir à imposer des _best practices_. Si vous pouvez faire un peu de pair programming c'est encore mieux. Pas besoin de faire ça à longueur de journée, mais si vous pouvez prendre une petite demi heure de moyenne par jour pour le faire c'est l'idéal.
+Je pense que c'est le point le plus important. Seul, on n'apprend pas grand chose. C'est en montrant son code et en rencontrant des gens qu'on en apprend le plus. Encouragez les revues de code dans votre entreprise. Cela uniformisera la façon de coder entre vous sans avoir à imposer des _best practices_. Si vous pouvez faire un peu de pair programming c'est encore mieux. Pas besoin de faire ça à longueur de journée, mais si vous pouvez prendre une petite demi heure de moyenne par jour pour le faire c'est l'idéal.
 
 Il y a deux autres façons de partager ses connaissance, et d'assimiler celles des autres :
 
