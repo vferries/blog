@@ -42,7 +42,7 @@ Antoine a deux conseils pour vous occuper ces jours-ci :
 
 Antoine ne se définit pas, dans aucune case, et plus généralement ne se pose plus ce genre de questions. Il cherche en ce moment comment arrêter soi-même de faire de la merde un peu partout, pas qu'en informatique. Il est assez critique envers l'Entreprise et aime très peu de personnes.
 
-L'interrogation du jour : n'est-on pas embauché juste pour faire du bullshit ? Pondre un truc, qui ne marche pas, toucher la paie avant de produire une nouvelle chose qui ne marche pas. Il cherche à toujours apprendre plein de trucs, notamment en étant moins passif, en passant moins de temps devant de séries, mais un peu plus sur des jeux vidéos (Strife notamment ou War Conflict). Il aimerait bosser pour un truc qui a du sens, même pour faire de la merde, mais éthique.
+L'interrogation du jour : n'est-on pas embauché juste pour faire du bullshit ? Pondre un truc, qui ne marche pas, toucher la paie avant de produire une nouvelle chose qui ne marche pas. Il cherche à toujours apprendre plein de trucs, notamment en étant moins passif, en passant moins de temps devant de séries, mais un peu plus sur des jeux vidéos (Strife notamment ou Star Conflict). Il aimerait bosser pour un truc qui a du sens, même pour faire de la merde, mais éthique.
 
 Check this out :
 
