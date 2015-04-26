@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DevOpenSud - les participants
-excerpt: "Mais ça c'était avant"
+excerpt: "Les gens présents sont toujours les bons"
 tags: [architecture, agilité, gestion de projets]
 modified: 2015-04-26
 comments: true
