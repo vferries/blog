@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DevOpenSud - Concept
+title: DevOpenSud - le concept
 excerpt: "Petite mise au vert entre développeurs"
 tags: [nature, développement, weirddevs]
 modified: 2015-04-25
