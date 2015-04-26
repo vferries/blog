@@ -22,7 +22,7 @@ Stéphane est avant tout un difficultateur, mustard on the beat, hoe! Oui, c'est
 Il organise notamment des balades de développement, ainsi que des choses proprement inutiles (donc totalement indispensables). Pour manger, il se fait payer pour le reste, notamment la difficultation.
 
 Il travaille aussi avec Vincent dans la [Scop](http://fr.wikipedia.org/wiki/Soci%C3%A9t%C3%A9_coop%C3%A9rative_et_participative) Scopyleft.
-Il tente de transformer notre Economie Sarcastisque et Scuicidaire en Economie Sociale et Solidaire.
+Il tente de transformer notre Economie Sarcastisque et Scuicidaire en Economie Sociale et Solidaire pour de vrai.
 Son petit conseil pour aujourd'hui est de jeter un oeil [au Courtal](http://www.flickriver.com/places/France/Midi-Pyrenees/Peyre-Ausel%C3%A8re/search/).
 
 #### Antoine Vernois
