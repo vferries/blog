@@ -45,6 +45,7 @@ Antoine ne se définit pas, dans aucune case, et plus généralement ne se pose 
 L'interrogation du jour : n'est-on pas embauché juste pour faire du bullshit ? Pondre un truc, qui ne marche pas, toucher la paie avant de produire une nouvelle chose qui ne marche pas. Il cherche à toujours apprendre plein de trucs, notamment en étant moins passif, en passant moins de temps devant de séries, mais un peu plus sur des jeux vidéos (Strife notamment ou War Conflict). Il aimerait bosser pour un truc qui a du sens, même pour faire de la merde, mais éthique.
 
 Check this out :
+
 <iframe width="420" height="315" src="https://www.youtube.com/embed/ZZGo6mWjk4Y" frameborder="0" allowfullscreen></iframe>
 
 #### Henri Bourcereau
