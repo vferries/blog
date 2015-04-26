@@ -34,7 +34,7 @@ Il est passablement énervé par les questions orientées. Il travaille dans une
 Antoine a deux conseils pour vous occuper ces jours-ci :
 
 * [Comment faire des matrices de LED](http://www.instructables.com/id/Make-a-24X6-LED-matrix/?ALLSTEPS)
-* Vous devez absolument lire [La Horde du Dehors](http://www.lavolte.net/livre/la-zone-du-dehors/).
+* Vous devez absolument lire [La Zone du Dehors](http://www.lavolte.net/livre/la-zone-du-dehors/).
 
 [^1]: mais marrantes
 
