@@ -25,4 +25,10 @@ Pour information, je n'ai jamais eu plus d'un billet d'avance. Par contre, j'ai 
 
 Il n'a pas toujours été facile de trouver le temps nécessaire. J'ai souvent fini assez tard, moins dormi que d'habitude, mais c'est aussi mon mois qui a voulu ça. Et quel mois ! Startup Weekend, Devoxx, Dev Open Sud... J'en profite pour vous annoncer que je parlerai de refactoring Java 8 à l'[Eclipse Con](https://www.eclipsecon.org/france2015/) à Toulouse les 24 et 25 juin. J'ai appris cela il y a peu et ça promet. J'ai déjà eu des contacts avec le responsable projet chez NetBeans, ça promet !
 
+### La suite
+
+Au risque de vous décevoir, j'ai besoin de souffler un peu et risque fort de ne pas écrire pendant quelques temps. Par contre, maintenant que ce blog est sur pieds, je compte quand même l'entretenir de temps en temps, idéalement à un rythme plus soutenu que ce que je faisais à l'époque sur le blog de Genigraph.
+
+J'ai des cours à préparer pour l'IUT, ma conférence à travailler, de quoi faire pendant un moment en somme. Peut être que je me servirai de tout ça pour vous faire des posts sur le sujet dans les semaines à venir quand même.
+
 # Et vous, c'est quand que vous tentez ce défi ?
