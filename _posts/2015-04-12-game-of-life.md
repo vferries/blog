@@ -109,4 +109,4 @@ myWorld _ = Dead
 
 La même solution serait réalisable en Java 8, JavaScript, Python et j'en passe. Mais la déclaration de types d'Haskell rend vraiment la chose magnifique et simple vous ne trouvez pas ?
 
-Promis la prochaine fois ça sera fait en TDD. Je vous conseille [le cours d'Eric Meijster](https://www.edx.org/course/introduction-functional-programming-delftx-fp101x) si Haskell vous tente.
+Promis la prochaine fois ça sera fait en TDD. Je vous conseille [le cours d'Erik Meijer](https://www.edx.org/course/introduction-functional-programming-delftx-fp101x-0) si Haskell vous tente.
