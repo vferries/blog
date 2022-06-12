@@ -1,7 +1,10 @@
 # Site settings
-title:            En veille
-locale:           fr_FR
-url:              https://www.enveille.info
+title: En veille
+logo: "/images/logo.png"
+email: vincent.ferries@gmail.com
+description: Un blog de veille technologique full stack.
+twitter_username: VincentFERRIES
+github_username: vferries
 minimal_mistakes_skin: default
 search: true
 
@@ -29,7 +32,7 @@ plugins:
 # Site owner
 author:
   name: Vincent Ferries
-  avatar: bio-photo.jpg
+  avatar: /images/bio-photo.jpg
   bio: "Apprenti artisan logiciel polyglotte"
   links:
     - label: "CV"
@@ -39,16 +42,58 @@ author:
       icon: "fa fa-fw fa-envelope-square"
       url: "mailto:vincent.ferries@gmail.com"
     - label: "Twitter"
-      icon: "fa fa-fw fa-twitter-square"
+      icon: "fab fa-fw fa-twitter"
       url: "https://twitter.com/VincentFERRIES"
     - label: "Github"
-      icon: "fa fa-fw fa-github"
+      icon: "fab fa-fw fa-github"
       url: "https://github.com/vferries"
     - label: "Twitch"
-      icon: "fa fa-fw fa-twitch"
+      icon: "fab fa-fw fa-twitch"
       url: "https://www.twitch.tv/EnVeilleCode"
+
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/VincentFERRIES"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/vferries"
+    - label: "Twitch"
+      icon: "fab fa-twitch"
+      url: "https://www.twitch.tv/EnVeilleCode"
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
 
 comments:
   provider: "disqus"
   disqus:
     shortname: "blogvincent"
+
+locale:           fr_FR
+url:              https://www.enveille.info

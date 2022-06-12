@@ -1,12 +1,11 @@
 ---
-layout: post
 title: Software Craftsmanship
 excerpt: "Professionnalisme"
 tags: [développement]
 modified: 2015-04-28
 comments: true
-image:
-  feature: rabot.jpg
+header:
+  image: /images/rabot.jpg
 ---
 
 Pas plus tard qu'hier, Emilien Pecoul, développeur qui gère le MUGLyon (Microsoft User Group) posait la question suivante sur Twitter :

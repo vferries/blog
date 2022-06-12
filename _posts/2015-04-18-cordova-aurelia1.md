@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Application Cordova + Aurelia - premiers pas
 excerpt: "Du multiplateformes sauce deluxe"
 tags: [Cordova, Aurelia, BabelJS]

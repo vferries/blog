@@ -1,12 +1,11 @@
 ---
-layout: post
 title: Devoxx University
 excerpt: "Des ateliers pour se mettre en jambe le premier jour"
 tags: [Devoxx France, Java, ateliers]
 modified: 2015-04-09
 comments: true
-image:
-  feature: devoxx.png
+header:
+  image: /images/devoxx.png
 ---
 
 Me voila de retour pour ma 3ème édition consécutive de Devoxx France. J'étais speaker avec Antoine Vernois l'an dernier, me revoila simple participant. Cette fois, j'ai gagné ma place pour la conférence avec un petit jeu sur Twitter, écrire un poème avec uniquement des mots-clés Java. Je n'ai pas réussi à faire mieux que cette prose :

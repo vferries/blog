@@ -1,5 +1,4 @@
 ---
-layout: post
 title: E-learning
 excerpt: "Mes petites astuces pour continuer à apprendre"
 tags: [e-learning, MOOC, coding games]

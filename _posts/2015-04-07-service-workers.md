@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Introduction Service Workers
 excerpt: "Ou comment combler le retard sur les applications natives"
 tags: [web, front, service workers, push notifications]
