@@ -1,59 +1,54 @@
-# Site wide configuration
-
+# Site settings
 title:            En veille
 locale:           fr_FR
 url:              https://www.enveille.info
+minimal_mistakes_skin: default
+search: true
 
-# Jekyll configuration
-
-permalink:   /:categories/:title/
+# Build settings
 markdown:    kramdown
-highlighter: rouge
-sass:
-  sass_dir: _sass
-  style: compressed
-gems:
+remote_theme: mmistakes/minimal-mistakes
+# Outputting
+permalink: /:categories/:title/
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
+timezone: Europe/Paris
+
+include:
+  - _pages
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
   - jekyll-sitemap
-
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  enable_coderay: false
-
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
 
 # Site owner
-owner:
+author:
   name: Vincent Ferries
   avatar: bio-photo.jpg
   bio: "Apprenti artisan logiciel polyglotte"
-  email: vincent.ferries@gmail.com
-  disqus-shortname: blogvincent
-  twitter: VincentFERRIES
-  facebook: #username
-  google:
-    plus: #username
-    analytics: UA-61359887-1
-    verify: 
-    ad-client: 
-    ad-slot: 
-  bing-verify: 
-  github: vferries
-  stackoverflow: #http://stackoverflow.com/users/123456/username
-  linkedin: #username
-  xing: #username
-  instagram: #username
-  lastfm: #username
-  tumblr: #username
-  pinterest: #username
-  foursquare: #username
-  steam: #username
-  dribbble: #username
-  youtube: #username
-  soundcloud: #username
-  weibo: #username
-  flickr: #username
+  links:
+    - label: "CV"
+      icon: "fa fa-fw fa-user"
+      url: "/cv/"
+    - label: "Email"
+      icon: "fa fa-fw fa-envelope-square"
+      url: "mailto:vincent.ferries@gmail.com"
+    - label: "Twitter"
+      icon: "fa fa-fw fa-twitter-square"
+      url: "https://twitter.com/VincentFERRIES"
+    - label: "Github"
+      icon: "fa fa-fw fa-github"
+      url: "https://github.com/vferries"
+    - label: "Twitch"
+      icon: "fa fa-fw fa-twitch"
+      url: "https://www.twitch.tv/EnVeilleCode"
 
-include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "blogvincent"
