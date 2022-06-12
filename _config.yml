@@ -37,7 +37,7 @@ author:
   links:
     - label: "CV"
       icon: "fa fa-fw fa-user"
-      url: "/cv/"
+      url: "https://vferries.github.io/cv/"
     - label: "Email"
       icon: "fa fa-fw fa-envelope-square"
       url: "mailto:vincent.ferries@gmail.com"
