@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Mentoring
 excerpt: "Un concept d'entraide et de pair programming pour apprendre ensemble."
 tags: [mentor, élève, soeasywine]

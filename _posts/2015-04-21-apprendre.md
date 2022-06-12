@@ -1,12 +1,11 @@
 ---
-layout: post
 title: Dur de rester à jour
 excerpt: "Tout va toujours plus vite, petites astuces pour rester in"
 tags: [apprendre, rester développeur]
 modified: 2015-04-21
 comments: true
-image:
-  feature: bouquins.jpg
+header:
+  image: /images/bouquins.jpg
 ---
 
 Tout semble aller de plus en plus vite. Vous vous sentez débordés par les frameworks qui sortent tous les trois jours, vous n'avez pas le temps de vous intéresser à un que trois autres sont sortis entre temps. Comment peut-on arriver à assimiler tout ça ? Comment ne pas se décourager ? Y a-t-il vraiment un avenir pour les développeurs à 30, 40 ou 50 ans passés ?

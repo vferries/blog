@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Websockets avec Kaazing
 excerpt: "Séminaire didactique : Web et mobile temps réel avec HTML5 et Kaazing"
 tags: [Websockets, HTML5, Kaazing]

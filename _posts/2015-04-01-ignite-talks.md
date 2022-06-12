@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Comment tout cela a commencé
 excerpt: "Ou comment j'aurais certainement mieux fait de l'ouvrir moins grande."
 tags: [ignite talk, pari, défi]

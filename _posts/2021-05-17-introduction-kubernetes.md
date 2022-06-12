@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Introduction à Kubernetes
 excerpt: "Une introduction aux grands concepts, avec un peu de phonétique dedans"
 tags: [kubernetes, OPS]

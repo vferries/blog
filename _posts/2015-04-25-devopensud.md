@@ -1,12 +1,11 @@
 ---
-layout: post
 title: DevOpenSud - le concept
 excerpt: "Petite mise au vert entre développeurs"
 tags: [nature, développement, weirddevs]
 modified: 2015-04-25
 comments: true
-image:
-  feature: dos_fougeres.jpg
+header:
+  image: /images/dos_fougeres.jpg
 ---
 
 Si j'ai pris un peu de retard sur mes horaires de publication habituels ces derniers jours c'est parce que je suis à DevOpenSud. C'est la 3ème édition, et j'ai pour l'instant été présent à chaque.

@@ -1,7 +1,6 @@
 # Site navigation links
-
-- title: À propos
-  url: /about/
-
-- title: Billets
-  url: /posts/
+main:
+  - title: À propos
+    url: /about/
+  - title: Billets
+    url: /posts/
