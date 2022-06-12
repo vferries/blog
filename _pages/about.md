@@ -1,7 +1,8 @@
 ---
-layout: page
+permalink: /about/
 title: A propos de ce blog
-tags: [about, blog, theme, responsive]
+layout: page
+tags: [about, blog]
 modified: 2015-03-31T22:25:07.573882-04:00
 comments: true
 image:
