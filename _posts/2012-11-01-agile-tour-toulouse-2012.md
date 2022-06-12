@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Agile Tour Toulouse 2012
 excerpt: "Compte rendu de mon second Agile Tour Toulouse"
 tags: [Agile Tour Toulouse 2012]

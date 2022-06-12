@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Application Cordova + Aurelia - la base
 excerpt: "On continue en définissant une application qui marche"
 tags: [architecture, agilité, gestion de projets]

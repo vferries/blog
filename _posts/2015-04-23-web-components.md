@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Les Web Components
 excerpt: "Rappel des bases et actualité"
 tags: [web components, Polymer, X-Tag, VannillaJS]

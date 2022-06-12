@@ -1,5 +1,4 @@
 ---
-layout: post
 title: L'heure du bilan
 excerpt: "Fin de mes 30 jours de posts"
 tags: [obstination, pari, apprentissage]

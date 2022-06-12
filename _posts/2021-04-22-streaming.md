@@ -1,12 +1,11 @@
 ---
-layout: post
 title: Streaming de code sur Twitch
 excerpt: "Je me suis lancé il y a quelques semaines, je vous livre mes premiers retours"
 tags: [streaming, twwitch, katas]
 modified: 2021-04-22
 comments: true
-image:
-  feature: twitch-logo.svg
+header:
+  image: /images/twitch-logo.svg
 ---
 
 Je me suis lancé, il y a désormais quelques semaines de cela dans un nouvel exercice : streamer du contenu autour du code de façon régulière.

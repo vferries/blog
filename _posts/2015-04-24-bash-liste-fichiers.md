@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Traitement d'une arborescence de fichiers en bash
 excerpt: "Avec compression d'images au passage"
 tags: [bash, traitement d'images, optimisation]

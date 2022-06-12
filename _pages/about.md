@@ -1,12 +1,11 @@
 ---
 permalink: /about/
 title: A propos de ce blog
-layout: page
 tags: [about, blog]
 modified: 2015-03-31T22:25:07.573882-04:00
 comments: true
-image:
-  feature: peinard.jpg
+header:
+  image: /images/peinard.jpg
 ---
 
 Quand j'ai commencé ce blog, j'étais alors employé et voulais juste exposer mon ressenti sur le métier et essayer de partager un peu plus mes maigres connaissances. Depuis, de l'eau a coulé sous les ponts et je suis passé indépendant, nommant mon entreprise comme ce blog.

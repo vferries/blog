@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Mon premier startup weekend
 excerpt: "Il était temps que je me lance dans l'aventure"
 tags: [startup, loliplop, soeasywine]

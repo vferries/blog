@@ -1,12 +1,11 @@
 ---
-layout: post
 title: Devoxx , this is the end
 excerpt: "Dernière journée de Devoxx"
 tags: [Devoxx France, Java, ateliers]
 modified: 2015-04-11
 comments: true
-image:
-  feature: devoxx.png
+header:
+  image: /images/devoxx.png
 ---
 
 Encore une fois la journée a été longue mais particulièrement plaisante. J'ai quelque peu changé d'avis sur mon programme et adapté en fonction, n'ai toujours eu qu'environ 2 minutes pour manger (quel dommage de ne pas pouvoir manger dans les salles...). Je vais essayer de retracer tout ça ici même.

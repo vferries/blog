@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Utilisation Service Workers
 excerpt: "Les cas d'application des Service Workers"
 tags: [web, front, service workers, push notifications]

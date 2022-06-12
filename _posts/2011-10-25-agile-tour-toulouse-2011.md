@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Agile Tour Toulouse 2011
 excerpt: "Mon tout premier Agile Tour"
 tags: [Agilité, Lean]

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Ionic Material
 excerpt: "Du material design sauce web"
 tags: [aurelia, material design, ES6]
