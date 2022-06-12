@@ -1,5 +1,4 @@
 ---
-layout: post
 title: GWT et les architectures en couches
 excerpt: "Point sur les lourdeurs inhérentes à GWT"
 tags: [GWT, Dozer, Gilead]

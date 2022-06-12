@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Du neuf avec du vieux
 excerpt: "Vieux billets sortis de terre"
 tags: [Agile Tour, Devoxx, Code Retreat]

@@ -1,12 +1,11 @@
 ---
-layout: post
 title: Devoxx 2015
 excerpt: "Et sinon, Devoxx c'est toujours aussi bien ?"
 tags: [architecture, agilité, gestion de projets]
 modified: 2015-04-20
 comments: true
-image:
-  feature: bandeau_devoxx.jpg
+header:
+  image: /images/bandeau_devoxx.jpg
   credit: Devoxx Team - gros flag
 ---
 

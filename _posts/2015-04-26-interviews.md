@@ -1,5 +1,4 @@
 ---
-layout: post
 title: DevOpenSud - les participants
 excerpt: "Les gens présents sont toujours les bons"
 tags: [architecture, agilité, gestion de projets]

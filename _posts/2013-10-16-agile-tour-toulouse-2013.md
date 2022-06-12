@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Agile Tour Toulouse 2013
 excerpt: "Petit compte-rendu de ma journée à l'Agile Tour"
 tags: [Agile Tour Toulouse]

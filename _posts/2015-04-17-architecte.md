@@ -1,12 +1,11 @@
 ---
-layout: post
 title: Avant je voulais être architecte
 excerpt: "Mais ça c'était avant"
 tags: [architecture, agilité, gestion de projets]
 modified: 2015-04-17
 comments: true
-image:
-  feature: staples.jpg
+header:
+  image: /images/staples.jpg
 ---
 
 Comme certains doivent déjà le savoir, cela fait désormais 8 ans que je travaille, et j'ai toujours été en Société de Service en Informatique Industrielle. Oui oui, il s'agit là des fameuses SSII, récemments renommées Entreprises de Services du Numérique ou ESN. C'est dire à quel point leur nom était connoté pour avoir besoin d'en changer. Je n'ai fait que deux entreprises en tant qu'employé de longue durée mais j'ai eu le loisir de changer de mission régulièrement et donc de voir un peu de pays.

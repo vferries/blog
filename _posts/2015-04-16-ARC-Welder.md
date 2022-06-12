@@ -1,12 +1,11 @@
 ---
-layout: post
 title: ARC Welder
 excerpt: "Applications Android sous Chrome"
 tags: [ARC welder, Android, Chrome OS]
 modified: 2015-04-16
 comments: true
-image:
-  feature: welder.jpg
+header:
+  image: /images/welder.jpg
 ---
 
 ARC signifie Android Runtime for Chrome (Beta) et est un projet Google pour lire des fichiers apk (Android PacKage) sur Chrome OS. Mais en fait, on peut les lire sur n'importe quel système d'exploitation pour peu qu'on utilise le navigateur Chrome. Mac addicts, voici votre solution pour profiter enfin de nos millions d'applications !

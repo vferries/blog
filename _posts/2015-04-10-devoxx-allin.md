@@ -1,12 +1,11 @@
 ---
-layout: post
 title: Devoxx D Day
 excerpt: "La grosse journée avec les keynotes, finie à pas d'heure"
 tags: [Devoxx France, keynotes, conférence]
 modified: 2015-04-09
 comments: true
-image:
-  feature: devoxx.png
+header:
+  image: /images/devoxx.png
 ---
 
 C'est maintenant que commence la grosse journée de Devoxx : de 9h à 23h, avec moins de 10 minutes pour manger. Pas évident de tenir le rythme de publication du blog, je vais tenter de faire de mon mieux.

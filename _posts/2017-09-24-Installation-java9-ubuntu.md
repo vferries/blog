@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Installer Java 9 sur Ubuntu
 excerpt: "Permiers pas dans le monde merveilleux de Java 9"
 tags: [java 9, ubuntu]

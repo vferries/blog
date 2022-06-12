@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Le jeu de la vie en Haskell
 excerpt: "Comment l'approche fonctionnelle peut simplifier certains problèmes"
 tags: [game of life, haskell, programmation fonctionnelle]
