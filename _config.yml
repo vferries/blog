@@ -32,7 +32,7 @@ plugins:
 # Site owner
 author:
   name: Vincent Ferries
-  avatar: /images/profile-square.png
+  avatar: /images/profile_square.png
   bio: "Apprenti artisan logiciel polyglotte"
   links:
     - label: "CV"
