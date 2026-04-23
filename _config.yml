@@ -1,8 +1,10 @@
 # Site settings
-title: En veille
+title: En Veille
 logo: "/images/logo.png"
 email: vincent.ferries@gmail.com
-description: Un blog de veille technologique full stack.
+description: >-
+  Vincent Ferries, développeur indépendant basé à Toulouse. Accompagnement
+  d'équipes tech, architecture, IA dans le dev. Billets de veille depuis 2011.
 twitter_username: VincentFERRIES
 github_username: vferries
 minimal_mistakes_skin: default
@@ -33,7 +35,7 @@ plugins:
 author:
   name: Vincent Ferries
   avatar: /images/profile_square.png
-  bio: "Apprenti artisan logiciel polyglotte"
+  bio: "Dev indé · JVM · JS/TS · Android · IA dans le dev · Toulouse"
   links:
     - label: "CV"
       icon: "fa fa-fw fa-user"
