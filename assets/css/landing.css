@@ -95,7 +95,7 @@ body.landing #main {
 
 /* Landing container */
 .ev-landing { color: var(--ev-text); }
-.ev-landing a:not(.ev-btn) { color: inherit; text-decoration: none; }
+.ev-landing a { text-decoration: none; }
 .ev-container { max-width: 1200px; margin: 0 auto; }
 
 /* ============================================================
