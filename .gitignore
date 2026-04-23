@@ -1,9 +1,24 @@
-_site
-.sass-cache
+# Contexte privé pour Claude CLI — ne pas versionner
+CLAUDE.local.md
+.claude/
+
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+
+# Bundler
+Gemfile.lock
+
+# OS
 .DS_Store
-*.sublime-project
-*.sublime-workspace
-codekit-config.json
-node_modules
-_asset_bundler_cache
-.idea
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*~
