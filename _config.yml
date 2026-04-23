@@ -22,6 +22,17 @@ timezone: Europe/Paris
 include:
   - _pages
 
+# Fichiers à ne pas processer par Jekyll (docs projet, contexte Claude, etc.)
+exclude:
+  - CLAUDE.md
+  - CLAUDE.local.md
+  - NEXT.md
+  - README.md
+  - .claude
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+
 # Plugins (previously gems:)
 plugins:
   - jekyll-paginate
