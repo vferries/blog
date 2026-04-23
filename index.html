@@ -1,7 +1,315 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-author_profile: true
+layout: landing
+title: "En Veille — Dev indé · JVM · JS/TS · Android · IA"
+description: "Vincent Ferries accompagne les équipes tech sur leurs missions longues. Architecture, bonnes pratiques, intégration IA. Basé à Toulouse."
+permalink: /
+is_landing: true
+author_profile: false
 ---
+
+<div class="ev-landing">
+
+<div class="ev-progress"><div class="ev-progress__bar"></div></div>
+
+<!-- Quick-nav flottante -->
+<aside class="ev-quick-nav" id="ev-quick-nav" aria-label="Navigation rapide">
+  <a href="#ev-top"    class="ev-quick-nav__dot" data-label="Hero"     data-target="ev-top"></a>
+  <a href="#services"  class="ev-quick-nav__dot" data-label="Services" data-target="services"></a>
+  <a href="#about"     class="ev-quick-nav__dot" data-label="À propos" data-target="about"></a>
+  <a href="#blog"      class="ev-quick-nav__dot" data-label="Blog"     data-target="blog"></a>
+  <a href="#contact"   class="ev-quick-nav__dot" data-label="Contact"  data-target="contact"></a>
+</aside>
+
+<!-- NAV -->
+<nav class="ev-nav" id="ev-top">
+  <div class="ev-nav__inner">
+    <a href="/" class="ev-nav__brand">
+      <img src="{{ '/images/logo.svg' | relative_url }}" alt=""> En Veille
+    </a>
+    <ul class="ev-nav__links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+      <li><a href="https://vferries.github.io/cv/" rel="noopener">CV</a></li>
+    </ul>
+    <span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="ev-hero">
+  <div class="ev-hero__grid">
+    <div>
+      <div class="ev-hero__tag">Dev indé · Toulouse · depuis 2011</div>
+      <h1 class="ev-hero__title">
+        Dev senior,<br>
+        posture <em>tranquille</em>.<br>
+        <em>Impact</em> rapide, <span class="ev-hl">savoir-faire</span> qui dure.
+      </h1>
+      <p class="ev-hero__lede">
+        Je suis Vincent. J'accompagne les équipes tech sur leurs projets de fond — backend JVM, front-end JS/TS, Android, et l'intégration concrète de l'IA dans les workflows de dev. Mission longue de préférence.
+      </p>
+      <div class="ev-hero__cta">
+        <a href="#services" class="ev-btn ev-btn--primary">
+          Ce que je fais
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="ev-btn ev-btn--ghost">On en discute ?</a>
+        <span class="ev-hero__hint">par email, direct</span>
+      </div>
+    </div>
+    <div class="ev-hero__visual" aria-hidden="true">
+      <img src="{{ '/images/logo.svg' | relative_url }}" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="ev-strip">
+  <div class="ev-strip__row">
+    <span>Kotlin</span><span>Spring</span><span>TypeScript</span><span>React</span><span>Android</span><span>Jetpack Compose</span><span>Claude Code</span><span>MCP</span><span>Docker</span><span>GitHub Actions</span><span>Vite</span><span>Gradle</span>
+    <span>Kotlin</span><span>Spring</span><span>TypeScript</span><span>React</span><span>Android</span><span>Jetpack Compose</span><span>Claude Code</span><span>MCP</span><span>Docker</span><span>GitHub Actions</span><span>Vite</span><span>Gradle</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="ev-stats">
+  <div class="ev-stat">
+    <span class="ev-stat__num" data-count="15"><em>0</em><span class="unit">ans</span></span>
+    <span class="ev-stat__label">dans le dev</span>
+  </div>
+  <div class="ev-stat">
+    <span class="ev-stat__num" data-count="{{ site.posts | size }}"><em>0</em><span class="unit">posts</span></span>
+    <span class="ev-stat__label">sur le blog</span>
+  </div>
+  <div class="ev-stat">
+    <span class="ev-stat__num" data-count="8"><em>0</em><span class="unit">technos</span></span>
+    <span class="ev-stat__label">en production</span>
+  </div>
+  <div class="ev-stat">
+    <span class="ev-stat__num" data-count="5"><em>0</em><span class="unit">formats</span></span>
+    <span class="ev-stat__label">de prestation</span>
+  </div>
+</section>
+
+<!-- INTRO + TERMINAL -->
+<section class="ev-intro-section">
+  <div class="ev-git-feed" aria-hidden="true">
+    <div class="ev-git-feed__line">
+      <span class="ev-git-feed__hash">c3a7d2f</span> refactor(auth): simplify OAuth flow · <span class="ev-git-feed__ref">main</span> · 2h
+      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">e8b4a91</span> feat(mcp): add Claude connector · <span class="ev-git-feed__ref">feat/mcp</span> · 5h
+      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">1f9c3e0</span> docs: update README · <span class="ev-git-feed__ref">main</span> · 1d
+      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">7ac0b52</span> fix(android): crash on Pixel 6 · <span class="ev-git-feed__ref">hotfix</span> · 2d
+      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">b62e4d8</span> test(core): add coverage · <span class="ev-git-feed__ref">main</span> · 3d
+      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">c3a7d2f</span> refactor(auth): simplify OAuth flow · <span class="ev-git-feed__ref">main</span> · 2h
+      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">e8b4a91</span> feat(mcp): add Claude connector · <span class="ev-git-feed__ref">feat/mcp</span> · 5h
+      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">1f9c3e0</span> docs: update README · <span class="ev-git-feed__ref">main</span> · 1d
+      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">7ac0b52</span> fix(android): crash on Pixel 6 · <span class="ev-git-feed__ref">hotfix</span> · 2d
+      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">b62e4d8</span> test(core): add coverage · <span class="ev-git-feed__ref">main</span> · 3d
+    </div>
+  </div>
+
+  <div class="ev-intro ev-reveal">
+    <p class="ev-intro__kicker">en quelques mots</p>
+    <h2>Pas un <em>ninja full-stack</em>.<br>Un dev qui <em>livre</em>, et qui laisse l'équipe <em>grandie</em>.</h2>
+    <p>Le métier, je le pratique depuis quinze ans. La veille, la réflexion, la transmission — ce ne sont pas des à-côtés, c'est le cœur du job.</p>
+    <p>Et oui, j'utilise l'IA tous les jours. Pas pour remplacer le cerveau, pour aller plus vite là où c'est pertinent. Grosse différence.</p>
+  </div>
+
+  <div class="ev-terminal ev-reveal">
+    <div class="ev-terminal__bar">
+      <span class="ev-terminal__dot" style="background:#FF5F57"></span>
+      <span class="ev-terminal__dot" style="background:#FEBC2E"></span>
+      <span class="ev-terminal__dot" style="background:#28C840"></span>
+      <span class="ev-terminal__title">vincent@enveille ~ </span>
+    </div>
+    <div class="ev-terminal__body">
+<span class="ev-t-comment"># quick intro</span><br>
+<span class="ev-t-prompt">$</span> whoami<br>
+Vincent Ferries <span class="ev-t-p">// dev indé, Toulouse</span><br>
+<br>
+<span class="ev-t-prompt">$</span> cat ~/.values<br>
+<span class="ev-t-kw">1.</span> <span class="ev-t-string">"pragmatisme avant dogmatisme"</span><br>
+<span class="ev-t-kw">2.</span> <span class="ev-t-string">"transmettre &gt; savoir"</span><br>
+<span class="ev-t-kw">3.</span> <span class="ev-t-string">"humain d'abord"</span><br>
+<br>
+<span class="ev-t-prompt">$</span> echo <span class="ev-t-string">"on bosse ensemble ?"</span><span class="ev-t-cursor"></span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="ev-services" id="services">
+  <div class="ev-section-head ev-reveal">
+    <div>
+      <p class="ev-section-kicker">services</p>
+      <h2 class="ev-section-title">5 façons de <em>travailler</em> ensemble</h2>
+    </div>
+    <p class="ev-section-sub">Du renfort long terme au coup de main ponctuel. Toujours : code propre, équipe qui monte, pas de bullshit.</p>
+  </div>
+
+  <div class="ev-services__grid ev-reveal--stagger">
+    <article class="ev-service">
+      <span class="ev-service__bignum">01</span>
+      <span class="ev-service__arrow">→</span>
+      <div class="ev-service__num"><strong>01</strong>  la préférée</div>
+      <h3>Accompagnement d'équipe au long cours</h3>
+      <p>Je rejoins votre équipe pour monter en qualité, structurer l'architecture, transmettre les pratiques. Pas un "dev en plus" — quelqu'un qui comprend le contexte, les gens, la dette. Dans la durée, l'impact se fait.</p>
+      <div class="ev-service__meta"><span>6 mois min.</span><span>3-4 jours/sem</span><span>IRL partiel ok</span></div>
+    </article>
+
+    <article class="ev-service">
+      <span class="ev-service__bignum">02</span>
+      <span class="ev-service__arrow">→</span>
+      <div class="ev-service__num"><strong>02</strong></div>
+      <h3>Audit &amp; architecture</h3>
+      <p>Un regard extérieur qui tranche. Revue de code, choix techniques, CI/CD, observabilité, dette.</p>
+      <div class="ev-service__meta"><span>2 semaines</span><span>livrable écrit</span></div>
+    </article>
+
+    <article class="ev-service">
+      <span class="ev-service__bignum">03</span>
+      <span class="ev-service__arrow">→</span>
+      <div class="ev-service__num"><strong>03</strong></div>
+      <h3>IA dans le dev — POC &amp; mise en production</h3>
+      <p>Automatisation, génération de code, review assistée, agents MCP branchés sur vos outils. Sans hype, avec des indicateurs avant/après.</p>
+      <div class="ev-service__meta"><span>4-8 semaines</span><span>livrable tournant</span></div>
+    </article>
+
+    <article class="ev-service">
+      <span class="ev-service__bignum">04</span>
+      <span class="ev-service__arrow">→</span>
+      <div class="ev-service__num"><strong>04</strong></div>
+      <h3>Développement ponctuel &amp; POC</h3>
+      <p>Prototype à sortir, fonctionnalité à boucler. Code propre, tests, doc. Moins cher qu'un recrutement.</p>
+      <div class="ev-service__meta"><span>2-6 semaines</span><span>forfait possible</span></div>
+    </article>
+
+    <article class="ev-service">
+      <span class="ev-service__bignum">05</span>
+      <span class="ev-service__arrow">→</span>
+      <div class="ev-service__num"><strong>05</strong>  humain</div>
+      <h3>Formation &amp; mentorat — on apprend tous en enseignant</h3>
+      <p>Sessions sur-mesure, pair programming, mentorat individuel. Je partage ce que j'applique au quotidien : ni cours théorique, ni tuto YouTube. Du vrai, avec vos outils, sur votre codebase.</p>
+      <div class="ev-service__meta"><span>1j intensif</span><span>cycle 4×2h</span><span>mentorat hebdo</span><span>en ligne ou IRL</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="ev-about" id="about">
+  <div class="ev-photo">
+    <div class="ev-photo__placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <circle cx="12" cy="12" r="3.5"/>
+        <path d="M8 5l1.5-2h5L16 5"/>
+      </svg>
+      <span>photo à venir</span>
+    </div>
+  </div>
+
+  <div class="ev-about__content ev-reveal">
+    <p class="ev-intro__kicker">qui suis-je</p>
+    <h2>Un <em>dev</em>, qui aime <em>les gens</em>, et surtout <em>la veille</em>.</h2>
+    <p>
+      Quinze ans dans le développement, d'abord salarié, puis indépendant avec <strong>En Veille</strong>. Le nom n'est pas un clin d'œil — c'est ma vision du métier : se tenir au courant fait partie du boulot, pas des à-côtés.
+    </p>
+    <p>
+      Je code beaucoup (surprise), je streame sur Twitch (<em>Advent of Code</em>, bidouilles en live), je donne des coups de main bénévoles, et j'écris ici quand j'ai quelque chose qui vaut le coup.
+    </p>
+
+    <ul class="ev-values">
+      <li class="ev-value">
+        <span class="ev-value__num">#01</span>
+        <div class="ev-value__body">
+          <strong>Pragma &gt; dogme</strong>
+          <span>Les bonnes pratiques servent les équipes, pas l'inverse. J'adapte au contexte, pas à une doctrine.</span>
+        </div>
+      </li>
+      <li class="ev-value">
+        <span class="ev-value__num">#02</span>
+        <div class="ev-value__body">
+          <strong>Transmettre, toujours</strong>
+          <span>Une mission réussie, c'est une équipe qui peut se passer de moi à la fin.</span>
+        </div>
+      </li>
+      <li class="ev-value">
+        <span class="ev-value__num">#03</span>
+        <div class="ev-value__body">
+          <strong>Humain d'abord</strong>
+          <span>La tech au service des gens. L'IA ne change pas ça, elle le rend plus important.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="ev-stack">
+  <div class="ev-section-head ev-reveal">
+    <div>
+      <p class="ev-section-kicker">stack &amp; outils</p>
+      <h2 class="ev-section-title">Ce que j'utilise <em>tous les jours</em></h2>
+    </div>
+    <p class="ev-section-sub">Pas un package.json exhaustif — juste ce sur quoi vous pouvez compter. J'apprends le reste quand le contexte l'exige.</p>
+  </div>
+
+  <div class="ev-stack__code ev-reveal">
+<span class="ev-c-c">// snapshot honnête — en prod, tous les jours</span><br>
+<span class="ev-c-kw">const</span> <span class="ev-c-k">backend</span>&nbsp; = [<span class="ev-c-tag">Kotlin</span><span class="ev-c-tag">Java</span><span class="ev-c-tag">Spring</span><span class="ev-c-tag">Gradle</span><span class="ev-c-tag">JUnit</span><span class="ev-c-tag">PostgreSQL</span>];<br>
+<span class="ev-c-kw">const</span> <span class="ev-c-k">frontend</span> = [<span class="ev-c-tag">TypeScript</span><span class="ev-c-tag">React</span><span class="ev-c-tag">Vue</span><span class="ev-c-tag">Vite</span><span class="ev-c-tag">Testing Library</span>];<br>
+<span class="ev-c-kw">const</span> <span class="ev-c-k">mobile</span>&nbsp;&nbsp; = [<span class="ev-c-tag">Android</span><span class="ev-c-tag">Kotlin</span><span class="ev-c-tag">Jetpack Compose</span>];<br>
+<span class="ev-c-kw">const</span> <span class="ev-c-k">ia</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = [<span class="ev-c-tag">Claude</span><span class="ev-c-tag">Claude Code</span><span class="ev-c-tag">MCP</span><span class="ev-c-tag">Ollama</span>];<br>
+<span class="ev-c-kw">const</span> <span class="ev-c-k">ops</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = [<span class="ev-c-tag">Docker</span><span class="ev-c-tag">GitHub Actions</span><span class="ev-c-tag">Nix</span><span class="ev-c-tag">Terraform</span>];<br>
+<br>
+<span class="ev-c-c">// stack différente chez vous ? on s'adapte.</span>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="ev-blog" id="blog">
+  <div class="ev-section-head ev-reveal">
+    <div>
+      <p class="ev-section-kicker">blog</p>
+      <h2 class="ev-section-title">Quand j'ai <em>un truc à raconter</em></h2>
+    </div>
+    <p class="ev-section-sub">J'écris rarement, mais quand j'ai un vrai angle. Comptes-rendus de conférences, retours terrain, bidouilles du streaming.</p>
+  </div>
+
+  <div class="ev-posts ev-reveal--stagger">
+    {% assign latest_posts = site.posts | sort: 'date' | reverse %}
+    {% for post in latest_posts limit:3 %}
+    <a href="{{ post.url | relative_url }}" class="ev-post">
+      <span class="ev-post__date">{{ post.date | date: "%d %b %Y" | downcase }}</span>
+      <span class="ev-post__title">{{ post.title }}</span>
+      <span class="ev-post__read">~{{ post.content | number_of_words | divided_by: 180 }} min</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <a href="{{ '/blog/' | relative_url }}" class="ev-blog__more">Tous les billets </a>
+</section>
+
+<!-- CTA -->
+<div class="ev-cta-wrap">
+<section class="ev-cta ev-reveal" id="contact">
+  <h2>Et si on en <em>discutait</em> ?</h2>
+  <p>Le meilleur moyen de savoir si on peut bosser ensemble, c'est un premier échange direct. Pas de formulaire, pas de calendrier à remplir — un email et on fixe un créneau.</p>
+  <a href="mailto:vincent.ferries@gmail.com?subject=Projet%20En%20Veille" class="ev-cta__email">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    vincent.ferries@gmail.com
+  </a>
+  <ul class="ev-cta__socials">
+    <li><a href="https://github.com/vferries" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>github.com/vferries</a></li>
+    <li><a href="https://www.twitch.tv/EnVeilleCode" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zM11 11V7M16 11V7"/></svg>twitch.tv/EnVeilleCode</a></li>
+    <li><a href="https://twitter.com/VincentFERRIES" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M20 4L4 20"/></svg>@VincentFERRIES</a></li>
+  </ul>
+</section>
+</div>
+
+<footer class="ev-footer">
+  © {{ site.time | date: "%Y" }} En Veille — <a href="{{ '/feed.xml' | relative_url }}">RSS</a> — Fait à Toulouse
+</footer>
+
+</div>
