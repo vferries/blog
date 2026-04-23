@@ -1,61 +1,14 @@
-<style>#forkongithub a {
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    font-family: arial, sans-serif;
-    text-align: center;
-    font-weight: bold;
-    padding: 5px 40px;
-    font-size: 16px;
-    line-height: 24px;
-    position: relative;
-    transition: 0.5s;
-}
+<!-- En Veille — head custom -->
+<!-- Anciennement : bandeau "Available for Mentoring" → supprimé au profit de la nouvelle landing -->
 
-#forkongithub a:hover {
-    background: #c11;
-    color: #fff;
-}
+<!-- Google Fonts : Fraunces (display + italic) + Inter (body) + JetBrains Mono (code) + Caveat (accents manuscrits) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
 
-#forkongithub a::before, #forkongithub a::after {
-    content: "";
-    width: 100%;
-    display: block;
-    position: absolute;
-    top: 1px;
-    left: 0;
-    height: 1px;
-    background: #fff;
-}
+<!-- Theme color (adresse-bar sur mobile) -->
+<meta name="theme-color" content="#001B3D" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000331" media="(prefers-color-scheme: dark)">
 
-#forkongithub a::after {
-    bottom: 1px;
-    top: auto;
-}
-
-@media screen and (min-width: 800px) {
-    #forkongithub {
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 0;
-        width: 265px;
-        overflow: hidden;
-        height: 200px;
-        z-index: 9999;
-    }
-
-    #forkongithub a {
-        width: 265px;
-        position: absolute;
-        top: 60px;
-        right: -60px;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        -o-transform: rotate(45deg);
-        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
-    }
-}</style>
-<span id="forkongithub"><a href="{{site.url}}/mentoring">Available for Mentoring</a></span>
+<!-- En Veille design tokens + global theme adjustments -->
+<link rel="stylesheet" href="{{ '/assets/css/enveille.css' | relative_url }}">

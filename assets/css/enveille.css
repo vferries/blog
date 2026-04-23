@@ -1,0 +1,270 @@
+/* ============================================================
+   En Veille — global design tokens & theme adjustments
+   Appliqué sur toutes les pages, y compris les billets.
+   S'empile par-dessus Minimal Mistakes.
+   ============================================================ */
+
+:root {
+  /* Brand */
+  --brand-navy: #001B3D;
+  --brand-blue: #007DA5;
+  --brand-cyan: #00F2FF;
+
+  /* Palettes (stops clés) */
+  --navy-800: #002774;
+  --navy-900: #001251;
+  --navy-950: #000331;
+  --blue-500: #006891;
+  --blue-600: #005171;
+  --cyan-200: #8EE6EA;
+  --cyan-300: #43CFD6;
+  --slate-50: #F5F7F9;
+  --slate-100: #E6EAEE;
+  --slate-200: #CED5DC;
+  --slate-300: #B1BAC3;
+  --slate-400: #939EA8;
+  --slate-500: #75808B;
+  --slate-600: #56626C;
+  --slate-700: #3C4650;
+  --slate-800: #262F37;
+  --slate-900: #141B22;
+
+  /* Typography stacks */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --font-hand: 'Caveat', cursive;
+
+  /* Semantic — light mode */
+  --ev-bg:          #FBF7F0;  /* papier crème, plus chaleureux que blanc pur */
+  --ev-bg-subtle:   #F3EEE2;
+  --ev-bg-muted:    #E6EAEE;
+  --ev-text:        #1A1813;
+  --ev-text-muted:  #413B30;
+  --ev-text-subtle: #6B6252;
+  --ev-border:      rgba(26, 24, 19, 0.1);
+  --ev-border-strong: rgba(26, 24, 19, 0.18);
+  --ev-grid:        rgba(26, 24, 19, 0.07);
+
+  --ev-blue: var(--brand-blue);
+  --ev-cyan: var(--brand-cyan);
+  --ev-primary: var(--brand-navy);
+  --ev-primary-hover: var(--navy-800);
+  --ev-on-primary: #FFFFFF;
+  --ev-accent: var(--brand-cyan);
+  --ev-on-accent: var(--brand-navy);
+
+  --ev-code-bg: #E6EAEE;
+  --ev-code-text: #002774;
+  --ev-code-border: rgba(26, 24, 19, 0.1);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ev-bg:          #06091A;
+    --ev-bg-subtle:   #0E1428;
+    --ev-bg-muted:    #262F37;
+    --ev-text:        #F1EBD9;
+    --ev-text-muted:  #C7BEA7;
+    --ev-text-subtle: #837B66;
+    --ev-border:      rgba(241, 235, 217, 0.12);
+    --ev-border-strong: rgba(241, 235, 217, 0.2);
+    --ev-grid:        rgba(0, 242, 255, 0.06);
+    --ev-blue: #43CFD6;
+    --ev-primary: var(--brand-cyan);
+    --ev-primary-hover: var(--cyan-200);
+    --ev-on-primary: var(--brand-navy);
+    --ev-code-bg: #0E1428;
+    --ev-code-text: #8EE6EA;
+    --ev-code-border: rgba(241, 235, 217, 0.12);
+  }
+}
+
+/* ============================================================
+   Apply brand typography + colors globally
+   Cette partie est volontairement modérée : on respecte les
+   layouts de Minimal Mistakes, on aligne juste les polices et
+   les couleurs.
+   ============================================================ */
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-sans) !important;
+  background-color: var(--ev-bg) !important;
+  color: var(--ev-text) !important;
+  line-height: 1.6;
+}
+
+/* Headings partout en Fraunces */
+h1, h2, h3, h4, h5, h6,
+.page__title, .page__content h1, .page__content h2,
+.page__content h3, .page__content h4,
+.archive__item-title, .archive__subtitle {
+  font-family: var(--font-display) !important;
+  font-weight: 500;
+  color: var(--ev-text);
+  letter-spacing: -0.015em;
+}
+
+/* La sidebar author (à gauche sur les posts) */
+.author__name { font-family: var(--font-display) !important; font-weight: 500; }
+.author__bio { font-family: var(--font-sans); color: var(--ev-text-muted); }
+
+/* Nav top (masthead) */
+.masthead {
+  background-color: var(--ev-bg);
+  border-bottom: 1px solid var(--ev-border);
+}
+.site-title {
+  font-family: var(--font-display) !important;
+  font-weight: 500;
+  color: var(--ev-text) !important;
+  font-size: 1.15em !important;
+}
+.site-subtitle {
+  font-family: var(--font-sans) !important;
+  color: var(--ev-text-subtle) !important;
+}
+.greedy-nav { background: transparent !important; }
+.greedy-nav a { color: var(--ev-text) !important; }
+.greedy-nav a:hover { color: var(--ev-blue) !important; }
+.greedy-nav .visible-links a:before {
+  background: var(--ev-blue) !important;
+}
+
+/* Links in content */
+.page__content a { color: var(--ev-blue); }
+.page__content a:hover { color: var(--blue-600); text-decoration-thickness: 2px; }
+
+/* Code */
+code {
+  font-family: var(--font-mono) !important;
+  background: var(--ev-code-bg) !important;
+  color: var(--ev-code-text) !important;
+  border: 1px solid var(--ev-code-border);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+}
+pre, pre code {
+  font-family: var(--font-mono) !important;
+}
+pre {
+  background: var(--ev-code-bg) !important;
+  border: 1px solid var(--ev-code-border);
+  border-radius: 6px;
+}
+
+/* Archive items (liste des billets) */
+.archive__item {
+  transition: transform 220ms var(--ease-out);
+}
+.archive__item:hover { transform: translateY(-2px); }
+.archive__item-title {
+  font-size: 1.35em;
+  line-height: 1.3;
+}
+.archive__item-title a {
+  color: var(--ev-text);
+  transition: color 180ms var(--ease-out);
+}
+.archive__item-title a:hover { color: var(--ev-blue); }
+
+/* Read time, dates, meta */
+.page__meta, .archive__item-excerpt {
+  color: var(--ev-text-muted);
+}
+.page__meta-sep::before { color: var(--ev-text-subtle); }
+
+/* Footer */
+.page__footer {
+  background-color: var(--ev-bg-subtle) !important;
+  border-top: 1px solid var(--ev-border);
+  color: var(--ev-text-muted);
+}
+.page__footer a { color: var(--ev-text-muted); }
+.page__footer a:hover { color: var(--ev-blue); }
+.page__footer-copyright, .page__footer-follow {
+  color: var(--ev-text-subtle);
+}
+
+/* Pagination */
+.pagination--pager, .pagination a {
+  font-family: var(--font-mono) !important;
+  color: var(--ev-text) !important;
+  background: transparent !important;
+  border: 1px solid var(--ev-border-strong) !important;
+}
+.pagination a:hover {
+  background: var(--ev-bg-subtle) !important;
+  border-color: var(--ev-blue) !important;
+  color: var(--ev-blue) !important;
+}
+
+/* Search */
+.search__toggle { color: var(--ev-text); }
+.search-content input[type="search"] {
+  font-family: var(--font-display) !important;
+  font-weight: 400;
+  color: var(--ev-text) !important;
+  background: transparent !important;
+  border-bottom-color: var(--ev-border-strong) !important;
+}
+
+/* Selection */
+::selection { background: var(--ev-cyan); color: var(--brand-navy); }
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--ev-cyan);
+  outline-offset: 2px;
+}
+
+/* Buttons génériques du thème */
+.btn--primary, .btn--success, .btn--info, .btn--warning, .btn--inverse {
+  font-family: var(--font-sans) !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+}
+.btn--primary { background: var(--ev-primary) !important; }
+.btn--primary:hover { background: var(--ev-primary-hover) !important; }
+
+/* Images respectent les bordures arrondies */
+.archive__item-teaser img, .page__hero--overlay,
+.page__hero img { border-radius: 8px; }
+
+/* Blockquote */
+blockquote {
+  border-left: 3px solid var(--ev-blue) !important;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--ev-text-muted);
+}
+
+/* Tables */
+table {
+  font-family: var(--font-sans);
+}
+th {
+  background: var(--ev-bg-subtle) !important;
+  color: var(--ev-text) !important;
+  font-family: var(--font-display);
+}
+
+/* Pour les pages qui ont un header image (author profile, about, etc.) */
+.page__hero-image {
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
