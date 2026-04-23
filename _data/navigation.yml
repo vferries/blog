@@ -1,6 +1,10 @@
 # Site navigation links
 main:
-  - title: À propos
-    url: /about/
+  - title: Services
+    url: /#services
   - title: Billets
     url: /posts/
+  - title: À propos
+    url: /about/
+  - title: CV
+    url: https://vferries.github.io/cv/

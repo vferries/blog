@@ -12,3 +12,9 @@
 
 <!-- En Veille design tokens + global theme adjustments -->
 <link rel="stylesheet" href="{{ '/assets/css/enveille.css' | relative_url }}">
+
+<!-- Landing-only styles + JS : chargés uniquement sur la home (via front matter `is_landing: true`) -->
+{% if page.is_landing %}
+  <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}">
+  <script defer src="{{ '/assets/js/landing.js' | relative_url }}"></script>
+{% endif %}

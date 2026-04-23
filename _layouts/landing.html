@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{% comment %}
+  Layout "landing" : étend le layout par défaut de Minimal Mistakes
+  mais ajoute :
+    - body.landing (pour scope CSS)
+    - suppression de la masthead + sidebar via CSS
+    - notre propre nav + contenu
+{% endcomment %}
+
+<script>document.body.classList.add('landing');</script>
+
+{{ content }}

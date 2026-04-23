@@ -37,6 +37,9 @@ author:
   avatar: /images/profile_square.png
   bio: "Dev indé · JVM · JS/TS · Android · IA dans le dev · Toulouse"
   links:
+    - label: "Services"
+      icon: "fa fa-fw fa-briefcase"
+      url: "/#services"
     - label: "CV"
       icon: "fa fa-fw fa-user"
       url: "https://vferries.github.io/cv/"
