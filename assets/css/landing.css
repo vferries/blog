@@ -240,7 +240,7 @@ body.landing #main {
 .ev-hero__tag {
   display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--font-mono); font-size: 0.8125rem;
-  color: var(--ev-text-subtle);
+  color: var(--ev-text-muted);
   margin-bottom: 36px;
   padding: 7px 14px 7px 12px;
   border: 1px solid var(--ev-border);
@@ -429,7 +429,7 @@ body.landing #main {
 .ev-strip__row {
   display: inline-flex; gap: 72px;
   font-family: var(--font-mono); font-size: 0.875rem;
-  color: var(--ev-text-subtle);
+  color: var(--ev-text-muted);
   animation: ev-marquee 40s linear infinite;
   padding-left: 72px;
   transition: animation-duration 400ms;
@@ -582,10 +582,10 @@ body.landing #main {
 }
 .ev-terminal__body { padding: 22px 24px; }
 .ev-t-prompt { color: var(--ev-cyan); }
-.ev-t-comment { color: rgba(255,255,255,0.4); font-style: italic; }
+.ev-t-comment { color: rgba(255,255,255,0.6); font-style: italic; }
 .ev-t-string { color: #90E8AB; }
 .ev-t-kw { color: #FF8FB3; }
-.ev-t-p { color: rgba(255,255,255,0.5); }
+.ev-t-p { color: rgba(255,255,255,0.65); }
 .ev-t-cursor {
   display: inline-block; width: 9px; height: 16px;
   background: var(--ev-cyan); vertical-align: -3px; margin-left: 2px;
@@ -852,7 +852,7 @@ body.landing #main {
 }
 .ev-stack__code .ev-c-kw { color: #FF8FB3; font-weight: 500; }
 .ev-stack__code .ev-c-k  { color: #FFC477; }
-.ev-stack__code .ev-c-c  { color: rgba(255,255,255,0.35); font-style: italic; }
+.ev-stack__code .ev-c-c  { color: rgba(255,255,255,0.6); font-style: italic; }
 .ev-stack__code .ev-c-tag {
   display: inline-block;
   padding: 2px 9px; margin: 0 3px;
