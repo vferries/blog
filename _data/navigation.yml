@@ -2,8 +2,8 @@
 main:
   - title: Services
     url: /#services
-  - title: Billets
-    url: /posts/
+  - title: Blog
+    url: /blog/
   - title: À propos
     url: /about/
   - title: CV
