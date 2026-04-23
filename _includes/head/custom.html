@@ -1,10 +1,14 @@
 <!-- En Veille — head custom -->
 <!-- Anciennement : bandeau "Available for Mentoring" → supprimé au profit de la nouvelle landing -->
 
-<!-- Google Fonts : Fraunces (display + italic) + Inter (body) + JetBrains Mono (code) + Caveat (accents manuscrits) -->
+<!-- Fonts : Fraunces (display + italic) + Inter (body) + JetBrains Mono (code) + Caveat (accents)
+     - Fraunces et Inter en ranged weights → 1 fichier variable par style au lieu d'1 par weight
+     - JetBrains Mono/Caveat : un seul weight chacun
+     - Chargement non-bloquant : preload + swap onload (fallback noscript) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..500;1,9..144,400..500&family=Inter:wght@400..500&family=JetBrains+Mono:wght@400&family=Caveat:wght@500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..500;1,9..144,400..500&family=Inter:wght@400..500&family=JetBrains+Mono:wght@400&family=Caveat:wght@500&display=swap"></noscript>
 
 <!-- Theme color (adresse-bar sur mobile) -->
 <meta name="theme-color" content="#001B3D" media="(prefers-color-scheme: light)">
