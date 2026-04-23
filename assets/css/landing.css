@@ -95,7 +95,7 @@ body.landing #main {
 
 /* Landing container */
 .ev-landing { color: var(--ev-text); }
-.ev-landing a { color: inherit; text-decoration: none; }
+.ev-landing a:not(.ev-btn) { color: inherit; text-decoration: none; }
 .ev-container { max-width: 1200px; margin: 0 auto; }
 
 /* ============================================================
@@ -767,7 +767,7 @@ body.landing #main {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 12px;
-  color: var(--ev-text-subtle);
+  color: var(--ev-text-muted);
   background-image: repeating-linear-gradient(
     45deg,
     transparent 0, transparent 10px,
