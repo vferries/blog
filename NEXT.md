@@ -34,10 +34,6 @@ La page existe mais date de 2015. À aligner avec le nouveau ton "senior tranqui
 - [ ] Ajouter une section plus récente : parcours freelance, missions types
 - [ ] Retirer l'image `/images/peinard.jpg` en header (trop old-school)
 
-### Page `/mentoring/` obsolète
-Post de 2015 référencé nulle part depuis la refonte (le bandeau rouge qui pointait dessus a été viré).
-- [ ] Décider : garder (redirect 301 vers `/#services` ?), dépublier, ou réécrire dans l'esprit services ?
-
 ---
 
 ## 🎨 Déclinaisons logo (pas encore faites)
