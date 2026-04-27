@@ -21,18 +21,22 @@
     body.appendChild(trail);
     body.classList.add('has-cursor');
 
-    let x = 0, y = 0, tx = 0, ty = 0;
-    window.addEventListener('pointermove', e => {
-      x = e.clientX; y = e.clientY;
-      cursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
-    });
+    let x = 0, y = 0, tx = 0, ty = 0, running = false;
     const animate = () => {
       tx += (x - tx) * 0.2;
       ty += (y - ty) * 0.2;
       trail.style.transform = `translate(${tx}px, ${ty}px) translate(-50%, -50%)`;
+      if (Math.abs(x - tx) < 0.1 && Math.abs(y - ty) < 0.1) {
+        running = false;
+        return;
+      }
       requestAnimationFrame(animate);
     };
-    animate();
+    window.addEventListener('pointermove', e => {
+      x = e.clientX; y = e.clientY;
+      cursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+      if (!running) { running = true; requestAnimationFrame(animate); }
+    });
 
     const activate = () => cursor.classList.add('active');
     const deactivate = () => cursor.classList.remove('active');
@@ -98,22 +102,27 @@
     const el = document.querySelector('.ev-hero__title');
     const hero = document.querySelector('.ev-hero');
     if (!el || !hero) return;
-    let rx = 0, ry = 0, tx = 0, ty = 0;
+    let rx = 0, ry = 0, tx = 0, ty = 0, running = false;
+    const animate = () => {
+      rx += (tx - rx) * 0.08;
+      ry += (ty - ry) * 0.08;
+      el.style.transform = `translate(${rx}px, ${ry}px)`;
+      if (Math.abs(tx - rx) < 0.05 && Math.abs(ty - ry) < 0.05) {
+        running = false;
+        return;
+      }
+      requestAnimationFrame(animate);
+    };
+    const kick = () => { if (!running) { running = true; requestAnimationFrame(animate); } };
     hero.addEventListener('pointermove', (e) => {
       const r = hero.getBoundingClientRect();
       const cx = r.left + r.width / 2;
       const cy = r.top + r.height / 2;
       tx = (e.clientX - cx) / r.width * 14;
       ty = (e.clientY - cy) / r.height * 8;
+      kick();
     });
-    hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
-    const animate = () => {
-      rx += (tx - rx) * 0.08;
-      ry += (ty - ry) * 0.08;
-      el.style.transform = `translate(${rx}px, ${ry}px)`;
-      requestAnimationFrame(animate);
-    };
-    animate();
+    hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; kick(); });
   })();
 
   // ==========================================================
