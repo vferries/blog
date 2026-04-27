@@ -105,12 +105,12 @@ body.landing #main {
 .ev-nav {
   position: sticky; top: 0; z-index: 20;
   background: color-mix(in srgb, var(--ev-bg) 88%, transparent);
-  backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
   animation: ev-nav-border linear;
   animation-timeline: scroll(root);
   animation-range: 0 200px;
 }
+.ev-nav--scrolled { backdrop-filter: blur(14px); }
 @keyframes ev-nav-border { to { border-bottom-color: var(--ev-border); } }
 .ev-nav__inner {
   max-width: 1200px; margin: 0 auto;

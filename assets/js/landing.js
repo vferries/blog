@@ -146,6 +146,18 @@
   })();
 
   // ==========================================================
+  // NAV — applique le backdrop-filter uniquement quand on a scrollé
+  // (le blur est coûteux à recalculer à chaque frame quand sticky)
+  // ==========================================================
+  (function initNavScroll() {
+    const nav = document.querySelector('.ev-nav');
+    if (!nav) return;
+    const update = () => nav.classList.toggle('ev-nav--scrolled', window.scrollY > 4);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  })();
+
+  // ==========================================================
   // QUICK-NAV (show after hero, active section tracking)
   // ==========================================================
   (function initQuickNav() {
