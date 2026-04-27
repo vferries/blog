@@ -1,6 +1,15 @@
 <!-- En Veille — head custom -->
 <!-- Anciennement : bandeau "Available for Mentoring" → supprimé au profit de la nouvelle landing -->
 
+<!-- Favicons : SVG moderne + fallbacks PNG/ICO + apple-touch + manifest PWA -->
+<link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="48x48" href="{{ '/favicon-48.png' | relative_url }}">
+<link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+
 <!-- Fonts : Fraunces (display + italic) + Inter (body) + JetBrains Mono (code) + Caveat (accents)
      - Fraunces et Inter en ranged weights → 1 fichier variable par style au lieu d'1 par weight
      - JetBrains Mono/Caveat : un seul weight chacun
