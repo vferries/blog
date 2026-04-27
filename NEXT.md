@@ -25,8 +25,8 @@
 ## ⏭ Prochainement
 
 ### Photo
-- [ ] Faire/choisir une photo de Vincent pour la section "À propos"
-- [ ] Dans `index.html`, remplacer le bloc `.ev-photo__placeholder` par `<img src="/images/vincent.jpg">`
+- [x] Faire/choisir une photo de Vincent pour la section "À propos" (utilise `profile_square.png` en attendant mieux)
+- [x] Dans `index.html`, remplacer le bloc `.ev-photo__placeholder` par `<img>`
 
 ### Page `/about/` à rafraîchir
 La page existe mais date de 2015. À aligner avec le nouveau ton "senior tranquille".

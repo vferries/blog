@@ -764,21 +764,10 @@ body.landing #main {
   transition: transform 400ms var(--ease-out);
 }
 .ev-photo:hover { transform: rotate(-0.5deg) scale(1.02); }
-.ev-photo__placeholder {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 12px;
-  color: var(--ev-text-muted);
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent 0, transparent 10px,
-    var(--ev-border) 10px, var(--ev-border) 11px
-  );
-}
-.ev-photo__placeholder svg { width: 52px; height: 52px; }
-.ev-photo__placeholder span {
-  font-family: var(--font-mono); font-size: 0.75rem;
-  background: var(--ev-bg-subtle); padding: 4px 10px;
+.ev-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
 }
 .ev-photo::after {
   content: "Vincent @ Toulouse"; position: absolute;
