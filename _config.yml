@@ -29,6 +29,7 @@ exclude:
   - NEXT.md
   - README.md
   - .claude
+  - tools
   - vendor
   - Gemfile
   - Gemfile.lock
