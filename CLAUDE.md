@@ -29,7 +29,7 @@ bundle exec jekyll serve --livereload
 /feed.xml            # RSS
 ```
 
-- `_posts/` : 48 billets depuis 2011, URLs permaliens `/:categories/:title/` (stables, ne pas changer)
+- `_posts/` : 46 billets depuis 2011, URLs permaliens `/:categories/:title/` (stables, ne pas changer)
 - `_layouts/landing.html` : layout custom pour la landing (hérite de `default`)
 - `_includes/head/custom.html` : chargement fonts + CSS/JS (le bloc `landing.css`/`landing.js` est conditionné par `{% if page.is_landing %}`)
 - `assets/css/enveille.css` : design tokens + thème appliqué partout
