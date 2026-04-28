@@ -2,6 +2,7 @@
 permalink: /about/
 title: "À propos"
 excerpt: "Vincent Ferries — dev indé à Toulouse. Pourquoi En Veille, comment je travaille, et avec qui."
+author_profile: false
 ---
 
 Je suis Vincent Ferries, dev indépendant basé à Toulouse. J'ai monté **En Veille** après plusieurs années en salariat — backend JVM, front-end JS/TS, Android, et de plus en plus d'IA branchée concrètement dans les workflows de dev. Le blog, lui, vit depuis 2011 ; les billets les plus anciens en témoignent.
