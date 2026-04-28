@@ -1,6 +1,7 @@
 # Site settings
 title: En Veille
 logo: "/images/logo.svg"
+og_image: /images/og-card.png
 email: vincent.ferries@gmail.com
 description: >-
   Vincent Ferries, développeur indépendant basé à Toulouse. Accompagnement
