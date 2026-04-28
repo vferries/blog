@@ -33,8 +33,8 @@
 
 ### Pages transverses à reprendre
 
-- [ ] **`/404.html`** : encore en anglais (`Sorry, but the page you were trying to view does not exist.`) + excerpt EN ("Page not found. Your pixels are in another canvas."). À franciser et passer dans le ton En Veille (occasion d'un easter egg discret ?)
-- [ ] **`/privacy`** : `We do not collect any data, happy gaming!` → faux (Disqus = cookies tiers) + ton template. À réécrire honnêtement, ou supprimer la page si plus rien ne pointe dessus
+- [x] **`/404.html`** : francisé, ton En Veille, liens de rebond vers `/`, `/blog/`, `/about/`
+- [x] **`/privacy`** : réécrite honnêtement (Google Fonts, Disqus, GitHub Pages explicités)
 
 ---
 
@@ -49,8 +49,8 @@
 - [ ] **Sidebar des billets (`author_profile`)** :
   - Avatar `profile_square.png` ✓ (cohérent avec landing depuis le commit du jour)
   - Pas de lien direct vers `/` (la landing) ni vers RSS
-  - Sur `/about/`, la sidebar est redondante avec l'intro "Je suis Vincent Ferries…" — désactiver `author_profile` pour cette page ?
-- [ ] **Liens Twitter** : `_config.yml` (×2) + landing utilisent `twitter.com` — moderniser en `x.com` (redirige déjà) ?
+  - Sur `/about/`, sidebar désactivée (`author_profile: false` dans le front matter) — l'intro de la page suffit
+- [x] **Liens Twitter** : URLs migrées vers `x.com` (`_config.yml` ×2 + `index.html` ×1). Icônes (`fa-twitter`, SVG croix) volontairement conservées — choix visuel séparé.
 - [ ] **Email** : partout `vincent.ferries@gmail.com` — garder Gmail ou créer `vincent@enveille.info` une fois le DNS prêt ?
 
 ### Photo
@@ -115,7 +115,7 @@ Le script `.claude/assets/clean_figma_svg.py` est à utiliser après chaque expo
 - [ ] Regarder `prefers-reduced-transparency` pour les effets de blur
 - [ ] Mentions légales (SIREN si EI/société) — manque pour conformité
 - [ ] Vérifier que `:heart:` du footer landing est bien rendu par jemoji
-- [ ] **Compteur dans CLAUDE.md à jour** : indique "48 billets", on est à 46
+- [x] **Compteur dans CLAUDE.md à jour** : 46 billets
 
 ### Landing — passage en prod (vérifications restantes)
 
