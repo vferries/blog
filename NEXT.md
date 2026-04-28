@@ -28,7 +28,7 @@
 
 - [x] **`og:image` du layout `landing.html`** pointe sur `/images/logo.png` qui est encore l'**ancien** bouton power → quand on partage `enveille.info`, le visiteur voit l'ancien logo
 - [x] Idem **`/favicon.ico`** et **`/favicon.png`** à la racine = ancien logo → onglet navigateur, raccourcis mobile, etc. montrent l'ancien
-- [ ] Twitter card en `summary` (small image) → évaluer `summary_large_image` pour un meilleur rendu (impliquera un OG card 1200×630 dédié)
+- [x] Twitter card passée en `summary_large_image`, OG card 1200×630 livrée (cf. `tools/og-card/`)
 - [x] Pas de référence favicon explicite dans le head MM → liens explicites ajoutés dans `head/custom.html` et `landing.html`
 
 ### Pages transverses à reprendre
@@ -74,7 +74,7 @@ Le logo principal existe (`/images/logo.svg`) mais il manque :
 - [x] **Favicon** multi-résolution (16, 32, 48) — kit complet via RealFaviconGenerator, avec `favicon-small.svg` pixel-art pour le 16px
 - [x] **Favicon SVG** pour les navigateurs récents
 - [x] **Logo PNG à jour** pour OG image (512×512 actuellement, à partir d'`android-chrome-512.png`)
-- [ ] **OG card dédié 1200×630** avec fond En Veille + texte (étape suivante de l'OG image)
+- [x] **OG card dédié 1200×630** : `images/og-card.png` (fond cream, Fraunces italique, logo). Régénérable via `./tools/og-card/generate.sh`
 - [ ] **Version monochrome blanche** pour fonds sombres (t-shirts, stickers, watermark)
 - [ ] **Version monochrome navy** pour impression monochrome
 - [ ] **Wordmark horizontal** : logo à gauche + "En Veille" en Fraunces 500 à droite — pour les en-têtes
