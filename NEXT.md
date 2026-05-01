@@ -51,7 +51,6 @@
   - Pas de lien direct vers `/` (la landing) ni vers RSS
   - Sur `/about/`, sidebar désactivée (`author_profile: false` dans le front matter) — l'intro de la page suffit
 - [x] **Liens Twitter** : URLs migrées vers `x.com` (`_config.yml` ×2 + `index.html` ×1). Icônes (`fa-twitter`, SVG croix) volontairement conservées — choix visuel séparé.
-- [ ] **Email** : partout `vincent.ferries@gmail.com` — garder Gmail ou créer `vincent@enveille.info` une fois le DNS prêt ?
 
 ### Photo
 
@@ -150,7 +149,6 @@ Ce qui peut être fait en autonomie par Claude Code (commit à la clé) :
 Ce qui demande intervention humaine :
 
 - Valider les textes (ton, crédibilité commerciale)
-- Trancher Gmail vs `vincent@enveille.info`
 - Trancher SIREN/mentions légales
 - Fournir la photo studio dédiée (en remplacement de `profile_square.png`)
 - Valider les accords clients pour études de cas
