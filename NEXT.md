@@ -86,10 +86,11 @@ Le script `.claude/assets/clean_figma_svg.py` est à utiliser après chaque expo
 ## 🌐 Autres surfaces à unifier
 
 ### `vferries.github.io/cv`
-- [ ] Audit : stack actuelle, date de dernier refresh, cohérence avec la marque ?
-- [ ] Appliquer les tokens (`enveille.css` importable) et Fraunces/Inter
-- [ ] Header avec le nouveau logo + wordmark
-- [ ] Footer cohérent avec le blog
+- [x] Audit : HTML/JS vanilla, CSS custom properties déjà alignées palette En Veille
+- [x] Appliquer Fraunces (display + tagline italique) + Inter (body)
+- [x] Header : brand strip avec logo + wordmark "En Veille · CV", lien retour
+- [x] Bonus : OG card 1200×630 dédiée + favicon kit (SVG/ICO/PNG) + print refondu (photo carrée 150px, navy partout, typo 0.78rem → CV tient sur 2 pages)
+- [ ] Footer du CV (section SOCIAL) : à voir si on aligne avec le footer du blog ou on laisse le ton CV-centric
 
 ### `twitch.tv/EnVeilleCode`
 - [ ] Avatar : version stacked du logo
