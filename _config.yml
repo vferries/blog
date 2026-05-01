@@ -25,6 +25,7 @@ include:
 
 # Fichiers à ne pas processer par Jekyll (docs projet, contexte Claude, etc.)
 exclude:
+  - AGENTS.md
   - CLAUDE.md
   - CLAUDE.local.md
   - NEXT.md
