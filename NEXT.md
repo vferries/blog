@@ -79,7 +79,7 @@ Le logo principal existe (`/images/logo.svg`) mais il manque :
 - [ ] **Wordmark horizontal** : logo à gauche + "En Veille" en Fraunces 500 à droite — pour les en-têtes
 - [ ] **Version "stacked"** : logo en haut + "En Veille" en dessous — pour avatars carrés (Twitch, X, GitHub)
 
-Le script `.claude/assets/clean_figma_svg.py` est à utiliser après chaque export Figma.
+Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque export Figma.
 
 ---
 
