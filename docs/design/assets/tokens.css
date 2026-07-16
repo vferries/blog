@@ -1,0 +1,368 @@
+/* ============================================================
+   En Veille — Design Tokens
+   Based on the owl+power logo (navy #001B3D, blue #007DA5, cyan #00F2FF).
+   
+   Structure:
+   - PRIMITIVES: raw palette & scales
+   - SEMANTIC:   contextual tokens (use these in components)
+   - DARK MODE:  remaps semantics automatically
+   ============================================================ */
+
+:root {
+  /* ---------- TYPOGRAPHY ---------- */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px */
+  --text-3xl:  1.875rem;  /* 30px */
+  --text-4xl:  2.25rem;   /* 36px */
+  --text-5xl:  3rem;      /* 48px */
+
+  --leading-tight:   1.2;
+  --leading-snug:    1.4;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide:   0.04em;
+
+  --font-regular: 400;
+  --font-medium:  500;
+  --font-bold:    700;
+
+  /* ---------- SPACING (4px base) ---------- */
+  --space-0:  0;
+  --space-1:  0.25rem;   /* 4 */
+  --space-2:  0.5rem;    /* 8 */
+  --space-3:  0.75rem;   /* 12 */
+  --space-4:  1rem;      /* 16 */
+  --space-5:  1.25rem;   /* 20 */
+  --space-6:  1.5rem;    /* 24 */
+  --space-8:  2rem;      /* 32 */
+  --space-10: 2.5rem;    /* 40 */
+  --space-12: 3rem;      /* 48 */
+  --space-16: 4rem;      /* 64 */
+  --space-20: 5rem;      /* 80 */
+  --space-24: 6rem;      /* 96 */
+
+  /* ---------- RADIUS ---------- */
+  --radius-xs:  2px;
+  --radius-sm:  4px;
+  --radius-md:  6px;
+  --radius-lg:  10px;
+  --radius-xl:  16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ---------- SHADOWS (sober, functional) ---------- */
+  --shadow-none: none;
+  --shadow-sm:   0 1px 2px rgba(0, 27, 61, 0.06);
+  --shadow-md:   0 4px 12px rgba(0, 27, 61, 0.08);
+  --shadow-lg:   0 12px 24px rgba(0, 27, 61, 0.10);
+  --shadow-focus: 0 0 0 3px rgba(0, 242, 255, 0.35);
+
+  /* ---------- Z-INDEX ---------- */
+  --z-base:    0;
+  --z-sticky:  100;
+  --z-overlay: 1000;
+  --z-modal:   1100;
+  --z-toast:   1200;
+
+  /* ---------- TRANSITION ---------- */
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+
+  /* ============================================================
+     PRIMITIVES — color palette
+     ============================================================ */
+
+  /* Brand (exact logo colors) */
+  --brand-navy: #001B3D;
+  --brand-blue: #007DA5;
+  --brand-cyan: #00F2FF;
+
+
+  /* Navy scale */
+  --navy-50: #EBF8FF;
+  --navy-100: #D2ECFF;
+  --navy-200: #AED8FF;
+  --navy-300: #81BCFF;
+  --navy-400: #589FF7;
+  --navy-500: #2D7EDE;
+  --navy-600: #005DBD;
+  --navy-700: #003F99;
+  --navy-800: #002774;
+  --navy-900: #001251;
+  --navy-950: #000331;
+
+  /* Blue scale */
+  --blue-50: #E9FAFF;
+  --blue-100: #CCF0FF;
+  --blue-200: #A1DEFC;
+  --blue-300: #6EC5EE;
+  --blue-400: #34AADA;
+  --blue-500: #008CBF;
+  --blue-600: #006B97;
+  --blue-700: #004D70;
+  --blue-800: #00344F;
+  --blue-900: #001F33;
+  --blue-950: #000D1B;
+
+  /* Cyan scale */
+  --cyan-50: #E4FCFD;
+  --cyan-100: #C2F5F7;
+  --cyan-200: #8EE6EA;
+  --cyan-300: #43CFD6;
+  --cyan-400: #00B5BE;
+  --cyan-500: #00939B;
+  --cyan-600: #007177;
+  --cyan-700: #005257;
+  --cyan-800: #00383C;
+  --cyan-900: #002225;
+  --cyan-950: #000F11;
+
+  /* Slate scale */
+  --slate-50: #F5F7F9;
+  --slate-100: #E6EAEE;
+  --slate-200: #CED5DC;
+  --slate-300: #B1BAC3;
+  --slate-400: #939EA8;
+  --slate-500: #75808B;
+  --slate-600: #56626C;
+  --slate-700: #3C4650;
+  --slate-800: #262F37;
+  --slate-900: #141B22;
+  --slate-950: #060B0F;
+
+  /* Green scale */
+  --green-50: #ECFCEE;
+  --green-100: #D2F4D8;
+  --green-200: #ADE5B7;
+  --green-300: #80CE91;
+  --green-400: #53B56D;
+  --green-500: #1A9749;
+  --green-600: #007827;
+  --green-700: #005814;
+  --green-800: #003C06;
+  --green-900: #002500;
+  --green-950: #001100;
+
+  /* Amber scale */
+  --amber-50: #FFF4E3;
+  --amber-100: #FFE4C0;
+  --amber-200: #FDCA8E;
+  --amber-300: #EEA952;
+  --amber-400: #DA8800;
+  --amber-500: #B56B00;
+  --amber-600: #8C5000;
+  --amber-700: #673800;
+  --amber-800: #482400;
+  --amber-900: #2D1300;
+  --amber-950: #170500;
+
+  /* Red scale */
+  --red-50: #FFF0ED;
+  --red-100: #FFDCD7;
+  --red-200: #FFBDB6;
+  --red-300: #FF938B;
+  --red-400: #F36D66;
+  --red-500: #D74342;
+  --red-600: #B31221;
+  --red-700: #8C0005;
+  --red-800: #620000;
+  --red-900: #400000;
+  --red-950: #220000;
+
+
+  /* ============================================================
+     SEMANTIC — use these in components, not primitives
+     ============================================================ */
+
+  /* Surfaces */
+  --color-bg:             #FFFFFF;
+  --color-bg-subtle:      var(--slate-50);
+  --color-bg-muted:       var(--slate-100);
+  --color-bg-inverse:     var(--brand-navy);
+  --color-bg-elevated:    #FFFFFF;
+
+  /* Text */
+  --color-text:           var(--slate-900);
+  --color-text-muted:     var(--slate-600);
+  --color-text-subtle:    var(--slate-500);
+  --color-text-inverse:   #FFFFFF;
+  --color-text-link:      var(--blue-600);
+  --color-text-link-hover:var(--blue-700);
+
+  /* Borders */
+  --color-border:         var(--slate-200);
+  --color-border-muted:   var(--slate-100);
+  --color-border-strong:  var(--slate-300);
+  --color-border-focus:   var(--brand-cyan);
+
+  /* Accents */
+  --color-primary:        var(--brand-navy);
+  --color-primary-hover:  var(--navy-800);
+  --color-on-primary:     #FFFFFF;
+
+  --color-accent:         var(--brand-cyan);
+  --color-accent-hover:   var(--cyan-300);
+  --color-on-accent:      var(--brand-navy);
+
+  /* Semantic states */
+  --color-success-bg:     var(--green-50);
+  --color-success-text:   var(--green-700);
+  --color-success-border: var(--green-300);
+
+  --color-warning-bg:     var(--amber-50);
+  --color-warning-text:   var(--amber-700);
+  --color-warning-border: var(--amber-300);
+
+  --color-danger-bg:      var(--red-50);
+  --color-danger-text:    var(--red-700);
+  --color-danger-border:  var(--red-300);
+
+  --color-info-bg:        var(--blue-50);
+  --color-info-text:      var(--blue-700);
+  --color-info-border:    var(--blue-300);
+
+  /* Code */
+  --color-code-bg:        var(--slate-100);
+  --color-code-text:      var(--navy-800);
+  --color-code-border:    var(--slate-200);
+}
+
+/* ============================================================
+   DARK MODE — auto via prefers-color-scheme
+   Only semantic tokens change; primitives stay the same.
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:             var(--navy-950);
+    --color-bg-subtle:      var(--navy-900);
+    --color-bg-muted:       var(--navy-800);
+    --color-bg-inverse:     #FFFFFF;
+    --color-bg-elevated:    var(--slate-900);
+
+    --color-text:           var(--slate-50);
+    --color-text-muted:     var(--slate-300);
+    --color-text-subtle:    var(--slate-400);
+    --color-text-inverse:   var(--brand-navy);
+    --color-text-link:      var(--cyan-300);
+    --color-text-link-hover:var(--cyan-200);
+
+    --color-border:         var(--slate-800);
+    --color-border-muted:   var(--slate-900);
+    --color-border-strong:  var(--slate-700);
+
+    --color-primary:        var(--brand-cyan);
+    --color-primary-hover:  var(--cyan-200);
+    --color-on-primary:     var(--brand-navy);
+
+    --color-success-bg:     var(--green-900);
+    --color-success-text:   var(--green-200);
+    --color-success-border: var(--green-700);
+
+    --color-warning-bg:     var(--amber-900);
+    --color-warning-text:   var(--amber-200);
+    --color-warning-border: var(--amber-700);
+
+    --color-danger-bg:      var(--red-900);
+    --color-danger-text:    var(--red-200);
+    --color-danger-border:  var(--red-700);
+
+    --color-info-bg:        var(--blue-900);
+    --color-info-text:      var(--blue-200);
+    --color-info-border:    var(--blue-700);
+
+    --color-code-bg:        var(--slate-800);
+    --color-code-text:      var(--cyan-200);
+    --color-code-border:    var(--slate-700);
+
+    --shadow-sm:   0 1px 2px rgba(0, 0, 0, 0.5);
+    --shadow-md:   0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-lg:   0 12px 24px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ============================================================
+   BASE ELEMENT STYLES
+   Minimal, opinionated. Adjust per-site in local overrides.
+   ============================================================ */
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0 0 var(--space-4);
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+p { margin: 0 0 var(--space-4); }
+
+a {
+  color: var(--color-text-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+a:hover { color: var(--color-text-link-hover); }
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.925em;
+}
+
+code {
+  background: var(--color-code-bg);
+  color: var(--color-code-text);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-code-border);
+}
+
+pre {
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-code-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  overflow-x: auto;
+  line-height: var(--leading-snug);
+}
+pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}

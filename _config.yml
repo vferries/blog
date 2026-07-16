@@ -31,6 +31,7 @@ exclude:
   - NEXT.md
   - README.md
   - .claude
+  - docs
   - tools
   - vendor
   - Gemfile
