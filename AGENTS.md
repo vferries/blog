@@ -2,7 +2,7 @@
 
 > Blog et landing Jekyll de **En Veille** (Vincent Ferries, dev indé).
 > Ce fichier suit la convention cross-tool [AGENTS.md](https://agents.md). `CLAUDE.md` est un symlink vers ce fichier.
-> Pour le contexte brand/design détaillé (non versionné), voir `CLAUDE.local.md`.
+> Le design system (brand + site) est versionné dans `docs/design/`. Le contexte privé restant est dans `CLAUDE.local.md`.
 
 ## Stack
 
@@ -101,11 +101,14 @@ Query params supportés par le template : `eyebrow`, `title`, `tagline`, `domain
 
 Voir `NEXT.md`.
 
+## Design system (dans `docs/design/`)
+
+- `docs/design/DESIGN.md` — design system global de la marque (cross-surfaces)
+- `docs/design/DESIGN-site.md` — design spécifique à ce site (routing, layouts, easter eggs)
+- `docs/design/assets/` — logo SVG, favicons, tokens, palette, script de nettoyage Figma
+
 ## Contexte non versionné (dans `.claude/`)
 
-- `.claude/context/DESIGN.md` — design system global de la marque (cross-surfaces)
-- `.claude/context/DESIGN-site.md` — design spécifique à ce site (routing, layouts, easter eggs)
 - `.claude/context/CHANGELOG-session.md` — journal des choix de design et rationale
 - `.claude/context/INSTALL.md` — archive du patch initial de refresh (rarement utile, garde la trace)
-- `.claude/assets/` — logo SVG, tokens, palette, script de nettoyage Figma
 - `.claude/previews/` — screenshots des itérations v1 à v4
