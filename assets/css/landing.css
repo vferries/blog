@@ -383,6 +383,82 @@ body.landing #main {
 @keyframes ev-fade-out { to { opacity: 0; transform: translateX(-50%) translateY(20px); } }
 
 /* ============================================================
+   HERO VIDÉO — chouette scrubée au scroll
+   .ev-hero-pin--on (hauteur de pin) et .ev-hero--scrub (états
+   accents) sont posées par le JS : sans JS ou en reduced motion,
+   pas de pin, poster statique, accents allumés d'office.
+   ============================================================ */
+.ev-hero-pin--on { height: 220vh; }
+
+.ev-hero--video {
+  position: sticky; top: 0;
+  height: 100svh;
+  max-width: none;
+  overflow: hidden;
+  /* Le ciel étoilé impose son contraste : tokens forcés en variante
+     dark quel que soit prefers-color-scheme ; le reste de la page
+     ne bouge pas. --ev-bg n'est PAS surchargé (le fondu bas du scrim
+     doit rejoindre le fond réel de la page). */
+  --ev-text:          #F1EBD9;
+  --ev-text-muted:    #C7BEA7;
+  --ev-text-subtle:   #9A917C;
+  --ev-border:        rgba(241, 235, 217, 0.18);
+  --ev-bg-subtle:     rgba(6, 9, 26, 0.55);
+  --ev-blue:          #43CFD6;
+  --ev-primary:       var(--brand-cyan);
+  --ev-primary-hover: var(--cyan-200);
+  --ev-on-primary:    var(--brand-navy);
+}
+.ev-hero--video .ev-hero__grid {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1200px; margin: 0 auto;
+}
+.ev-hero__bg {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 62% 50%;
+}
+.ev-hero__scrim {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background:
+    /* lisibilité du texte : voile navy sur la gauche */
+    linear-gradient(90deg, rgba(0, 3, 49, 0.78) 0%, rgba(0, 3, 49, 0.42) 38%, transparent 62%),
+    /* vignette bas-droite : avale le watermark ✦ de la source */
+    radial-gradient(260px 150px at 96% 84%, rgba(0, 3, 49, 0.92), transparent 72%),
+    /* fondu vers la section suivante, suit le scheme de la page */
+    linear-gradient(180deg, transparent 82%, var(--ev-bg) 100%);
+}
+
+/* Accents éteints tant que les yeux ne sont pas allumés */
+.ev-hero--scrub .ev-hero__title em {
+  color: inherit;
+  transition: color 450ms var(--ease-out);
+}
+.ev-hero--scrub .ev-hero__title .ev-hl::before {
+  animation: none;
+  transform: skewX(-8deg) scaleX(0);
+  transition: transform 450ms var(--ease-out);
+}
+.ev-hero--scrub.is-powered .ev-hero__title em { color: var(--ev-blue); }
+.ev-hero--scrub.is-powered .ev-hero__title .ev-hl::before { transform: skewX(-8deg) scaleX(1); }
+
+@media (max-width: 720px) {
+  .ev-hero-pin--on { height: 180vh; }
+  /* le padding mobile du hero est déjà géré par le bloc responsive
+     existant en fin de fichier (.ev-hero, ~ligne 1016) */
+  /* portrait : la chouette reste visible sous le texte empilé */
+  .ev-hero__bg { object-position: 50% 42%; }
+  .ev-hero__scrim {
+    background:
+      linear-gradient(180deg, rgba(0, 3, 49, 0.65) 0%, rgba(0, 3, 49, 0.35) 45%, transparent 65%),
+      radial-gradient(200px 120px at 96% 86%, rgba(0, 3, 49, 0.92), transparent 72%),
+      linear-gradient(180deg, transparent 80%, var(--ev-bg) 100%);
+  }
+}
+
+/* ============================================================
    BUTTONS (landing specific)
    ============================================================ */
 .ev-btn {
