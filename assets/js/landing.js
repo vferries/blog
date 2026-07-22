@@ -248,6 +248,10 @@
     btn.addEventListener('click', () => setOpen(!nav.classList.contains('ev-nav--open')));
     menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('click', (e) => {
+      if (!nav.classList.contains('ev-nav--open')) return;
+      if (!e.target.closest('.ev-nav')) setOpen(false);
+    });
     matchMedia('(min-width: 721px)').addEventListener('change', (e) => {
       if (e.matches) setOpen(false);
     });
