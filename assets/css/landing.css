@@ -336,30 +336,6 @@ body.landing #main {
   50%      { transform: rotate(-2deg) translateY(-2px); }
 }
 
-.ev-hero__visual {
-  position: relative;
-  display: flex; justify-content: center; align-items: center;
-  animation: ev-fade-in 1000ms var(--ease-out) 200ms both;
-}
-.ev-hero__visual img {
-  width: 100%; max-width: 420px; height: auto;
-  animation: ev-float-slow linear;
-  animation-timeline: scroll(root);
-  animation-range: 0 150vh;
-  will-change: transform;
-}
-.ev-hero__visual::before {
-  content: ""; position: absolute; inset: -10%;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--ev-cyan) 25%, transparent), transparent 55%);
-  z-index: -1;
-  animation: ev-breathe 6s var(--ease-out) infinite;
-}
-@keyframes ev-float-slow { to { transform: translateY(-40px) rotate(-4deg); } }
-@keyframes ev-breathe {
-  0%, 100% { transform: scale(0.95); opacity: 0.6; }
-  50%      { transform: scale(1.1); opacity: 1; }
-}
-
 .ev-hero__scroll-hint {
   position: absolute; bottom: 32px; left: 50%;
   transform: translateX(-50%);
@@ -1090,7 +1066,6 @@ body.landing #main {
    ============================================================ */
 @media (max-width: 720px) {
   .ev-hero { padding: 60px 24px 80px; min-height: auto; }
-  .ev-hero__visual { display: none; }
   .ev-terminal { transform: none; }
   .ev-intro-section { padding: 80px 24px 40px; }
   .ev-services, .ev-stack, .ev-about, .ev-blog { padding: 80px 24px 40px; }
