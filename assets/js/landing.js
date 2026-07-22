@@ -146,6 +146,17 @@
     pin.classList.add('ev-hero-pin--on');
     hero.classList.add('ev-hero--scrub');
 
+    // La nav sticky est dans le flux au-dessus du wrapper : sans correction,
+    // le pin ne s'engage qu'après ~une hauteur de nav de scroll normal
+    // (le hero "monte d'un cran" avant de se figer). On remonte le wrapper
+    // sous la nav pour que le sticky soit engagé dès scrollY = 0.
+    const nav = document.querySelector('.ev-nav');
+    const fitUnderNav = () => {
+      pin.style.marginTop = nav ? -nav.offsetHeight + 'px' : '';
+    };
+    fitUnderNav();
+    window.addEventListener('resize', fitUnderNav);
+
     let flying = false;
     let ticking = false;
 
