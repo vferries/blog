@@ -26,13 +26,21 @@ author_profile: false
     <a href="/" class="ev-nav__brand">
       <img src="{{ '/images/logo.svg' | relative_url }}" alt=""> En Veille
     </a>
-    <ul class="ev-nav__links">
+    <ul class="ev-nav__links" id="ev-nav-menu">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">À propos</a></li>
       <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
       <li><a href="https://vferries.github.io/cv/" rel="noopener">CV</a></li>
+      <li class="ev-nav__status-item"><span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span></li>
     </ul>
     <span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span>
+    <button class="ev-nav__burger" type="button" aria-expanded="false"
+            aria-controls="ev-nav-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+      <svg class="ev-nav__power" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v8"/><path d="M6.3 6.6a8 8 0 1 0 11.4 0"/>
+      </svg>
+    </button>
   </div>
 </nav>
 

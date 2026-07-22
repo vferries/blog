@@ -171,6 +171,65 @@ body.landing #main {
   100% { transform: scale(2); opacity: 0; }
 }
 
+/* Burger mobile — power-on CRT (voir plan, Task 9) */
+.ev-nav__burger {
+  display: none; position: relative;
+  width: 44px; height: 44px;
+  border: 0; background: none; cursor: pointer; padding: 10px;
+}
+.ev-nav__burger span {
+  display: block; height: 2px; border-radius: 1px;
+  background: var(--ev-text); margin: 5px 0;
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+.ev-nav__power {
+  position: absolute; inset: 10px; width: 24px; height: 24px;
+  fill: none; stroke: var(--ev-cyan); stroke-width: 2; stroke-linecap: round;
+  opacity: 0; transform: rotate(-90deg) scale(0.6);
+  transition: opacity 220ms var(--ease-out), transform 300ms var(--ease-out);
+}
+.ev-nav--open .ev-nav__burger span { opacity: 0; transform: scaleX(0.15); }
+.ev-nav--open .ev-nav__power { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* Pastille "Disponible" dupliquée dans le panneau — masquée hors mobile */
+.ev-nav__status-item { display: none; }
+
+@media (max-width: 720px) {
+  .ev-nav__inner { flex-wrap: nowrap; }
+  .ev-nav__burger { display: block; }
+  .ev-nav__inner > .ev-nav__status { display: none; }
+  .ev-nav__links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    margin: 0; padding: 18px 24px 22px;
+    display: none; flex-direction: column; gap: 14px;
+    background: color-mix(in srgb, var(--ev-bg) 96%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--ev-border);
+    transform-origin: top;
+  }
+  .ev-nav--open .ev-nav__links {
+    display: flex;
+    animation: ev-crt-on 420ms var(--ease-out) both;
+  }
+  .ev-nav__links li { opacity: 0; transform: translateY(-6px);
+    transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out); }
+  .ev-nav--open .ev-nav__links li { opacity: 1; transform: none; }
+  .ev-nav--open .ev-nav__links li:nth-child(1) { transition-delay: 190ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(2) { transition-delay: 240ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(3) { transition-delay: 290ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(4) { transition-delay: 340ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(5) { transition-delay: 390ms; }
+  .ev-nav__status-item { display: block; margin-top: 4px; }
+}
+@keyframes ev-crt-on {
+  0%   { transform: scaleY(0.02); filter: brightness(2.4);
+         box-shadow: 0 2px 24px var(--ev-cyan); }
+  40%  { transform: scaleY(0.02); filter: brightness(2.4);
+         box-shadow: 0 2px 32px var(--ev-cyan); }
+  100% { transform: scaleY(1); filter: brightness(1);
+         box-shadow: 0 0 0 transparent; }
+}
+
 /* ============================================================
    QUICK NAV
    ============================================================ */

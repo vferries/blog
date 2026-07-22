@@ -223,6 +223,26 @@
   })();
 
   // ==========================================================
+  // BURGER MOBILE — power-on CRT
+  // ==========================================================
+  (function initBurger() {
+    const nav = document.querySelector('.ev-nav');
+    const btn = document.querySelector('.ev-nav__burger');
+    const menu = document.getElementById('ev-nav-menu');
+    if (!nav || !btn || !menu) return;
+    const setOpen = (open) => {
+      nav.classList.toggle('ev-nav--open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', () => setOpen(!nav.classList.contains('ev-nav--open')));
+    menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    matchMedia('(min-width: 721px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  })();
+
+  // ==========================================================
   // QUICK-NAV (show after hero, active section tracking)
   // ==========================================================
   (function initQuickNav() {

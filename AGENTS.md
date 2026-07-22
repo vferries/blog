@@ -49,6 +49,12 @@ Dans `assets/js/landing.js`, organisées en IIFE :
 - **Compteurs animés** : éléments `.ev-stat__num[data-count]`
 - **Progress bar** : `.ev-progress__bar` se remplit au scroll
 - **Quick-nav dots** : `.ev-quick-nav__dot[data-target]` actifs selon la section visible
+- **Burger mobile** : ≤720px la nav passe en burger (`.ev-nav__burger`), panneau
+  `.ev-nav__links` ouvert via `.ev-nav--open` avec effet power-on CRT (scanline
+  cyan puis déploiement), burger morphé en symbole power. La pastille
+  "Disponible" quitte la barre du haut et rejoint le panneau (dupliquée en
+  `.ev-nav__status-item`, dernier item, masquée au-delà de 720px). Escape/clic
+  lien/resize referment.
 - **Easter eggs** : 5 clics sur le logo en 1s → body tilt 2° · Konami code (↑↑↓↓←→←→BA) → pluie Matrix 6s · message ASCII en console
 - **Hero owl scrub** : le wrapper `.ev-hero-pin` épingle le hero ; le scroll
   scrubbe la vidéo `.ev-hero__bg` (0→2,2 s, constante `SPLIT`), la classe
