@@ -612,29 +612,6 @@ body.landing #main {
   margin: 0 0 20px; max-width: 54ch;
 }
 
-/* Git feed en filigrane */
-.ev-git-feed {
-  position: absolute;
-  top: 0; left: -200px; right: 0; bottom: 0;
-  overflow: hidden; pointer-events: none;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--ev-text-subtle);
-  opacity: 0.3; z-index: 0;
-}
-@media (max-width: 900px) { .ev-git-feed { display: none; } }
-.ev-git-feed__line {
-  white-space: nowrap;
-  padding: 2px 0;
-  animation: ev-git-scroll 40s linear infinite;
-}
-@keyframes ev-git-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.ev-git-feed__hash { color: #E89A2F; }
-.ev-git-feed__ref  { color: var(--ev-blue); }
-.ev-intro-section > * { position: relative; z-index: 1; }
 
 /* Terminal */
 .ev-terminal {
