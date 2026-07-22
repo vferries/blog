@@ -752,3 +752,72 @@ Screenshots headless mobile (390×844) : nav fermée sur UNE ligne (brand + stat
 git add index.html assets/css/landing.css assets/js/landing.js AGENTS.md
 git commit -m "feat: burger menu mobile avec ouverture power-on CRT"
 ```
+
+### Task 10: Pin engagé dès le premier cran de scroll
+
+**Constat (Vincent, en test réel)** : un cran de scroll déplace le hero vers le
+haut avant le gel. Cause : la nav sticky est dans le flux au-dessus de
+`.ev-hero-pin` — le hero ne se fige que quand le haut du wrapper atteint le
+haut du viewport, soit après ~une hauteur de nav de scroll normal.
+
+**Fix** : remonter le wrapper sous la nav d'une hauteur de nav mesurée au
+runtime → le sticky est engagé à scrollY = 0, le premier cran scrubbe
+immédiatement. La nav (translucide, z-index 20) continue de survoler le haut
+du hero ; le padding-top du hero (96px) garde le contenu dégagé. Sans JS /
+reduced-motion : pas de marge, comportement statique inchangé.
+
+**Files:**
+- Modify: `assets/js/landing.js` (IIFE `initHeroOwl` uniquement)
+
+- [ ] **Step 1: Dans `initHeroOwl`**, juste après les deux `classList.add`, insérer :
+
+```js
+    // La nav sticky est dans le flux au-dessus du wrapper : sans correction,
+    // le pin ne s'engage qu'après ~une hauteur de nav de scroll normal
+    // (le hero "monte d'un cran" avant de se figer). On remonte le wrapper
+    // sous la nav pour que le sticky soit engagé dès scrollY = 0.
+    const nav = document.querySelector('.ev-nav');
+    const fitUnderNav = () => {
+      pin.style.marginTop = nav ? -nav.offsetHeight + 'px' : '';
+    };
+    fitUnderNav();
+    window.addEventListener('resize', fitUnderNav);
+```
+
+- [ ] **Step 2: Vérifier**
+
+Run: `node --check assets/js/landing.js` → exit 0 ; `bundle exec jekyll build` → OK.
+Comportement (cran disparu, scrub au premier cran de molette) : passe Task 5.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add assets/js/landing.js
+git commit -m "fix: engage le pin du hero dès le premier cran de scroll"
+```
+
+- [ ] **Step 4: Burger — fermeture au clic extérieur** (demande Vincent ; choisi
+plutôt que le panneau pleine hauteur). Dans `initBurger`, après le listener
+`keydown`, ajouter :
+
+```js
+    document.addEventListener('click', (e) => {
+      if (!nav.classList.contains('ev-nav--open')) return;
+      if (!e.target.closest('.ev-nav')) setOpen(false);
+    });
+```
+
+(Le clic sur le bouton burger bulle depuis l'intérieur de `.ev-nav` → non
+intercepté ici, pas de double toggle.)
+
+- [ ] **Step 5: Vérifier**
+
+Run: `node --check assets/js/landing.js` → exit 0.
+Comportement (tap hors panneau referme) : passe Task 5.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add assets/js/landing.js
+git commit -m "feat: ferme le burger au clic hors de la nav"
+```
