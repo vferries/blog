@@ -163,7 +163,13 @@
       if (p >= 1) {
         if (!flying) {
           flying = true;
-          video.play().catch(() => {}); // muted : ne devrait jamais être bloqué
+          // Saut direct en bas de page (ancre, End, scroll restauré) :
+          // ne pas rejouer la rotation de tête à vitesse réelle
+          if (video.readyState >= 1 && video.currentTime < SPLIT) video.currentTime = SPLIT;
+          video.play().catch(err => {
+            // AbortError attendu quand pause() coupe un play() en vol (re-perchage)
+            if (err.name !== 'AbortError') console.warn('hero owl:', err);
+          });
         }
         return;
       }
