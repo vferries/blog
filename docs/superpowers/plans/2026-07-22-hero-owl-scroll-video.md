@@ -753,6 +753,11 @@ git add index.html assets/css/landing.css assets/js/landing.js AGENTS.md
 git commit -m "feat: burger menu mobile avec ouverture power-on CRT"
 ```
 
+> **Écart validé (Vincent, en direct à l'agent pendant la task)** : la pastille
+> « Disponible » est déplacée de la barre mobile vers le panneau burger
+> (dupliquée en `.ev-nav__status-item`, dernier item, masquée desktop et
+> barre mobile). Confirmé par Vincent au contrôleur après coup.
+
 ### Task 10: Pin engagé dès le premier cran de scroll
 
 **Constat (Vincent, en test réel)** : un cran de scroll déplace le hero vers le
@@ -820,4 +825,37 @@ Comportement (tap hors panneau referme) : passe Task 5.
 ```bash
 git add assets/js/landing.js
 git commit -m "feat: ferme le burger au clic hors de la nav"
+```
+
+- [ ] **Step 7: Lien Contact dans la nav** (demande Vincent). Dans `index.html`,
+ajouter après le `<li>` CV :
+
+```html
+      <li><a href="#contact">Contact</a></li>
+```
+
+(La même `ul` sert desktop et panneau burger — le lien apparaît aux deux
+endroits ; l'ancre `#contact` existe, c'est la cible du quick-nav dot.)
+Étendre les délais de stagger du panneau dans `assets/css/landing.css` pour
+couvrir les items 5 et 6 (le panneau contient désormais 5 liens +
+`.ev-nav__status-item`) :
+
+```css
+  .ev-nav--open .ev-nav__links li:nth-child(5) { transition-delay: 390ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(6) { transition-delay: 440ms; }
+```
+
+(Vérifier au passage que l'item statut, dernier du panneau, a bien un délai —
+sinon il apparaît pendant la scanline, avant les liens.)
+
+- [ ] **Step 8: Vérifier**
+
+Run: `bundle exec jekyll build` → OK ; `grep -c '"#contact"' _site/index.html` ≥ 2
+(nav + CTA hero existant).
+
+- [ ] **Step 9: Commit**
+
+```bash
+git add index.html assets/css/landing.css
+git commit -m "feat: ajoute Contact à la nav (desktop + panneau burger)"
 ```
