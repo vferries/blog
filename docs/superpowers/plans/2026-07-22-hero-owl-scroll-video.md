@@ -475,6 +475,7 @@ git commit -m "feat: scrub vidéo du hero au scroll (pin, is-powered, envol, res
 - Easter eggs : 5 clics logo (tilt), Konami (Matrix) — intacts
 - Poids réseau premier chargement desktop : poster seul avant init JS, puis vidéo ≤ 8 Mo
 - Ajouts revue de branche : CTA entièrement visible à p=0 sur laptop 768px de haut ; passe Tab clavier pendant le pin ; bande de fond sous le hero à la collapse de la toolbar mobile (svh) ; hard-reload avec scroll restauré en bas de page (envol hors écran harmless ?) ; qualité de l'envol (2,2→5 s) en lecture réelle au CRF final ; contraste du chip `.ev-hero__tag` à l'œil
+- Ajouts extension : burger CRT sur mobile réel (scanline + déploiement + morph power, fermeture Escape/lien/resize) ; titre stable pendant le pin (plus de re-wrap) ; git-feed absent, marquee technos intact
 
 - [ ] **Step 2: Tuning éventuel**
 
@@ -537,4 +538,217 @@ Expected: `AGENTS.md` ; seules les lignes ajoutées apparaissent dans le diff.
 ```bash
 git add AGENTS.md
 git commit -m "docs: documente le hero vidéo scrubé et son outillage d'encodage"
+```
+
+---
+
+## Extension (2026-07-23) — retours utilisateur après revue de branche
+
+Trois demandes de Vincent, validées en conversation : (7) couper le resserrement
+scroll-driven du titre qui re-wrappe pendant le pin et concurrence le seek vidéo ;
+(8) supprimer le git-feed de faux commits ; (9) burger menu mobile avec effet
+« power-on CRT » (validé contre « terminal tapé » et « sobre »). S'exécutent
+APRÈS les fixes de la revue de branche, séquentiellement.
+
+### Task 7: Supprimer le resserrement scroll-driven du titre
+
+**Files:**
+- Modify: `assets/css/landing.css` (bloc `.ev-hero__title`, ~ligne 267)
+
+**Interfaces:**
+- Produces: rien — suppression pure. Le titre garde sa `font-variation-settings`
+  statique (`'opsz' 144, 'SOFT' 30`) et son `letter-spacing: -0.03em`.
+
+- [ ] **Step 1: Supprimer dans `.ev-hero__title`** les quatre lignes :
+
+```css
+  animation: ev-hero-tighten linear;
+  animation-timeline: scroll(root);
+  animation-range: 0 50vh;
+  will-change: transform;
+```
+
+et le bloc `@keyframes ev-hero-tighten { ... }` qui suit la règle.
+Pourquoi la suppression (pas un simple `animation: none` scopé) : le titre
+n'existe que sur le hero de la landing, qui est désormais toujours le hero
+vidéo — la version animée n'a plus aucun consommateur.
+
+- [ ] **Step 2: Vérifier**
+
+Run: `grep -c "ev-hero-tighten" assets/css/landing.css` → Expected: `0`
+Run: `bundle exec jekyll build` → Expected: OK
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add assets/css/landing.css
+git commit -m "fix: coupe le resserrement scroll-driven du titre (re-wrap pendant le pin)"
+```
+
+### Task 8: Supprimer le git-feed (faux commits)
+
+**Files:**
+- Modify: `index.html` (bloc `<div class="ev-git-feed" aria-hidden="true">…</div>` dans `.ev-intro-section`, ~lignes 100-115)
+- Modify: `assets/css/landing.css` (règles `.ev-git-feed*` ~lignes 618-640 : bloc commenté « Git feed en filigrane », la media query 900px, `__line`, `__hash`, `__ref`, et `@keyframes ev-git-scroll`)
+
+**Interfaces:**
+- Produces: rien — suppression pure. Le marquee `.ev-strip` (technos) reste.
+
+- [ ] **Step 1: Supprimer le bloc HTML** `.ev-git-feed` entier dans `index.html` (les deux `__line` dupliquées incluses).
+
+- [ ] **Step 2: Supprimer les règles CSS** listées ci-dessus, y compris `@keyframes ev-git-scroll`.
+
+- [ ] **Step 3: Vérifier**
+
+Run: `grep -rc "ev-git" index.html assets/css/landing.css assets/js/landing.js` → Expected: `0` partout
+Run: `bundle exec jekyll build` → Expected: OK ; `grep -c "ev-git" _site/index.html` → `0`
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add index.html assets/css/landing.css
+git commit -m "feat: retire le git-feed de faux commits de la section intro"
+```
+
+### Task 9: Burger menu mobile — effet power-on CRT
+
+**Files:**
+- Modify: `index.html` (nav, ajout du bouton burger)
+- Modify: `assets/css/landing.css` (section NAV : burger, panneau, effet CRT)
+- Modify: `assets/js/landing.js` (nouvelle IIFE `initBurger`, après `initNavScroll`)
+- Modify: `AGENTS.md` (ligne dans « Features JS de la landing »)
+
+**Interfaces:**
+- Consumes: `.ev-nav` sticky existante (z-index 20), tokens (`--ev-cyan`, `--ev-bg`, `--ev-border`, `--ease-out`), breakpoint 720px
+- Produces: classes `.ev-nav__burger`, `.ev-nav__power`, état `.ev-nav--open` ; le panneau est l'`ul.ev-nav__links` existante (id `ev-nav-menu` ajouté)
+
+**Comportement :** desktop (>720px) inchangé. Mobile : nav sur UNE ligne
+(brand + statut + burger, `flex-wrap: nowrap`), liens dans un panneau absolu
+sous la nav. Ouverture = power-on CRT : le panneau apparaît d'abord comme une
+scanline horizontale sur-brillante (scaleY ~0.02, glow cyan) qui tient ~170 ms
+puis se déploie verticalement ; les items tombent en stagger ensuite. Le burger
+(3 barres) se morphe en symbole power ⏻ (barres qui s'effacent, glyphe SVG
+cyan qui tourne en place). Fermeture : clic burger, clic sur un lien, Escape,
+ou passage >720px. Reduced-motion : le kill-switch global existant (animations
+0.01ms) rend l'ouverture instantanée — rien à ajouter.
+
+- [ ] **Step 1: HTML — bouton burger dans `.ev-nav__inner`** (après `.ev-nav__status`), et `id="ev-nav-menu"` sur l'`ul` :
+
+```html
+    <ul class="ev-nav__links" id="ev-nav-menu">
+      …liens existants inchangés…
+    </ul>
+    <span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span>
+    <button class="ev-nav__burger" type="button" aria-expanded="false"
+            aria-controls="ev-nav-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+      <svg class="ev-nav__power" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v8"/><path d="M6.3 6.6a8 8 0 1 0 11.4 0"/>
+      </svg>
+    </button>
+```
+
+- [ ] **Step 2: CSS — à la fin de la section NAV existante** :
+
+```css
+/* Burger mobile — power-on CRT (voir plan, Task 9) */
+.ev-nav__burger {
+  display: none; position: relative;
+  width: 44px; height: 44px;
+  border: 0; background: none; cursor: pointer; padding: 10px;
+}
+.ev-nav__burger span {
+  display: block; height: 2px; border-radius: 1px;
+  background: var(--ev-text); margin: 5px 0;
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+.ev-nav__power {
+  position: absolute; inset: 10px; width: 24px; height: 24px;
+  fill: none; stroke: var(--ev-cyan); stroke-width: 2; stroke-linecap: round;
+  opacity: 0; transform: rotate(-90deg) scale(0.6);
+  transition: opacity 220ms var(--ease-out), transform 300ms var(--ease-out);
+}
+.ev-nav--open .ev-nav__burger span { opacity: 0; transform: scaleX(0.15); }
+.ev-nav--open .ev-nav__power { opacity: 1; transform: rotate(0deg) scale(1); }
+
+@media (max-width: 720px) {
+  .ev-nav__inner { flex-wrap: nowrap; }
+  .ev-nav__burger { display: block; }
+  .ev-nav__links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    margin: 0; padding: 18px 24px 22px;
+    display: none; flex-direction: column; gap: 14px;
+    background: color-mix(in srgb, var(--ev-bg) 96%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--ev-border);
+    transform-origin: top;
+  }
+  .ev-nav--open .ev-nav__links {
+    display: flex;
+    animation: ev-crt-on 420ms var(--ease-out) both;
+  }
+  .ev-nav__links li { opacity: 0; transform: translateY(-6px);
+    transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out); }
+  .ev-nav--open .ev-nav__links li { opacity: 1; transform: none; }
+  .ev-nav--open .ev-nav__links li:nth-child(1) { transition-delay: 190ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(2) { transition-delay: 240ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(3) { transition-delay: 290ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(4) { transition-delay: 340ms; }
+}
+@keyframes ev-crt-on {
+  0%   { transform: scaleY(0.02); filter: brightness(2.4);
+         box-shadow: 0 2px 24px var(--ev-cyan); }
+  40%  { transform: scaleY(0.02); filter: brightness(2.4);
+         box-shadow: 0 2px 32px var(--ev-cyan); }
+  100% { transform: scaleY(1); filter: brightness(1);
+         box-shadow: 0 0 0 transparent; }
+}
+```
+
+- [ ] **Step 3: JS — IIFE après `initNavScroll`** :
+
+```js
+  // ==========================================================
+  // BURGER MOBILE — power-on CRT
+  // ==========================================================
+  (function initBurger() {
+    const nav = document.querySelector('.ev-nav');
+    const btn = document.querySelector('.ev-nav__burger');
+    const menu = document.getElementById('ev-nav-menu');
+    if (!nav || !btn || !menu) return;
+    const setOpen = (open) => {
+      nav.classList.toggle('ev-nav--open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', () => setOpen(!nav.classList.contains('ev-nav--open')));
+    menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    matchMedia('(min-width: 721px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  })();
+```
+
+- [ ] **Step 4: AGENTS.md** — ajouter dans « Features JS de la landing » :
+
+```markdown
+- **Burger mobile** : ≤720px la nav passe en burger (`.ev-nav__burger`), panneau
+  `.ev-nav__links` ouvert via `.ev-nav--open` avec effet power-on CRT (scanline
+  cyan puis déploiement), burger morphé en symbole power. Escape/clic lien/resize
+  referment.
+```
+
+- [ ] **Step 5: Vérifier**
+
+Run: `node --check assets/js/landing.js` → exit 0 ; `bundle exec jekyll build` → OK.
+Screenshots headless mobile (390×844) : nav fermée sur UNE ligne (brand + statut
++ burger, pas de wrap) ; desktop 1440×900 : nav strictement identique à avant
+(burger invisible). L'état ouvert et l'effet CRT se jugent en vrai navigateur
+(passe Task 5).
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add index.html assets/css/landing.css assets/js/landing.js AGENTS.md
+git commit -m "feat: burger menu mobile avec ouverture power-on CRT"
 ```
