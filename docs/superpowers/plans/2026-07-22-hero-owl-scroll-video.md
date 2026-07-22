@@ -474,10 +474,11 @@ git commit -m "feat: scrub vidéo du hero au scroll (pin, is-powered, envol, res
 - Progress bar en haut et quick-nav dots : cohérents avec la page rallongée (les dots n'apparaissent qu'après le pin — comportement existant conservé)
 - Easter eggs : 5 clics logo (tilt), Konami (Matrix) — intacts
 - Poids réseau premier chargement desktop : poster seul avant init JS, puis vidéo ≤ 8 Mo
+- Ajouts revue de branche : CTA entièrement visible à p=0 sur laptop 768px de haut ; passe Tab clavier pendant le pin ; bande de fond sous le hero à la collapse de la toolbar mobile (svh) ; hard-reload avec scroll restauré en bas de page (envol hors écran harmless ?) ; qualité de l'envol (2,2→5 s) en lecture réelle au CRF final ; contraste du chip `.ev-hero__tag` à l'œil
 
 - [ ] **Step 2: Tuning éventuel**
 
-Ajuster **uniquement** : `SPLIT`, `POWER_THRESHOLD`, hauteurs `.ev-hero-pin--on` (ressenti de la distance de pin), `object-position`, stops/opacités des gradients du scrim (lisibilité vs visibilité de la chouette, couverture du watermark). Noter les valeurs finales.
+Ajuster **uniquement** : `SPLIT`, `POWER_THRESHOLD`, hauteurs `.ev-hero-pin--on` (ressenti de la distance de pin), `object-position`, stops/opacités des gradients du scrim (lisibilité vs visibilité de la chouette, couverture du watermark), et — ajouté suite à la revue de branche — le rythme vertical du hero pour tenir dans `100svh` (`box-sizing: border-box` sur `.ev-hero--video`, paddings verticaux, marges titre/lede scopées `--video`, réduction du H1 sous une media query `max-height`). Noter les valeurs finales.
 
 - [ ] **Step 3: Commit (si tuning)**
 
