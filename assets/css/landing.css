@@ -371,6 +371,14 @@ body.landing #main {
   height: 100svh;
   max-width: none;
   overflow: hidden;
+  /* .ev-hero (base) est en content-box : son padding vertical (80+80)
+     s'ajoutait par-dessus 100svh et poussait les CTA hors viewport.
+     border-box + rythme vertical resserré pour tenir dans 100svh. */
+  box-sizing: border-box;
+  padding: 96px 32px 48px; /* top ≥ hauteur nav sticky (~64px) */
+  align-content: start; /* le center hérité centre le bloc dans toute
+    la boîte sticky (qui déborde du viewport) et pousse les CTA hors
+    cadre ; ancré en haut, seule la hauteur réelle du texte compte */
   /* Le ciel étoilé impose son contraste : tokens forcés en variante
      dark quel que soit prefers-color-scheme ; le reste de la page
      ne bouge pas. --ev-bg n'est PAS surchargé (le fondu bas du scrim
@@ -385,6 +393,9 @@ body.landing #main {
   --ev-primary-hover: var(--cyan-200);
   --ev-on-primary:    var(--brand-navy);
 }
+.ev-hero--video .ev-hero__tag   { margin-bottom: 24px; }
+.ev-hero--video .ev-hero__title { margin-bottom: 24px; }
+.ev-hero--video .ev-hero__lede  { margin-bottom: 32px; }
 .ev-hero--video .ev-hero__grid {
   position: relative; z-index: 2;
   width: 100%; max-width: 1200px; margin: 0 auto;
@@ -420,10 +431,33 @@ body.landing #main {
 .ev-hero--scrub.is-powered .ev-hero__title em { color: var(--ev-blue); }
 .ev-hero--scrub.is-powered .ev-hero__title .ev-hl::before { transform: skewX(-8deg) scaleX(1); }
 
+/* Laptops 13"-15" (768-900px de hauteur d'écran typique) : le bloc
+   de texte (tag + titre qui se rewrap sur 4-5 lignes à cette taille
+   + lede + CTA) ne tient pas au rythme desktop plein format. On
+   resserre encore le titre et la lede pour rester dans 100svh. */
+@media (max-height: 920px) {
+  .ev-hero--video .ev-hero__title {
+    font-size: clamp(2.25rem, 4.5vw + 0.75rem, 4.5rem);
+  }
+  .ev-hero--video .ev-hero__lede {
+    font-size: 1.0625rem;
+  }
+}
+
 @media (max-width: 720px) {
   .ev-hero-pin--on { height: 180vh; }
-  /* le padding mobile du hero est déjà géré par le bloc responsive
-     existant en fin de fichier (.ev-hero, ~ligne 1016) */
+  /* .ev-hero (base) réaffirme son padding content-box ici (bloc
+     responsive en fin de fichier, ~ligne 1016) ; même spécificité
+     (0,1,0) mais plus loin dans le fichier, donc il gagnerait sur
+     .ev-hero--video seul. Sélecteur composé pour trancher
+     explicitement en faveur du padding border-box de la vidéo.
+     Rythme resserré au maximum pour absorber aussi la nav mobile
+     (3 lignes, hors scope de ce fix) qui pousse le hero plus bas
+     que sur desktop. */
+  .ev-hero.ev-hero--video { padding: 72px 24px 32px; }
+  .ev-hero--video .ev-hero__tag   { margin-bottom: 16px; }
+  .ev-hero--video .ev-hero__title { margin-bottom: 16px; }
+  .ev-hero--video .ev-hero__lede  { margin-bottom: 20px; }
   /* portrait : la chouette reste visible sous le texte empilé */
   .ev-hero__bg { object-position: 50% 42%; }
   .ev-hero__scrim {
