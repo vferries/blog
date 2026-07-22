@@ -80,10 +80,10 @@ fond full-bleed du hero de la landing, pilotée par le scroll :
 - `.ev-hero-pin { height: 220vh }` (180vh ≤ 720px). En reduced-motion ou sans
   la classe JS : `height: auto`, pas de pin.
 - `.ev-hero--video` : `position: sticky; top: 0; height: 100svh;
-  overflow: hidden`. En haut de page, la nav (statique, au-dessus du
-  wrapper) occupe le haut du viewport et le bas du hero dépasse légèrement
-  le fold ; dès que la nav sort à l'écran, le hero épinglé occupe tout le
-  viewport — pas de bande de fond visible sous lui pendant le pin.
+  overflow: hidden`. La nav est elle-même sticky (`z-index: 20`, fond
+  translucide) : pendant le pin elle survole le haut du hero, la vidéo
+  passe dessous — pas de bande de fond visible sous le hero pendant le
+  pin (il fait toute la hauteur du viewport).
 - `.ev-hero__bg` : `position: absolute; inset: 0; object-fit: cover;
   object-position: 62% 50%` — la chouette (centrée dans la source) glisse
   dans la moitié droite, le texte respire à gauche. Valeur ajustée en
