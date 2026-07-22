@@ -126,6 +126,65 @@
   })();
 
   // ==========================================================
+  // HERO OWL — scrub vidéo au scroll (pin), envol à la libération
+  // ==========================================================
+  (function initHeroOwl() {
+    const SPLIT = 2.2;            // s — fin de la portion scrubée (tête + yeux)
+    const POWER_THRESHOLD = 0.65; // progression du scrub où les yeux s'allument
+    const MIN_SEEK_DELTA = 1 / 24;
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const pin = document.querySelector('.ev-hero-pin');
+    const hero = document.querySelector('.ev-hero--video');
+    const video = hero ? hero.querySelector('.ev-hero__bg') : null;
+    if (!pin || !hero || !video) return;
+
+    video.src = matchMedia('(max-width: 720px)').matches
+      ? video.dataset.srcMobile
+      : video.dataset.src;
+    video.load();
+    pin.classList.add('ev-hero-pin--on');
+    hero.classList.add('ev-hero--scrub');
+
+    let flying = false;
+    let ticking = false;
+
+    const progress = () => {
+      const r = pin.getBoundingClientRect();
+      const travel = r.height - innerHeight;
+      if (travel <= 0) return 1;
+      return Math.min(1, Math.max(0, -r.top / travel));
+    };
+
+    const update = () => {
+      ticking = false;
+      const p = progress();
+      hero.classList.toggle('is-powered', p >= POWER_THRESHOLD);
+      if (p >= 1) {
+        if (!flying) {
+          flying = true;
+          video.play().catch(() => {}); // muted : ne devrait jamais être bloqué
+        }
+        return;
+      }
+      if (flying) { // remontée : la chouette se reperche, le scrub reprend la main
+        flying = false;
+        video.pause();
+      }
+      if (video.readyState >= 1) {
+        const t = p * SPLIT;
+        if (Math.abs(video.currentTime - t) > MIN_SEEK_DELTA) video.currentTime = t;
+      }
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    video.addEventListener('loadedmetadata', update, { once: true });
+    update();
+  })();
+
+  // ==========================================================
   // 3D TILT on service cards
   // ==========================================================
   (function initTilt() {
