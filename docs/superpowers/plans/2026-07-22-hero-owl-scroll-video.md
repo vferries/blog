@@ -130,9 +130,10 @@ ffprobe -v error -select_streams a -show_entries stream=codec_type -of csv=p=0 a
 Run (densité de keyframes sur la portion scrubée) :
 ```bash
 ffprobe -v error -select_streams v -show_entries frame=key_frame,pts_time -of csv=p=0 \
-  assets/video/hero-owl.mp4 | awk -F, '$2 < 2.3 { total++; if ($1 == 1) kf++ } END { print kf "/" total }'
+  assets/video/hero-owl.mp4 | LC_ALL=C awk -F, '$2 < 2.3 { total++; if ($1 == 1) kf++ } END { print kf "/" total }'
 ```
 Expected: `56/56` (toutes les frames avant 2,3 s sont des keyframes).
+(`LC_ALL=C` obligatoire : en locale fr_FR, awk parse la constante `2.3` comme `2` et affiche 48/48 à tort.)
 
 Run (poids) :
 ```bash
