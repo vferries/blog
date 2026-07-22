@@ -50,6 +50,11 @@ Dans `assets/js/landing.js`, organisées en IIFE :
 - **Progress bar** : `.ev-progress__bar` se remplit au scroll
 - **Quick-nav dots** : `.ev-quick-nav__dot[data-target]` actifs selon la section visible
 - **Easter eggs** : 5 clics sur le logo en 1s → body tilt 2° · Konami code (↑↑↓↓←→←→BA) → pluie Matrix 6s · message ASCII en console
+- **Hero owl scrub** : le wrapper `.ev-hero-pin` épingle le hero ; le scroll
+  scrubbe la vidéo `.ev-hero__bg` (0→2,2 s, constante `SPLIT`), la classe
+  `is-powered` allume les accents du H1 en sync avec les yeux, l'envol se
+  joue à la libération du pin. Sans JS / reduced-motion : poster statique,
+  pas de pin.
 
 ## Conventions
 
@@ -89,6 +94,19 @@ Query params supportés par le template : `eyebrow`, `title`, `tagline`, `domain
 **Câblage côté site** :
 - `_config.yml` → `og_image: /images/og-card.png` (utilisé par Minimal Mistakes pour `/blog/`, `/about/`, billets)
 - `_layouts/landing.html` → meta tags `og:image` + `twitter:card: summary_large_image` explicites pour la landing
+
+### Vidéo hero (chouette)
+
+Source de vérité : `tools/hero-video/encode.sh` (la source OpenArt n'est pas
+commitée — voir `tools/hero-video/README.md`). Régénérer les assets :
+
+```bash
+./tools/hero-video/encode.sh <source.mp4>
+# → assets/video/hero-owl.mp4, assets/video/hero-owl-540.mp4, images/hero-owl-poster.jpg
+```
+
+La portion 0→2,3 s est encodée en keyframes denses (scrub `currentTime`
+au scroll). Dépendance : `ffmpeg`.
 
 ## Points d'attention
 
