@@ -219,6 +219,7 @@ body.landing #main {
   .ev-nav--open .ev-nav__links li:nth-child(3) { transition-delay: 290ms; }
   .ev-nav--open .ev-nav__links li:nth-child(4) { transition-delay: 340ms; }
   .ev-nav--open .ev-nav__links li:nth-child(5) { transition-delay: 390ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(6) { transition-delay: 440ms; }
   .ev-nav__status-item { display: block; margin-top: 4px; }
 }
 @keyframes ev-crt-on {
