@@ -414,7 +414,7 @@ body.landing #main {
    accents) sont posées par le JS : sans JS ou en reduced motion,
    pas de pin, poster statique, accents allumés d'office.
    ============================================================ */
-.ev-hero-pin--on { height: 220vh; }
+.ev-hero-pin--on { height: 190vh; }
 
 .ev-hero--video {
   position: sticky; top: 0;
@@ -495,7 +495,7 @@ body.landing #main {
 }
 
 @media (max-width: 720px) {
-  .ev-hero-pin--on { height: 180vh; }
+  .ev-hero-pin--on { height: 160vh; }
   /* .ev-hero (base) réaffirme son padding content-box ici (bloc
      responsive en fin de fichier, ~ligne 1016) ; même spécificité
      (0,1,0) mais plus loin dans le fichier, donc il gagnerait sur
