@@ -273,16 +273,6 @@ body.landing #main {
   margin: 0 0 36px;
   color: var(--ev-text);
   font-variation-settings: 'opsz' 144, 'SOFT' 30;
-  animation: ev-hero-tighten linear;
-  animation-timeline: scroll(root);
-  animation-range: 0 50vh;
-  will-change: transform;
-}
-@keyframes ev-hero-tighten {
-  to {
-    font-variation-settings: 'opsz' 9, 'SOFT' 0;
-    letter-spacing: -0.05em;
-  }
 }
 .ev-hero__title em {
   font-style: italic; color: var(--ev-blue);
