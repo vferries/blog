@@ -6,7 +6,7 @@
 # Usage :
 #   ./tools/hero-video/encode.sh <source.mp4>
 # Produit :
-#   assets/video/hero-owl.mp4      (desktop 1080p)
+#   assets/video/hero-owl.mp4      (desktop 1440x810)
 #   assets/video/hero-owl-540.mp4  (mobile 960x540)
 #   images/hero-owl-poster.jpg     (frame 0, fond statique no-JS/reduced-motion)
 set -euo pipefail
@@ -23,7 +23,7 @@ mkdir -p "$ROOT/assets/video"
 COMMON=(-an -c:v libx264 -profile:v high -pix_fmt yuv420p -preset slow
         -force_key_frames "expr:lt(t,2.3)" -g 48 -movflags +faststart)
 
-ffmpeg -y -v error -i "$SOURCE" "${COMMON[@]}" -crf 34 -vf scale=1440:810 \
+ffmpeg -y -v error -i "$SOURCE" "${COMMON[@]}" -crf 29 -vf scale=1440:810 \
   "$ROOT/assets/video/hero-owl.mp4"
 
 ffmpeg -y -v error -i "$SOURCE" "${COMMON[@]}" -crf 34 -vf scale=960:540 \

@@ -25,5 +25,5 @@ Produit `assets/video/hero-owl.mp4` (desktop), `assets/video/hero-owl-540.mp4`
 
 Cibles de poids : desktop ≤ 8 Mo, mobile ≤ 2,5 Mo, poster ≤ 250 Ko.
 
-**Encodage actuellement ajusté** : CRF 34 + desktop 1440×810 + poster -q:v 6.
-Poids réels : desktop 4.6 Mo, mobile 2.5 Mo, poster 229 Ko.
+**Encodage actuellement ajusté** : CRF 29 (desktop) / CRF 34 (mobile) + desktop 1440×810 + poster -q:v 6.
+Poids réels : desktop 7.6 Mo, mobile 2.5 Mo, poster 228 Ko.
