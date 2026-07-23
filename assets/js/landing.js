@@ -152,7 +152,11 @@
     // sous la nav pour que le sticky soit engagé dès scrollY = 0.
     const nav = document.querySelector('.ev-nav');
     const fitUnderNav = () => {
-      pin.style.marginTop = nav ? -nav.offsetHeight + 'px' : '';
+      if (!nav) return;
+      pin.style.marginTop = -nav.offsetHeight + 'px';
+      // Exposé au CSS : le padding-top mobile du hero s'adosse à la
+      // hauteur réelle de la nav au lieu d'un nombre magique
+      pin.style.setProperty('--ev-nav-h', nav.offsetHeight + 'px');
     };
     fitUnderNav();
     window.addEventListener('resize', fitUnderNav);

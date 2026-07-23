@@ -504,7 +504,7 @@ body.landing #main {
      Rythme resserré au maximum pour absorber aussi la nav mobile
      (3 lignes, hors scope de ce fix) qui pousse le hero plus bas
      que sur desktop. */
-  .ev-hero.ev-hero--video { padding: 72px 24px 32px; }
+  .ev-hero.ev-hero--video { padding: calc(var(--ev-nav-h, 64px) + 20px) 24px 32px; }
   .ev-hero--video .ev-hero__tag   { margin-bottom: 16px; }
   .ev-hero--video .ev-hero__title { margin-bottom: 16px; }
   .ev-hero--video .ev-hero__lede  { margin-bottom: 20px; }
