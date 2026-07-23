@@ -26,45 +26,59 @@ author_profile: false
     <a href="/" class="ev-nav__brand">
       <img src="{{ '/images/logo.svg' | relative_url }}" alt=""> En Veille
     </a>
-    <ul class="ev-nav__links">
+    <ul class="ev-nav__links" id="ev-nav-menu">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">À propos</a></li>
       <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
       <li><a href="https://vferries.github.io/cv/" rel="noopener">CV</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="ev-nav__status-item"><span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span></li>
     </ul>
     <span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span>
+    <button class="ev-nav__burger" type="button" aria-expanded="false"
+            aria-controls="ev-nav-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+      <svg class="ev-nav__power" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v8"/><path d="M6.3 6.6a8 8 0 1 0 11.4 0"/>
+      </svg>
+    </button>
   </div>
 </nav>
 
 <main id="main">
 
-<!-- HERO -->
-<section class="ev-hero">
-  <div class="ev-hero__grid">
-    <div>
-      <div class="ev-hero__tag">Dev indé · Toulouse · depuis 2011</div>
-      <h1 class="ev-hero__title">
-        Dev senior,<br>
-        posture <em>tranquille</em>.<br>
-        <em>Impact</em> rapide, <span class="ev-hl">savoir-faire</span> qui dure.
-      </h1>
-      <p class="ev-hero__lede">
-        Je suis Vincent. J'accompagne les équipes tech sur leurs projets de fond — backend JVM, front-end JS/TS, Android, et l'intégration concrète de l'IA dans les workflows de dev. Mission longue de préférence.
-      </p>
-      <div class="ev-hero__cta">
-        <a href="#services" class="ev-btn ev-btn--primary">
-          Ce que je fais
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#contact" class="ev-btn ev-btn--ghost">On en discute ?</a>
-        <span class="ev-hero__hint">par email, direct</span>
+<!-- HERO — fond vidéo chouette scrubé au scroll ; sans JS : poster statique -->
+<div class="ev-hero-pin">
+  <section class="ev-hero ev-hero--video">
+    <video class="ev-hero__bg" muted playsinline preload="auto"
+           poster="{{ '/images/hero-owl-poster.jpg' | relative_url }}"
+           data-src="{{ '/assets/video/hero-owl.mp4' | relative_url }}"
+           data-src-mobile="{{ '/assets/video/hero-owl-540.mp4' | relative_url }}"
+           aria-hidden="true"></video>
+    <div class="ev-hero__scrim" aria-hidden="true"></div>
+    <div class="ev-hero__grid">
+      <div>
+        <div class="ev-hero__tag">Dev indé · Toulouse · depuis 2011</div>
+        <h1 class="ev-hero__title">
+          Dev senior,<br>
+          posture <em>tranquille</em>.<br>
+          <em>Impact</em> rapide, <span class="ev-hl">savoir-faire</span> qui dure.
+        </h1>
+        <p class="ev-hero__lede">
+          Je suis Vincent. J'accompagne les équipes tech sur leurs projets de fond — backend JVM, front-end JS/TS, Android, et l'intégration concrète de l'IA dans les workflows de dev. Mission longue de préférence.
+        </p>
+        <div class="ev-hero__cta">
+          <a href="#services" class="ev-btn ev-btn--primary">
+            Ce que je fais
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="ev-btn ev-btn--ghost">On en discute ?</a>
+          <span class="ev-hero__hint">par email, direct</span>
+        </div>
       </div>
     </div>
-    <div class="ev-hero__visual" aria-hidden="true">
-      <img src="{{ '/images/logo.svg' | relative_url }}" alt="">
-    </div>
-  </div>
-</section>
+  </section>
+</div>
 
 <!-- MARQUEE -->
 <div class="ev-strip">
@@ -96,21 +110,6 @@ author_profile: false
 
 <!-- INTRO + TERMINAL -->
 <section class="ev-intro-section">
-  <div class="ev-git-feed" aria-hidden="true">
-    <div class="ev-git-feed__line">
-      <span class="ev-git-feed__hash">c3a7d2f</span> refactor(auth): simplify OAuth flow · <span class="ev-git-feed__ref">main</span> · 2h
-      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">e8b4a91</span> feat(mcp): add Claude connector · <span class="ev-git-feed__ref">feat/mcp</span> · 5h
-      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">1f9c3e0</span> docs: update README · <span class="ev-git-feed__ref">main</span> · 1d
-      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">7ac0b52</span> fix(android): crash on Pixel 6 · <span class="ev-git-feed__ref">hotfix</span> · 2d
-      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">b62e4d8</span> test(core): add coverage · <span class="ev-git-feed__ref">main</span> · 3d
-      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">c3a7d2f</span> refactor(auth): simplify OAuth flow · <span class="ev-git-feed__ref">main</span> · 2h
-      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">e8b4a91</span> feat(mcp): add Claude connector · <span class="ev-git-feed__ref">feat/mcp</span> · 5h
-      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">1f9c3e0</span> docs: update README · <span class="ev-git-feed__ref">main</span> · 1d
-      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">7ac0b52</span> fix(android): crash on Pixel 6 · <span class="ev-git-feed__ref">hotfix</span> · 2d
-      &nbsp;&nbsp;&nbsp;<span class="ev-git-feed__hash">b62e4d8</span> test(core): add coverage · <span class="ev-git-feed__ref">main</span> · 3d
-    </div>
-  </div>
-
   <div class="ev-intro ev-reveal">
     <p class="ev-intro__kicker">en quelques mots</p>
     <h2>Pas un <em>ninja full-stack</em>.<br>Un dev qui <em>livre</em>, et qui laisse l'équipe <em>grandie</em>.</h2>

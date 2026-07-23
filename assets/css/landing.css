@@ -171,6 +171,66 @@ body.landing #main {
   100% { transform: scale(2); opacity: 0; }
 }
 
+/* Burger mobile — power-on CRT (voir plan, Task 9) */
+.ev-nav__burger {
+  display: none; position: relative;
+  width: 44px; height: 44px;
+  border: 0; background: none; cursor: pointer; padding: 10px;
+}
+.ev-nav__burger span {
+  display: block; height: 2px; border-radius: 1px;
+  background: var(--ev-text); margin: 5px 0;
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+.ev-nav__power {
+  position: absolute; inset: 10px; width: 24px; height: 24px;
+  fill: none; stroke: var(--ev-cyan); stroke-width: 2; stroke-linecap: round;
+  opacity: 0; transform: rotate(-90deg) scale(0.6);
+  transition: opacity 220ms var(--ease-out), transform 300ms var(--ease-out);
+}
+.ev-nav--open .ev-nav__burger span { opacity: 0; transform: scaleX(0.15); }
+.ev-nav--open .ev-nav__power { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* Pastille "Disponible" dupliquée dans le panneau — masquée hors mobile */
+.ev-nav__status-item { display: none; }
+
+@media (max-width: 720px) {
+  .ev-nav__inner { flex-wrap: nowrap; }
+  .ev-nav__burger { display: block; }
+  .ev-nav__inner > .ev-nav__status { display: none; }
+  .ev-nav__links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    margin: 0; padding: 18px 24px 22px;
+    display: none; flex-direction: column; gap: 14px;
+    background: color-mix(in srgb, var(--ev-bg) 96%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--ev-border);
+    transform-origin: top;
+  }
+  .ev-nav--open .ev-nav__links {
+    display: flex;
+    animation: ev-crt-on 420ms var(--ease-out) both;
+  }
+  .ev-nav__links li { opacity: 0; transform: translateY(-6px);
+    transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out); }
+  .ev-nav--open .ev-nav__links li { opacity: 1; transform: none; }
+  .ev-nav--open .ev-nav__links li:nth-child(1) { transition-delay: 190ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(2) { transition-delay: 240ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(3) { transition-delay: 290ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(4) { transition-delay: 340ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(5) { transition-delay: 390ms; }
+  .ev-nav--open .ev-nav__links li:nth-child(6) { transition-delay: 440ms; }
+  .ev-nav__status-item { display: block; margin-top: 4px; }
+}
+@keyframes ev-crt-on {
+  0%   { transform: scaleY(0.02); filter: brightness(2.4);
+         box-shadow: 0 2px 24px var(--ev-cyan); }
+  40%  { transform: scaleY(0.02); filter: brightness(2.4);
+         box-shadow: 0 2px 32px var(--ev-cyan); }
+  100% { transform: scaleY(1); filter: brightness(1);
+         box-shadow: 0 0 0 transparent; }
+}
+
 /* ============================================================
    QUICK NAV
    ============================================================ */
@@ -273,16 +333,6 @@ body.landing #main {
   margin: 0 0 36px;
   color: var(--ev-text);
   font-variation-settings: 'opsz' 144, 'SOFT' 30;
-  animation: ev-hero-tighten linear;
-  animation-timeline: scroll(root);
-  animation-range: 0 50vh;
-  will-change: transform;
-}
-@keyframes ev-hero-tighten {
-  to {
-    font-variation-settings: 'opsz' 9, 'SOFT' 0;
-    letter-spacing: -0.05em;
-  }
 }
 .ev-hero__title em {
   font-style: italic; color: var(--ev-blue);
@@ -336,30 +386,6 @@ body.landing #main {
   50%      { transform: rotate(-2deg) translateY(-2px); }
 }
 
-.ev-hero__visual {
-  position: relative;
-  display: flex; justify-content: center; align-items: center;
-  animation: ev-fade-in 1000ms var(--ease-out) 200ms both;
-}
-.ev-hero__visual img {
-  width: 100%; max-width: 420px; height: auto;
-  animation: ev-float-slow linear;
-  animation-timeline: scroll(root);
-  animation-range: 0 150vh;
-  will-change: transform;
-}
-.ev-hero__visual::before {
-  content: ""; position: absolute; inset: -10%;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--ev-cyan) 25%, transparent), transparent 55%);
-  z-index: -1;
-  animation: ev-breathe 6s var(--ease-out) infinite;
-}
-@keyframes ev-float-slow { to { transform: translateY(-40px) rotate(-4deg); } }
-@keyframes ev-breathe {
-  0%, 100% { transform: scale(0.95); opacity: 0.6; }
-  50%      { transform: scale(1.1); opacity: 1; }
-}
-
 .ev-hero__scroll-hint {
   position: absolute; bottom: 32px; left: 50%;
   transform: translateX(-50%);
@@ -381,6 +407,116 @@ body.landing #main {
   100% { transform: translateY(10px); opacity: 0; }
 }
 @keyframes ev-fade-out { to { opacity: 0; transform: translateX(-50%) translateY(20px); } }
+
+/* ============================================================
+   HERO VIDÉO — chouette scrubée au scroll
+   .ev-hero-pin--on (hauteur de pin) et .ev-hero--scrub (états
+   accents) sont posées par le JS : sans JS ou en reduced motion,
+   pas de pin, poster statique, accents allumés d'office.
+   ============================================================ */
+.ev-hero-pin--on { height: 190vh; }
+
+.ev-hero--video {
+  position: sticky; top: 0;
+  height: 100svh;
+  max-width: none;
+  overflow: hidden;
+  /* .ev-hero (base) est en content-box : son padding vertical (80+80)
+     s'ajoutait par-dessus 100svh et poussait les CTA hors viewport.
+     border-box + rythme vertical resserré pour tenir dans 100svh. */
+  box-sizing: border-box;
+  padding: 96px 32px 48px; /* top ≥ hauteur nav sticky (~64px) */
+  align-content: start; /* le center hérité centre le bloc dans toute
+    la boîte sticky (qui déborde du viewport) et pousse les CTA hors
+    cadre ; ancré en haut, seule la hauteur réelle du texte compte */
+  /* Le ciel étoilé impose son contraste : tokens forcés en variante
+     dark quel que soit prefers-color-scheme ; le reste de la page
+     ne bouge pas. --ev-bg n'est PAS surchargé (le fondu bas du scrim
+     doit rejoindre le fond réel de la page). */
+  --ev-text:          #F1EBD9;
+  --ev-text-muted:    #C7BEA7;
+  --ev-text-subtle:   #9A917C;
+  --ev-border:        rgba(241, 235, 217, 0.18);
+  --ev-bg-subtle:     rgba(6, 9, 26, 0.55);
+  --ev-blue:          #43CFD6;
+  --ev-primary:       var(--brand-cyan);
+  --ev-primary-hover: var(--cyan-200);
+  --ev-on-primary:    var(--brand-navy);
+}
+.ev-hero--video .ev-hero__tag   { margin-bottom: 24px; }
+.ev-hero--video .ev-hero__title { margin-bottom: 24px; }
+.ev-hero--video .ev-hero__lede  { margin-bottom: 32px; }
+.ev-hero--video .ev-hero__grid {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1200px; margin: 0 auto;
+}
+.ev-hero__bg {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 62% 50%;
+}
+.ev-hero__scrim {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background:
+    /* lisibilité du texte : voile navy sur la gauche */
+    linear-gradient(90deg, rgba(0, 3, 49, 0.78) 0%, rgba(0, 3, 49, 0.42) 38%, transparent 62%),
+    /* vignette bas-droite : avale le watermark ✦ de la source */
+    radial-gradient(260px 150px at 96% 84%, rgba(0, 3, 49, 0.92), transparent 72%),
+    /* fondu vers la section suivante, suit le scheme de la page */
+    linear-gradient(180deg, transparent 82%, var(--ev-bg) 100%);
+}
+
+/* Accents éteints tant que les yeux ne sont pas allumés */
+.ev-hero--scrub .ev-hero__title em {
+  color: inherit;
+  transition: color 450ms var(--ease-out);
+}
+.ev-hero--scrub .ev-hero__title .ev-hl::before {
+  animation: none;
+  transform: skewX(-8deg) scaleX(0);
+  transition: transform 450ms var(--ease-out);
+}
+.ev-hero--scrub.is-powered .ev-hero__title em { color: var(--ev-blue); }
+.ev-hero--scrub.is-powered .ev-hero__title .ev-hl::before { transform: skewX(-8deg) scaleX(1); }
+
+/* Laptops 13"-15" (768-900px de hauteur d'écran typique) : le bloc
+   de texte (tag + titre qui se rewrap sur 4-5 lignes à cette taille
+   + lede + CTA) ne tient pas au rythme desktop plein format. On
+   resserre encore le titre et la lede pour rester dans 100svh. */
+@media (max-height: 920px) {
+  .ev-hero--video .ev-hero__title {
+    font-size: clamp(2.25rem, 4.5vw + 0.75rem, 4.5rem);
+  }
+  .ev-hero--video .ev-hero__lede {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .ev-hero-pin--on { height: 160vh; }
+  /* .ev-hero (base) réaffirme son padding content-box ici (bloc
+     responsive en fin de fichier, ~ligne 1016) ; même spécificité
+     (0,1,0) mais plus loin dans le fichier, donc il gagnerait sur
+     .ev-hero--video seul. Sélecteur composé pour trancher
+     explicitement en faveur du padding border-box de la vidéo.
+     Rythme resserré au maximum pour absorber aussi la nav mobile
+     (3 lignes, hors scope de ce fix) qui pousse le hero plus bas
+     que sur desktop. */
+  .ev-hero.ev-hero--video { padding: calc(var(--ev-nav-h, 64px) + 20px) 24px 32px; }
+  .ev-hero--video .ev-hero__tag   { margin-bottom: 16px; }
+  .ev-hero--video .ev-hero__title { margin-bottom: 16px; }
+  .ev-hero--video .ev-hero__lede  { margin-bottom: 20px; }
+  /* portrait : la chouette reste visible sous le texte empilé */
+  .ev-hero__bg { object-position: 50% 42%; }
+  .ev-hero__scrim {
+    background:
+      linear-gradient(180deg, rgba(0, 3, 49, 0.65) 0%, rgba(0, 3, 49, 0.35) 45%, transparent 65%),
+      radial-gradient(200px 120px at 96% 86%, rgba(0, 3, 49, 0.92), transparent 72%),
+      linear-gradient(180deg, transparent 80%, var(--ev-bg) 100%);
+  }
+}
 
 /* ============================================================
    BUTTONS (landing specific)
@@ -536,29 +672,6 @@ body.landing #main {
   margin: 0 0 20px; max-width: 54ch;
 }
 
-/* Git feed en filigrane */
-.ev-git-feed {
-  position: absolute;
-  top: 0; left: -200px; right: 0; bottom: 0;
-  overflow: hidden; pointer-events: none;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--ev-text-subtle);
-  opacity: 0.3; z-index: 0;
-}
-@media (max-width: 900px) { .ev-git-feed { display: none; } }
-.ev-git-feed__line {
-  white-space: nowrap;
-  padding: 2px 0;
-  animation: ev-git-scroll 40s linear infinite;
-}
-@keyframes ev-git-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.ev-git-feed__hash { color: #E89A2F; }
-.ev-git-feed__ref  { color: var(--ev-blue); }
-.ev-intro-section > * { position: relative; z-index: 1; }
 
 /* Terminal */
 .ev-terminal {
@@ -1014,7 +1127,6 @@ body.landing #main {
    ============================================================ */
 @media (max-width: 720px) {
   .ev-hero { padding: 60px 24px 80px; min-height: auto; }
-  .ev-hero__visual { display: none; }
   .ev-terminal { transform: none; }
   .ev-intro-section { padding: 80px 24px 40px; }
   .ev-services, .ev-stack, .ev-about, .ev-blog { padding: 80px 24px 40px; }

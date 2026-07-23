@@ -126,6 +126,86 @@
   })();
 
   // ==========================================================
+  // HERO OWL — scrub vidéo au scroll (pin), envol à la libération
+  // ==========================================================
+  (function initHeroOwl() {
+    const SPLIT = 1.4;            // s — fin de la portion scrubée (tête + yeux)
+    const POWER_THRESHOLD = 0.5;  // progression du scrub où les yeux s'allument
+    const MIN_SEEK_DELTA = 1 / 24;
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const pin = document.querySelector('.ev-hero-pin');
+    const hero = document.querySelector('.ev-hero--video');
+    const video = hero ? hero.querySelector('.ev-hero__bg') : null;
+    if (!pin || !hero || !video) return;
+
+    video.src = matchMedia('(max-width: 720px)').matches
+      ? video.dataset.srcMobile
+      : video.dataset.src;
+    video.load();
+    pin.classList.add('ev-hero-pin--on');
+    hero.classList.add('ev-hero--scrub');
+
+    // La nav sticky est dans le flux au-dessus du wrapper : sans correction,
+    // le pin ne s'engage qu'après ~une hauteur de nav de scroll normal
+    // (le hero "monte d'un cran" avant de se figer). On remonte le wrapper
+    // sous la nav pour que le sticky soit engagé dès scrollY = 0.
+    const nav = document.querySelector('.ev-nav');
+    const fitUnderNav = () => {
+      if (!nav) return;
+      pin.style.marginTop = -nav.offsetHeight + 'px';
+      // Exposé au CSS : le padding-top mobile du hero s'adosse à la
+      // hauteur réelle de la nav au lieu d'un nombre magique
+      pin.style.setProperty('--ev-nav-h', nav.offsetHeight + 'px');
+    };
+    fitUnderNav();
+    window.addEventListener('resize', fitUnderNav);
+
+    let flying = false;
+    let ticking = false;
+
+    const progress = () => {
+      const r = pin.getBoundingClientRect();
+      const travel = r.height - innerHeight;
+      if (travel <= 0) return 1;
+      return Math.min(1, Math.max(0, -r.top / travel));
+    };
+
+    const update = () => {
+      ticking = false;
+      const p = progress();
+      hero.classList.toggle('is-powered', p >= POWER_THRESHOLD);
+      if (p >= 1) {
+        if (!flying) {
+          flying = true;
+          // Saut direct en bas de page (ancre, End, scroll restauré) :
+          // ne pas rejouer la rotation de tête à vitesse réelle
+          if (video.readyState >= 1 && video.currentTime < SPLIT) video.currentTime = SPLIT;
+          video.play().catch(err => {
+            // AbortError attendu quand pause() coupe un play() en vol (re-perchage)
+            if (err.name !== 'AbortError') console.warn('hero owl:', err);
+          });
+        }
+        return;
+      }
+      if (flying) { // remontée : la chouette se reperche, le scrub reprend la main
+        flying = false;
+        video.pause();
+      }
+      if (video.readyState >= 1) {
+        const t = p * SPLIT;
+        if (Math.abs(video.currentTime - t) > MIN_SEEK_DELTA) video.currentTime = t;
+      }
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    video.addEventListener('loadedmetadata', update, { once: true });
+    update();
+  })();
+
+  // ==========================================================
   // 3D TILT on service cards
   // ==========================================================
   (function initTilt() {
@@ -155,6 +235,30 @@
     const update = () => nav.classList.toggle('ev-nav--scrolled', window.scrollY > 4);
     update();
     window.addEventListener('scroll', update, { passive: true });
+  })();
+
+  // ==========================================================
+  // BURGER MOBILE — power-on CRT
+  // ==========================================================
+  (function initBurger() {
+    const nav = document.querySelector('.ev-nav');
+    const btn = document.querySelector('.ev-nav__burger');
+    const menu = document.getElementById('ev-nav-menu');
+    if (!nav || !btn || !menu) return;
+    const setOpen = (open) => {
+      nav.classList.toggle('ev-nav--open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', () => setOpen(!nav.classList.contains('ev-nav--open')));
+    menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('click', (e) => {
+      if (!nav.classList.contains('ev-nav--open')) return;
+      if (!e.target.closest('.ev-nav')) setOpen(false);
+    });
+    matchMedia('(min-width: 721px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
   })();
 
   // ==========================================================
