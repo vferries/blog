@@ -21,7 +21,7 @@ command -v ffmpeg >/dev/null || { echo "ffmpeg introuvable dans le PATH." >&2; e
 mkdir -p "$ROOT/assets/video"
 
 COMMON=(-an -c:v libx264 -profile:v high -pix_fmt yuv420p -preset slow
-        -force_key_frames "expr:lt(t,2.3)" -g 48 -movflags +faststart)
+        -force_key_frames "expr:lt(t,1.5)" -g 48 -movflags +faststart)
 
 ffmpeg -y -v error -i "$SOURCE" "${COMMON[@]}" -crf 29 -vf scale=1440:810 \
   "$ROOT/assets/video/hero-owl.mp4"

@@ -129,8 +129,8 @@
   // HERO OWL — scrub vidéo au scroll (pin), envol à la libération
   // ==========================================================
   (function initHeroOwl() {
-    const SPLIT = 2.2;            // s — fin de la portion scrubée (tête + yeux)
-    const POWER_THRESHOLD = 0.65; // progression du scrub où les yeux s'allument
+    const SPLIT = 1.4;            // s — fin de la portion scrubée (tête + yeux)
+    const POWER_THRESHOLD = 0.5;  // progression du scrub où les yeux s'allument
     const MIN_SEEK_DELTA = 1 / 24;
 
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
