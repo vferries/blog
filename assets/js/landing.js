@@ -268,27 +268,55 @@
     const qnav = document.getElementById('ev-quick-nav');
     if (!qnav) return;
     const hero = document.querySelector('.ev-hero');
-    const show = () => {
+    const dots = Array.from(qnav.querySelectorAll('.ev-quick-nav__dot'));
+
+    // Chaque dot suit une section VISIBLE réelle. Le dot "Hero" suit le
+    // hero (sticky, il remplit le viewport pendant le pin), pas la <nav>
+    // #ev-top : trop courte pour être « la section du haut », elle
+    // n'allumait jamais son dot. On associe élément -> data-target.
+    const tracked = [
+      ['.ev-hero', 'ev-top'],
+      ['#services', 'services'],
+      ['#about',    'about'],
+      ['#blog',     'blog'],
+      ['#contact',  'contact'],
+    ].map(([sel, target]) => [document.querySelector(sel), target])
+     .filter(([el]) => el);
+
+    let current = null;
+    const setActive = (target) => {
+      if (target === current) return;
+      current = target;
+      dots.forEach(d => d.classList.toggle('active', d.dataset.target === target));
+    };
+
+    const update = () => {
+      // Afficher la quick-nav une fois le hero passé.
       const trigger = hero ? hero.getBoundingClientRect().bottom : innerHeight;
       qnav.classList.toggle('on', trigger < innerHeight * 0.3);
-    };
-    window.addEventListener('scroll', show, { passive: true });
-    show();
 
-    if (!('IntersectionObserver' in window)) return;
-    const dots = Array.from(qnav.querySelectorAll('.ev-quick-nav__dot'));
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const id = e.target.id;
-          dots.forEach(d => d.classList.toggle('active', d.dataset.target === id));
-        }
-      });
-    }, { threshold: 0.3 });
-    ['ev-top', 'services', 'about', 'blog', 'contact'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) io.observe(el);
-    });
+      // Bas de page : la dernière section est souvent trop courte pour
+      // que son haut atteigne la ligne de détection — on la force.
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) {
+        setActive(tracked[tracked.length - 1][1]);
+        return;
+      }
+
+      // Ligne de détection à 15 % du haut du viewport. La section active
+      // est la dernière dont le haut a franchi cette ligne, c.-à-d. celle
+      // qui occupe le haut de l'écran — exactement l'ancre atteinte au
+      // clic sur un dot. Un seul « gagnant » possible : plus de décalage.
+      const lineY = innerHeight * 0.15;
+      let active = tracked[0][1];
+      for (const [el, target] of tracked) {
+        if (el.getBoundingClientRect().top <= lineY) active = target;
+      }
+      setActive(active);
+    };
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
   })();
 
   // ==========================================================
