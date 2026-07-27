@@ -13,9 +13,13 @@ montrables (contrairement aux missions grands comptes sous NDA) :
   ligne via partenaires)
 - **justbordas.fr** — ferronnerie d'art côté Toulouse (portfolio artisan, acier
   / verre / bois)
+- **vferries.github.io/cuisine** — projet perso (ajouté en cours de chantier) :
+  recettes en Cooklang servies par un site Astro (recherche, filtres, favoris)
+  + app Android Kotlin. Preuve de savoir-faire supplémentaire, étiquetée
+  « projet perso » pour ne pas brouiller l'offre.
 
-Vincent a tout fait sur les deux : design, développement, mise en ligne, en
-direct avec les clients.
+Vincent a tout fait sur les deux sites clients : design, développement, mise
+en ligne, en direct avec les clients. Le projet cuisine est le sien.
 
 Le portfolio matérialise cette offre. Les **5 services actuels restent
 intacts** (cible équipes tech) : c'est la section portfolio elle-même qui porte
@@ -65,8 +69,8 @@ défensif (chaque IIFE skip si ses éléments manquent) : rien à conditionner.
   url: https://escalire.fr
   domain: escalire.fr
   kind: Librairie indépendante
-  location: Escalquens
-  year: 2026              # à confirmer par Vincent
+  location: Escalquens    # optionnel (omis pour le projet perso)
+  year: 2026              # optionnel ; à confirmer par Vincent
   pitch: >                # 1 ligne, carte landing
     ...
   story: |                # récit page dédiée, markdown
@@ -98,7 +102,8 @@ avec les services ; le about vient ensuite comme preuve humaine).
 
 - `ev-section-head` : kicker mono `réalisations`, titre Fraunces avec un mot en
   italique, sous-titre porteur de l'offre
-- Grille 2 cartes `.ev-work__card` (`ev-reveal--stagger`) :
+- Grille de cartes `.ev-work__card` (`ev-reveal--stagger`, 3 projets — 2
+  colonnes en tablette, 3 en desktop ≥ 1000px) :
   - media : `<video>` de scroll (muette, loop, `playsinline`, `preload="none"`,
     poster) dans un cadre 16:10
   - nom du projet + `domaine.fr` en JetBrains Mono

@@ -134,7 +134,7 @@ Co-authored-by: Claude <noreply@anthropic.com>"
 - Create: `tools/work-videos/record.mjs`
 - Create: `tools/work-videos/record.sh`
 - Create: `tools/work-videos/README.md`
-- Create (générés): `assets/video/work-escalire.mp4`, `assets/video/work-justbordas.mp4`, `images/work-escalire-poster.jpg`, `images/work-justbordas-poster.jpg`
+- Create (générés): `assets/video/work-escalire.mp4`, `assets/video/work-justbordas.mp4`, `assets/video/work-cuisine.mp4`, `images/work-escalire-poster.jpg`, `images/work-justbordas-poster.jpg`, `images/work-cuisine-poster.jpg`
 
 **Interfaces:**
 - Produces: `./tools/work-videos/record.sh <slug> <url>` → `assets/video/work-<slug>.mp4` (800×500, H.264, muet, faststart) + `images/work-<slug>-poster.jpg` (frame 0). Ces chemins sont référencés par `_data/realisations.yml` (Task 3).
@@ -260,6 +260,7 @@ les cartes de la section/page Réalisations.
 ```bash
 ./tools/work-videos/record.sh escalire https://escalire.fr
 ./tools/work-videos/record.sh justbordas https://justbordas.fr
+./tools/work-videos/record.sh cuisine https://vferries.github.io/cuisine/
 ```
 
 Produit `assets/video/work-<slug>.mp4` (800×500, H.264 muet, ≤ 800 Ko visé)
@@ -283,14 +284,15 @@ Comme tout `tools/`, exclu du build Jekyll.
 
 Expected: `Usage: ./tools/work-videos/record.sh <slug> <url>` (exit ≠ 0).
 
-- [ ] **Step 7: Générer les 4 assets**
+- [ ] **Step 7: Générer les 6 assets**
 
 ```bash
 ./tools/work-videos/record.sh escalire https://escalire.fr
 ./tools/work-videos/record.sh justbordas https://justbordas.fr
+./tools/work-videos/record.sh cuisine https://vferries.github.io/cuisine/
 ```
 
-Expected: les 4 fichiers créés, tailles affichées par `du -h`.
+Expected: les 6 fichiers créés, tailles affichées par `du -h`.
 
 - [ ] **Step 8: Vérifier le budget poids**
 
@@ -384,7 +386,29 @@ Co-authored-by: Claude <noreply@anthropic.com>"
   stack: [HTML, CSS, JavaScript] # à confirmer
   video: /assets/video/work-justbordas.mp4
   poster: /images/work-justbordas-poster.jpg
+
+- slug: cuisine
+  name: Recettes de cuisine
+  url: https://vferries.github.io/cuisine/
+  domain: vferries.github.io/cuisine
+  kind: Projet perso
+  year: 2026
+  pitch: >
+    Mes recettes écrites en Cooklang, servies par un site Astro — recherche
+    par ingrédients, filtres, favoris — et une app Android.
+  story: |
+    Un projet perso pour joindre la cuisine au code : les recettes sont
+    écrites en Cooklang, un site Astro les sert — recherche par ingrédients,
+    filtres par type, difficulté ou régime, tris, favoris — et une app
+    Android les embarque. Le même soin que pour un site client, appliqué
+    au plaisir.
+  stack: [Astro, TypeScript, Cooklang, Kotlin]
+  video: /assets/video/work-cuisine.mp4
+  poster: /images/work-cuisine-poster.jpg
 ```
+
+Note : `location` est absent du projet perso — le markup l'affiche
+conditionnellement, comme `year`.
 
 - [ ] **Step 2: Ajouter le dot quick-nav dans `index.html`**
 
@@ -427,7 +451,7 @@ Après le `</section>` de `#services` (ligne ~198), avant `<!-- ABOUT -->` :
       </a>
       <div class="ev-work__body">
         <h3 class="ev-work__name">{{ r.name }} <a href="{{ r.url }}" rel="noopener" class="ev-work__domain">{{ r.domain }} ↗</a></h3>
-        <div class="ev-work__meta"><span>{{ r.kind }}</span><span>{{ r.location }}</span>{% if r.year %}<span>{{ r.year }}</span>{% endif %}</div>
+        <div class="ev-work__meta"><span>{{ r.kind }}</span>{% if r.location %}<span>{{ r.location }}</span>{% endif %}{% if r.year %}<span>{{ r.year }}</span>{% endif %}</div>
         <p class="ev-work__pitch">{{ r.pitch }}</p>
       </div>
     </article>
@@ -461,6 +485,7 @@ Nouveau bloc après le bloc SERVICES (repérer `/* ====… ABOUT` et insérer av
   grid-template-columns: 1fr;
 }
 @media (min-width: 760px) { .ev-work__grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .ev-work__grid { grid-template-columns: repeat(3, 1fr); } }
 .ev-work__card {
   background: var(--ev-bg);
   border: 1px solid var(--ev-border-strong);
@@ -529,6 +554,7 @@ bundle exec jekyll build -q
 grep -c 'id="realisations"' _site/index.html          # expected: 1
 grep -c 'work-escalire.mp4' _site/index.html          # expected: 1
 grep -c 'work-justbordas.mp4' _site/index.html        # expected: 1
+grep -c 'work-cuisine.mp4' _site/index.html           # expected: 1
 grep -c 'data-target="realisations"' _site/index.html # expected: 1
 grep -c 'href="#realisations"' _site/index.html       # expected: 2 (dot quick-nav + lien nav)
 ```
@@ -618,7 +644,7 @@ og_image: /images/og-realisations.png
     <div class="ev-work-detail__body">
       <h2 class="ev-work-detail__name">{{ r.name }}</h2>
       <a class="ev-work__domain" href="{{ r.url }}" rel="noopener">{{ r.domain }} ↗</a>
-      <div class="ev-work__meta"><span>{{ r.kind }}</span><span>{{ r.location }}</span>{% if r.year %}<span>{{ r.year }}</span>{% endif %}</div>
+      <div class="ev-work__meta"><span>{{ r.kind }}</span>{% if r.location %}<span>{{ r.location }}</span>{% endif %}{% if r.year %}<span>{{ r.year }}</span>{% endif %}</div>
       {{ r.story | markdownify }}
       <div class="ev-work-detail__stack">
         {% for s in r.stack %}<span>{{ s }}</span>{% endfor %}
@@ -714,7 +740,7 @@ grep -c 'aria-current="page"' _site/realisations/index.html   # expected: 1
 grep -c 'og-realisations.png' _site/realisations/index.html   # expected: 2 (og + twitter)
 grep -c 'og-card.png' _site/index.html                        # expected: 2 (fallback intact)
 grep -c 'Site%20vitrine' _site/realisations/index.html        # expected: 1
-grep -c 'ev-work-detail' _site/realisations/index.html        # expected: ≥ 2
+grep -c 'ev-work-detail' _site/realisations/index.html        # expected: ≥ 3
 grep -c 'href="/#services"' _site/realisations/index.html     # expected: 1 (root="/")
 ```
 
@@ -900,7 +926,7 @@ Expected: `NAV OK`. Même check à l'œil pour le footer (2 lignes).
 - [ ] Dark mode (DevTools → Rendering → prefers-color-scheme: dark)
 - [ ] Reduced motion : aucun autoplay
 - [ ] JS désactivé : posters, layout intact
-- [ ] Les liens externes des cartes ouvrent bien escalire.fr / justbordas.fr
+- [ ] Les liens externes des cartes ouvrent bien escalire.fr / justbordas.fr / vferries.github.io/cuisine
 
 - [ ] **Step 4: Budget poids final**
 
