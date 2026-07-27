@@ -128,6 +128,13 @@ Co-authored-by: Claude <noreply@anthropic.com>"
 
 ### Task 2: Outillage `tools/work-videos/` + génération des assets
 
+> **Amendé en cours d'exécution** (retours utilisateur) : trim du temps mort
+> initial (mesure `LEAD_SECONDS`), puis scroll linéaire à vitesse constante
+> avec distance plafonnée (remplace l'easeInOutQuad ci-dessous) et paramètre
+> optionnel de clic (scénario « page détail » pour cuisine). La source de
+> vérité du comportement final est `tools/work-videos/README.md` + les
+> scripts eux-mêmes.
+
 **Files:**
 - Create: `tools/work-videos/package.json`
 - Create: `tools/work-videos/.gitignore`
