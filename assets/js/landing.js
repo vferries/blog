@@ -502,15 +502,21 @@
     const videos = document.querySelectorAll('.ev-work__video');
     if (!videos.length) return;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const play = (v) => { v.muted = true; v.play().catch(() => {}); };
+    const play = v => {
+      v.muted = true;
+      v.play().catch(err => {
+        // AbortError attendu quand pause() coupe un play() en vol (sortie rapide du viewport)
+        if (err.name !== 'AbortError') console.warn('work video:', err);
+      });
+    };
     if (!('IntersectionObserver' in window)) { videos.forEach(play); return; }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
         if (e.isIntersecting) play(e.target);
         else e.target.pause();
       });
     }, { threshold: 0.25 });
-    videos.forEach((v) => io.observe(v));
+    videos.forEach(v => io.observe(v));
   })();
 
   // ==========================================================
