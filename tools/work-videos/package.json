@@ -1,0 +1,8 @@
+{
+  "name": "work-videos",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "playwright-core": "^1.45.0"
+  }
+}

@@ -1,0 +1,23 @@
+# work-videos — vidéos de scroll des réalisations
+
+Capture le scroll d'un site (Playwright + Chrome système) et l'encode pour
+les cartes de la section/page Réalisations.
+
+## Usage
+
+```bash
+./tools/work-videos/record.sh escalire https://escalire.fr
+./tools/work-videos/record.sh justbordas https://justbordas.fr
+```
+
+Produit `assets/video/work-<slug>.mp4` (800×500, H.264 muet, ≤ 800 Ko visé)
+et `images/work-<slug>-poster.jpg`. À relancer quand un site évolue —
+capture reproductible (viewport 1280×800, scroll easé 7 s).
+
+## Dépendances
+
+- `node` + `npm` (`npm install` auto au premier run — `playwright-core` seul,
+  pas de navigateur téléchargé : on utilise le `google-chrome` système)
+- `ffmpeg`
+
+Comme tout `tools/`, exclu du build Jekyll.
