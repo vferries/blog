@@ -19,9 +19,15 @@ const context = await browser.newContext({
   viewport: { width: 1280, height: 800 },
   recordVideo: { dir: tmpdir(), size: { width: 1280, height: 800 } },
 });
+
+// L'enregistrement démarre dès la création de la page : on mesure ce temps
+// mort (chargement + settle) pour permettre à record.sh de le couper au
+// montage — sinon la frame 0 du mp4 final tombe avant le premier paint.
+const leadStart = performance.now();
 const page = await context.newPage();
 await page.goto(url, { waitUntil: 'networkidle' });
 await page.waitForTimeout(SETTLE_MS);
+const leadSeconds = (performance.now() - leadStart) / 1000;
 
 await page.evaluate((duration) => new Promise((resolve) => {
   const total = document.documentElement.scrollHeight - innerHeight;
@@ -41,3 +47,5 @@ const video = page.video();
 await context.close();
 await rename(await video.path(), out);
 await browser.close();
+
+console.log(`LEAD_SECONDS=${leadSeconds.toFixed(2)}`);
