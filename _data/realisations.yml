@@ -1,0 +1,59 @@
+# Réalisations publiques — source unique (section landing + page /realisations/).
+# Ajouter un projet = 1 entrée ici + ./tools/work-videos/record.sh <slug> <url>
+- slug: escalire
+  name: Librairie Escalire
+  url: https://escalire.fr
+  domain: escalire.fr
+  kind: Librairie indépendante
+  location: Escalquens
+  year: 2026 # à confirmer
+  pitch: >
+    La vitrine d'une librairie indépendante : l'équipe, les rayons, les
+    événements — et la commande en ligne sans algorithme.
+  story: |
+    Une librairie de quartier qui voulait exister en ligne sans passer par
+    une usine e-commerce. On a fait l'inverse : un site vitrine chaleureux
+    qui donne envie de pousser la porte — l'équipe, les rayons, les
+    événements — et qui délègue la commande en ligne aux partenaires
+    libraires (Place des Libraires). Léger, rapide, lisible sur mobile.
+  stack: [HTML, CSS, JavaScript] # à confirmer
+  video: /assets/video/work-escalire.mp4
+  poster: /images/work-escalire-poster.jpg
+
+- slug: justbordas
+  name: Just Bordas
+  url: https://justbordas.fr
+  domain: justbordas.fr
+  kind: Ferronnerie d'art
+  location: Toulouse
+  year: 2026 # à confirmer (footer du site : © 2026)
+  pitch: >
+    Le portfolio d'un ferronnier d'art : pièces uniques en acier, verre et
+    bois, mises en valeur sans fioritures.
+  story: |
+    Un artisan ferronnier — escaliers, cheminées, mobilier sur mesure — qui
+    avait besoin d'un portfolio à la hauteur de ses pièces. Galeries photo
+    soignées, prise de contact simple, mise en scène sobre : le site
+    s'efface, le travail parle.
+  stack: [HTML, CSS, JavaScript] # à confirmer
+  video: /assets/video/work-justbordas.mp4
+  poster: /images/work-justbordas-poster.jpg
+
+- slug: cuisine
+  name: Recettes de cuisine
+  url: https://vferries.github.io/cuisine/
+  domain: vferries.github.io/cuisine
+  kind: Projet perso
+  year: 2026
+  pitch: >
+    Mes recettes écrites en Cooklang, servies par un site Astro — recherche
+    par ingrédients, filtres, favoris — et une app Android.
+  story: |
+    Un projet perso pour joindre la cuisine au code : les recettes sont
+    écrites en Cooklang, un site Astro les sert — recherche par ingrédients,
+    filtres par type, difficulté ou régime, tris, favoris — et une app
+    Android les embarque. Le même soin que pour un site client, appliqué
+    au plaisir.
+  stack: [Astro, TypeScript, Cooklang, Kotlin]
+  video: /assets/video/work-cuisine.mp4
+  poster: /images/work-cuisine-poster.jpg

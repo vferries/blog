@@ -15,6 +15,7 @@ author_profile: false
 <aside class="ev-quick-nav" id="ev-quick-nav" aria-label="Navigation rapide">
   <a href="#ev-top"    class="ev-quick-nav__dot" data-label="Hero"     data-target="ev-top"></a>
   <a href="#services"  class="ev-quick-nav__dot" data-label="Services" data-target="services"></a>
+  <a href="#realisations" class="ev-quick-nav__dot" data-label="Réalisations" data-target="realisations"></a>
   <a href="#about"     class="ev-quick-nav__dot" data-label="À propos" data-target="about"></a>
   <a href="#blog"      class="ev-quick-nav__dot" data-label="Blog"     data-target="blog"></a>
   <a href="#contact"   class="ev-quick-nav__dot" data-label="Contact"  data-target="contact"></a>
@@ -171,6 +172,42 @@ Vincent Ferries <span class="ev-t-p">// dev indé, Toulouse</span><br>
       <p>Sessions sur-mesure, pair programming, mentorat individuel. Je partage ce que j'applique au quotidien : ni cours théorique, ni tuto YouTube. Du vrai, avec vos outils, sur votre codebase.</p>
       <div class="ev-service__meta"><span>1j intensif</span><span>cycle 4×2h</span><span>mentorat hebdo</span><span>en ligne ou IRL</span></div>
     </article>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section class="ev-work" id="realisations">
+  <div class="ev-section-head ev-reveal">
+    <div>
+      <p class="ev-section-kicker">réalisations</p>
+      <h2 class="ev-section-title">Des sites <em>faits main</em>, aussi</h2>
+    </div>
+    <p class="ev-section-sub">En Veille, c'est aussi des sites vitrines pour commerçants et artisans. Conçus, développés et mis en ligne en direct — rapides, lisibles, sans usine à gaz.</p>
+  </div>
+
+  <div class="ev-work__grid ev-reveal--stagger">
+    {% for r in site.data.realisations %}
+    <article class="ev-work__card">
+      <a class="ev-work__media" href="{{ r.url }}" rel="noopener" aria-label="Visiter {{ r.domain }}">
+        <video class="ev-work__video" muted loop playsinline preload="none"
+               poster="{{ r.poster | relative_url }}"
+               src="{{ r.video | relative_url }}" aria-hidden="true"></video>
+      </a>
+      <div class="ev-work__body">
+        <h3 class="ev-work__name">{{ r.name }} <a href="{{ r.url }}" rel="noopener" class="ev-work__domain">{{ r.domain }} ↗</a></h3>
+        <div class="ev-work__meta"><span>{{ r.kind }}</span>{% if r.location %}<span>{{ r.location }}</span>{% endif %}{% if r.year %}<span>{{ r.year }}</span>{% endif %}</div>
+        <p class="ev-work__pitch">{{ r.pitch }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="ev-work__foot ev-reveal">
+    <a href="{{ '/realisations/' | relative_url }}" class="ev-btn ev-btn--primary">
+      Voir les réalisations
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <span class="ev-work__hint">Vous êtes commerçant ou artisan ? <a href="#contact">Parlons-en</a></span>
   </div>
 </section>
 

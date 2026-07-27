@@ -11,6 +11,7 @@
     </a>
     <ul class="ev-nav__links" id="ev-nav-menu">
       <li><a href="{{ include.root }}#services">Services</a></li>
+      <li><a href="{{ include.root }}#realisations"{% if include.current == 'realisations' %} aria-current="page"{% endif %}>Réalisations</a></li>
       <li><a href="{{ include.root }}#about">À propos</a></li>
       <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
       <li><a href="https://vferries.github.io/cv/" rel="noopener">CV</a></li>
