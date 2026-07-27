@@ -374,7 +374,7 @@ Co-authored-by: Claude <noreply@anthropic.com>"
   domain: justbordas.fr
   kind: Ferronnerie d'art
   location: Toulouse
-  year: 2025 # à confirmer
+  year: 2026 # à confirmer (footer du site : © 2026)
   pitch: >
     Le portfolio d'un ferronnier d'art : pièces uniques en acier, verre et
     bois, mises en valeur sans fioritures.
