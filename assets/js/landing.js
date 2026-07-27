@@ -275,11 +275,12 @@
     // #ev-top : trop courte pour être « la section du haut », elle
     // n'allumait jamais son dot. On associe élément -> data-target.
     const tracked = [
-      ['.ev-hero', 'ev-top'],
-      ['#services', 'services'],
-      ['#about',    'about'],
-      ['#blog',     'blog'],
-      ['#contact',  'contact'],
+      ['.ev-hero',     'ev-top'],
+      ['#services',    'services'],
+      ['#realisations','realisations'],
+      ['#about',       'about'],
+      ['#blog',        'blog'],
+      ['#contact',     'contact'],
     ].map(([sel, target]) => [document.querySelector(sel), target])
      .filter(([el]) => el);
 
