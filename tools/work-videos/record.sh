@@ -6,7 +6,7 @@
 #   détail) au lieu du simple scroll de page. Voir README.
 # Produit :
 #   assets/video/work-<slug>.mp4     (800x500, H.264 muet, faststart)
-#   images/work-<slug>-poster.jpg    (frame 0)
+#   images/work-<slug>-poster.jpg    (frame juste avant le début du scroll)
 set -euo pipefail
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -27,16 +27,50 @@ NODE_OUTPUT="$(node "$DIR/record.mjs" "$URL" "$RAW" "$CLICK_SELECTOR")"
 LEAD="$(printf '%s\n' "$NODE_OUTPUT" | sed -n 's/^LEAD_SECONDS=\(.*\)$/\1/p')"
 : "${LEAD:?LEAD_SECONDS introuvable dans la sortie de record.mjs}"
 
-# Coupe le temps mort (chargement + settle) en gardant ~0,3 s de page statique
-# avant le scroll, pour que la frame 0 du mp4 final serve de poster utile.
-TRIM="$(LC_ALL=C awk -v lead="$LEAD" 'BEGIN { t = lead - 0.3; if (t < 0) t = 0; printf "%.2f", t }')"
+# Coupe le temps mort (chargement + warm-up + settle) en gardant HOLD_S de
+# page statique avant le scroll : pause hero volontaire pour laisser le
+# temps de voir le header avant que ça défile.
+HOLD_S=1.5
+TRIM="$(LC_ALL=C awk -v lead="$LEAD" -v hold="$HOLD_S" 'BEGIN { t = lead - hold; if (t < 0) t = 0; printf "%.2f", t }')"
+
+# Pause hero réellement présente dans le mp4 final (peut être < HOLD_S si le
+# LEAD mesuré était plus court que HOLD_S, auquel cas TRIM est clampé à 0 et
+# tout le lead est conservé tel quel).
+EFFECTIVE_HOLD="$(LC_ALL=C awk -v lead="$LEAD" -v hold="$HOLD_S" 'BEGIN { t = (lead < hold) ? lead : hold; printf "%.2f", t }')"
+
+# Le poster n'est plus la frame 0 (début du hold, parfois pas encore stabilisé)
+# mais une frame vers la fin du hold, juste avant le début du scroll — la
+# mieux rendue du hero statique. Marge de 0,3 s (pas 0,1 s) : vérifié
+# empiriquement que le pipeline d'enregistrement vidéo de Playwright a un
+# décalage d'environ 150-200 ms par rapport aux timestamps JS mesurés côté
+# page — à 0,1 s de marge, la frame extraite montrait parfois un scroll déjà
+# engagé (ex. cuisine : une ligne de recette supplémentaire déjà visible).
+POSTER_MARGIN_S=0.3
+POSTER_S="$(LC_ALL=C awk -v hold="$EFFECTIVE_HOLD" -v margin="$POSTER_MARGIN_S" 'BEGIN { t = hold - margin; if (t < 0) t = 0; printf "%.2f", t }')"
+
+MP4="$ROOT/assets/video/work-$SLUG.mp4"
+POSTER="$ROOT/images/work-$SLUG-poster.jpg"
+MP4_BUDGET=819200      # 800 Ko
+POSTER_BUDGET=153600   # 150 Ko
 
 mkdir -p "$ROOT/assets/video"
 ffmpeg -y -v error -ss "$TRIM" -i "$RAW" -an -c:v libx264 -profile:v high -pix_fmt yuv420p \
   -preset slow -crf 28 -vf "scale=800:500" -movflags +faststart \
-  "$ROOT/assets/video/work-$SLUG.mp4"
+  "$MP4"
 
-ffmpeg -y -v error -i "$ROOT/assets/video/work-$SLUG.mp4" -frames:v 1 -q:v 6 \
-  "$ROOT/images/work-$SLUG-poster.jpg"
+MP4_SIZE="$(LC_ALL=C stat -c%s "$MP4")"
+if [ "$MP4_SIZE" -gt "$MP4_BUDGET" ]; then
+  echo "Erreur : $MP4 dépasse le budget de 800 Ko ($MP4_SIZE octets). Remonter -crf dans record.sh (ex. 28 → 30) et relancer." >&2
+  exit 1
+fi
 
-du -h "$ROOT/assets/video/work-$SLUG.mp4" "$ROOT/images/work-$SLUG-poster.jpg"
+ffmpeg -y -v error -ss "$POSTER_S" -i "$MP4" -frames:v 1 -q:v 6 \
+  "$POSTER"
+
+POSTER_SIZE="$(LC_ALL=C stat -c%s "$POSTER")"
+if [ "$POSTER_SIZE" -gt "$POSTER_BUDGET" ]; then
+  echo "Erreur : $POSTER dépasse le budget de 150 Ko ($POSTER_SIZE octets). Remonter -q:v dans record.sh (ex. 6 → 8, plus petit = meilleure qualité/plus lourd) et relancer." >&2
+  exit 1
+fi
+
+du -h "$MP4" "$POSTER"

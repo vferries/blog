@@ -18,34 +18,14 @@ const CLICK_SETTLE_MS = 800;
 const SCROLL_SPEED_PX_S = 500;
 const MAX_SCROLL_PX = 3200; // ~4 hauteurs de viewport (800px)
 const MAX_SCROLL_MS = 8000;
-const LIST_BUDGET_SHARE = 0.4; // part du budget temps pour le scroll de la liste
-
-const browser = await chromium.launch({ channel: 'chrome' });
-const context = await browser.newContext({
-  viewport: { width: 1280, height: 800 },
-  recordVideo: { dir: tmpdir(), size: { width: 1280, height: 800 } },
-});
-
-// L'enregistrement démarre dès la création de la page : on mesure ce temps
-// mort (chargement + warm-up + settle) pour permettre à record.sh de le
-// couper au montage — sinon la frame 0 du mp4 final tombe avant le premier
-// paint.
-const leadStart = performance.now();
-const page = await context.newPage();
-await page.goto(url, { waitUntil: 'networkidle' });
-
-// Neutralise le smooth-scroll natif des sites (source probable des à-coups
-// pendant le scroll scripté).
-await page.addStyleTag({ content: 'html { scroll-behavior: auto !important; }' });
-
-// Warm-up bas → haut : déclenche les lazy-loads et stabilise scrollHeight
-// avant l'enregistrement utile. Se déroule pendant la phase LEAD, trimée
-// au montage de toute façon.
-await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
-await page.waitForTimeout(400);
-await page.evaluate(() => scrollTo(0, 0));
-await page.waitForTimeout(SETTLE_MS);
-const leadSeconds = (performance.now() - leadStart) / 1000;
+// Part du budget temps pour le scroll de la liste avant le clic. Volontairement
+// faible : si l'élément ciblé par clickSelector est proche du haut de la liste
+// (ex. 2e ligne sur cuisine), un scroll trop long le fait défiler hors du
+// viewport avant le clic — Playwright auto-scroll alors pour l'atteindre, ce
+// qui produit un saut visible. À ajuster si un futur site cible un élément
+// plus bas dans une liste longue (le scroll pourrait alors rester bref sans
+// dépasser la position de la cible, ou remonter la part vers ~40 %).
+const LIST_BUDGET_SHARE = 0.05;
 
 // Scroll linéaire (sans easing) de 0 à targetPx sur durationMs : vitesse
 // constante, pas d'à-coup ni d'accélération de fin de page.
@@ -67,33 +47,77 @@ const scrollableHeight = (targetPage) => targetPage.evaluate(
   () => document.documentElement.scrollHeight - innerHeight,
 );
 
-if (clickSelector) {
-  // Scénario liste → détail (ex. cuisine.vferries) : scroll de la liste sur
-  // ~40 % du budget temps, clic sur le premier élément, chargement de la
-  // page détail, puis scroll de cette page pour le reste du budget.
-  const listBudgetMs = MAX_SCROLL_MS * LIST_BUDGET_SHARE;
-  const listDistance = Math.min(await scrollableHeight(page), (SCROLL_SPEED_PX_S * listBudgetMs) / 1000);
-  await linearScrollTo(page, listDistance, (listDistance / SCROLL_SPEED_PX_S) * 1000);
+// scrollableHeight peut être négatif (page plus courte que le viewport) :
+// on clampe à 0 pour éviter une distance/durée négative qui ferait boucler
+// linearScrollTo indéfiniment (t = (now-start)/duration ne franchit jamais 1
+// quand duration < 0).
+const clampDistance = (raw, cap) => Math.max(0, Math.min(raw, cap));
 
-  await Promise.all([
-    page.waitForLoadState('networkidle'),
-    page.click(clickSelector),
-  ]);
-  await page.waitForTimeout(CLICK_SETTLE_MS);
+// browser/context sont fermés dans le finally quoi qu'il arrive (ex. timeout
+// de page.click sur un mauvais sélecteur) — sinon un échec laisse Chrome et
+// le contexte d'enregistrement ouverts. L'erreur d'origine continue de
+// remonter (process non-zero), c'est le comportement attendu.
+let browser;
+let context;
+let leadSeconds;
+try {
+  browser = await chromium.launch({ channel: 'chrome' });
+  context = await browser.newContext({
+    viewport: { width: 1280, height: 800 },
+    recordVideo: { dir: tmpdir(), size: { width: 1280, height: 800 } },
+  });
 
-  const detailBudgetMs = MAX_SCROLL_MS * (1 - LIST_BUDGET_SHARE);
-  const detailDistance = Math.min(await scrollableHeight(page), (SCROLL_SPEED_PX_S * detailBudgetMs) / 1000);
-  await linearScrollTo(page, detailDistance, (detailDistance / SCROLL_SPEED_PX_S) * 1000);
-} else {
-  const distance = Math.min(await scrollableHeight(page), MAX_SCROLL_PX);
-  const duration = Math.min((distance / SCROLL_SPEED_PX_S) * 1000, MAX_SCROLL_MS);
-  await linearScrollTo(page, distance, duration);
+  // L'enregistrement démarre dès la création de la page : on mesure ce temps
+  // mort (chargement + warm-up + settle) pour permettre à record.sh de le
+  // couper au montage — sinon la frame 0 du mp4 final tombe avant le premier
+  // paint.
+  const leadStart = performance.now();
+  const page = await context.newPage();
+  await page.goto(url, { waitUntil: 'networkidle' });
+
+  // Neutralise le smooth-scroll natif des sites (source probable des à-coups
+  // pendant le scroll scripté).
+  await page.addStyleTag({ content: 'html { scroll-behavior: auto !important; }' });
+
+  // Warm-up bas → haut : déclenche les lazy-loads et stabilise scrollHeight
+  // avant l'enregistrement utile. Se déroule pendant la phase LEAD, trimée
+  // au montage de toute façon.
+  await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+  await page.waitForTimeout(400);
+  await page.evaluate(() => scrollTo(0, 0));
+  await page.waitForTimeout(SETTLE_MS);
+  leadSeconds = (performance.now() - leadStart) / 1000;
+
+  if (clickSelector) {
+    // Scénario liste → détail (ex. cuisine.vferries) : bref scroll de la liste
+    // (LIST_BUDGET_SHARE du budget temps), clic sur l'élément ciblé, chargement
+    // de la page détail, puis scroll de cette page pour le reste du budget.
+    const listBudgetMs = MAX_SCROLL_MS * LIST_BUDGET_SHARE;
+    const listDistance = clampDistance(await scrollableHeight(page), (SCROLL_SPEED_PX_S * listBudgetMs) / 1000);
+    if (listDistance > 0) await linearScrollTo(page, listDistance, (listDistance / SCROLL_SPEED_PX_S) * 1000);
+
+    await Promise.all([
+      page.waitForLoadState('networkidle'),
+      page.click(clickSelector),
+    ]);
+    await page.waitForTimeout(CLICK_SETTLE_MS);
+
+    const detailBudgetMs = MAX_SCROLL_MS * (1 - LIST_BUDGET_SHARE);
+    const detailDistance = clampDistance(await scrollableHeight(page), (SCROLL_SPEED_PX_S * detailBudgetMs) / 1000);
+    if (detailDistance > 0) await linearScrollTo(page, detailDistance, (detailDistance / SCROLL_SPEED_PX_S) * 1000);
+  } else {
+    const distance = clampDistance(await scrollableHeight(page), MAX_SCROLL_PX);
+    const duration = Math.min((distance / SCROLL_SPEED_PX_S) * 1000, MAX_SCROLL_MS);
+    if (distance > 0) await linearScrollTo(page, distance, duration);
+  }
+
+  await page.waitForTimeout(SETTLE_MS);
+  const video = page.video();
+  await context.close();
+  await rename(await video.path(), out);
+} finally {
+  if (context) await context.close().catch(() => {});
+  if (browser) await browser.close().catch(() => {});
 }
-
-await page.waitForTimeout(SETTLE_MS);
-const video = page.video();
-await context.close();
-await rename(await video.path(), out);
-await browser.close();
 
 console.log(`LEAD_SECONDS=${leadSeconds.toFixed(2)}`);
