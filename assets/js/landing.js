@@ -495,6 +495,25 @@
   })();
 
   // ==========================================================
+  // RÉALISATIONS — vidéos de scroll jouées à la visibilité
+  // Pas d'attribut autoplay : reduced-motion et no-JS => poster.
+  // ==========================================================
+  (function initWorkVideos() {
+    const videos = document.querySelectorAll('.ev-work__video');
+    if (!videos.length) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const play = (v) => { v.muted = true; v.play().catch(() => {}); };
+    if (!('IntersectionObserver' in window)) { videos.forEach(play); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) play(e.target);
+        else e.target.pause();
+      });
+    }, { threshold: 0.25 });
+    videos.forEach((v) => io.observe(v));
+  })();
+
+  // ==========================================================
   // CONSOLE MESSAGE
   // ==========================================================
   console.log(
