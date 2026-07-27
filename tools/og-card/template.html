@@ -112,7 +112,22 @@
   set('tagline', 'tagline');
   set('domain', 'domain');
 
+  // Titres longs (>2 mots) peuvent wrapper sur 3 lignes et déborder de la
+  // carte (630px fixe, overflow: hidden) — on réduit le titre par paliers
+  // jusqu'à ce que tout tienne. N'a aucun effet sur un titre court comme
+  // "En Veille" qui tient déjà en une ligne.
+  function fitTitle() {
+    const card = document.getElementById('card');
+    const title = document.getElementById('title');
+    let fontSize = 152;
+    while (fontSize > 72 && card.scrollHeight > card.clientHeight) {
+      fontSize -= 4;
+      title.style.fontSize = fontSize + 'px';
+    }
+  }
+
   document.fonts.ready.then(() => {
+    fitTitle();
     document.documentElement.dataset.fontsReady = 'true';
   });
 </script>
