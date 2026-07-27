@@ -771,6 +771,11 @@ Co-authored-by: Claude <noreply@anthropic.com>"
 
 ### Task 5: Lecture des vidéos (IIFE `initWorkVideos`)
 
+> **Amendé en revue** : le `.catch(() => {})` du snippet ci-dessous violait la
+> règle projet « pas de catch silencieux » — le code livré discrimine
+> l'`AbortError` et logge le reste (pattern `initHeroOwl`), arrows sans
+> parenthèses. Source de vérité : `assets/js/landing.js`.
+
 **Files:**
 - Modify: `assets/js/landing.js` (insérer avant le bloc `// CONSOLE MESSAGE`, ~ligne 497)
 
