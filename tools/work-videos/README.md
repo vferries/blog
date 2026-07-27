@@ -17,7 +17,7 @@ capture reproductible (viewport 1280×800, scroll easé 7 s).
 
 L'enregistrement démarre dès l'ouverture de la page, avant chargement +
 scroll. `record.mjs` mesure ce temps mort (`LEAD_SECONDS`) et `record.sh`
-le coupe au montage (`ffmpeg -ss`, en gardant ~1 s de page statique avant
+le coupe au montage (`ffmpeg -ss`, en gardant ~0,3 s de page statique avant
 le scroll) : la frame 0 du mp4 final — utilisée comme poster — tombe donc
 sur une frame utile plutôt qu'un écran blanc.
 
