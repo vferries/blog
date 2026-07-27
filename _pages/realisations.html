@@ -1,0 +1,57 @@
+---
+layout: landing
+title: "Réalisations — sites vitrines faits main · En Veille"
+description: "Sites vitrines pour commerçants et artisans, conçus et développés en direct par Vincent Ferries. Librairie Escalire, Just Bordas."
+permalink: /realisations/
+og_image: /images/og-realisations.png
+---
+
+<div class="ev-landing">
+
+{% include ev-nav.html root="/" current="realisations" %}
+
+<main id="main">
+
+<header class="ev-work-hero">
+  <p class="ev-section-kicker">réalisations</p>
+  <h1 class="ev-section-title">Des sites <em>faits main</em></h1>
+  <p class="ev-work-hero__lede">Pour les commerçants et artisans qui veulent exister en ligne sans usine à gaz : un site conçu, développé et mis en ligne en direct — rapide, lisible, à votre image. Voilà ce que ça donne.</p>
+</header>
+
+<div class="ev-work-list">
+  {% for r in site.data.realisations %}
+  <article class="ev-work-detail ev-reveal" id="{{ r.slug }}">
+    <a class="ev-work-detail__media" href="{{ r.url }}" rel="noopener" aria-label="Visiter {{ r.domain }}">
+      <video class="ev-work__video" muted loop playsinline preload="none"
+             poster="{{ r.poster | relative_url }}"
+             src="{{ r.video | relative_url }}" aria-hidden="true"></video>
+    </a>
+    <div class="ev-work-detail__body">
+      <h2 class="ev-work-detail__name">{{ r.name }}</h2>
+      <a class="ev-work__domain" href="{{ r.url }}" rel="noopener">{{ r.domain }} ↗</a>
+      <div class="ev-work__meta"><span>{{ r.kind }}</span>{% if r.location %}<span>{{ r.location }}</span>{% endif %}{% if r.year %}<span>{{ r.year }}</span>{% endif %}</div>
+      {{ r.story | markdownify }}
+      <div class="ev-work-detail__stack">
+        {% for s in r.stack %}<span>{{ s }}</span>{% endfor %}
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+<div class="ev-cta-wrap">
+<section class="ev-cta ev-reveal">
+  <h2>Le même pour <em>votre</em> commerce ?</h2>
+  <p>Racontez-moi votre activité et ce que vous voulez montrer — je vous dis ce qui est possible, en combien de temps, et pour combien. Pas de formulaire : un email, et on en discute.</p>
+  <a href="mailto:vincent.ferries@gmail.com?subject=Site%20vitrine" class="ev-cta__email">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    vincent.ferries@gmail.com
+  </a>
+</section>
+</div>
+
+</main>
+
+{% include ev-footer.html %}
+
+</div>

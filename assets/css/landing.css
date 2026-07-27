@@ -917,6 +917,59 @@ body.landing #main {
   text-decoration: underline; text-underline-offset: 3px;
 }
 
+/* --- page /realisations/ --- */
+.ev-work-hero {
+  max-width: 1200px; margin: 0 auto;
+  padding: 96px 32px 24px;
+}
+.ev-work-hero__lede {
+  font-size: 1.0625rem; color: var(--ev-text-muted);
+  max-width: 54ch; line-height: 1.7;
+  margin: 24px 0 0;
+}
+.ev-work-list {
+  max-width: 1200px; margin: 0 auto;
+  padding: 48px 32px 96px;
+  display: grid; gap: 96px;
+}
+.ev-work-detail {
+  display: grid; gap: 32px; align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .ev-work-detail { grid-template-columns: 1.2fr 1fr; gap: 64px; }
+  .ev-work-detail:nth-child(even) .ev-work-detail__media { order: 2; }
+}
+.ev-work-detail__media {
+  display: block; aspect-ratio: 16 / 10;
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--ev-border-strong);
+  background: var(--ev-bg-subtle);
+  transition: border-color 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
+}
+.ev-work-detail__media:hover {
+  border-color: var(--ev-blue);
+  box-shadow: 0 30px 50px -30px rgba(0, 27, 61, 0.2);
+}
+.ev-work-detail__name {
+  font-family: var(--font-display); font-weight: 500;
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.05; margin: 0 0 8px;
+}
+.ev-work-detail__body .ev-work__meta { margin: 12px 0 18px; }
+.ev-work-detail__body p {
+  color: var(--ev-text-muted); line-height: 1.7;
+  margin: 0 0 16px; max-width: 54ch;
+}
+.ev-work-detail__stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.ev-work-detail__stack span {
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--ev-text-subtle);
+  border: 1px solid var(--ev-border-strong); border-radius: 999px;
+  padding: 4px 12px;
+}
+
 /* ============================================================
    ABOUT
    ============================================================ */
