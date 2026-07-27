@@ -31,9 +31,6 @@
 body.landing {
   font-family: var(--font-sans);
   background-color: var(--ev-bg) !important;
-  background-image: radial-gradient(circle, var(--ev-grid) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-attachment: fixed;
   overflow-x: hidden;
   padding-top: 0 !important;
   margin-top: 0 !important;
