@@ -1,7 +1,9 @@
 #!/bin/bash
 # Capture + encode la vidéo de scroll d'une réalisation.
 # Usage :
-#   ./tools/work-videos/record.sh <slug> <url>
+#   ./tools/work-videos/record.sh <slug> <url> [click-selector]
+# [click-selector] : scénario liste → détail (scroll liste, clic, scroll
+#   détail) au lieu du simple scroll de page. Voir README.
 # Produit :
 #   assets/video/work-<slug>.mp4     (800x500, H.264 muet, faststart)
 #   images/work-<slug>-poster.jpg    (frame 0)
@@ -10,8 +12,9 @@ set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$DIR/../.." && pwd)"
 
-SLUG="${1:?Usage: ./tools/work-videos/record.sh <slug> <url>}"
-URL="${2:?Usage: ./tools/work-videos/record.sh <slug> <url>}"
+SLUG="${1:?Usage: ./tools/work-videos/record.sh <slug> <url> [click-selector]}"
+URL="${2:?Usage: ./tools/work-videos/record.sh <slug> <url> [click-selector]}"
+CLICK_SELECTOR="${3:-}"
 
 command -v ffmpeg >/dev/null || { echo "ffmpeg introuvable dans le PATH." >&2; exit 1; }
 command -v node   >/dev/null || { echo "node introuvable dans le PATH." >&2; exit 1; }
@@ -20,7 +23,7 @@ command -v node   >/dev/null || { echo "node introuvable dans le PATH." >&2; exi
 RAW="$(mktemp -u "${TMPDIR:-/tmp}/work-XXXXXX").webm"
 trap 'rm -f "$RAW"' EXIT
 
-NODE_OUTPUT="$(node "$DIR/record.mjs" "$URL" "$RAW")"
+NODE_OUTPUT="$(node "$DIR/record.mjs" "$URL" "$RAW" "$CLICK_SELECTOR")"
 LEAD="$(printf '%s\n' "$NODE_OUTPUT" | sed -n 's/^LEAD_SECONDS=\(.*\)$/\1/p')"
 : "${LEAD:?LEAD_SECONDS introuvable dans la sortie de record.mjs}"
 
