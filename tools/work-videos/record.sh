@@ -24,9 +24,9 @@ NODE_OUTPUT="$(node "$DIR/record.mjs" "$URL" "$RAW")"
 LEAD="$(printf '%s\n' "$NODE_OUTPUT" | sed -n 's/^LEAD_SECONDS=\(.*\)$/\1/p')"
 : "${LEAD:?LEAD_SECONDS introuvable dans la sortie de record.mjs}"
 
-# Coupe le temps mort (chargement + settle) en gardant ~1 s de page statique
+# Coupe le temps mort (chargement + settle) en gardant ~0,3 s de page statique
 # avant le scroll, pour que la frame 0 du mp4 final serve de poster utile.
-TRIM="$(LC_ALL=C awk -v lead="$LEAD" 'BEGIN { t = lead - 1.0; if (t < 0) t = 0; printf "%.2f", t }')"
+TRIM="$(LC_ALL=C awk -v lead="$LEAD" 'BEGIN { t = lead - 0.3; if (t < 0) t = 0; printf "%.2f", t }')"
 
 mkdir -p "$ROOT/assets/video"
 ffmpeg -y -v error -ss "$TRIM" -i "$RAW" -an -c:v libx264 -profile:v high -pix_fmt yuv420p \
