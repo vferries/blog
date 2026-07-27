@@ -6,6 +6,11 @@
 
 ## 🔥 Maintenant
 
+### Réalisations — suites
+
+- [ ] Corriger les faits marqués `# à confirmer` dans `_data/realisations.yml` (années, stacks) — Vincent
+- [ ] Valider le copy de la section et de la page (ton, crédibilité commerciale) — Vincent
+
 ### Textes de la landing à affiner
 
 - [ ] Valider ou réécrire le **lede du hero** (actuel : "Je suis Vincent. J'accompagne les équipes tech sur leurs projets de fond — backend JVM, front-end JS/TS, Android, et l'intégration concrète de l'IA dans les workflows de dev. Mission longue de préférence.")
@@ -107,6 +112,7 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 
 ## 🛠 Améliorations techniques
 
+- [ ] `scroll-margin-top` sous la nav sticky pour toutes les ancres (le haut des sections passe légèrement sous la nav au scroll-to-anchor — préexistant, relevé pendant le chantier réalisations)
 - [ ] **OpenGraph par billet** : générer une image cohérente par défaut (template avec titre + logo) — sinon le partage d'un billet n'a pas d'image dédiée
 - [ ] **Optimiser le poids des images dans `_posts/`** (beaucoup > 200 Ko)
 - [ ] **28/46 billets sans `header:`** image → liste `/blog/` visuellement déséquilibrée. Ajouter un fallback header (gradient + titre) côté CSS, ou laisser tel quel
@@ -129,7 +135,7 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 
 - Un badge "Disponible jusqu'à tel mois" qui se met à jour automatiquement via un data file (remplace le `Disponible` statique de la nav)
 - Un "onglet" live Twitch qui apparaît uniquement quand le stream est on (via l'API Twitch)
-- Une page `/projets/` avec mini-études de cas de missions passées (avec accord clients)
+- ~~Une page `/projets/` avec mini-études de cas~~ → fait autrement : `/realisations/` (sites vitrines publics, 2026-07). Reste la piste « missions anonymisées » façon git log à y ajouter (matière à fournir par Vincent).
 - Un toggle dark/light manuel en plus du `prefers-color-scheme` auto
 - Une version anglaise (ou au moins une bio EN dans le footer) pour clients non-FR
 

@@ -26,12 +26,15 @@ bundle exec jekyll serve --livereload
 /blog/               # archive paginée des billets
 /<slug>/             # billets individuels
 /about/              # à propos
+/realisations/       # page réalisations (offre sites vitrines)
 /feed.xml            # RSS
 ```
 
 - `_posts/` : 46 billets depuis 2011, URLs permaliens `/:categories/:title/` (stables, ne pas changer)
 - `_layouts/landing.html` : layout custom pour la landing (hérite de `default`)
 - `_includes/head/custom.html` : chargement fonts + CSS/JS (le bloc `landing.css`/`landing.js` est conditionné par `{% if page.is_landing %}`)
+- `_data/realisations.yml` : réalisations publiques (source unique de la section landing `#realisations` et de `/realisations/`)
+- `_includes/ev-nav.html` / `_includes/ev-footer.html` : nav et footer partagés landing ↔ pages ev-*
 - `assets/css/enveille.css` : design tokens + thème appliqué partout
 - `assets/css/landing.css` : styles spécifiques à la landing (classes `.ev-*`)
 - `assets/js/landing.js` : interactivité de la landing uniquement
@@ -61,6 +64,8 @@ Dans `assets/js/landing.js`, organisées en IIFE :
   `is-powered` allume les accents du H1 en sync avec les yeux, l'envol se
   joue à la libération du pin. Sans JS / reduced-motion : poster statique,
   pas de pin.
+- **Vidéos réalisations** : `.ev-work__video` jouées/pausées à la visibilité
+  (IntersectionObserver), jamais en `prefers-reduced-motion`, poster sans JS.
 
 ## Conventions
 
@@ -113,6 +118,16 @@ commitée — voir `tools/hero-video/README.md`). Régénérer les assets :
 
 La portion 0→1,5 s est encodée en keyframes denses (scrub `currentTime`
 au scroll). Dépendance : `ffmpeg`.
+
+### Vidéos réalisations (scroll des sites clients)
+
+```bash
+./tools/work-videos/record.sh <slug> <url>
+# → assets/video/work-<slug>.mp4, images/work-<slug>-poster.jpg
+```
+
+Capture Playwright (`playwright-core` + Chrome système, npm install auto)
+puis encodage ffmpeg. La capture fait ~1,5 s de pause sur le hero puis un scroll linéaire à vitesse constante. Scénario optionnel : « liste → détail » par sélecteur de clic (exemple : cuisine) — les détails vivent dans `tools/work-videos/README.md`.
 
 ## Points d'attention
 
