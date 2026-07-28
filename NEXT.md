@@ -113,7 +113,7 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 ## 🛠 Améliorations techniques
 
 - [ ] `scroll-margin-top` sous la nav sticky pour toutes les ancres (le haut des sections passe légèrement sous la nav au scroll-to-anchor — préexistant, relevé pendant le chantier réalisations)
-- [ ] **Sans JS, tout le contenu `.ev-reveal` reste invisible** (`opacity: 0` jamais levé, compteurs à 0) : la landing est quasi vide pour les visiteurs no-JS — préexistant site-wide, confirmé par capture pendant le chantier réalisations. Piste : `<noscript>` qui neutralise `.ev-reveal`, ou classe `no-js` sur `<html>` retirée par JS
+- [x] **Sans JS, tout le contenu `.ev-reveal` reste invisible** → corrigé (2026-07) : classe `no-js` sur `<html>` remplacée par `js` via script inline, override `html:not(.js)` dans `landing.css`, stats servies en dur dans le HTML (le JS les remet à 0 avant d'animer). Vérifié par capture Playwright JS off/on. Reste un cas mineur : le panneau burger mobile ne peut pas s'ouvrir sans JS (liens nav inaccessibles ≤720px, page one-page donc non bloquant)
 - [ ] **OpenGraph par billet** : générer une image cohérente par défaut (template avec titre + logo) — sinon le partage d'un billet n'a pas d'image dédiée
 - [ ] **Optimiser le poids des images dans `_posts/`** (beaucoup > 200 Ko)
 - [ ] **28/46 billets sans `header:`** image → liste `/blog/` visuellement déséquilibrée. Ajouter un fallback header (gradient + titre) côté CSS, ou laisser tel quel

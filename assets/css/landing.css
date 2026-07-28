@@ -634,6 +634,10 @@ body.landing #main {
 .ev-reveal--stagger.in > *:nth-child(4) { transition-delay: 240ms; }
 .ev-reveal--stagger.in > *:nth-child(5) { transition-delay: 320ms; }
 .ev-reveal--stagger.in > *:nth-child(6) { transition-delay: 400ms; }
+/* Sans JS, l'état initial masqué ne serait jamais levé : on neutralise.
+   La classe .js est posée par un script inline dans <head> (layout landing). */
+html:not(.js) .ev-reveal,
+html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
 
 /* ============================================================
    INTRO + TERMINAL

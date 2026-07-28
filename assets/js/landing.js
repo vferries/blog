@@ -91,7 +91,12 @@
         }
       });
     }, { threshold: 0.4 });
-    document.querySelectorAll('[data-count]').forEach(el => io.observe(el));
+    document.querySelectorAll('[data-count]').forEach(el => {
+      // Le HTML porte la valeur finale (visible sans JS) : on repart de 0 avant d'animer
+      const em = el.querySelector('em');
+      if (em) em.textContent = '0';
+      io.observe(el);
+    });
   })();
 
   // ==========================================================
