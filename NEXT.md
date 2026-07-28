@@ -113,6 +113,7 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 ## 🛠 Améliorations techniques
 
 - [ ] `scroll-margin-top` sous la nav sticky pour toutes les ancres (le haut des sections passe légèrement sous la nav au scroll-to-anchor — préexistant, relevé pendant le chantier réalisations)
+- [ ] **Sans JS, tout le contenu `.ev-reveal` reste invisible** (`opacity: 0` jamais levé, compteurs à 0) : la landing est quasi vide pour les visiteurs no-JS — préexistant site-wide, confirmé par capture pendant le chantier réalisations. Piste : `<noscript>` qui neutralise `.ev-reveal`, ou classe `no-js` sur `<html>` retirée par JS
 - [ ] **OpenGraph par billet** : générer une image cohérente par défaut (template avec titre + logo) — sinon le partage d'un billet n'a pas d'image dédiée
 - [ ] **Optimiser le poids des images dans `_posts/`** (beaucoup > 200 Ko)
 - [ ] **28/46 billets sans `header:`** image → liste `/blog/` visuellement déséquilibrée. Ajouter un fallback header (gradient + titre) côté CSS, ou laisser tel quel
