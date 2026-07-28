@@ -6,7 +6,7 @@
   domain: escalire.fr
   kind: Librairie indépendante
   location: Escalquens
-  year: 2026 # à confirmer
+  year: 2026
   pitch: >
     La vitrine d'une librairie indépendante : l'équipe, les rayons, les
     événements — et la commande en ligne sans algorithme.
@@ -16,7 +16,7 @@
     qui donne envie de pousser la porte — l'équipe, les rayons, les
     événements — et qui délègue la commande en ligne aux partenaires
     libraires (Place des Libraires). Léger, rapide, lisible sur mobile.
-  stack: [HTML, CSS, JavaScript] # à confirmer
+  stack: [Astro, Sveltia CMS]
   video: /assets/video/work-escalire.mp4
   poster: /images/work-escalire-poster.jpg
 
@@ -26,7 +26,7 @@
   domain: justbordas.fr
   kind: Ferronnerie d'art
   location: Toulouse
-  year: 2026 # à confirmer (footer du site : © 2026)
+  year: 2026
   pitch: >
     Le portfolio d'un ferronnier d'art : pièces uniques en acier, verre et
     bois, mises en valeur sans fioritures.
@@ -35,7 +35,7 @@
     avait besoin d'un portfolio à la hauteur de ses pièces. Galeries photo
     soignées, prise de contact simple, mise en scène sobre : le site
     s'efface, le travail parle.
-  stack: [HTML, CSS, JavaScript] # à confirmer
+  stack: [HTML, CSS, JavaScript]
   video: /assets/video/work-justbordas.mp4
   poster: /images/work-justbordas-poster.jpg
 
@@ -54,6 +54,6 @@
     filtres par type, difficulté ou régime, tris, favoris — et une app
     Android les embarque. Le même soin que pour un site client, appliqué
     au plaisir.
-  stack: [Astro, TypeScript, Cooklang, Kotlin]
+  stack: [Astro, TypeScript, Cooklang, Kotlin, Jetpack Compose]
   video: /assets/video/work-cuisine.mp4
   poster: /images/work-cuisine-poster.jpg

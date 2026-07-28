@@ -8,7 +8,7 @@
 
 ### Réalisations — suites
 
-- [ ] Corriger les faits marqués `# à confirmer` dans `_data/realisations.yml` (années, stacks) — Vincent
+- [x] Corriger les faits marqués `# à confirmer` dans `_data/realisations.yml` (années, stacks) — confirmés 2026-07-28 (Escalire : Astro + Sveltia CMS · Just Bordas : HTML/CSS/JS pur · Cuisine : Astro + Compose ; les trois datent de 2026)
 - [ ] Valider le copy de la section et de la page (ton, crédibilité commerciale) — Vincent
 
 ### Textes de la landing à affiner
