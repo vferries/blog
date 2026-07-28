@@ -96,6 +96,9 @@ body.landing #main {
 .ev-landing a { text-decoration: none; }
 .ev-container { max-width: 1200px; margin: 0 auto; }
 
+/* La nav sticky (~65px) recouvrait le haut des sections au scroll-to-anchor */
+[id] { scroll-margin-top: 84px; }
+
 /* ============================================================
    NAV (la landing page a sa propre nav, qui prend le pas sur MM)
    ============================================================ */
