@@ -112,7 +112,7 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 
 ## 🛠 Améliorations techniques
 
-- [ ] `scroll-margin-top` sous la nav sticky pour toutes les ancres (le haut des sections passe légèrement sous la nav au scroll-to-anchor — préexistant, relevé pendant le chantier réalisations)
+- [x] `scroll-margin-top` sous la nav sticky pour toutes les ancres → `[id] { scroll-margin-top: 84px }` dans `landing.css` (nav mesurée à 65px). Vérifié Playwright : 19px de marge sur `#realisations`
 - [x] **Sans JS, tout le contenu `.ev-reveal` reste invisible** → corrigé (2026-07) : classe `no-js` sur `<html>` remplacée par `js` via script inline, override `html:not(.js)` dans `landing.css`, stats servies en dur dans le HTML (le JS les remet à 0 avant d'animer). Vérifié par capture Playwright JS off/on. Reste un cas mineur : le panneau burger mobile ne peut pas s'ouvrir sans JS (liens nav inaccessibles ≤720px, page one-page donc non bloquant)
 - [ ] **OpenGraph par billet** : générer une image cohérente par défaut (template avec titre + logo) — sinon le partage d'un billet n'a pas d'image dédiée
 - [ ] **Optimiser le poids des images dans `_posts/`** (beaucoup > 200 Ko)
@@ -121,13 +121,13 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 - [ ] Vérifier le comportement du Konami code sur Firefox / Safari iOS
 - [ ] Regarder `prefers-reduced-transparency` pour les effets de blur
 - [ ] Mentions légales (SIREN si EI/société) — manque pour conformité
-- [ ] Vérifier que `:heart:` du footer landing est bien rendu par jemoji
+- [x] Vérifier que `:heart:` du footer landing est bien rendu par jemoji → OK, rendu en `<img>` emoji GitHub (vérifié dans le build + capture)
 - [x] **Compteur dans CLAUDE.md à jour** : 46 billets
 
 ### Landing — passage en prod (vérifications restantes)
 
-- [ ] Vérifier la nav sur mobile (le status "Disponible" peut déborder)
-- [ ] Vérifier les 3 billets en preview sont bien les plus récents (logique = `sort:date | reverse | limit:3`, OK technique mais à valider visuellement)
+- [x] Vérifier la nav sur mobile → OK à 375px : pas d'overflow horizontal, la pastille "Disponible" vit dans le panneau burger (vérifié Playwright + capture)
+- [x] Vérifier les 3 billets en preview sont bien les plus récents → validé visuellement (série des talks Devoxx France 2022, les plus récents du blog)
 - [ ] Tester en prod sur `www.enveille.info` après chaque change
 
 ---
