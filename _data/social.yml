@@ -1,0 +1,18 @@
+# Réseaux sociaux — source unique des blocs de liens rendus par
+# _includes/ev-socials.html (section contact de la landing, etc.).
+#
+# La sidebar auteur des billets garde sa propre liste dans _config.yml
+# (`author.links`) : Jekyll ne sait pas lire `_data` depuis la config.
+# Un changement de pseudo se répercute donc ici ET là-bas.
+
+- name: github
+  url: https://github.com/vferries
+  label: github.com/vferries
+
+- name: twitch
+  url: https://www.twitch.tv/EnVeilleCode
+  label: twitch.tv/EnVeilleCode
+
+- name: x
+  url: https://x.com/VincentFERRIES
+  label: "@VincentFERRIES"
