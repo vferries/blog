@@ -1235,13 +1235,7 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
    ============================================================ */
 .ev-footer {
   padding: 48px 32px 64px;
-  text-align: center;
-  color: var(--ev-text-subtle);
-  font-family: var(--font-mono); font-size: 0.8125rem;
-  line-height: 1.8;
 }
-.ev-footer a { color: var(--ev-text-muted); }
-.ev-footer a:hover { color: var(--ev-blue); }
 
 /* ============================================================
    RESPONSIVE

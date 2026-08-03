@@ -207,6 +207,17 @@ pre {
 .page__footer-copyright, .page__footer-follow {
   color: var(--ev-text-subtle);
 }
+/* Ligne footer partagée landing ↔ pages MM (_includes/footer.html) */
+.ev-footer__line {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  color: var(--ev-text-subtle);
+}
+.ev-footer__line a { color: var(--ev-text-muted); }
+.ev-footer__line a:hover { color: var(--ev-blue); }
 
 /* Pagination */
 .pagination--pager, .pagination a {

@@ -71,18 +71,6 @@ author:
       icon: "fab fa-fw fa-twitch"
       url: "https://www.twitch.tv/EnVeilleCode"
 
-footer:
-  links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://x.com/VincentFERRIES"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/vferries"
-    - label: "Twitch"
-      icon: "fab fa-twitch"
-      url: "https://www.twitch.tv/EnVeilleCode"
-
 defaults:
   # _posts
   - scope:
