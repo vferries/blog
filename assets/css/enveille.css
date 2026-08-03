@@ -130,6 +130,12 @@ h1, h2, h3, h4, h5, h6,
 .author__name { font-family: var(--font-display) !important; font-weight: 500; }
 .author__bio { font-family: var(--font-sans); color: var(--ev-text-muted); }
 
+/* MM colore les icônes sociales aux couleurs de marque en dur (GitHub
+   #171516, Twitch #3d4144, Twitter #55acee) : indifférentes au mode, elles
+   tombent à 1,09:1 sur fond sombre. On les repasse en monochrome comme le
+   bloc social de la landing — `inherit` les fait aussi suivre le hover. */
+.author__urls.social-icons i { color: inherit; }
+
 /* Nav top (masthead) */
 .masthead {
   background-color: var(--ev-bg);
