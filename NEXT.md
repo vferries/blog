@@ -47,10 +47,7 @@
 
 ### Cohérence visuelle entre landing et reste du site
 
-- [ ] **Footers désynchronisés** :
-  - Landing : `© AAAA — RSS — Fait à Toulouse with :heart: and chocolatines`
-  - Pages MM (/blog/, billets, /about/) : icônes Twitter/GitHub/Twitch via `_config.yml` `footer.links`, sans email ni RSS
-  - Décider : aligner les deux, ou assumer la différence ?
+- [x] **Footers désynchronisés** → unifiés (2026-08-03) : override local de `_includes/footer.html` = source unique (ligne « © … chocolatines » partout), `footer.links` retiré de `_config.yml`. Les sociaux restent portés par la sidebar auteur des billets et la CTA landing. Spec : `docs/superpowers/specs/2026-08-03-footer-sync-design.md`
 - [ ] **Sidebar des billets (`author_profile`)** :
   - Avatar `profile_square.png` ✓ (cohérent avec landing depuis le commit du jour)
   - Pas de lien direct vers `/` (la landing) ni vers RSS
