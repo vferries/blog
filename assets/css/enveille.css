@@ -204,9 +204,6 @@ pre {
 }
 .page__footer a { color: var(--ev-text-muted); }
 .page__footer a:hover { color: var(--ev-blue); }
-.page__footer-copyright, .page__footer-follow {
-  color: var(--ev-text-subtle);
-}
 /* Ligne footer partagée landing ↔ pages MM (_includes/footer.html) */
 .ev-footer__line {
   margin: 0;
