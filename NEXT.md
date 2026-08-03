@@ -66,6 +66,7 @@
 - [x] Ajouter une section parcours freelance, missions types
 - [x] Retirer l'image `/images/peinard.jpg` en header (plus aucune référence dans le repo)
 - [ ] **`/about/` n'a plus de liens sociaux** : `author_profile: false` en front matter + pas d'entrée sociale dans `_data/navigation.yml` → le footer thème retiré (unification du 2026-08-03) était le seul porteur des liens Twitter/GitHub de cette page. Seul `twitch.tv/EnVeilleCode` survit, en prose. Décision : on assume, ou on ajoute les liens dans le texte de la page — Vincent
+  - Prêt à poser : `{% raw %}{% include ev-socials.html %}{% endraw %}` rend la liste depuis `_data/social.yml` (extraction faite le 2026-08-04, commit `099c2db`). Reste à trancher l'habillage : liste mono comme la landing, ou fondu dans la prose après « le plus simple : un email ». Deuxième consommateur de l'include — aujourd'hui seule la CTA de la landing s'en sert
 
 ---
 
@@ -122,6 +123,7 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 - [x] Vérifier que `:heart:` du footer landing est bien rendu par jemoji → OK, rendu en `<img>` emoji GitHub (vérifié dans le build + capture)
 - [x] **Compteur dans CLAUDE.md à jour** : 46 billets
 - [ ] **Contraste dark mode sous le seuil WCAG AA sur les pages MM** : `--ev-text-subtle` (#837B66) sur `--ev-bg-subtle` (#0E1428) de `.page__footer` = 4.40:1 à 13px normal (AA demande 4.5:1). Sur la landing le même token est posé sur `--ev-bg` (#06091A) → 4.70:1 (passe) ; light mode 5.19:1. Pairing de tokens préexistant, mais le footer unifié le met désormais sur toutes les pages. Piste : remonter légèrement le stop dark de `--ev-text-subtle` (`--ev-text-muted` donnerait 10:1, sans doute trop appuyé). Arbitrage design system — Vincent
+  - À ne pas confondre avec les **icônes sociales de la sidebar**, corrigées le 2026-08-04 (commit `1cea53a`) : MM leur imposait des couleurs de marque en dur (GitHub 1,09:1 sur fond sombre), elles héritent désormais de la couleur du lien → 16,6:1 dans les deux modes
 - [ ] **`remote_theme` non pinné** (`_config.yml:16`) : `mmistakes/minimal-mistakes` sans ref résout sur la branche par défaut à chaque build GitHub Pages. Si upstream renomme `footer.html` ou change son appel depuis `default.html`, le footer disparaît de toutes les pages MM sans commit dans ce repo. Même risque déjà porté par l'override de `_includes/head/custom.html`. Pin possible (`mmistakes/minimal-mistakes@4.27.3`) — changement infra, à trancher
 
 ### Landing — passage en prod (vérifications restantes)
