@@ -31,10 +31,11 @@ bundle exec jekyll serve --livereload
 ```
 
 - `_posts/` : 46 billets depuis 2011, URLs permaliens `/:categories/:title/` (stables, ne pas changer)
-- `_layouts/landing.html` : layout custom pour la landing (hérite de `default`)
+- `_layouts/landing.html` : layout custom pour la landing (autonome, n'hérite d'aucun layout du thème)
 - `_includes/head/custom.html` : chargement fonts + CSS/JS (le bloc `landing.css`/`landing.js` est conditionné par `{% if page.is_landing %}`)
 - `_data/realisations.yml` : réalisations publiques (source unique de la section landing `#realisations` et de `/realisations/`)
-- `_includes/ev-nav.html` / `_includes/ev-footer.html` : nav et footer partagés landing ↔ pages ev-*
+- `_includes/ev-nav.html` : nav partagée landing ↔ pages ev-*
+- `_includes/footer.html` : shadow du partial Minimal Mistakes → source unique de la ligne footer (landing + pages MM). `_includes/ev-footer.html` n'est plus qu'un wrapper `<footer class="ev-footer">` qui l'inclut. Le thème l'appelle via `include_cached` : ne jamais y mettre de variable de page.
 - `assets/css/enveille.css` : design tokens + thème appliqué partout
 - `assets/css/landing.css` : styles spécifiques à la landing (classes `.ev-*`)
 - `assets/js/landing.js` : interactivité de la landing uniquement

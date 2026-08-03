@@ -50,7 +50,7 @@
 - [x] **Footers désynchronisés** → unifiés (2026-08-03) : override local de `_includes/footer.html` = source unique (ligne « © … chocolatines » partout), `footer.links` retiré de `_config.yml`. Les sociaux restent portés par la sidebar auteur des billets et la CTA landing. Spec : `docs/superpowers/specs/2026-08-03-footer-sync-design.md`
 - [ ] **Sidebar des billets (`author_profile`)** :
   - Avatar `profile_square.png` ✓ (cohérent avec landing depuis le commit du jour)
-  - Pas de lien direct vers `/` (la landing) ni vers RSS
+  - RSS désormais couvert partout via le footer unifié (2026-08-03) ; pas de lien direct vers `/` (la landing) dans la sidebar, mais les pages MM y reviennent via le titre du site dans la masthead
   - Sur `/about/`, sidebar désactivée (`author_profile: false` dans le front matter) — l'intro de la page suffit
 - [x] **Liens Twitter** : URLs migrées vers `x.com` (`_config.yml` ×2 + `index.html` ×1). Icônes (`fa-twitter`, SVG croix) volontairement conservées — choix visuel séparé.
 
@@ -65,6 +65,7 @@
 - [x] Garder la partie "Pourquoi ce nom ?" (storytelling conservé)
 - [x] Ajouter une section parcours freelance, missions types
 - [x] Retirer l'image `/images/peinard.jpg` en header (plus aucune référence dans le repo)
+- [ ] **`/about/` n'a plus de liens sociaux** : `author_profile: false` en front matter + pas d'entrée sociale dans `_data/navigation.yml` → le footer thème retiré (unification du 2026-08-03) était le seul porteur des liens Twitter/GitHub de cette page. Seul `twitch.tv/EnVeilleCode` survit, en prose. Décision : on assume, ou on ajoute les liens dans le texte de la page — Vincent
 
 ---
 
@@ -120,6 +121,8 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 - [ ] Mentions légales (SIREN si EI/société) — manque pour conformité
 - [x] Vérifier que `:heart:` du footer landing est bien rendu par jemoji → OK, rendu en `<img>` emoji GitHub (vérifié dans le build + capture)
 - [x] **Compteur dans CLAUDE.md à jour** : 46 billets
+- [ ] **Contraste dark mode sous le seuil WCAG AA sur les pages MM** : `--ev-text-subtle` (#837B66) sur `--ev-bg-subtle` (#0E1428) de `.page__footer` = 4.40:1 à 13px normal (AA demande 4.5:1). Sur la landing le même token est posé sur `--ev-bg` (#06091A) → 4.70:1 (passe) ; light mode 5.19:1. Pairing de tokens préexistant, mais le footer unifié le met désormais sur toutes les pages. Piste : remonter légèrement le stop dark de `--ev-text-subtle` (`--ev-text-muted` donnerait 10:1, sans doute trop appuyé). Arbitrage design system — Vincent
+- [ ] **`remote_theme` non pinné** (`_config.yml:14`) : `mmistakes/minimal-mistakes` sans ref résout sur la branche par défaut à chaque build GitHub Pages. Si upstream renomme `footer.html` ou change son appel depuis `default.html`, le footer disparaît de toutes les pages MM sans commit dans ce repo. Même risque déjà porté par l'override de `_includes/head/custom.html`. Pin possible (`mmistakes/minimal-mistakes@4.27.3`) — changement infra, à trancher
 
 ### Landing — passage en prod (vérifications restantes)
 
