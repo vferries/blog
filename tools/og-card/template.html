@@ -67,6 +67,17 @@
     max-width: 580px;
   }
 
+  /* Mode teaser : les tags remplacent le titre, que MM réaffiche déjà en
+     <h2> sous la vignette. Mono pour faire écho aux meta de la landing. */
+  .tags {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 52px;
+    line-height: 1.35;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    max-width: 580px;
+  }
+
   .domain {
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 24px;
@@ -93,6 +104,7 @@
     <div class="top">
       <div class="eyebrow" id="eyebrow">DEV INDÉ · TOULOUSE · DEPUIS 2011</div>
       <h1 class="title" id="title">En Veille</h1>
+      <p class="tags" id="tags" hidden></p>
       <p class="tagline" id="tagline">Un dev qui livre, et qui laisse l'équipe grandie.</p>
     </div>
     <div class="domain" id="domain">enveille.info</div>
@@ -111,6 +123,13 @@
   set('title', 'title');
   set('tagline', 'tagline');
   set('domain', 'domain');
+  set('tags', 'tags');
+
+  // Mode teaser : la vignette de grille masque le titre, que Minimal Mistakes
+  // réaffiche en <h2> juste dessous. Sans le paramètre, rien ne bouge.
+  const teaser = params.get('variant') === 'teaser';
+  document.getElementById('title').hidden = teaser;
+  document.getElementById('tags').hidden = !teaser;
 
   // Titres longs (>2 mots) peuvent wrapper sur 3 lignes et déborder de la
   // carte (630px fixe, overflow: hidden) — on réduit le titre par paliers
