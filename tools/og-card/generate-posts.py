@@ -119,8 +119,13 @@ def main():
             continue
 
         annee, mois, jour, slug = nom.group(1), nom.group(2), nom.group(3), nom.group("slug")
-        texte = post.read_text(encoding="utf-8")
-        lignes, corps = front_matter(texte)
+
+        # read_text applique les newlines universelles et réécrirait un billet
+        # CRLF entier en LF : on décode nous-mêmes et on retient la convention
+        # d'origine pour la restituer à l'écriture.
+        brut = post.read_bytes().decode("utf-8")
+        crlf = "\r\n" in brut
+        lignes, corps = front_matter(brut.replace("\r\n", "\n"))
 
         if lignes is None:
             print(f"  ignoré (pas de front matter) : {post.name}")
@@ -148,8 +153,10 @@ def main():
             if args.dry_run:
                 print(f"    câblerait header.og_image dans {post.name}")
             else:
-                post.write_text("---\n" + "\n".join(lignes) + "\n---\n" + corps,
-                                encoding="utf-8")
+                sortie = "---\n" + "\n".join(lignes) + "\n---\n" + corps
+                if crlf:
+                    sortie = sortie.replace("\n", "\r\n")
+                post.write_bytes(sortie.encode("utf-8"))
 
     print(f"\n{rendus} carte(s) rendue(s), {cables} front matter câblé(s), "
           f"{ignores} billet(s) ignoré(s)")
