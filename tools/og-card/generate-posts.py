@@ -6,8 +6,11 @@ Sans carte dédiée, Minimal Mistakes retombe sur `header.image` quand il existe
 puis sur la carte générique `site.og_image`, identique pour les 46 billets.
 
 Le rendu passe par generate.sh, qui reste la source de vérité : même template,
-mêmes fontes. Les cartes sont ensuite quantifiées en PNG8 — le visuel est plat,
-la perte est invisible et le poids tombe d'environ 110 à 32 Ko.
+mêmes fontes. Les cartes générées (OG card et vignettes sans bandeau) sont
+ensuite quantifiées en PNG8 — le visuel est plat, la perte est invisible et le
+poids tombe d'environ 110 à 32 Ko. Les vignettes dérivées d'un bandeau, elles,
+sont de vraies photos : PNG8 y créerait du dithering (déjà consigné dans
+NEXT.md pour ce même bandeau Devoxx), donc JPEG (voir `derive_vignette`).
 
 Usage :
     ./tools/og-card/generate-posts.py            # ne régénère que ce qui manque
@@ -145,20 +148,47 @@ def rend_carte(requete, sortie, dry_run):
     )
 
 
+RATIO_VIGNETTE = 1200 / 630  # ratio cible ; le CSS impose l'aspect-ratio, pas les pixels
+
+
 def derive_vignette(source, sortie):
-    """Recadre un bandeau en vignette 1200×630, ancrée à gauche.
+    """Recadre un bandeau en vignette au ratio 1200:630, ancrée à l'ouest.
 
     Le recadrage est décidé ici plutôt que laissé à `object-fit: cover` :
     le centrage automatique mangeait les deux bords et coupait les mots de
     marque (`devoxx_fr_2016.jpg` rendait « OXX FRANCE 2 »). Ces bandeaux
     portent leur titre à gauche, donc on ancre à l'ouest.
+
+    La boîte de recadrage est calculée ici, en Python, plutôt que déléguée à
+    `-resize ...^` : ces bandeaux (610 à 1600 px de large) sont tous plus
+    petits que 1200×630 dans leur dimension contraignante, et `-resize ...^`
+    les agrandissait pour « remplir » la cible — jusqu'à ×3,94 pour le plus
+    petit, avec un flou net à l'arrivée. On recadre donc au ratio à la
+    résolution native, et on ne réduit que si le recadrage dépasse 1200 px
+    de large.
+
+    Sortie en JPEG, pas PNG8 : ce sont de vraies photos, la palette 64
+    couleurs de `rend_carte` (pensée pour un rendu de carte aplat) y crée du
+    dithering visible — déjà constaté sur ce même bandeau Devoxx (NEXT.md).
     """
-    subprocess.run(
-        ["magick", str(source), "-resize", "1200x630^",
-         "-gravity", "West", "-extent", "1200x630",
-         "-strip", "-colors", "64", f"PNG8:{sortie}"],
+    largeur, hauteur = (int(v) for v in subprocess.run(
+        ["magick", "identify", "-format", "%w %h", str(source)],
         check=True, capture_output=True, text=True,
-    )
+    ).stdout.split())
+
+    if largeur / hauteur >= RATIO_VIGNETTE:
+        crop_l, crop_h = round(hauteur * RATIO_VIGNETTE), hauteur
+    else:
+        crop_l, crop_h = largeur, round(largeur / RATIO_VIGNETTE)
+    x, y = 0, (hauteur - crop_h) // 2
+
+    commande = ["magick", str(source),
+                "-crop", f"{crop_l}x{crop_h}+{x}+{y}", "+repage"]
+    if crop_l > 1200:
+        commande += ["-resize", "1200x"]
+    commande += ["-strip", "-quality", "82", "-sampling-factor", "4:2:0",
+                 f"JPEG:{sortie}"]
+    subprocess.run(commande, check=True, capture_output=True, text=True)
 
 
 def main():
@@ -214,11 +244,12 @@ def main():
                                   "tagline": date_fr}), carte, args.dry_run)
             rendus += 1
 
-        # Vignette de grille : toujours une image dédiée en 1200×630, sous
-        # images/og/. Dérivée du bandeau quand il y en a un d'exploitable,
-        # carte teaser sinon. Le bandeau du billet, lui, ne bouge pas.
+        # Vignette de grille : toujours une image dédiée sous images/og/, au
+        # ratio 1200:630. Dérivée du bandeau quand il y en a un d'exploitable
+        # (JPEG, voir derive_vignette), carte teaser sinon (PNG8, comme les
+        # autres cartes générées — rendu plat, pas de perte visible). Le
+        # bandeau du billet, lui, ne bouge pas.
         bandeau = header_image(lignes)
-        teaser = CARDS / f"teaser-{slug}.png"
         derivable = False
         if bandeau:
             forme = ratio(ROOT / bandeau.lstrip("/"))
@@ -228,6 +259,15 @@ def main():
                 print(f"    bandeau écarté ({forme:.1f}:1 > {RATIO_MAX}:1)")
             else:
                 derivable = True
+
+        ext = "jpg" if derivable else "png"
+        teaser = CARDS / f"teaser-{slug}.{ext}"
+        # Un changement de nature (carte <-> dérivée) change l'extension :
+        # on nettoie l'orpheline de l'autre famille pour ne pas la laisser
+        # traîner (rendrait l'idempotence trompeuse et gonflerait le dépôt).
+        orpheline = CARDS / f"teaser-{slug}.{'png' if derivable else 'jpg'}"
+        if not args.dry_run and orpheline.exists():
+            orpheline.unlink()
 
         if args.force or not teaser.exists():
             if derivable:
@@ -239,7 +279,7 @@ def main():
                                       "tags": tags(lignes), "tagline": date_fr}),
                            teaser, args.dry_run)
             rendus += 1
-        vignette = f"/images/og/teaser-{slug}.png"
+        vignette = f"/images/og/teaser-{slug}.{ext}"
 
         lignes, modifie_og = pose_dans_header(lignes, "og_image", f"/images/og/{slug}.png")
         lignes, modifie_teaser = pose_dans_header(lignes, "teaser", vignette)
