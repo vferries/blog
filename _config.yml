@@ -26,7 +26,7 @@ markdown:    kramdown
 remote_theme: mmistakes/minimal-mistakes@4.28.0
 # Outputting
 permalink: /:categories/:title/
-paginate: 10 # amount of posts to show on /blog/
+paginate: 12 # amount of posts to show on /blog/
 paginate_path: /blog/page:num/
 timezone: Europe/Paris
 
