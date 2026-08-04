@@ -103,7 +103,7 @@ Query params supportés par le template : `eyebrow`, `title`, `tagline`, `domain
 
 **Dépendances** : `google-chrome` (headless) + `magick` (ImageMagick, pour le crop final). Le dossier `tools/` est exclu du build Jekyll.
 
-**Une carte par billet** : `tools/og-card/generate-posts.py` rend une carte pour chaque billet (titre + date en français) et câble `header.og_image` dans le front matter.
+**Une carte par billet** : `tools/og-card/generate-posts.py` rend une carte pour chaque billet (titre + date en français) et câble `header.og_image` dans le front matter. Le même passage produit les **vignettes de la grille `/blog/`** et câble `header.teaser` — voir plus bas.
 
 ```bash
 ./tools/og-card/generate-posts.py            # ne régénère que ce qui manque
@@ -115,8 +115,21 @@ Le script est idempotent : après avoir ajouté un billet, le relancer sans opti
 
 `header.og_image` prime sur `header.image` côté Minimal Mistakes (`_includes/seo.html`) : les bandeaux de billets restent affichés, ils ne servent simplement plus de vignette de partage.
 
+**Vignettes de la grille `/blog/`** : le même script produit une image dédiée par billet et câble `header.teaser`. Trois choses à ne pas confondre :
+
+| Champ | Rôle | Format |
+|---|---|---|
+| `header.image` | bandeau affiché en tête d'article | tel quel, jamais modifié |
+| `header.teaser` | vignette de la grille `/blog/` | ratio 1200:630 |
+| `header.og_image` | vignette de partage social | 1200×630 exactement |
+
+La vignette est **découplée du bandeau** : si le billet a un `header.image` de ratio ≤ 5:1, elle en est dérivée par un recadrage décidé à la génération et **ancré à l'ouest** (ces bandeaux portent leur titre à gauche) ; sinon c'est une carte teaser. Les dérivées sortent en **JPEG** (ce sont des photos) et les cartes en **PNG8** (rendu aplat) — appliquer PNG8 à une photo dithere, leçon déjà payée une fois sur le bandeau Devoxx.
+
+Le recadrage ne fait jamais d'agrandissement : il travaille à la résolution native de la source et ne réduit que si elle dépasse 1200px de large.
+
 **Câblage côté site** :
 - `_config.yml` → `og_image: /images/og-card.png` (fallback pour `/blog/`, `/about/`, les archives)
+- `_config.yml` → `teaser: /images/og-card.png` (repli si un billet est publié avant un passage du générateur)
 - `_config.yml` → bloc `twitter: username:` **imbriqué** — MM ignore le `twitter_username` à plat de la convention Jekyll, et sans lui `seo.html` n'émet aucune balise `twitter:*` sur les pages du thème
 - Front matter des billets → `header.og_image` vers leur carte dédiée
 - `_layouts/landing.html` → meta tags `og:image` + `twitter:card: summary_large_image` explicites pour la landing
