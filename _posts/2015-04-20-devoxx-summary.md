@@ -5,7 +5,7 @@ tags: [architecture, agilité, gestion de projets]
 modified: 2015-04-20
 comments: true
 header:
-  teaser: /images/og/teaser-devoxx-summary.png
+  teaser: /images/og/teaser-devoxx-summary.jpg
   og_image: /images/og/devoxx-summary.png
   image: /images/bandeau_devoxx.jpg
   credit: Devoxx Team - gros flag

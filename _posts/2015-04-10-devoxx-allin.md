@@ -5,7 +5,7 @@ tags: [Devoxx France, keynotes, conférence]
 modified: 2015-04-09
 comments: true
 header:
-  teaser: /images/og/teaser-devoxx-allin.png
+  teaser: /images/og/teaser-devoxx-allin.jpg
   og_image: /images/og/devoxx-allin.png
   image: /images/devoxx.png
 ---

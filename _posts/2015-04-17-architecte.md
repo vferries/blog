@@ -5,7 +5,7 @@ tags: [architecture, agilité, gestion de projets]
 modified: 2015-04-17
 comments: true
 header:
-  teaser: /images/og/teaser-architecte.png
+  teaser: /images/og/teaser-architecte.jpg
   og_image: /images/og/architecte.png
   image: /images/staples.jpg
 ---

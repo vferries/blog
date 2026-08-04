@@ -5,7 +5,7 @@ tags: [développement]
 modified: 2015-04-28
 comments: true
 header:
-  teaser: /images/og/teaser-craftsmanship.png
+  teaser: /images/og/teaser-craftsmanship.jpg
   og_image: /images/og/craftsmanship.png
   image: /images/rabot.jpg
 ---
