@@ -291,6 +291,37 @@ th {
   object-fit: cover;
 }
 
+/* Liste de réseaux sociaux (_includes/ev-socials.html hors landing).
+   La landing garde sa variante .ev-cta__socials, calée en dur sur sa bande
+   sombre ; ici on passe par les tokens pour suivre light/dark. */
+.ev-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  list-style: none;
+  margin: 1.5em 0 0;
+  padding: 1.25em 0 0;
+  border-top: 1px solid var(--ev-border);
+}
+.ev-socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  color: var(--ev-text-muted);
+  /* MM souligne les liens de .page__content : on décale au hover pour garder
+     l'affordance sans bruiter la liste, comme la variante landing */
+  text-decoration: none;
+  transition: color 220ms var(--ease-out);
+}
+/* --ev-blue vaut cyan en dark et navy-blue en light : hover lisible des deux côtés */
+.ev-socials a:hover {
+  color: var(--ev-blue);
+  text-decoration: underline;
+}
+.ev-socials svg { width: 16px; height: 16px; }
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

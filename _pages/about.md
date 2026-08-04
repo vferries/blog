@@ -39,3 +39,5 @@ Et oui, j'utilise l'IA tous les jours. Pas pour remplacer le cerveau — pour al
 ## On se parle ?
 
 Le plus simple : un email à [vincent.ferries@gmail.com](mailto:vincent.ferries@gmail.com?subject=Projet%20En%20Veille). Pas de formulaire, pas de calendrier à remplir — un échange direct, on voit si ça matche.
+
+{% include ev-socials.html class="ev-socials" %}

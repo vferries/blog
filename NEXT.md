@@ -65,8 +65,7 @@
 - [x] Garder la partie "Pourquoi ce nom ?" (storytelling conservé)
 - [x] Ajouter une section parcours freelance, missions types
 - [x] Retirer l'image `/images/peinard.jpg` en header (plus aucune référence dans le repo)
-- [ ] **`/about/` n'a plus de liens sociaux** : `author_profile: false` en front matter + pas d'entrée sociale dans `_data/navigation.yml` → le footer thème retiré (unification du 2026-08-03) était le seul porteur des liens Twitter/GitHub de cette page. Seul `twitch.tv/EnVeilleCode` survit, en prose. Décision : on assume, ou on ajoute les liens dans le texte de la page — Vincent
-  - Prêt à poser : `{% raw %}{% include ev-socials.html %}{% endraw %}` rend la liste depuis `_data/social.yml` (extraction faite le 2026-08-04, commit `099c2db`). Reste à trancher l'habillage : liste mono comme la landing, ou fondu dans la prose après « le plus simple : un email ». Deuxième consommateur de l'include — aujourd'hui seule la CTA de la landing s'en sert
+- [x] **`/about/` n'a plus de liens sociaux** → réglé le 2026-08-04 : `{% raw %}{% include ev-socials.html class="ev-socials" %}{% endraw %}` posé en fin de section « On se parle ? ». La classe `.ev-socials` vit dans `enveille.css` (et non `landing.css`, pas chargé hors landing) et passe par les tokens, donc suit light/dark ; hover sur `--ev-blue` qui vaut cyan en dark et navy-blue en light. Deuxième consommateur de l'include après la CTA landing
 
 ---
 
