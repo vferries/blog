@@ -8,6 +8,13 @@ description: >-
   d'équipes tech, architecture, IA dans le dev. Billets de veille depuis 2011.
 twitter_username: VincentFERRIES
 github_username: vferries
+
+# Minimal Mistakes lit `twitter.username` imbriqué, pas le `twitter_username`
+# à plat de la convention Jekyll : sans ce bloc, seo.html n'émet aucune balise
+# twitter:* sur les pages du thème et X rend nos cartes 1200×630 en vignette
+# carrée. La landing, elle, pose ses balises en dur dans son layout.
+twitter:
+  username: VincentFERRIES
 minimal_mistakes_skin: default
 search: true
 
