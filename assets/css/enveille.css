@@ -69,7 +69,10 @@
     --ev-bg-muted:    #262F37;
     --ev-text:        #F1EBD9;
     --ev-text-muted:  #C7BEA7;
-    --ev-text-subtle: #837B66;
+    /* #837B66 tombait à 4,34:1 sur --ev-bg-subtle (footer des pages MM),
+       sous le seuil WCAG AA. Ce stop est celui que le hero se forçait déjà
+       en local (landing.css) : 5,84:1 sur le footer, 6,32:1 sur --ev-bg. */
+    --ev-text-subtle: #9A917C;
     --ev-border:      rgba(241, 235, 217, 0.12);
     --ev-border-strong: rgba(241, 235, 217, 0.2);
     --ev-grid:        rgba(0, 242, 255, 0.06);
