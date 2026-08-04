@@ -263,11 +263,9 @@ def main():
         ext = "jpg" if derivable else "png"
         teaser = CARDS / f"teaser-{slug}.{ext}"
         # Un changement de nature (carte <-> dérivée) change l'extension :
-        # on nettoie l'orpheline de l'autre famille pour ne pas la laisser
-        # traîner (rendrait l'idempotence trompeuse et gonflerait le dépôt).
+        # l'orpheline de l'autre famille est nettoyée plus bas, mais
+        # seulement après coup — jamais avant la génération.
         orpheline = CARDS / f"teaser-{slug}.{'png' if derivable else 'jpg'}"
-        if not args.dry_run and orpheline.exists():
-            orpheline.unlink()
 
         if args.force or not teaser.exists():
             if derivable:
@@ -279,6 +277,17 @@ def main():
                                       "tags": tags(lignes), "tagline": date_fr}),
                            teaser, args.dry_run)
             rendus += 1
+
+            # Nettoyage après coup seulement : si la génération ci-dessus a
+            # levé (source corrompue, disque plein...), l'exception non
+            # rattrapée interrompt le script avant d'arriver ici, et
+            # l'ancienne vignette reste en place — au pire une vignette
+            # obsolète, jamais un header.teaser qui pointe dans le vide.
+            if orpheline.exists():
+                if args.dry_run:
+                    print(f"    supprimerait {orpheline.relative_to(ROOT)} (orpheline)")
+                else:
+                    orpheline.unlink()
         vignette = f"/images/og/teaser-{slug}.{ext}"
 
         lignes, modifie_og = pose_dans_header(lignes, "og_image", f"/images/og/{slug}.png")
