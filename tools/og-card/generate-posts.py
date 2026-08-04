@@ -32,9 +32,12 @@ MOIS = ["janvier", "février", "mars", "avril", "mai", "juin",
 
 FILENAME = re.compile(r"^(\d{4})-(\d{2})-(\d{2})-(?P<slug>.+)\.md$")
 
-# Au-delà, un bandeau est illisible dans une cellule de grille : geoloc.png
-# fait 47:1, twitch-logo.svg 9:1. Ces billets basculent sur une carte teaser.
-RATIO_MAX = 5.0
+# Mesuré, pas estimé : au recadrage réel en cellule de grille (ratio ~1,9:1),
+# un bandeau au-delà de 2,5:1 perd plus de 40 % de sa largeur et ses mots de
+# marque deviennent illisibles — devoxx_fr_2016.jpg (3.9:1) rendait
+# « OXX FRANCE 2 » au lieu de « DEVOXX FRANCE 2016 ». Ces billets basculent
+# sur une carte teaser.
+RATIO_MAX = 2.5
 
 
 def front_matter(texte):

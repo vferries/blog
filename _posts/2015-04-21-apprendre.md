@@ -5,7 +5,7 @@ tags: [apprendre, rester développeur]
 modified: 2015-04-21
 comments: true
 header:
-  teaser: /images/bouquins.jpg
+  teaser: /images/og/teaser-apprendre.png
   og_image: /images/og/apprendre.png
   image: /images/bouquins.jpg
 ---

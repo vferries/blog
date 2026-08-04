@@ -5,7 +5,7 @@ tags: [Devoxx France, Java, ateliers]
 modified: 2015-04-09
 comments: true
 header:
-  teaser: /images/devoxx.png
+  teaser: /images/og/teaser-devoxx-university.png
   og_image: /images/og/devoxx-university.png
   image: /images/devoxx.png
 ---
