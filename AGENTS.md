@@ -6,7 +6,7 @@
 
 ## Stack
 
-- **Jekyll** + thème **Minimal Mistakes** via `remote_theme`
+- **Jekyll** + thème **Minimal Mistakes** via `remote_theme`, pinné sur `@4.28.0` (`_config.yml:16`) — les overrides `_includes/footer.html` et `_includes/head/custom.html` dépendent des partials upstream, donc pas de suivi de `master`
 - Hébergé sur **GitHub Pages** (CNAME `www.enveille.info`)
 - Pas de build custom, GitHub Pages gère nativement
 - Commentaires : Disqus (`blogvincent`)
