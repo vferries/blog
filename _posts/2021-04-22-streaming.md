@@ -1,7 +1,7 @@
 ---
 title: Streaming de code sur Twitch
 excerpt: "Je me suis lancé il y a quelques semaines, je vous livre mes premiers retours"
-tags: [streaming, twwitch, katas]
+tags: [streaming, twitch, katas]
 modified: 2021-04-22
 comments: true
 header:
