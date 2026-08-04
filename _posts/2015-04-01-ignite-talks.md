@@ -5,6 +5,7 @@ tags: [ignite talk, pari, défi]
 modified: 2015-04-01
 comments: true
 header:
+  teaser: /images/og/teaser-ignite-talks.png
   og_image: /images/og/ignite-talks.png
 ---
 

@@ -5,6 +5,7 @@ tags: [architecture, agilité, gestion de projets]
 modified: 2015-04-26
 comments: true
 header:
+  teaser: /images/og/teaser-interviews.png
   og_image: /images/og/interviews.png
 ---
 

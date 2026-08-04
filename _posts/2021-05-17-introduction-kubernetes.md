@@ -5,6 +5,7 @@ tags: [kubernetes, OPS]
 modified: 2021-05-17
 comments: true
 header:
+  teaser: /images/og/teaser-introduction-kubernetes.png
   og_image: /images/og/introduction-kubernetes.png
 ---
 

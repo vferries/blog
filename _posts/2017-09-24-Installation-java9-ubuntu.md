@@ -5,6 +5,7 @@ tags: [java 9, ubuntu]
 modified: 2017-09-24
 comments: true
 header:
+  teaser: /images/og/teaser-Installation-java9-ubuntu.png
   og_image: /images/og/Installation-java9-ubuntu.png
 ---
 

@@ -5,6 +5,7 @@ tags: [Agile Tour, Devoxx, Code Retreat]
 modified: 2015-04-05
 comments: true
 header:
+  teaser: /images/og/teaser-neuf-avec-vieux.png
   og_image: /images/og/neuf-avec-vieux.png
 ---
 

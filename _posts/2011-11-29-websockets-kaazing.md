@@ -5,6 +5,7 @@ tags: [Websockets, HTML5, Kaazing]
 modified: 2011-11-29
 comments: true
 header:
+  teaser: /images/og/teaser-websockets-kaazing.png
   og_image: /images/og/websockets-kaazing.png
 ---
 

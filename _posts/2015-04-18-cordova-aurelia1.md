@@ -5,6 +5,7 @@ tags: [Cordova, Aurelia, BabelJS]
 modified: 2015-04-18
 comments: true
 header:
+  teaser: /images/og/teaser-cordova-aurelia1.png
   og_image: /images/og/cordova-aurelia1.png
 ---
 

@@ -5,6 +5,7 @@ tags: [game of life, haskell, programmation fonctionnelle]
 modified: 2015-04-12
 comments: true
 header:
+  teaser: /images/og/teaser-game-of-life.png
   og_image: /images/og/game-of-life.png
 ---
 

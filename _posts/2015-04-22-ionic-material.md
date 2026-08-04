@@ -5,6 +5,7 @@ tags: [aurelia, material design, ES6]
 modified: 2015-04-22
 comments: true
 header:
+  teaser: /images/og/teaser-ionic-material.png
   og_image: /images/og/ionic-material.png
 ---
 

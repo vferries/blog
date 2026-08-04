@@ -5,6 +5,7 @@ tags: [bash, traitement d'images, optimisation]
 modified: 2015-04-24
 comments: true
 header:
+  teaser: /images/og/teaser-bash-liste-fichiers.png
   og_image: /images/og/bash-liste-fichiers.png
 ---
 

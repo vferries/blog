@@ -5,6 +5,7 @@ tags: [Agilité, Lean]
 modified: 2011-10-25
 comments: true
 header:
+  teaser: /images/og/teaser-agile-tour-toulouse-2011.png
   og_image: /images/og/agile-tour-toulouse-2011.png
 ---
 

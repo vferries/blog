@@ -5,6 +5,7 @@ tags: [e-learning, MOOC, coding games]
 modified: 2013-07-08
 comments: true
 header:
+  teaser: /images/og/teaser-elearning.png
   og_image: /images/og/elearning.png
 ---
 

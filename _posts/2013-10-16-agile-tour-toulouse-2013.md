@@ -5,6 +5,7 @@ tags: [Agile Tour Toulouse]
 modified: 2013-10-16
 comments: true
 header:
+  teaser: /images/og/teaser-agile-tour-toulouse-2013.png
   og_image: /images/og/agile-tour-toulouse-2013.png
 ---
 

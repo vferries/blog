@@ -5,6 +5,7 @@ tags: [startup, loliplop, soeasywine]
 modified: 2015-04-02
 comments: true
 header:
+  teaser: /images/og/teaser-startup-weekend.png
   og_image: /images/og/startup-weekend.png
 ---
 

@@ -5,6 +5,7 @@ tags: [GWT, Dozer, Gilead]
 modified: 2012-05-21
 comments: true
 header:
+  teaser: /images/og/teaser-GWT-couches.png
   og_image: /images/og/GWT-couches.png
 ---
 

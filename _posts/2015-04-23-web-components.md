@@ -5,6 +5,7 @@ tags: [web components, Polymer, X-Tag, VannillaJS]
 modified: 2015-04-23
 comments: true
 header:
+  teaser: /images/og/teaser-web-components.png
   og_image: /images/og/web-components.png
 ---
 

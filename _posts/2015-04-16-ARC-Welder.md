@@ -5,6 +5,7 @@ tags: [ARC welder, Android, Chrome OS]
 modified: 2015-04-16
 comments: true
 header:
+  teaser: /images/welder.jpg
   og_image: /images/og/ARC-Welder.png
   image: /images/welder.jpg
 ---

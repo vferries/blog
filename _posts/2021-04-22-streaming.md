@@ -5,6 +5,7 @@ tags: [streaming, twwitch, katas]
 modified: 2021-04-22
 comments: true
 header:
+  teaser: /images/og/teaser-streaming.png
   og_image: /images/og/streaming.png
   image: /images/twitch-logo.svg
 ---

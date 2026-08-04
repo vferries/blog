@@ -5,6 +5,7 @@ tags: [architecture, agilité, gestion de projets]
 modified: 2015-04-19
 comments: true
 header:
+  teaser: /images/og/teaser-cordova-aurelia2.png
   og_image: /images/og/cordova-aurelia2.png
 ---
 

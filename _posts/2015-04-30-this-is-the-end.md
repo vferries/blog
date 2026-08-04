@@ -5,6 +5,7 @@ tags: [obstination, pari, apprentissage]
 modified: 2015-04-30
 comments: true
 header:
+  teaser: /images/og/teaser-this-is-the-end.png
   og_image: /images/og/this-is-the-end.png
 ---
 

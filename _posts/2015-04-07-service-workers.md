@@ -5,6 +5,7 @@ tags: [web, front, service workers, push notifications]
 modified: 2015-04-07
 comments: true
 header:
+  teaser: /images/og/teaser-service-workers.png
   og_image: /images/og/service-workers.png
 ---
 
