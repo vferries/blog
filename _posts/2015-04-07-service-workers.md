@@ -4,6 +4,8 @@ excerpt: "Ou comment combler le retard sur les applications natives"
 tags: [web, front, service workers, push notifications]
 modified: 2015-04-07
 comments: true
+header:
+  og_image: /images/og/service-workers.png
 ---
 
 Vous êtes vous déjà demandé pourquoi on utilisait surtout des applications natives sur les téléphones et quasiment jamais des applications web ? Les raisons sont assez nombreuses mais on peut citer les suivantes :

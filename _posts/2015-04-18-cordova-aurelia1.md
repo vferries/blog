@@ -4,6 +4,8 @@ excerpt: "Du multiplateformes sauce deluxe"
 tags: [Cordova, Aurelia, BabelJS]
 modified: 2015-04-18
 comments: true
+header:
+  og_image: /images/og/cordova-aurelia1.png
 ---
 
 ### Le concept

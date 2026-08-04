@@ -4,6 +4,8 @@ excerpt: "Mes petites astuces pour continuer à apprendre"
 tags: [e-learning, MOOC, coding games]
 modified: 2013-07-08
 comments: true
+header:
+  og_image: /images/og/elearning.png
 ---
 
 L’apprentissage en ligne est un phénomène relativement récent, mais qui explose depuis peu. Je m’y adonne depuis longtemps maintenant, en fait je crois bien l’avoir toujours fait, depuis mon entrée sur le marché du travail tout du moins. A l’époque je m’investissais beaucoup sur un site nommé javablackbelt, puis knowledgeblackbelt, mais qui a malheureusement été racheté depuis par un concurrent et été contraint de fermer.

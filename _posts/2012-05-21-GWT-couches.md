@@ -4,6 +4,8 @@ excerpt: "Point sur les lourdeurs inhérentes à GWT"
 tags: [GWT, Dozer, Gilead]
 modified: 2012-05-21
 comments: true
+header:
+  og_image: /images/og/GWT-couches.png
 ---
 
 Les problèmes présentés dans cet article ont été soulevés lors d’une assistance sur un projet GWT. Celui-ci est basé sur une architecture en couches (couche modèle Hibernate, avec Daos, services, Dtos, le tout relié par Spring).

@@ -4,6 +4,8 @@ excerpt: "Ou comment j'aurais certainement mieux fait de l'ouvrir moins grande."
 tags: [ignite talk, pari, défi]
 modified: 2015-04-01
 comments: true
+header:
+  og_image: /images/og/ignite-talks.png
 ---
 
 Comme à mon habitude, je furetais sur internet quand je suis tombé sur le concept des Ignite Talks : des talks de 5 minutes avec un format bien rôdé. Les slides défilent toutes les 15 secondes quoi qu'il arrive, soit un total de 20 slides. L'idée n'est pas du tout nouvelle, la vidéo que je regardais datant de la Google I/O de 2011.

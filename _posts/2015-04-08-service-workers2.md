@@ -4,6 +4,8 @@ excerpt: "Les cas d'application des Service Workers"
 tags: [web, front, service workers, push notifications]
 modified: 2015-04-07
 comments: true
+header:
+  og_image: /images/og/service-workers2.png
 ---
 
 On a vu ensemble dans la partie [introduction]({{site.url}}/service-workers/) comment enregistrer un Service Worker et comment on pouvait intercepter les requêtes effectuées par la page. Nous allons désormais nous intéresser à ce à quoi cela va bien pouvoir nous servir dans nos applications web.

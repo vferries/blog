@@ -4,6 +4,8 @@ excerpt: "Du material design sauce web"
 tags: [aurelia, material design, ES6]
 modified: 2015-04-22
 comments: true
+header:
+  og_image: /images/og/ionic-material.png
 ---
 
 ![Ionic]({{site.url}}/images/ionic.svg)

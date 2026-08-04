@@ -4,6 +4,8 @@ excerpt: "Fin de mes 30 jours de posts"
 tags: [obstination, pari, apprentissage]
 modified: 2015-04-30
 comments: true
+header:
+  og_image: /images/og/this-is-the-end.png
 ---
 
 Me voila parvenu au 30ème et dernier jour de mon défi. Et force est de constater qu'il est réussi : 30 posts en 30 jours. Du coup je vous prie de m'excuser du manque de profondeur de certains des posts que vous avez pu trouver ici. J'ai fait de mon mieux, mais la préparation d'un post technique me prenait bien souvent de très longues heures en plus de sa rédaction.

@@ -4,6 +4,8 @@ excerpt: "Une introduction aux grands concepts, avec un peu de phonétique dedan
 tags: [kubernetes, OPS]
 modified: 2021-05-17
 comments: true
+header:
+  og_image: /images/og/introduction-kubernetes.png
 ---
 
 ![Kubernetes]({{site.url}}/images/kubernetes-logo.png)  

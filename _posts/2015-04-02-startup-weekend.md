@@ -4,6 +4,8 @@ excerpt: "Il était temps que je me lance dans l'aventure"
 tags: [startup, loliplop, soeasywine]
 modified: 2015-04-02
 comments: true
+header:
+  og_image: /images/og/startup-weekend.png
 ---
 
 ![Startup Weekend Toulouse]({{site.url}}/images/startup-weekend.jpg)

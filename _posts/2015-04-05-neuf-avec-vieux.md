@@ -4,6 +4,8 @@ excerpt: "Vieux billets sortis de terre"
 tags: [Agile Tour, Devoxx, Code Retreat]
 modified: 2015-04-05
 comments: true
+header:
+  og_image: /images/og/neuf-avec-vieux.png
 ---
 
 Pas de vrai post sur ce blog aujourd'hui (mais un sur mon blog de [Voyage](http://vferries.github.io/voyage)).

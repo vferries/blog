@@ -4,6 +4,8 @@ excerpt: "Avec compression d'images au passage"
 tags: [bash, traitement d'images, optimisation]
 modified: 2015-04-24
 comments: true
+header:
+  og_image: /images/og/bash-liste-fichiers.png
 ---
 
 Pour un projet perso, j'ai quelques milliers d'images à traiter par lots. Les problèmes sont multiples, j'ai des fichiers avec des noms qui comportent des accents et décrivent assez finement le contenu de mes images. J'ai besoin de garder ces noms quelque part, mais étant donné que j'embarque ces images dans une application web, j'ai besoin de les compresser assez fortement.

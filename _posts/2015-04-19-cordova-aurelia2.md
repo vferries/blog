@@ -4,6 +4,8 @@ excerpt: "On continue en définissant une application qui marche"
 tags: [architecture, agilité, gestion de projets]
 modified: 2015-04-19
 comments: true
+header:
+  og_image: /images/og/cordova-aurelia2.png
 ---
 
 Ce billet est la suite de [celui d'hier]({{site.url}}/cordova-aurelia1). Vous devriez pouvoir suivre sans avoir vu l'autre, vous pouvez aussi télécharger l'état du début sur [le repository GitHub suivant](https://github.com/vferries/gallery/releases/tag/0.0.1).

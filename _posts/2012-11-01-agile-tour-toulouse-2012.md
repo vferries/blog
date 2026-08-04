@@ -4,6 +4,8 @@ excerpt: "Compte rendu de mon second Agile Tour Toulouse"
 tags: [Agile Tour Toulouse 2012]
 modified: 2012-11-01
 comments: true
+header:
+  og_image: /images/og/agile-tour-toulouse-2012.png
 ---
 
 ![Agile Tour Toulouse 2012]({{site.url}}/images/at2012.jpg)

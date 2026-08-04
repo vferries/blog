@@ -4,6 +4,8 @@ excerpt: "Mon tout premier Agile Tour"
 tags: [Agilité, Lean]
 modified: 2011-10-25
 comments: true
+header:
+  og_image: /images/og/agile-tour-toulouse-2011.png
 ---
 
 ![Agile Tour Toulouse 2011]({{site.url}}/images/agilii_logo.jpg)

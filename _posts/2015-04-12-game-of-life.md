@@ -4,6 +4,8 @@ excerpt: "Comment l'approche fonctionnelle peut simplifier certains problèmes"
 tags: [game of life, haskell, programmation fonctionnelle]
 modified: 2015-04-12
 comments: true
+header:
+  og_image: /images/og/game-of-life.png
 ---
 
 ![Haskel]({{site.url}}/images/Haskell-Logo.svg)

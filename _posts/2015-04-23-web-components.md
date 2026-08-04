@@ -4,6 +4,8 @@ excerpt: "Rappel des bases et actualité"
 tags: [web components, Polymer, X-Tag, VannillaJS]
 modified: 2015-04-23
 comments: true
+header:
+  og_image: /images/og/web-components.png
 ---
 
 Je m'intéresse aux WebComponents depuis bien plus d'un an maintenant. Bien avant les annonces en grande pompe lors de la Google I/O. J'ai donné quelques conférences, notamment un atelier à l'Eclipse Con l'été dernier dessus et quelques [BBL]({{site.url}}/BBL/). Au départ avec Dart, ensuite en JavaScript. Et aujourd'hui, je n'y crois plus qu'à moitié, laissez-moi vous expliquer pourquoi.

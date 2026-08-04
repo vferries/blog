@@ -4,6 +4,8 @@ excerpt: "Les gens présents sont toujours les bons"
 tags: [architecture, agilité, gestion de projets]
 modified: 2015-04-26
 comments: true
+header:
+  og_image: /images/og/interviews.png
 ---
 
 J'ai voulu m'essayer à un petit exercice de style lors de ce DevOpenSud : faire des mini interviews de chacun des participants de cette année pour vous donner une idée des personnes qu'on peut y croiser.

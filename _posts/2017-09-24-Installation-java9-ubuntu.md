@@ -4,6 +4,8 @@ excerpt: "Permiers pas dans le monde merveilleux de Java 9"
 tags: [java 9, ubuntu]
 modified: 2017-09-24
 comments: true
+header:
+  og_image: /images/og/Installation-java9-ubuntu.png
 ---
 
 Cela fait plus d'un an que je n'ai plus rien écrit ici, il est temps de s'y remettre.

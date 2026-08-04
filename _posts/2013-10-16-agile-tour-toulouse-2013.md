@@ -4,6 +4,8 @@ excerpt: "Petit compte-rendu de ma journée à l'Agile Tour"
 tags: [Agile Tour Toulouse]
 modified: 2013-10-16
 comments: true
+header:
+  og_image: /images/og/agile-tour-toulouse-2013.png
 ---
 
 ![Agile Tour Toulouse 2013]({{site.url}}/images/agiletour2013.png)

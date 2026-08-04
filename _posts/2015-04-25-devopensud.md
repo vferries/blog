@@ -5,6 +5,7 @@ tags: [nature, développement, weirddevs]
 modified: 2015-04-25
 comments: true
 header:
+  og_image: /images/og/devopensud.png
   image: /images/dos_fougeres.jpg
 ---
 

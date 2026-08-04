@@ -4,6 +4,8 @@ excerpt: "Séminaire didactique : Web et mobile temps réel avec HTML5 et Kaazin
 tags: [Websockets, HTML5, Kaazing]
 modified: 2011-11-29
 comments: true
+header:
+  og_image: /images/og/websockets-kaazing.png
 ---
 
 ![HTML5 Kaazing]({{site.url}}/images/kaazing.png)
