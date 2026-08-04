@@ -131,17 +131,23 @@
   document.getElementById('title').hidden = teaser;
   document.getElementById('tags').hidden = !teaser;
 
-  // Titres longs (>2 mots) peuvent wrapper sur 3 lignes et déborder de la
-  // carte (630px fixe, overflow: hidden) — on réduit le titre par paliers
-  // jusqu'à ce que tout tienne. N'a aucun effet sur un titre court comme
-  // "En Veille" qui tient déjà en une ligne.
+  // Titres et tags longs peuvent déborder de la carte (630px fixe, overflow: hidden) —
+  // on réduit l'élément héros par paliers jusqu'à ce que tout tienne.
+  // En mode par défaut, c'est le titre ; en mode teaser, ce sont les tags.
   function fitTitle() {
     const card = document.getElementById('card');
-    const title = document.getElementById('title');
-    let fontSize = 152;
-    while (fontSize > 72 && card.scrollHeight > card.clientHeight) {
+    const teaser = params.get('variant') === 'teaser';
+    const hero = teaser ? document.getElementById('tags') : document.getElementById('title');
+    const startSize = teaser ? 52 : 152;
+    // Tags: plancher 36px (52 - 16) garde une lisibilité acceptable tout en laissant
+    // de la marge pour les cas longs comme "programmation fonctionnelle · push notifications · ...".
+    // Titre: plancher 72px comme avant (titre peut descendre beaucoup plus).
+    const minSize = teaser ? 36 : 72;
+
+    let fontSize = startSize;
+    while (fontSize > minSize && card.scrollHeight > card.clientHeight) {
       fontSize -= 4;
-      title.style.fontSize = fontSize + 'px';
+      hero.style.fontSize = fontSize + 'px';
     }
   }
 
