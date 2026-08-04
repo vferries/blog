@@ -32,6 +32,10 @@ MOIS = ["janvier", "février", "mars", "avril", "mai", "juin",
 
 FILENAME = re.compile(r"^(\d{4})-(\d{2})-(\d{2})-(?P<slug>.+)\.md$")
 
+# Au-delà, un bandeau est illisible dans une cellule de grille : geoloc.png
+# fait 47:1, twitch-logo.svg 9:1. Ces billets basculent sur une carte teaser.
+RATIO_MAX = 5.0
+
 
 def front_matter(texte):
     """Renvoie (lignes du front matter, reste du fichier), ou (None, texte)."""
@@ -54,9 +58,9 @@ def champ(lignes, nom):
     return None
 
 
-def pose_og_image(lignes, chemin):
-    """Ajoute (ou corrige) header.og_image. Renvoie (lignes, modifié)."""
-    entree = f"  og_image: {chemin}"
+def pose_dans_header(lignes, cle, valeur):
+    """Ajoute (ou corrige) header.<cle>. Renvoie (lignes, modifié)."""
+    entree = f"  {cle}: {valeur}"
 
     try:
         i = next(n for n, l in enumerate(lignes) if l.rstrip() == "header:")
@@ -69,7 +73,7 @@ def pose_og_image(lignes, chemin):
         fin += 1
 
     for n in range(i + 1, fin):
-        if lignes[n].strip().startswith("og_image:"):
+        if lignes[n].strip().startswith(f"{cle}:"):
             if lignes[n] == entree:
                 return lignes, False
             lignes[n] = entree
@@ -78,9 +82,53 @@ def pose_og_image(lignes, chemin):
     return lignes[:i + 1] + [entree] + lignes[i + 1:], True
 
 
-def rend_carte(titre, date_fr, sortie, dry_run):
-    """Rend la carte via generate.sh puis la quantifie en PNG8."""
-    requete = urlencode({"eyebrow": "Billet", "title": titre, "tagline": date_fr})
+def header_image(lignes):
+    """Valeur de header.image, ou None. Ne confond pas avec og_image."""
+    try:
+        i = next(n for n, l in enumerate(lignes) if l.rstrip() == "header:")
+    except StopIteration:
+        return None
+
+    n = i + 1
+    while n < len(lignes) and (lignes[n].startswith((" ", "\t")) or not lignes[n].strip()):
+        if lignes[n].strip().startswith("image:"):
+            return lignes[n].split(":", 1)[1].strip()
+        n += 1
+    return None
+
+
+def ratio(chemin):
+    """Largeur / hauteur de l'image, ou None si elle est illisible."""
+    try:
+        mesure = subprocess.run(
+            ["magick", "identify", "-format", "%[fx:w/h]", str(chemin)],
+            check=True, capture_output=True, text=True,
+        ).stdout.strip()
+        return float(mesure)
+    except (subprocess.CalledProcessError, FileNotFoundError, ValueError) as erreur:
+        print(f"    ratio illisible pour {chemin} ({erreur}) — bascule sur une carte")
+        return None
+
+
+def tags(lignes, maximum=3):
+    """Les premiers tags du front matter, joints par ' · '.
+
+    Plafonné parce qu'un billet en porte jusqu'à 6 et que les assemblages
+    complets atteignent 50 caractères, ce qui déborde la zone laissée libre
+    par le titre masqué.
+    """
+    brut = champ(lignes, "tags")
+    if not brut:
+        return ""
+    brut = brut.strip()
+    if brut.startswith("[") and brut.endswith("]"):
+        brut = brut[1:-1]
+    valeurs = [t.strip().strip("\"'") for t in brut.split(",") if t.strip()]
+    return " · ".join(valeurs[:maximum])
+
+
+def rend_carte(requete, sortie, dry_run):
+    """Rend une carte via generate.sh puis la quantifie en PNG8."""
     if dry_run:
         print(f"    rendrait {sortie.relative_to(ROOT)}  ({requete})")
         return
@@ -144,10 +192,36 @@ def main():
 
         if args.force or not carte.exists():
             print(f"  {slug}")
-            rend_carte(titre, date_fr, carte, args.dry_run)
+            rend_carte(urlencode({"eyebrow": "Billet", "title": titre,
+                                  "tagline": date_fr}), carte, args.dry_run)
             rendus += 1
 
-        lignes, modifie = pose_og_image(lignes, f"/images/og/{slug}.png")
+        # Vignette de grille : le bandeau du billet s'il est exploitable, une
+        # carte teaser sinon. Le titre y est masqué — MM le réaffiche en <h2>
+        # sous l'image.
+        bandeau = header_image(lignes)
+        vignette = None
+        if bandeau:
+            forme = ratio(ROOT / bandeau.lstrip("/"))
+            if forme is None:
+                print("    bandeau écarté (illisible)")
+            elif forme > RATIO_MAX:
+                print(f"    bandeau écarté ({forme:.1f}:1 > {RATIO_MAX}:1)")
+            else:
+                vignette = bandeau
+
+        if vignette is None:
+            teaser = CARDS / f"teaser-{slug}.png"
+            if args.force or not teaser.exists():
+                rend_carte(urlencode({"variant": "teaser", "eyebrow": "Billet",
+                                      "tags": tags(lignes), "tagline": date_fr}),
+                           teaser, args.dry_run)
+                rendus += 1
+            vignette = f"/images/og/teaser-{slug}.png"
+
+        lignes, modifie_og = pose_dans_header(lignes, "og_image", f"/images/og/{slug}.png")
+        lignes, modifie_teaser = pose_dans_header(lignes, "teaser", vignette)
+        modifie = modifie_og or modifie_teaser
         if modifie:
             cables += 1
             if args.dry_run:
