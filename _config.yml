@@ -2,6 +2,9 @@
 title: En Veille
 logo: "/images/logo.svg"
 og_image: /images/og-card.png
+# Repli si un billet est publié avant un passage de generate-posts.py : sa
+# cellule garde une image plutôt que de casser l'alignement de la rangée.
+teaser: /images/og-card.png
 email: vincent.ferries@gmail.com
 description: >-
   Vincent Ferries, développeur indépendant basé à Toulouse. Accompagnement

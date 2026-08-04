@@ -325,6 +325,46 @@ th {
 }
 .ev-socials svg { width: 16px; height: 16px; }
 
+/* Grille de l'archive /blog/ (entries_layout: grid).
+   Minimal Mistakes rend sa grille en floats — largeurs en pourcentage sur
+   .grid__item, :nth-child pour les clear — et ne style pas .entries-grid.
+   On neutralise les floats et on pose une vraie CSS grid. enveille.css
+   charge après main.css, donc à spécificité égale ces règles gagnent. */
+.entries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 40px 32px;
+}
+.entries-grid .grid__item {
+  float: none;
+  width: auto;
+  margin: 0;
+  margin-inline-start: 0; /* annule les règles :nth-child de MM */
+}
+.entries-grid .archive__item-teaser {
+  aspect-ratio: 1200 / 630;
+  max-height: none; /* MM plafonne à 200px dès 37.5em, ce qui écrase l'aspect-ratio */
+  border: 1px solid var(--ev-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.entries-grid .archive__item-teaser img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* MM réserve un couloir de 200/300px sur .archive (float + width calc, dès
+   64em) pour un right-sidebar — indépendamment de author_profile, et même
+   `classes: wide` ne remet à zéro que le padding, pas le float/width. Sans
+   ce reset la grille se retrouve compressée dans ~65 % de la largeur dispo
+   avec un couloir vide inutile à droite. */
+.archive:has(.entries-grid) {
+  float: none;
+  width: auto;
+  padding-inline-end: 0;
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
