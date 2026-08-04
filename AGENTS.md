@@ -103,8 +103,22 @@ Query params supportés par le template : `eyebrow`, `title`, `tagline`, `domain
 
 **Dépendances** : `google-chrome` (headless) + `magick` (ImageMagick, pour le crop final). Le dossier `tools/` est exclu du build Jekyll.
 
+**Une carte par billet** : `tools/og-card/generate-posts.py` rend une carte pour chaque billet (titre + date en français) et câble `header.og_image` dans le front matter.
+
+```bash
+./tools/og-card/generate-posts.py            # ne régénère que ce qui manque
+./tools/og-card/generate-posts.py --force    # régénère tout (~23 s pour 46)
+./tools/og-card/generate-posts.py --dry-run  # montre sans écrire
+```
+
+Le script est idempotent : après avoir ajouté un billet, le relancer sans option ne touche que lui. Il délègue le rendu à `generate.sh` (même template, mêmes fontes) puis quantifie en PNG8 64 couleurs — le visuel est plat, la perte est invisible et le poids passe d'environ 110 à 30 Ko. Les cartes vivent dans `images/og/<slug>.png`, le slug venant du nom de fichier du billet.
+
+`header.og_image` prime sur `header.image` côté Minimal Mistakes (`_includes/seo.html`) : les bandeaux de billets restent affichés, ils ne servent simplement plus de vignette de partage.
+
 **Câblage côté site** :
-- `_config.yml` → `og_image: /images/og-card.png` (utilisé par Minimal Mistakes pour `/blog/`, `/about/`, billets)
+- `_config.yml` → `og_image: /images/og-card.png` (fallback pour `/blog/`, `/about/`, les archives)
+- `_config.yml` → bloc `twitter: username:` **imbriqué** — MM ignore le `twitter_username` à plat de la convention Jekyll, et sans lui `seo.html` n'émet aucune balise `twitter:*` sur les pages du thème
+- Front matter des billets → `header.og_image` vers leur carte dédiée
 - `_layouts/landing.html` → meta tags `og:image` + `twitter:card: summary_large_image` explicites pour la landing
 
 ### Vidéo hero (chouette)
