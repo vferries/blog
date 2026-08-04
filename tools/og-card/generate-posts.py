@@ -32,12 +32,11 @@ MOIS = ["janvier", "février", "mars", "avril", "mai", "juin",
 
 FILENAME = re.compile(r"^(\d{4})-(\d{2})-(\d{2})-(?P<slug>.+)\.md$")
 
-# Mesuré, pas estimé : au recadrage réel en cellule de grille (ratio ~1,9:1),
-# un bandeau au-delà de 2,5:1 perd plus de 40 % de sa largeur et ses mots de
-# marque deviennent illisibles — devoxx_fr_2016.jpg (3.9:1) rendait
-# « OXX FRANCE 2 » au lieu de « DEVOXX FRANCE 2016 ». Ces billets basculent
-# sur une carte teaser.
-RATIO_MAX = 2.5
+# Le recadrage étant décidé à la génération (voir derive_vignette), un
+# bandeau un peu large reste exploitable. Ce seuil n'écarte donc que les
+# cas dégénérés, où il ne resterait aucun fragment lisible : geoloc.png
+# fait 47:1, twitch-logo.svg 9:1.
+RATIO_MAX = 5.0
 
 
 def front_matter(texte):
@@ -146,6 +145,22 @@ def rend_carte(requete, sortie, dry_run):
     )
 
 
+def derive_vignette(source, sortie):
+    """Recadre un bandeau en vignette 1200×630, ancrée à gauche.
+
+    Le recadrage est décidé ici plutôt que laissé à `object-fit: cover` :
+    le centrage automatique mangeait les deux bords et coupait les mots de
+    marque (`devoxx_fr_2016.jpg` rendait « OXX FRANCE 2 »). Ces bandeaux
+    portent leur titre à gauche, donc on ancre à l'ouest.
+    """
+    subprocess.run(
+        ["magick", str(source), "-resize", "1200x630^",
+         "-gravity", "West", "-extent", "1200x630",
+         "-strip", "-colors", "64", f"PNG8:{sortie}"],
+        check=True, capture_output=True, text=True,
+    )
+
+
 def main():
     parseur = argparse.ArgumentParser(description=__doc__)
     parseur.add_argument("--force", action="store_true",
@@ -199,11 +214,12 @@ def main():
                                   "tagline": date_fr}), carte, args.dry_run)
             rendus += 1
 
-        # Vignette de grille : le bandeau du billet s'il est exploitable, une
-        # carte teaser sinon. Le titre y est masqué — MM le réaffiche en <h2>
-        # sous l'image.
+        # Vignette de grille : toujours une image dédiée en 1200×630, sous
+        # images/og/. Dérivée du bandeau quand il y en a un d'exploitable,
+        # carte teaser sinon. Le bandeau du billet, lui, ne bouge pas.
         bandeau = header_image(lignes)
-        vignette = None
+        teaser = CARDS / f"teaser-{slug}.png"
+        derivable = False
         if bandeau:
             forme = ratio(ROOT / bandeau.lstrip("/"))
             if forme is None:
@@ -211,16 +227,19 @@ def main():
             elif forme > RATIO_MAX:
                 print(f"    bandeau écarté ({forme:.1f}:1 > {RATIO_MAX}:1)")
             else:
-                vignette = bandeau
+                derivable = True
 
-        if vignette is None:
-            teaser = CARDS / f"teaser-{slug}.png"
-            if args.force or not teaser.exists():
+        if args.force or not teaser.exists():
+            if derivable:
+                print(f"    vignette dérivée de {bandeau}")
+                if not args.dry_run:
+                    derive_vignette(ROOT / bandeau.lstrip("/"), teaser)
+            else:
                 rend_carte(urlencode({"variant": "teaser", "eyebrow": "Billet",
                                       "tags": tags(lignes), "tagline": date_fr}),
                            teaser, args.dry_run)
-                rendus += 1
-            vignette = f"/images/og/teaser-{slug}.png"
+            rendus += 1
+        vignette = f"/images/og/teaser-{slug}.png"
 
         lignes, modifie_og = pose_dans_header(lignes, "og_image", f"/images/og/{slug}.png")
         lignes, modifie_teaser = pose_dans_header(lignes, "teaser", vignette)
