@@ -49,14 +49,14 @@
 
 - [x] **Footers désynchronisés** → unifiés (2026-08-03) : override local de `_includes/footer.html` = source unique (ligne « © … chocolatines » partout), `footer.links` retiré de `_config.yml`. Les sociaux restent portés par la sidebar auteur des billets et la CTA landing. Spec : `docs/superpowers/specs/2026-08-03-footer-sync-design.md`
 - [ ] **Sidebar des billets (`author_profile`)** :
-  - Avatar `profile_square.png` ✓ (cohérent avec landing depuis le commit du jour)
+  - Avatar `profile_square.jpg` ✓ (cohérent avec landing depuis le commit du jour)
   - RSS désormais couvert partout via le footer unifié (2026-08-03) ; pas de lien direct vers `/` (la landing) dans la sidebar, mais les pages MM y reviennent via le titre du site dans la masthead
   - Sur `/about/`, sidebar désactivée (`author_profile: false` dans le front matter) — l'intro de la page suffit
 - [x] **Liens Twitter** : URLs migrées vers `x.com` (`_config.yml` ×2 + `index.html` ×1). Icônes (`fa-twitter`, SVG croix) volontairement conservées — choix visuel séparé.
 
 ### Photo
 
-- [x] Faire/choisir une photo de Vincent pour la section "À propos" (utilise `profile_square.png` en attendant mieux)
+- [x] Faire/choisir une photo de Vincent pour la section "À propos" (utilise `profile_square.jpg` en attendant mieux)
 - [x] Dans `index.html`, remplacer le bloc `.ev-photo__placeholder` par `<img>`
 
 ### Page `/about/` à rafraîchir
@@ -113,7 +113,11 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 - [x] `scroll-margin-top` sous la nav sticky pour toutes les ancres → `[id] { scroll-margin-top: 84px }` dans `landing.css` (nav mesurée à 65px). Vérifié Playwright : 19px de marge sur `#realisations`
 - [x] **Sans JS, tout le contenu `.ev-reveal` reste invisible** → corrigé (2026-07) : classe `no-js` sur `<html>` remplacée par `js` via script inline, override `html:not(.js)` dans `landing.css`, stats servies en dur dans le HTML (le JS les remet à 0 avant d'animer). Vérifié par capture Playwright JS off/on. Reste un cas mineur : le panneau burger mobile ne peut pas s'ouvrir sans JS (liens nav inaccessibles ≤720px, page one-page donc non bloquant)
 - [ ] **OpenGraph par billet** : générer une image cohérente par défaut (template avec titre + logo) — sinon le partage d'un billet n'a pas d'image dédiée
-- [ ] **Optimiser le poids des images dans `_posts/`** (beaucoup > 200 Ko)
+- [x] **Optimiser le poids des images dans `_posts/`** → fait le 2026-08-04 : `images/` passe de **8,70 à 4,13 Mo**
+  - 9 JPEG recompressés en place (`-strip -quality 82 -sampling-factor 4:2:0`), mêmes noms donc mêmes URLs. `kanban-at2012.jpg` était en 2560px pour un corps de billet large de ~700px → redescendu à 1600
+  - 3 photos stockées en PNG converties en JPEG : leur canal alpha était intégralement opaque (vérifié : `min = max = 65535`, zéro pixel translucide), donc rien à préserver. PNG8 écarté — dithering visible sur le portrait, bandes sur le dégradé Devoxx. **Les 3 anciennes URLs `.png` répondent 404** : GitHub Pages ne redirige pas les fichiers statiques et `jekyll-redirect-from` ne couvre que les pages
+  - `bio-photo.jpg` et `sample-image-1.jpg` supprimés (résidus du thème, 0 référence)
+  - Restent 4 fichiers entre 200 et 400 Ko (`geekcamp`, `dos_mignon`, `dos_maison`, `sallecomble`) : déjà proches de leur plancher à q82, rien à gratter sans perte visible
 - [ ] **28/46 billets sans `header:`** image → liste `/blog/` visuellement déséquilibrée. Ajouter un fallback header (gradient + titre) côté CSS, ou laisser tel quel
 - [ ] Ajouter `jekyll-redirect-from` et créer des redirects si des URLs ont bougé
 - [ ] Vérifier le comportement du Konami code sur Firefox / Safari iOS
@@ -159,6 +163,6 @@ Ce qui demande intervention humaine :
 
 - Valider les textes (ton, crédibilité commerciale)
 - Trancher SIREN/mentions légales
-- Fournir la photo studio dédiée (en remplacement de `profile_square.png`)
+- Fournir la photo studio dédiée (en remplacement de `profile_square.jpg`)
 - Valider les accords clients pour études de cas
 - Publier sur Twitch/X les nouveaux assets
