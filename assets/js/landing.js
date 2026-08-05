@@ -253,11 +253,11 @@
     ].map(([sel, target]) => [document.querySelector(sel), target])
      .filter(([el]) => el);
 
-    // #ev-top est la <nav> sticky (toujours en haut du viewport) : cliquer
-    // le dot Hero via l'ancre est un no-op, le navigateur la juge déjà en
-    // place. On remonte explicitement en haut. behavior par défaut =
-    // suit le scroll-behavior CSS et prefers-reduced-motion, comme les
-    // ancres natives des autres dots.
+    // #ev-top est .ev-nav__inner, à l'intérieur de la <nav> sticky : il est
+    // donc toujours en haut du viewport, et cliquer le dot Hero via l'ancre
+    // est un no-op — le navigateur juge la cible déjà en place. On remonte
+    // explicitement en haut. behavior par défaut = suit le scroll-behavior
+    // CSS et prefers-reduced-motion, comme les ancres natives des autres dots.
     qnav.addEventListener('click', (e) => {
       const dot = e.target.closest('.ev-quick-nav__dot');
       if (!dot || dot.dataset.target !== 'ev-top') return;
