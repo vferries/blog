@@ -55,7 +55,9 @@
       if (!nav.classList.contains('ev-nav--open')) return;
       if (!e.target.closest('.ev-nav')) setOpen(false);
     });
-    matchMedia('(min-width: 721px)').addEventListener('change', (e) => {
+    // À tenir en phase avec le `@media (max-width: 1000px)` d'enveille.css qui
+    // affiche le burger : sinon le panneau reste ouvert en passant en desktop.
+    matchMedia('(min-width: 1001px)').addEventListener('change', (e) => {
       if (e.matches) setOpen(false);
     });
   })();

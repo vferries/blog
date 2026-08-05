@@ -247,7 +247,17 @@ html { scroll-behavior: smooth; }
 /* Pastille "Disponible" dupliquée dans le panneau — masquée hors mobile */
 .ev-nav__status-item { display: none; }
 
-@media (max-width: 720px) {
+/* Seuil du burger : 1000px, pas 720px — la barre desktop ne tient sur une
+   ligne qu'à partir de ~870px sur une page du thème (mesuré : 123px de haut
+   de 721 à 869px, 65px au-delà ; 830px sur la landing, qui n'a pas le bouton
+   de recherche). Entre les deux, `[id] { scroll-margin-top: 84px }` devenait
+   même inférieur à la hauteur réelle de la barre et les ancres repassaient
+   dessous. 1000px est le breakpoint tablette déjà déclaré par le projet et
+   laisse 130px de marge au premier pixel desktop, là où caler le seuil sur le
+   point de bascule mesuré ne laisserait rien à la moindre variation de fonte.
+   nav.js referme le panneau via matchMedia('(min-width: 1001px)') : les deux
+   valeurs vont ensemble. */
+@media (max-width: 1000px) {
   .ev-nav__inner { flex-wrap: nowrap; }
   .ev-nav__burger { display: block; }
   .ev-nav__inner > .ev-nav__status { display: none; }
@@ -307,9 +317,9 @@ html { scroll-behavior: smooth; }
   .ev-nav--scrolled { backdrop-filter: none; }
 }
 
-/* Le panneau burger n'existe qu'en dessous de 720px : on garde la contrainte
+/* Le panneau burger n'existe qu'en dessous de 1000px : on garde la contrainte
    pour ne pas peindre un fond derrière les liens de la nav desktop. */
-@media (prefers-reduced-transparency: reduce) and (max-width: 720px) {
+@media (prefers-reduced-transparency: reduce) and (max-width: 1000px) {
   .ev-nav__links { background: var(--ev-bg); backdrop-filter: none; }
 }
 
