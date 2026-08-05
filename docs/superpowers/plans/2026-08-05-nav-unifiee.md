@@ -571,15 +571,21 @@ const URL = 'http://127.0.0.1:8099';
   const b = await playwright.chromium.launch({ channel: 'chrome' });
   const page = await b.newPage({ viewport: { width: 1280, height: 800 } });
   const erreurs = [];
-  page.on('pageerror', e => erreurs.push(e.message.split('\n')[0]));
+  // Capturer la STACK et pas seulement le message : l'erreur Disqus connue a
+  // pour message « Cannot read properties of null (reading 'appendChild') »,
+  // où le mot « disqus » n'apparaît nulle part — il n'est que dans la stack.
+  // Filtrer sur le message laisserait passer 3 fausses régressions (mesuré en
+  // tâche 1 : 3 occurrences, toutes Disqus).
+  page.on('pageerror', e => erreurs.push({ msg: e.message.split('\n')[0], stack: e.stack || '' }));
 
   // 1. Aucune erreur console sur les pages du thème (greedy-nav n'a plus son markup)
   for (const chemin of ['/blog/', '/ARC-Welder/', '/about/', '/tags/', '/categories/']) {
     await page.goto(URL + chemin, { waitUntil: 'load' });
     await page.waitForTimeout(800);
   }
-  const horsDisqus = erreurs.filter(e => !e.includes('disqus'));
-  console.log('erreurs console hors Disqus :', horsDisqus.length ? horsDisqus : 'aucune');
+  const horsDisqus = erreurs.filter(e => !/disqus/i.test(e.stack) && !/disqus/i.test(e.msg));
+  console.log('erreurs console hors Disqus :', horsDisqus.length ? horsDisqus.map(e => e.msg) : 'aucune');
+  console.log('  (dont Disqus, attendues et hors périmètre :', erreurs.length - horsDisqus.length, ')');
 
   // 2. La recherche répond toujours — taper au clavier, pas fill()
   await page.goto(URL + '/blog/', { waitUntil: 'load' });
@@ -777,13 +783,14 @@ const pw = require('playwright-core');
     const b = await pw[nom].launch();
     const p = await b.newPage({viewport:{width:1280,height:800}});
     const err = [];
-    p.on('pageerror', e => err.push(e.message.split('\n')[0]));
+    // Filtrer sur la stack : le mot « disqus » n'est pas dans le message
+    p.on('pageerror', e => err.push((e.stack || '') + ' ' + e.message));
     await p.goto('http://127.0.0.1:8099/ARC-Welder/', {waitUntil:'load'});
     await p.waitForTimeout(900);
     console.log(nom, JSON.stringify(await p.evaluate(() => {
       const n = document.querySelector('.ev-nav'), s = getComputedStyle(n);
       return { position: s.position, bordure: s.borderBottomColor };
-    })), '| erreurs:', err.filter(e => !e.includes('disqus')).length);
+    })), '| erreurs:', err.filter(e => !/disqus/i.test(e)).length);
     await b.close();
   }
 })();
