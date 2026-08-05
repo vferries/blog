@@ -27,7 +27,6 @@ Document local au site **enveille.info**. Il hérite du design system global (vo
 ```
 /
 ├── _config.yml                    # config Jekyll (titre, logo, nav, pagination)
-├── _data/navigation.yml           # menu principal
 ├── _layouts/landing.html          # layout custom pour la landing
 ├── _includes/head/custom.html     # Google Fonts + chargement assets
 ├── _pages/
@@ -62,10 +61,16 @@ Définis dans `assets/css/enveille.css` en CSS custom properties. S'adaptent au 
 
 ---
 
+## Barre du haut
+
+`.ev-nav` est la barre de toutes les pages, pas seulement de la landing : elle est rendue par `_includes/ev-nav.html`, que `_includes/masthead.html` (shadow du partial du thème) sert aux pages Minimal Mistakes, et que `index.html` et `_pages/realisations.html` incluent directement — ces deux pages n'étant pas rendues par le thème, le shadow ne les atteint pas. Ses styles vivent dans `enveille.css`, chargé partout.
+
+---
+
 ## Spécificités de la landing
 
-La landing (`/`) utilise une nav custom `.ev-nav` qui remplace la masthead de Minimal Mistakes. Elle charge, via `_layouts/landing.html` — le layout `landing`, aussi utilisé par `/realisations/` :
-- `landing.css` (en plus de `enveille.css`)
+Ce qui reste propre à la landing, chargé par `_layouts/landing.html` pour les pages en `layout: landing` — la landing et `/realisations/` :
+- `landing.css` (en plus de `enveille.css`) — ses règles présupposent la structure de la landing (grille de sections, hero, quick-nav) ; le charger ailleurs casserait la mise en page des pages qui ne la partagent pas
 - `landing.js` pour les interactions (curseur, reveal, compteurs, easter eggs, Matrix rain sur Konami)
 
 Toutes les classes de la landing sont préfixées `.ev-` pour ne pas entrer en conflit avec Minimal Mistakes.
