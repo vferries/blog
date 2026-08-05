@@ -110,8 +110,21 @@ Les règles devenues mortes disparaissent d'`enveille.css` : le bloc
 `.greedy-nav`). Le correctif `.site-logo` n'a plus lieu d'être, ce markup
 n'étant plus rendu.
 
-Le bloc `prefers-reduced-transparency` existant couvre déjà `.ev-nav` et
-`.ev-nav__links` : il n'a pas à bouger, il s'applique désormais partout.
+**Correction (relevée en exécution).** Une version antérieure de ce document
+affirmait que le bloc `prefers-reduced-transparency` vivait dans `enveille.css`
+et n'avait donc pas à bouger. C'est faux : il a été écrit dans `landing.css`
+le 2026-08-05 (commit `ae3209f`), qui n'est pas chargé sur les pages du thème.
+Laissé en place, il aurait donné des pages du thème portant `.ev-nav` sans
+aucun respect de la préférence — exactement ce que la vérification de la tâche 7
+teste.
+
+Le bloc doit donc être **scindé** :
+
+- `.ev-nav`, `.ev-nav--scrolled` et le `.ev-nav__links` sous 720px partent dans
+  `enveille.css`, avec les autres règles de la barre ;
+- `.ev-quick-nav` **reste** dans `landing.css` : les pastilles de quick-nav sont
+  une fonctionnalité de la landing seule, les déplacer serait porter du style
+  mort sur 57 pages.
 
 ## JavaScript
 
