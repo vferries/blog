@@ -310,6 +310,20 @@ html { scroll-behavior: smooth; }
 }
 .ev-nav__search:hover { color: var(--ev-text); border-color: var(--ev-border-strong); }
 
+/* Sous le seuil du burger, recherche et burger forment un groupe à droite.
+   Le `justify-content: space-between` de la barre a été écrit pour deux
+   enfants visibles (marque et burger) ; le bouton de recherche en fait un
+   troisième et poussait le burger au milieu. Une marge auto absorbe tout
+   l'espace libre en amont : la marque reste à gauche, le groupe se colle à
+   droite. Sans bouton de recherche (layout landing) rien ne change,
+   space-between suffit à deux enfants.
+   À garder après la règle de base ci-dessus, qui pose `margin-inline: 0` à
+   spécificité égale et gagnerait par ordre de source si on remontait ce bloc
+   avec les autres règles du burger. */
+@media (max-width: 1000px) {
+  .ev-nav__search { margin-inline-start: auto; }
+}
+
 /* Respect reduced transparency — la barre est translucide et floutée.
    Vit ici et non dans landing.css : elle est rendue sur toutes les pages. */
 @media (prefers-reduced-transparency: reduce) {

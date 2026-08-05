@@ -28,13 +28,6 @@
       <li class="ev-nav__status-item"><span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span></li>
     </ul>
     <span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span>
-    <button class="ev-nav__burger" type="button" aria-expanded="false"
-            aria-controls="ev-nav-menu" aria-label="Menu">
-      <span></span><span></span><span></span>
-      <svg class="ev-nav__power" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 3v8"/><path d="M6.3 6.6a8 8 0 1 0 11.4 0"/>
-      </svg>
-    </button>
     {% if include.search %}
       {% comment %}
         La classe search__toggle est ce à quoi le script du thème s'accroche
@@ -42,6 +35,11 @@
         rendu par default.html, pas ici. Conditionné par include.search et non
         par site.search : le layout landing n'a pas de panneau, le bouton y
         serait inerte.
+
+        Rendu avant le burger, pas après : sous le seuil du burger les deux
+        forment un groupe collé à droite, et le burger doit y être le plus
+        extérieur. L'ordre du DOM suit donc l'ordre visuel, ce qui garde le
+        parcours au clavier cohérent.
       {% endcomment %}
       <button class="search__toggle ev-nav__search" type="button">
         <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: "Rechercher" }}</span>
@@ -51,5 +49,12 @@
         </svg>
       </button>
     {% endif %}
+    <button class="ev-nav__burger" type="button" aria-expanded="false"
+            aria-controls="ev-nav-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+      <svg class="ev-nav__power" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v8"/><path d="M6.3 6.6a8 8 0 1 0 11.4 0"/>
+      </svg>
+    </button>
   </div>
 </nav>
