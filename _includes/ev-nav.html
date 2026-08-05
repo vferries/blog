@@ -28,13 +28,16 @@
       <li class="ev-nav__status-item"><span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span></li>
     </ul>
     <span class="ev-nav__status"><span class="ev-status-dot"></span>Disponible</span>
-    {% if include.search %}
+    {% if include.search and site.search %}
       {% comment %}
         La classe search__toggle est ce à quoi le script du thème s'accroche
         ($(".search__toggle").on("click", …)). Le panneau .search-content est
-        rendu par default.html, pas ici. Conditionné par include.search et non
-        par site.search : le layout landing n'a pas de panneau, le bouton y
-        serait inerte.
+        rendu par default.html, pas ici.
+
+        Les deux conditions comptent : include.search écarte le layout
+        landing, qui n'a pas de panneau ; site.search couvre le cas où la
+        recherche serait coupée dans _config.yml, auquel cas default.html
+        cesserait de rendre le panneau et le bouton deviendrait inerte.
 
         Rendu avant le burger, pas après : sous le seuil du burger les deux
         forment un groupe collé à droite, et le burger doit y être le plus
