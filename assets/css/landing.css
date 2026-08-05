@@ -901,6 +901,11 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
   list-style: none;
   border-top: 1px solid var(--ev-border);
 }
+/* Pont vers /about/ : la section n'est qu'une accroche, la page porte le
+   parcours, les prestations et l'origine du nom. Sans ce lien la page reste
+   inatteignable depuis la landing — la nav y scrolle vers cette section. */
+.ev-about__more { margin: 40px 0 0; }
+
 .ev-value {
   padding: 20px 0;
   border-bottom: 1px dashed var(--ev-border-strong);
