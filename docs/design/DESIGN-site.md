@@ -28,7 +28,12 @@ Document local au site **enveille.info**. Il hérite du design system global (vo
 /
 ├── _config.yml                    # config Jekyll (titre, logo, nav, pagination)
 ├── _layouts/landing.html          # layout custom pour la landing
-├── _includes/head/custom.html     # Google Fonts + chargement assets
+├── _includes/
+│   ├── head/custom.html           # Google Fonts + chargement assets (shadow MM)
+│   ├── masthead.html              # shadow MM : ne fait qu'inclure ev-nav.html
+│   ├── footer.html                # shadow MM : source unique de la ligne footer
+│   ├── ev-nav.html                # barre du haut — source unique, toutes les pages
+│   └── ev-footer.html             # wrapper <footer class="ev-footer"> de footer.html
 ├── _pages/
 │   ├── blog.md                    # /blog/ : archive paginée
 │   ├── about.md, 404.md, etc.     # pages existantes (héritées)
@@ -37,7 +42,9 @@ Document local au site **enveille.info**. Il hérite du design system global (vo
 │   ├── css/
 │   │   ├── enveille.css           # tokens + thème global (toutes les pages)
 │   │   └── landing.css            # styles scopés sur body.landing
-│   └── js/landing.js              # interactivité de la landing uniquement
+│   └── js/
+│       ├── nav.js                 # barre du haut (scroll, burger) — toutes les pages
+│       └── landing.js             # interactivité de la landing uniquement
 ├── images/
 │   ├── logo.svg                   # nouveau logo (remplace logo.png)
 │   ├── logo.png                   # conservé pour compatibilité
