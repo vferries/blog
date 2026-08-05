@@ -133,6 +133,11 @@ h1, h2, h3, h4, h5, h6,
 .author__name { font-family: var(--font-display) !important; font-weight: 500; }
 .author__bio { font-family: var(--font-sans); color: var(--ev-text-muted); }
 
+/* MM la rend sticky avec top: 2em (pensé pour un masthead non sticky). La
+   barre .ev-nav étant désormais sticky (~65px) sur toutes les pages, ce
+   top trop faible faisait passer l'avatar sous la barre au scroll. */
+.sidebar.sticky { top: 84px; }
+
 /* MM colore les icônes sociales aux couleurs de marque en dur (GitHub
    #171516, Twitch #3d4144, Twitter #55acee) : indifférentes au mode, elles
    tombent à 1,09:1 sur fond sombre. On les repasse en monochrome comme le
