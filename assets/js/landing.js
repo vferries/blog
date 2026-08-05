@@ -429,7 +429,10 @@
 
       const overlayText = document.createElement('div');
       Object.assign(overlayText.style, {
-        position: 'absolute', inset: '0',
+        // fixed, comme le canvas : en absolute le bloc se cale sur le document
+        // et la saisie du code emporte le message hors de l'écran, les flèches
+        // scrollant la page au passage (80px sur Chrome, 138px sur Firefox).
+        position: 'fixed', inset: '0', zIndex: '100000',
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
         color: '#00F2FF', fontFamily: "'Fraunces', serif",
