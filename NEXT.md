@@ -110,6 +110,11 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 
 ## 🛠 Améliorations techniques
 
+- [x] **Barre du haut unifiée** → 2026-08-05 : `ev-nav` sert toutes les pages via un shadow de `_includes/masthead.html`. Spec : `docs/superpowers/specs/2026-08-05-nav-unifiee-design.md`
+  - Les deux barres divergeaient en **mécanisme**, pas qu'en style : la landing bascule sur un breakpoint fixe à 720px, `greedy-nav` déplaçait les liens un à un selon la place et ne repliait rien avant ~400px
+  - La recherche survit sans JS : son panneau vient de `default.html` et son script s'accroche par classe, donc un bouton `.search__toggle` dans `ev-nav` suffit. Il est conditionné par `include.search`, le layout landing n'ayant pas de panneau
+  - `skip-links.html` pointe sur `#site-nav` : `ev-nav` porte désormais cet id en plus de `ev-top`
+  - **3ᵉ shadow de partial** après `footer.html` et `head/custom.html` — à rediffer à chaque bump de `remote_theme`
 - [x] `scroll-margin-top` sous la nav sticky pour toutes les ancres → `[id] { scroll-margin-top: 84px }` dans `landing.css` (nav mesurée à 65px). Vérifié Playwright : 19px de marge sur `#realisations`
 - [x] **Sans JS, tout le contenu `.ev-reveal` reste invisible** → corrigé (2026-07) : classe `no-js` sur `<html>` remplacée par `js` via script inline, override `html:not(.js)` dans `landing.css`, stats servies en dur dans le HTML (le JS les remet à 0 avant d'animer). Vérifié par capture Playwright JS off/on. Reste un cas mineur : le panneau burger mobile ne peut pas s'ouvrir sans JS (liens nav inaccessibles ≤720px, page one-page donc non bloquant)
 - [x] **OpenGraph par billet** → fait le 2026-08-04 : une carte 1200×630 par billet dans `images/og/<slug>.png` (46 cartes, 1,4 Mo, ~29 Ko pièce), câblées via `header.og_image` qui prime sur `header.image`. Générateur idempotent : `./tools/og-card/generate-posts.py`

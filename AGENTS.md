@@ -32,9 +32,10 @@ bundle exec jekyll serve --livereload
 
 - `_posts/` : 46 billets depuis 2011, URLs permaliens `/:categories/:title/` (stables, ne pas changer)
 - `_layouts/landing.html` : layout custom pour la landing (autonome, n'hérite d'aucun layout du thème)
-- `_includes/head/custom.html` : chargement fonts + CSS/JS (le bloc `landing.css`/`landing.js` est conditionné par `{% if page.is_landing %}`)
+- `_includes/head/custom.html` : favicons, fontes, `enveille.css`, `nav.js`. Ne charge **pas** `landing.css`/`landing.js` — c'est `_layouts/landing.html`, autonome, qui les déclare
 - `_data/realisations.yml` : réalisations publiques (source unique de la section landing `#realisations` et de `/realisations/`)
-- `_includes/ev-nav.html` : nav partagée landing ↔ pages ev-*
+- `_includes/ev-nav.html` : **barre du haut, source unique de toutes les pages**. `_includes/masthead.html` (shadow du thème) la rend sur les pages Minimal Mistakes, `index.html` et `_pages/realisations.html` l'incluent directement. Le shadow passe par `include_cached` : n'y mettre aucune variable de page
+- `assets/js/nav.js` : burger + backdrop-filter au scroll. Chargé par `head/custom.html` **et** par `_layouts/landing.html`, ce dernier n'incluant pas le premier
 - `_includes/footer.html` : shadow du partial Minimal Mistakes → source unique de la ligne footer (landing + pages MM). `_includes/ev-footer.html` n'est plus qu'un wrapper `<footer class="ev-footer">` qui l'inclut. Le thème l'appelle via `include_cached` : ne jamais y mettre de variable de page.
 - `assets/css/enveille.css` : design tokens + thème appliqué partout
 - `assets/css/landing.css` : styles spécifiques à la landing (classes `.ev-*`)
@@ -44,7 +45,9 @@ bundle exec jekyll serve --livereload
 
 Les 46 billets gardent leur layout `single` de Minimal Mistakes (sidebar author, Disqus, partage social). Ils héritent uniquement de la **typo** et des **couleurs** via `enveille.css`. Pas de migration de contenu, pas de touche au front matter existant.
 
-La landing (`/`) utilise au contraire une nav custom `.ev-nav` qui remplace la masthead. `landing.css` et `landing.js` ne sont chargés QUE via le flag `is_landing: true` dans le front matter — ne pas charger globalement.
+La nav `.ev-nav` est désormais servie **partout**, y compris sur les pages du thème, via un shadow de `_includes/masthead.html`. Ses styles vivent dans `enveille.css` (chargé partout), pas dans `landing.css`. `_data/navigation.yml` a été supprimé : il ne pilotait que la masthead d'origine.
+
+`landing.css` et `landing.js` restent chargés QUE via le flag `is_landing: true` dans le front matter — ne pas charger globalement.
 
 ## Features JS de la landing (à ne pas casser)
 
