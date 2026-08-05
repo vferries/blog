@@ -151,6 +151,10 @@ h1, h2, h3, h4, h5, h6,
    ============================================================ */
 /* La nav sticky (~65px) recouvrait le haut des sections au scroll-to-anchor */
 [id] { scroll-margin-top: 84px; }
+/* nav.js désactive le SmoothScroll du thème (data-scroll-ignore sur <body>)
+   pour que les ancres cliquées repassent en natif et honorent le
+   scroll-margin-top ci-dessus. C'est ici qu'on leur rend leur fluidité. */
+html { scroll-behavior: smooth; }
 .ev-nav {
   position: sticky; top: 0; z-index: 20;
   background: color-mix(in srgb, var(--ev-bg) 88%, transparent);
@@ -513,5 +517,10 @@ th {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    /* Le pendant du `html { scroll-behavior: smooth }` posé plus haut : sans
+       lui, les pages du thème (qui ne chargent pas landing.css, seul endroit
+       où cette ligne existait) imposeraient un défilement animé à qui
+       demande l'inverse. */
+    scroll-behavior: auto !important;
   }
 }

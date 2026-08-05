@@ -9,6 +9,22 @@
   'use strict';
 
   // ==========================================================
+  // ANCRES — rend la main au navigateur
+  // Le thème instancie SmoothScroll('a[href*="#"]', { offset: 20 }) : un
+  // scroll programmatique qui calcule lui-même la position finale et ignore
+  // donc `scroll-margin-top`. Son offset de 20px datait d'une barre en
+  // position: relative ; la barre est maintenant sticky et haute de 65px,
+  // et la cible atterrissait 45px dessous.
+  // SmoothScroll sort si `event.target.closest('[data-scroll-ignore]')`
+  // matche : poser l'attribut sur <body> neutralise l'interception partout,
+  // sans toucher au thème ni ajouter un 4ᵉ shadow de partial. La navigation
+  // redevient native, donc honore `scroll-margin-top` — et reste fluide via
+  // `html { scroll-behavior: smooth }` (enveille.css), qui repasse en `auto`
+  // sous prefers-reduced-motion.
+  // ==========================================================
+  document.body.setAttribute('data-scroll-ignore', '');
+
+  // ==========================================================
   // NAV — applique le backdrop-filter uniquement quand on a scrollé
   // (le blur est coûteux à recalculer à chaque frame quand sticky)
   // ==========================================================
