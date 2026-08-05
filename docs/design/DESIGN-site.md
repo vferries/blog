@@ -64,8 +64,8 @@ Définis dans `assets/css/enveille.css` en CSS custom properties. S'adaptent au 
 
 ## Spécificités de la landing
 
-La landing (`/`) utilise une nav custom `.ev-nav` qui remplace la masthead de Minimal Mistakes. Elle charge :
-- `landing.css` (en plus de `enveille.css`) via `{% if page.is_landing %}` dans `head/custom.html`
+La landing (`/`) utilise une nav custom `.ev-nav` qui remplace la masthead de Minimal Mistakes. Elle charge, via `_layouts/landing.html` — le layout `landing`, aussi utilisé par `/realisations/` :
+- `landing.css` (en plus de `enveille.css`)
 - `landing.js` pour les interactions (curseur, reveal, compteurs, easter eggs, Matrix rain sur Konami)
 
 Toutes les classes de la landing sont préfixées `.ev-` pour ne pas entrer en conflit avec Minimal Mistakes.

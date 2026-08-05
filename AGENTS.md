@@ -47,7 +47,7 @@ Les 46 billets gardent leur layout `single` de Minimal Mistakes (sidebar author,
 
 La nav `.ev-nav` est désormais servie **partout**, y compris sur les pages du thème, via un shadow de `_includes/masthead.html`. Ses styles vivent dans `enveille.css` (chargé partout), pas dans `landing.css`. `_data/navigation.yml` a été supprimé : il ne pilotait que la masthead d'origine.
 
-`landing.css` et `landing.js` restent chargés QUE via le flag `is_landing: true` dans le front matter — ne pas charger globalement.
+`landing.css` et `landing.js` sont chargés par `_layouts/landing.html` seul, donc par les pages qui utilisent `layout: landing` — la landing et `/realisations/`. Ne pas les charger globalement : `landing.css` porte des règles qui présupposent la structure de la landing.
 
 ## Features JS de la landing (à ne pas casser)
 
