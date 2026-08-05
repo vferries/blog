@@ -115,20 +115,69 @@ def ratio(chemin):
         return None
 
 
+def _decoupe_flow(brut):
+    """Découpe une liste YAML flow, sans casser sur une virgule entre guillemets."""
+    valeurs, courant, quote = [], [], None
+    for caractere in brut:
+        if quote:
+            if caractere == quote:
+                quote = None
+            else:
+                courant.append(caractere)
+        elif caractere in "\"'" and not "".join(courant).strip():
+            # Une quote n'ouvre une valeur qu'en tête de celle-ci. Au milieu
+            # d'un mot c'est une apostrophe littérale — « traitement d'images »
+            # est un tag réel, et la traiter en délimiteur avalait la suite.
+            quote = caractere
+            courant = []
+        elif caractere == ",":
+            valeurs.append("".join(courant).strip())
+            courant = []
+        else:
+            courant.append(caractere)
+    valeurs.append("".join(courant).strip())
+    return [v for v in valeurs if v]
+
+
+def _decoupe_bloc(lignes, depart):
+    """Les entrées `- x` indentées sous `lignes[depart]`, jusqu'au champ suivant."""
+    valeurs = []
+    for ligne in lignes[depart + 1:]:
+        if not ligne.strip():
+            continue
+        if not ligne.startswith((" ", "\t")):
+            break
+        depouille = ligne.strip()
+        if not depouille.startswith("- "):
+            break
+        valeurs.append(depouille[2:].strip().strip("\"'"))
+    return valeurs
+
+
 def tags(lignes, maximum=3):
     """Les premiers tags du front matter, joints par ' · '.
+
+    Gère les trois écritures que Jekyll accepte : liste flow (`tags: [a, b]`,
+    la seule employée par les 46 billets à ce jour), liste bloc (`- a` sur les
+    lignes suivantes) et valeur simple (`tags: a`).
 
     Plafonné parce qu'un billet en porte jusqu'à 6 et que les assemblages
     complets atteignent 50 caractères, ce qui déborde la zone laissée libre
     par le titre masqué.
     """
-    brut = champ(lignes, "tags")
-    if not brut:
+    try:
+        depart = next(n for n, l in enumerate(lignes) if l.startswith("tags:"))
+    except StopIteration:
         return ""
-    brut = brut.strip()
-    if brut.startswith("[") and brut.endswith("]"):
-        brut = brut[1:-1]
-    valeurs = [t.strip().strip("\"'") for t in brut.split(",") if t.strip()]
+
+    brut = lignes[depart][len("tags:"):].strip()
+    if not brut:
+        valeurs = _decoupe_bloc(lignes, depart)
+    elif brut.startswith("[") and brut.endswith("]"):
+        valeurs = _decoupe_flow(brut[1:-1])
+    else:
+        valeurs = [brut.strip("\"'")]
+
     return " · ".join(valeurs[:maximum])
 
 

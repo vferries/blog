@@ -13,6 +13,9 @@ vendor/
 # Bundler
 Gemfile.lock
 
+# Python (outillage de tools/)
+__pycache__/
+
 # OS
 .DS_Store
 Thumbs.db
