@@ -1,0 +1,11 @@
+{% comment %}
+  Shadow du partial du thème. Les layouts Minimal Mistakes l'incluent via
+  include_cached : le rendu est mis en cache et réutilisé, donc AUCUNE
+  variable de page (page.*) ne doit entrer ici. C'est la même règle que pour
+  _includes/footer.html.
+
+  Conséquence : le paramètre `current` de ev-nav (qui pose aria-current) ne
+  peut pas transiter par ce chemin. Il reste réservé à l'appel direct depuis
+  _pages/realisations.html, qui n'est pas mis en cache.
+{% endcomment %}
+{% include ev-nav.html root="/" search=true %}
