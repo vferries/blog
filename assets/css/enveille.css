@@ -285,6 +285,19 @@ h1, h2, h3, h4, h5, h6,
 }
 .ev-nav__search:hover { color: var(--ev-text); border-color: var(--ev-border-strong); }
 
+/* Respect reduced transparency — la barre est translucide et floutée.
+   Vit ici et non dans landing.css : elle est rendue sur toutes les pages. */
+@media (prefers-reduced-transparency: reduce) {
+  .ev-nav { background: var(--ev-bg); }
+  .ev-nav--scrolled { backdrop-filter: none; }
+}
+
+/* Le panneau burger n'existe qu'en dessous de 720px : on garde la contrainte
+   pour ne pas peindre un fond derrière les liens de la nav desktop. */
+@media (prefers-reduced-transparency: reduce) and (max-width: 720px) {
+  .ev-nav__links { background: var(--ev-bg); backdrop-filter: none; }
+}
+
 /* Links in content */
 .page__content a { color: var(--ev-blue); }
 .page__content a:hover { color: var(--blue-600); text-decoration-thickness: 2px; }

@@ -1122,19 +1122,8 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
   }
 }
 
-/* Respect reduced transparency.
-   Trois surfaces flottantes empilent un fond translucide et un backdrop-filter :
-   la nav collante, le panneau burger et les pastilles de quick-nav. Elles
-   passent opaques et sans flou — le texte qui s'y pose ne dépend alors plus de
-   ce qui défile derrière. */
+/* Respect reduced transparency — les pastilles de quick-nav. Le nav lui-même
+   est traité dans enveille.css : il est rendu sur toutes les pages. */
 @media (prefers-reduced-transparency: reduce) {
-  .ev-nav { background: var(--ev-bg); }
-  .ev-nav--scrolled { backdrop-filter: none; }
   .ev-quick-nav { background: var(--ev-bg); backdrop-filter: none; }
-}
-
-/* Le panneau burger n'existe qu'en dessous de 720px : on garde la contrainte
-   pour ne pas peindre un fond derrière les liens de la nav desktop. */
-@media (prefers-reduced-transparency: reduce) and (max-width: 720px) {
-  .ev-nav__links { background: var(--ev-bg); backdrop-filter: none; }
 }
