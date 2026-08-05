@@ -16,6 +16,11 @@ Gemfile.lock
 # Python (outillage de tools/)
 __pycache__/
 
+# Node : le seul node_modules légitime vit sous tools/, exclu du build Jekyll.
+# Un npx lancé depuis la racine en recrée un ici, que Jekyll recopie dans _site.
+node_modules/
+package-lock.json
+
 # OS
 .DS_Store
 Thumbs.db
