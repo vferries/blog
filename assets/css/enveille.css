@@ -288,6 +288,12 @@ html { scroll-behavior: smooth; }
 .ev-nav__search {
   display: inline-flex; align-items: center; justify-content: center;
   width: 34px; height: 34px; padding: 0;
+  /* Le bouton porte .search__toggle pour que le script du thème s'y accroche,
+     et hérite au passage du `margin-inline: 1rem` que _search.scss pose sur
+     cette classe (pensé pour la masthead greedy-nav). On l'annule ici plutôt
+     que de compter dessus : le thème est pinné, mais une dépendance implicite
+     sur un partial upstream n'a pas à rester tacite. */
+  margin-inline: 0;
   background: none; border: 1px solid transparent; border-radius: 50%;
   color: var(--ev-text-muted); cursor: pointer;
   transition: color 200ms var(--ease-out), border-color 200ms var(--ease-out);
