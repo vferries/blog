@@ -113,5 +113,8 @@ comments:
   disqus:
     shortname: "blogvincent"
 
-locale:           fr_FR
+# BCP 47 (tiret) : c'est la clé de _data/ui-text.yml du thème. Avec fr_FR le
+# lookup site.data.ui-text[locale] rendait nil et toute l'UI tombait en anglais.
+# og:locale (underscore) et <html lang> sont normalisés par le thème.
+locale:           fr-FR
 url:              https://www.enveille.info
