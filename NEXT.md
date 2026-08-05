@@ -48,7 +48,7 @@
 ### Cohérence visuelle entre landing et reste du site
 
 - [x] **Footers désynchronisés** → unifiés (2026-08-03) : override local de `_includes/footer.html` = source unique (ligne « © … chocolatines » partout), `footer.links` retiré de `_config.yml`. Les sociaux restent portés par la sidebar auteur des billets et la CTA landing. Spec : `docs/superpowers/specs/2026-08-03-footer-sync-design.md`
-- [ ] **Sidebar des billets (`author_profile`)** :
+- [x] **Sidebar des billets (`author_profile`)** — les trois points ci-dessous sont réglés, la case n'avait jamais été cochée :
   - Avatar `profile_square.jpg` ✓ (cohérent avec landing depuis le commit du jour)
   - RSS désormais couvert partout via le footer unifié (2026-08-03) ; pas de lien direct vers `/` (la landing) dans la sidebar, mais les pages MM y reviennent via la marque `.ev-nav__brand` de la barre du haut (depuis 2026-08-05 il n'y a plus ni masthead ni `.site-title`)
   - Sur `/about/`, sidebar désactivée (`author_profile: false` dans le front matter) — l'intro de la page suffit
@@ -93,7 +93,7 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 - [x] Appliquer Fraunces (display + tagline italique) + Inter (body)
 - [x] Header : brand strip avec logo + wordmark "En Veille · CV", lien retour
 - [x] Bonus : OG card 1200×630 dédiée + favicon kit (SVG/ICO/PNG) + print refondu (photo carrée 150px, navy partout, typo 0.78rem → CV tient sur 2 pages)
-- [ ] Footer du CV (section SOCIAL) : à voir si on aligne avec le footer du blog ou on laisse le ton CV-centric
+- [x] Footer du CV (section SOCIAL) → **on le laisse tel quel** (arbitré le 2026-08-05). Le ton CV-centric est assumé : ce n'est pas la même surface que le blog, et l'aligner n'apporterait rien au lecteur d'un CV
 
 ### `twitch.tv/EnVeilleCode`
 - [ ] Avatar : version stacked du logo
@@ -146,7 +146,8 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
   - `derive_vignette()` : les deux branches sont couvertes, dont celle des sources plus hautes que le ratio cible — elle est correcte. Ancrage ouest, non-agrandissement, réduction au-delà de 1200px et sortie JPEG verrouillés
   - `ratio()` : **volontairement pas touchée**. Sa dépendance au délégué SVG d'ImageMagick est sans conséquence — le seul `header.image` en SVG est `twitch-logo.svg` à 9,1:1, au-dessus du seuil `RATIO_MAX` de 5:1. Délégué présent ou absent, le billet reçoit une carte teaser. La réécrire serait spéculatif
 - [ ] **`.archive:has(.entries-grid)`** dans `enveille.css` neutralise un couloir de sidebar fantôme de MM (sans lui la grille tombe à 1 colonne). Pas de repli pour les navigateurs sans `:has()` — Baseline depuis fin 2023, dégradation silencieuse et non bloquante : la grille serait juste moins large
-- [ ] Ajouter `jekyll-redirect-from` et créer des redirects si des URLs ont bougé
+- [x] **Redirects d'URLs déplacées** → **on ne fait rien** (arbitré le 2026-08-05). `paginate_path` est passé de `/page:num/` à `/blog/page:num/` lors du refresh, donc `/page2/`, `/page3/`… répondent 404. Arbitrage assumé : ce sont des pages d'archive sans contenu propre, personne ne met en favori une page de liste de billets. Pas de `jekyll-redirect-from` à ajouter
+  - À ne pas confondre avec les **3 anciennes URLs `.png`** cassées par l'optimisation d'images du 2026-08-04 (photos converties en JPEG). Cas distinct, déjà assumé plus haut — et que ce plugin ne couvrirait pas de toute façon, il ne gère que les pages, pas les fichiers statiques
 - [x] **Konami code sur Firefox, Chrome et WebKit** → vérifié le 2026-08-05 sous Playwright, et un bug non lié au moteur en est sorti : le message « bien joué, curieux. » était en `position: absolute` sur un body statique, donc ancré au **document**, alors que le canvas est en `fixed`. Or les flèches du code scrollent la page en cours de saisie — 80px sur Chrome, 138px sur Firefox. Sur une page déjà scrollée le message sortait de l'écran (mesuré à top -2500px pour un viewport de 800). Passé en `fixed`. La détection, elle, lit `e.key` : rien de spécifique à un moteur
   - **Safari iOS : rien à tester**, l'easter egg est inatteignable sans clavier physique
   - WebKit 26.5 (moteur de Safari desktop) couvert dans la foulée : déclenchement et centrage OK page en haut comme scrollée, rendu du canvas et de la Fraunces italique conformes. Il réclame `libevent-2.1-7t64`, `libavif16` et `libmanette-0.2-0` côté système
