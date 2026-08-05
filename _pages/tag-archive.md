@@ -1,5 +1,5 @@
 ---
-title: "Posts by Tag"
+title: "Billets par tag"
 permalink: /tags/
 layout: tags
 author_profile: true

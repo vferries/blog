@@ -1,5 +1,5 @@
 ---
-title: "Posts by Category"
+title: "Billets par catégorie"
 layout: categories
 permalink: /categories/
 author_profile: true
