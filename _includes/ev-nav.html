@@ -18,10 +18,17 @@
     <a href="/" class="ev-nav__brand">
       <img src="{{ '/images/logo.svg' | relative_url }}" alt=""> En Veille
     </a>
+    {% comment %}
+      Réalisations et À propos ont chacune une page dédiée en plus de leur
+      section sur la landing. Sur la landing on scrolle vers la section ; hors
+      d'elle on envoie sur la page, comme le faisait _data/navigation.yml avant
+      l'unification de la barre. Sans cette distinction les deux pages
+      deviennent orphelines : plus aucun lien du site n'y mène.
+    {% endcomment %}
     <ul class="ev-nav__links" id="ev-nav-menu">
       <li><a href="{{ include.root }}#services">Services</a></li>
-      <li><a href="{{ include.root }}#realisations"{% if include.current == 'realisations' %} aria-current="page"{% endif %}>Réalisations</a></li>
-      <li><a href="{{ include.root }}#about">À propos</a></li>
+      <li><a href="{% if include.root == '' %}#realisations{% else %}{{ '/realisations/' | relative_url }}{% endif %}"{% if include.current == 'realisations' %} aria-current="page"{% endif %}>Réalisations</a></li>
+      <li><a href="{% if include.root == '' %}#about{% else %}{{ '/about/' | relative_url }}{% endif %}">À propos</a></li>
       <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
       <li><a href="https://vferries.github.io/cv/" rel="noopener">CV</a></li>
       <li><a href="{{ include.root }}#contact">Contact</a></li>
