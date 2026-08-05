@@ -42,6 +42,11 @@ exclude:
   - README.md
   - .claude
   - docs
+  # node_modules à la racine n'est jamais légitime : le seul qui l'est vit sous
+  # tools/, déjà exclu ci-dessous. Celui-ci n'apparaît que par accident (npx
+  # lancé depuis la racine) — l'ignorer ne suffit pas, il faut aussi l'exclure
+  # du build sinon Jekyll le recopie dans _site.
+  - node_modules
   - tools
   - vendor
   - Gemfile
