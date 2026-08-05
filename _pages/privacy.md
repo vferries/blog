@@ -3,6 +3,8 @@ title: "Vie privée"
 excerpt: "Ce que ce site sait — ou ne sait pas — de toi."
 sitemap: false
 permalink: /privacy
+header:
+  og_image: /images/og-card.png
 ---
 
 Pas de tracker maison, pas d'analytics, pas de pub. Mais ce site n'est pas hermétique pour autant — autant être clair sur ce qui passe par où.
