@@ -4,9 +4,9 @@
 
 ## Objectif
 
-Une seule barre du haut sur les 60 pages. Aujourd'hui `/` et `/realisations/`
+Une seule barre du haut sur toutes les pages. Aujourd'hui `/` et `/realisations/`
 portent `.ev-nav` (logo chouette, 6 liens, pastille « Disponible », burger
-power-on CRT) tandis que les 58 pages Minimal Mistakes portent `.masthead` :
+power-on CRT) tandis que les 57 pages Minimal Mistakes portent `.masthead` :
 on change de barre en passant de `/` à `/blog/`.
 
 `_includes/ev-nav.html` devient la **source unique**, incluse aussi bien par la
@@ -56,7 +56,7 @@ pour que le comportement soit conservé tel quel.
 `default.html` via `include_cached`. Il délègue à la nav partagée :
 
 ```liquid
-{% include ev-nav.html root="/" %}
+{% include ev-nav.html root="/" search=true %}
 ```
 
 `include_cached` impose une contrainte : le partial est rendu **une seule fois**
@@ -69,14 +69,14 @@ l'appel direct depuis `_pages/realisations.html`, qui n'est pas mis en cache.
 
 1. `id="site-nav"` sur le `<nav>`, en plus de `ev-top`. Le partial
    `skip-links.html` du thème pointe sur `#site-nav` : sans cet id, le lien
-   d'évitement clavier ne mène nulle part sur les 58 pages. `ev-top` est
+   d'évitement clavier ne mène nulle part sur les pages du thème. `ev-top` est
    conservé, la landing s'en sert comme cible de retour. La landing a son propre
    lien d'évitement (`.ev-skip-link` vers `#main`), indépendant de celui du
    thème — il n'est pas concerné.
 2. Un bouton de recherche, rendu conditionnellement :
 
    ```liquid
-   {% if site.search == true %}
+   {% if include.search %}
      <button class="search__toggle ev-nav__search" type="button">…</button>
    {% endif %}
    ```
@@ -118,20 +118,27 @@ Le bloc `prefers-reduced-transparency` existant couvre déjà `.ev-nav` et
 Le burger vit dans une IIFE de `landing.js`, qui n'est chargé que par
 `_layouts/landing.html`. Il lui faut un véhicule sur les pages du thème.
 
-**Nouveau `assets/js/nav.js`** : l'IIFE du burger extraite telle quelle
-(ouverture, effet power-on, fermeture sur Escape, sur clic de lien et au
-resize).
+**Nouveau `assets/js/nav.js`** : **deux** IIFE extraites telles quelles, dans un
+wrapper `'use strict'` identique à celui de `landing.js`.
+
+- `initBurger` — ouverture, effet power-on, fermeture sur Escape, sur clic de
+  lien, sur clic extérieur et au passage au-dessus de 720px.
+- `initNavScroll` — c'est lui qui pose `.ev-nav--scrolled` au-delà de 4px de
+  scroll, et donc **lui seul** qui déclenche le `backdrop-filter`. L'oublier
+  livrerait une barre translucide qui ne floute jamais rien sur les pages du
+  thème. Le blur reste conditionné au scroll plutôt qu'appliqué en permanence :
+  il est coûteux à recalculer à chaque frame sur un élément collant.
 
 Il doit être déclaré à **deux endroits**, parce que `_layouts/landing.html` est
 autonome : il n'inclut pas `head/custom.html` et redéclare fontes et
-feuilles de style en propre. Donc `head/custom.html` en `defer` pour les 58
-pages du thème, **et** une balise `<script defer>` dans `landing.html` à côté
+feuilles de style en propre. Donc `head/custom.html` en `defer` pour les pages
+du thème, **et** une balise `<script defer>` dans `landing.html` à côté
 de `landing.js`. Ne le poser que dans `head/custom.html` laisserait la landing
 sans burger — la régression exacte qu'on cherche à éviter ailleurs.
 
-L'IIFE est **retirée** de `landing.js` dans le même mouvement. La laisser aux
-deux endroits ferait doubler les écouteurs sur la landing : chaque clic sur le
-burger basculerait l'état deux fois, donc pas du tout.
+Les deux IIFE sont **retirées** de `landing.js` dans le même mouvement. Les
+laisser aux deux endroits ferait doubler les écouteurs sur la landing : chaque
+clic sur le burger basculerait l'état deux fois, donc pas du tout.
 
 `landing.js` garde tout le reste — reveal, compteurs, progress bar, quick-nav,
 easter eggs, scrub du hero, vidéos.
@@ -141,7 +148,7 @@ easter eggs, scrub du hero, vidéos.
 Le script `jquery.greedy-navigation.js` du thème reste chargé par `scripts.html`
 et ne trouvera plus son markup (`#site-nav.greedy-nav`, `.visible-links`,
 `.hidden-links`). Il doit devenir un no-op silencieux. **À vérifier
-explicitement** : une erreur JS non attrapée sur les 58 pages du thème serait
+explicitement** : une erreur JS non attrapée sur les pages du thème serait
 une régression, et le fait qu'aucun effet visuel ne soit attendu ne garantit pas
 qu'il ne jette pas.
 
