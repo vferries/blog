@@ -5,24 +5,26 @@
 # `_data/ui-text.yml` livré par le thème n'est donc jamais chargé sous
 # `remote_theme`, et toutes les chaînes retombaient sur leur `default:` anglais.
 #
-# Copie conforme du bloc `fr` de mmistakes/minimal-mistakes@4.28.0, aplati sous
-# la clé `fr-FR` (la locale du site). Les valeurs vides sont celles d'upstream :
-# elles laissent volontairement jouer le `default:` du template.
+# Reprise du bloc `fr` de mmistakes/minimal-mistakes@4.28.0, aplati sous la clé
+# `fr-FR` (la locale du site). Seul écart : les libellés marqués « comblé »,
+# vides upstream, qui sortaient donc en anglais dans le DOM.
 #
 # À rejouer à chaque bump de `remote_theme` (cf. NEXT.md).
 
 fr-FR:
-  skip_links                 :
-  skip_primary_nav           :
-  skip_content               :
-  skip_footer                :
+  # 4.28.0 n'utilise pas cette clé : l'aria-label de <nav class="skip-links">
+  # est codé en dur en anglais. Traduite quand même, au cas où upstream la câble.
+  skip_links                 : "Liens d'évitement"
+  skip_primary_nav           : "Aller à la navigation"          # comblé
+  skip_content               : "Aller au contenu"               # comblé
+  skip_footer                : "Aller au pied de page"          # comblé
   page                       : "Page"
   pagination_previous        : "Précédent"
   pagination_next            : "Suivant"
   breadcrumb_home_label      : "Accueil"
   breadcrumb_separator       : "/"
   menu_label                 : "Menu"
-  search_label               :
+  search_label               : "Rechercher"                     # comblé
   toc_label                  : "Sur cette page"
   ext_link_label             : "Lien direct"
   less_than                  : "moins de"
@@ -54,7 +56,7 @@ fr-FR:
   comment_success_msg        : "Merci pour votre commentaire, il sera visible sur le site une fois approuvé."
   comment_error_msg          : "Désolé, une erreur est survenue lors de la soumission. Vérifiez que les champs obligatoires ont été remplis et réessayez."
   loading_label              : "Chargement..."
-  search_label_text          :
+  search_label_text          : "Entrez votre recherche..."      # comblé
   search_placeholder_text    : "Entrez votre recherche..."
   search_algolia_no_results  :
   results_found              : "Résultat(s) trouvé(s)"
