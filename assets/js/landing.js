@@ -231,42 +231,6 @@
   })();
 
   // ==========================================================
-  // NAV — applique le backdrop-filter uniquement quand on a scrollé
-  // (le blur est coûteux à recalculer à chaque frame quand sticky)
-  // ==========================================================
-  (function initNavScroll() {
-    const nav = document.querySelector('.ev-nav');
-    if (!nav) return;
-    const update = () => nav.classList.toggle('ev-nav--scrolled', window.scrollY > 4);
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-  })();
-
-  // ==========================================================
-  // BURGER MOBILE — power-on CRT
-  // ==========================================================
-  (function initBurger() {
-    const nav = document.querySelector('.ev-nav');
-    const btn = document.querySelector('.ev-nav__burger');
-    const menu = document.getElementById('ev-nav-menu');
-    if (!nav || !btn || !menu) return;
-    const setOpen = (open) => {
-      nav.classList.toggle('ev-nav--open', open);
-      btn.setAttribute('aria-expanded', String(open));
-    };
-    btn.addEventListener('click', () => setOpen(!nav.classList.contains('ev-nav--open')));
-    menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
-    document.addEventListener('click', (e) => {
-      if (!nav.classList.contains('ev-nav--open')) return;
-      if (!e.target.closest('.ev-nav')) setOpen(false);
-    });
-    matchMedia('(min-width: 721px)').addEventListener('change', (e) => {
-      if (e.matches) setOpen(false);
-    });
-  })();
-
-  // ==========================================================
   // QUICK-NAV (show after hero, active section tracking)
   // ==========================================================
   (function initQuickNav() {
