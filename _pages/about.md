@@ -26,6 +26,7 @@ Le cœur de mes missions :
 - **Accompagnement d'équipe** sur 6 mois et plus, à temps partagé
 - **Audits & architecture** quand un regard extérieur est utile pour trancher
 - **Intégration concrète de l'IA** dans le quotidien des devs — pas la hype, des indicateurs avant / après
+- **Développement ponctuel & POC**, en parallèle d'une mission longue — un prototype à sortir, une fonctionnalité à boucler
 - **Mentorat & formation** sur-mesure, sur votre codebase, pas un cours théorique de plus
 
 Le détail des formats est sur la [page d'accueil](/#services).
