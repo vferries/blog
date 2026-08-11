@@ -98,8 +98,12 @@ Le logo principal existe (`/images/logo.svg`) mais il manque :
   - **Deux itérations ont été nécessaires, et la première était de mon fait.** J'avais dérivé les variantes en passant les remplissages à `none`, croyant vider un disque décoratif. Ce remplissage faisait l'occlusion : sans lui, les anneaux traversaient les sourcils et les globes continuaient dessous. Le logo couleur ne découpe rien non plus — le cercle de l'œil y est un chemin fermé complet, c'est le sourcil **plein** dessiné par-dessus qui masque. Un monochrome portable n'ayant pas de peinture opaque, la coupe devait passer dans la géométrie. Détaillé dans `DESIGN.md`
   - Vérifié au rendu : navy sur crème / blanc / cyan / gris clair, blanc sur navy / noir / blue / gris t-shirt. Une seule couleur dans chaque fichier hors machinerie du `<mask>`
   - **Plancher à 48px** pour les monochromes (contre 32 pour la couleur) : à 32 les anneaux concentriques fusionnent, le trait n'ayant pas la présence d'une masse pleine. `DESIGN.md` corrigé en conséquence
-- [ ] **Wordmark horizontal** : logo à gauche + "En Veille" en Fraunces 500 à droite — pour les en-têtes
-- [ ] **Version "stacked"** : logo en haut + "En Veille" en dessous — pour avatars carrés (Twitch, X, GitHub)
+- [x] **Wordmark horizontal** → `enveille-logo-wordmark.svg`, livré le 2026-08-11
+- [x] **Version "stacked"** → `enveille-logo-stacked.svg`, même jour. **Mais pas pour Twitch ni X** : ces deux-là rognent les avatars en cercle et le texte y est coupé (vérifié au rendu). Elle sert GitHub, l'imprimé, les formats carrés. Pour un avatar rond, la chouette seule
+  - Composés **par script** plutôt que dans Figma : le texte est vectorisé depuis le TTF de Fraunces via `fontTools` + `uharfbuzz` (crénage compris), donc zéro `<text>`, zéro `@font-face`, aucune dépendance de fonte dans les fichiers
+  - Aucune proportion inventée : Fraunces 500 / `opsz` 48 / texte à la moitié du logo / gouttière au tiers viennent de `.ev-nav__brand` (`enveille.css:175-182`), qui compose déjà ce wordmark en HTML. Le rendu vectorisé a été comparé à celui de Chrome sous les mêmes réglages — c'est ce qui a révélé que l'axe `WONK` doit valoir **0** et non son défaut de 1, Google Fonts servant la variante non-wonky
+  - La version empilée a fallu recaler : au rapport de la nav, le texte fait presque deux fois la largeur du logo et le bloc sort plus large que haut. Texte calé sur la largeur du logo, gouttière à une largeur d'œil
+  - **Le script n'est pas committé** — il demande `fontTools`, `uharfbuzz` et le TTF de Fraunces pour un asset qu'on ne régénère pas. À redemander si un jour il faut des wordmarks monochromes
 
 Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque export Figma.
 
