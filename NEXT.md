@@ -22,12 +22,12 @@
   - Réserve connue : GitHub Pages ne reconstruit qu'au push, le chiffre se met donc à jour au premier commit de l'année, pas au 1er janvier
   - **"2011" reste juste partout où il désigne le blog** et n'a pas été touché : `_config.yml:11`, `_pages/404.md:15`, `about.md:10`
   - Une seule carte OG à régénérer : `generate-posts.py` passe `eyebrow=Billet`, l'eyebrow par défaut ne vit que dans `images/og-card.png`
-- [ ] Caler les **durées/formats des 5 services** sur la réalité commerciale (actuellement inventées)
-  - 01 Accompagnement : 6 mois min · 3-4 jours/sem · IRL partiel
+- [x] Caler les **durées/formats des 5 services** sur la réalité commerciale → **revues ligne par ligne le 2026-08-11 et validées telles quelles**. Elles n'étaient donc pas "inventées" au sens de fausses : elles correspondent à la pratique. Aucune modification
+  - 01 Accompagnement : 6 mois min · 3-4 jours/sem · IRL partiel — le `3-4 jours/sem` est le seul chiffre du site qui engage le planning hebdo, et il explique matériellement comment le développement ponctuel tient à côté
   - 02 Audit : 2 semaines · livrable écrit
   - 03 IA dev : 4-8 semaines · livrable tournant
-  - 04 Dev ponctuel : 2-6 semaines · forfait possible
-  - 05 Formation/mentorat : 1j intensif · cycle 4×2h · mentorat hebdo
+  - 04 Dev ponctuel : 2-6 semaines · forfait possible — durée **calendaire**, cohérente avec une réalisation en parallèle d'une mission en cours
+  - 05 Formation/mentorat : 1j intensif · cycle 4×2h · mentorat hebdo — ce sont des formats, pas des durées
 - [x] Service 04 : "Moins cher qu'un recrutement" → remplacé le 2026-08-11 par "**Vous gardez le code, les tests et la doc.**" C'était le seul argument du site à vendre un prix comparé quand les 4 autres services vendent un résultat — et se positionner sur le prix invite à te comparer à un tarif journalier
   - **On ne dit rien du "comment"** (soir et weekend, en parallèle des missions) : arbitré, le client achète un livrable et un délai, pas un planning. La méta reste "2-6 semaines · forfait possible"
 - [x] Stat **"8 technos en production"** → remplacée le 2026-08-11 par **"10 ans en indé"**. Le chiffre était mou *et* démenti sur place : le mur de logos juste en dessous en aligne 14. L'ancienneté en indépendant, elle, n'était affichée nulle part
