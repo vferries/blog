@@ -103,7 +103,8 @@ Le logo principal existe (`/images/logo.svg`) mais il manque :
   - Composés **par script** plutôt que dans Figma : le texte est vectorisé depuis le TTF de Fraunces via `fontTools` + `uharfbuzz` (crénage compris), donc zéro `<text>`, zéro `@font-face`, aucune dépendance de fonte dans les fichiers
   - Aucune proportion inventée : Fraunces 500 / `opsz` 48 / texte à la moitié du logo / gouttière au tiers viennent de `.ev-nav__brand` (`enveille.css:175-182`), qui compose déjà ce wordmark en HTML. Le rendu vectorisé a été comparé à celui de Chrome sous les mêmes réglages — c'est ce qui a révélé que l'axe `WONK` doit valoir **0** et non son défaut de 1, Google Fonts servant la variante non-wonky
   - La version empilée a fallu recaler : au rapport de la nav, le texte fait presque deux fois la largeur du logo et le bloc sort plus large que haut. Texte calé sur la largeur du logo, gouttière à une largeur d'œil
-  - **Le script n'est pas committé** — il demande `fontTools`, `uharfbuzz` et le TTF de Fraunces pour un asset qu'on ne régénère pas. À redemander si un jour il faut des wordmarks monochromes
+- [x] **Wordmarks monochromes** → les deux verrouillages existent aussi en blanc et en navy, composés sur le logo au trait : `enveille-logo-{wordmark,stacked}-mono-{white,navy}.svg`. Une seule couleur par fichier, vérifié. Le blanc est celui qui va sur une bannière Twitch ou une slide sombre
+  - **Le script n'est pas committé** — il demande `fontTools`, `uharfbuzz` et le TTF de Fraunces pour des assets qu'on ne régénère pas. À redemander si la marque change de nom ou de fonte
 
 Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque export Figma.
 
