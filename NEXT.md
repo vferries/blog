@@ -91,8 +91,12 @@ Le logo principal existe (`/images/logo.svg`) mais il manque :
 - [x] **Favicon SVG** pour les navigateurs récents
 - [x] **Logo PNG à jour** pour OG image (512×512 actuellement, à partir d'`android-chrome-512.png`)
 - [x] **OG card dédié 1200×630** : `images/og-card.png` (fond cream, Fraunces italique, logo). Régénérable via `./tools/og-card/generate.sh`
-- [ ] **Version monochrome blanche** pour fonds sombres (t-shirts, stickers, watermark)
-- [ ] **Version monochrome navy** pour impression monochrome
+- [x] **Version monochrome blanche** pour fonds sombres (t-shirts, stickers, watermark) → `enveille-logo-mono-white.svg`, livrée le 2026-08-11
+- [x] **Version monochrome navy** pour impression monochrome → `enveille-logo-mono-navy.svg`, même jour
+  - Source : un export Figma **noir** fourni par Vincent, où les yeux sont déjà arbitrés en négatif — la seule vraie décision de dessin. Passé par `clean_figma_svg.py` (12 530 → 11 015 octets, rendu identique vérifié), `width`/`height` retirés de la racine pour s'aligner sur `enveille-logo-final.svg`
+  - Les deux déclinaisons en sont **dérivées par substitution**, pas redessinées. Le noir n'est pas committé : il est reproductible à tout moment depuis l'un des deux
+  - Deux pièges rencontrés, tous les deux documentés dans `DESIGN.md` : le `<mask>` des ailes porte des attributs de couleur qui ne peignent rien (un remplacement global transforme la chouette en masse pleine), et vider les remplissages doit se faire **avant** de recolorer, sinon le bec disparaît. Les deux ont été vus au rendu, pas devinés
+  - Vérifié sous Chrome : navy sur crème / blanc / cyan, blanc sur navy / noir / blue / gris t-shirt
 - [ ] **Wordmark horizontal** : logo à gauche + "En Veille" en Fraunces 500 à droite — pour les en-têtes
 - [ ] **Version "stacked"** : logo en haut + "En Veille" en dessous — pour avatars carrés (Twitch, X, GitHub)
 

@@ -13,16 +13,35 @@ Système de design partagé entre les différentes surfaces de la marque En Veil
 | Variante | Fichier | Usage |
 |---|---|---|
 | Logo principal | `enveille-logo-final.svg` | Partout par défaut |
-| _(à produire)_ | `enveille-logo-mono-white.svg` | Fond sombre, impression monochrome |
+| Monochrome blanc | `enveille-logo-mono-white.svg` | Fonds sombres : t-shirts, stickers, watermark |
+| Monochrome navy | `enveille-logo-mono-navy.svg` | Impression monochrome |
+| Favicon 32px et + | `favicon-main.svg` | Onglet, PWA — voir `assets/README.md` |
+| Favicon 16px | `favicon-small.svg` | Pixel art, très petits formats |
 | _(à produire)_ | `enveille-logo-wordmark.svg` | En-têtes avec texte "En Veille" |
-| _(à produire)_ | `enveille-favicon.svg` / `.ico` | Favicon optimisé petits formats |
+| _(à produire)_ | `enveille-logo-stacked.svg` | Avatars carrés (GitHub), supports imprimés |
 
 ### Règles d'usage
 
 - **Espace de respect** : laisser au minimum la largeur d'un œil de la chouette tout autour du logo.
-- **Taille minimale** : 32px (en dessous, utiliser le favicon simplifié).
+- **Taille minimale** : 32px pour le logo couleur, **48px pour les monochromes** (en dessous, utiliser le favicon simplifié). Vérifié au rendu : à 32px les anneaux concentriques du monochrome fusionnent, là où la version couleur tient encore — sa masse pleine lui donne une présence que le trait n'a pas.
 - **Ne pas** : changer les couleurs arbitrairement, déformer les proportions, ajouter des effets (ombre, lueur, dégradé), faire tourner.
 - **Export Figma** : toujours passer le SVG par `clean_figma_svg.py` avant commit (le script corrige les artefacts d'export Figma : micro-segments, zigzags, masques).
+
+### Les monochromes
+
+Ce sont des **dessins au trait à géométrie découpée**. Les yeux et leurs symboles power sont préservés en négatif — c'est la signature de la marque, elle ne survit pas à un aplat. Surtout : les anneaux extérieurs et les cercles des globes sont **réellement interrompus** là où les sourcils passent devant.
+
+C'est le point qui compte. Dans le logo couleur, rien n'est découpé : le cercle de l'œil est un chemin fermé complet, et la hiérarchie vient de ce que le sourcil est une forme **pleine** (`fill="#001B3D"`) dessinée par-dessus, qui peint sur ce qu'il y a derrière. Un monochrome ne peut pas faire ça — s'il doit tenir sur n'importe quel fond, il n'a pas de peinture opaque à sa disposition. La coupe doit donc être dans la géométrie, faite au booléen dans Figma (contours vectorisés puis soustraction), pas simulée par un remplissage.
+
+**Le test** : le fichier ne doit contenir qu'une seule couleur.
+
+```bash
+grep -o 'fill="[^"]*"\|stroke="[^"]*"' enveille-logo-mono-white.svg | sort -u
+```
+
+S'il en sort un blanc alors qu'on attend du navy, c'est de la peinture qui masque : le logo cassera au premier fond coloré. Seule exception légitime, la machinerie du `<mask>` des sourcils (`<mask fill="black">` et son `<rect fill="white">`) — elle ne peint rien. C'est aussi pourquoi une dérivation par substitution de couleur doit **épargner le bloc `<mask>`** : un remplacement global l'emporte et le corps de la chouette devient une masse pleine.
+
+Une fois la géométrie découpée, décliner est trivial : une substitution de couleur, rien d'autre.
 
 ---
 
