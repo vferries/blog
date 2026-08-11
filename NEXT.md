@@ -15,7 +15,12 @@
 
 - [ ] Valider ou réécrire le **lede du hero** (actuel : "Je suis Vincent. J'accompagne les équipes tech sur leurs projets de fond — backend JVM, front-end JS/TS, Android, et l'intégration concrète de l'IA dans les workflows de dev. Mission longue de préférence.")
   - "Mission longue de préférence" → renforce l'option 01 trop tôt, ou OK assumé ?
-- [ ] Trancher entre **"depuis 2011"** (tag hero) et **"15 ans"** (stat + about) — cohérence formulation
+- [x] Trancher entre **"depuis 2011"** (tag hero) et **"15 ans"** (stat + about) → tranché le 2026-08-11, et les deux chiffres étaient **faux**, pas juste incohérents. Vincent développe depuis 2007 (19 ans) et est indépendant depuis 2016 (10 ans) : "15 ans" ne correspondait à rien, et "depuis 2011" datait le **blog**, pas le métier ni le statut
+  - Tag hero et eyebrow de la carte OG passent à **"depuis 2007"**. La lecture "indé depuis 2007" est désambiguïsée par la stat "10 ans en indé" juste en dessous — c'est le couple qui rend le tag lisible, pas le tag seul
+  - Les anciennetés sont **calculées au build** (`site.time | date: '%Y' | minus: 2007`), plus jamais écrites en dur : c'est exactement comme ça que "15 ans" a dérivé sans que personne ne le voie. Vérifié sur le build, Liquid rend bien des entiers (`19`, `10`) et non des décimaux
+  - Réserve connue : GitHub Pages ne reconstruit qu'au push, le chiffre se met donc à jour au premier commit de l'année, pas au 1er janvier
+  - **"2011" reste juste partout où il désigne le blog** et n'a pas été touché : `_config.yml:11`, `_pages/404.md:15`, `about.md:10`
+  - Une seule carte OG à régénérer : `generate-posts.py` passe `eyebrow=Billet`, l'eyebrow par défaut ne vit que dans `images/og-card.png`
 - [ ] Caler les **durées/formats des 5 services** sur la réalité commerciale (actuellement inventées)
   - 01 Accompagnement : 6 mois min · 3-4 jours/sem · IRL partiel
   - 02 Audit : 2 semaines · livrable écrit
@@ -23,7 +28,8 @@
   - 04 Dev ponctuel : 2-6 semaines · forfait possible
   - 05 Formation/mentorat : 1j intensif · cycle 4×2h · mentorat hebdo
 - [ ] Service 04 : "Moins cher qu'un recrutement" → argument banal, à challenger
-- [ ] Stat **"8 technos en production"** : vague, à étayer ou retirer
+- [x] Stat **"8 technos en production"** → remplacée le 2026-08-11 par **"10 ans en indé"**. Le chiffre était mou *et* démenti sur place : le mur de logos juste en dessous en aligne 14. L'ancienneté en indépendant, elle, n'était affichée nulle part
+  - Les 4 stats sont réordonnées pour grouper les deux durées : 19 ans dans le dev · 10 ans en indé · 46 posts · 5 formats
 - [ ] Stack frontend : `Vue, Angular, Jest` annoncés "tous les jours" — vraiment ?
 - [ ] Stack mobile : `AOSP` — confirmer ou retirer si aspirationnel
 - [ ] Section about (landing + page) : "**coups de main bénévoles**" reste vague — étayer ou retirer
