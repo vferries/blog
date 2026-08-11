@@ -9,7 +9,12 @@
 ### Réalisations — suites
 
 - [x] Corriger les faits marqués `# à confirmer` dans `_data/realisations.yml` (années, stacks) — confirmés 2026-07-28 (Escalire : Astro + Sveltia CMS · Just Bordas : HTML/CSS/JS pur · Cuisine : Astro + Compose ; les trois datent de 2026)
-- [ ] Valider le copy de la section et de la page (ton, crédibilité commerciale) — Vincent
+- [x] Valider le copy de la section et de la page (ton, crédibilité commerciale) → revu le 2026-08-11, trois retouches
+  - Le titre landing perd son **"aussi"** ("Des sites faits main, aussi") : le mot était dit deux fois en trois lignes, titre *et* sous-titre, et le titre divergeait de celui de `/realisations/`. Le "En Veille, c'est aussi" du sous-titre est conservé — c'est lui qui fait la couture avec les 5 services juste au-dessus
+  - **"Usine à gaz" était écrit trois fois** sur deux pages qui se lisent à la suite (landing, lede de la page, + "usine e-commerce" dans la story Escalire). Le lede de `/realisations/` passe à "sans plateforme à louer tous les mois" — plus concret pour un commerçant, ce qu'il craint c'est l'abonnement. Il reste une occurrence par page, avec des mots différents
+  - **"Voir les réalisations" → "Voir le détail de chaque projet"** : les deux grilles bouclent sur `site.data.realisations` **sans limite**, la landing affiche donc déjà les 3. Le bouton promettait d'autres références quand il ne donne que les stories longues et les stacks
+  - **Le projet perso "Recettes de cuisine" reste dans la grille client**, arbitré : `kind: Projet perso` est affiché dans la méta et assumé dans la story, et c'est la seule preuve publique de la chaîne Astro + Kotlin/Compose. À savoir quand même : un prospect qui compte voit 2 clients, et la `description` de la page ne cite qu'Escalire et Just Bordas
+  - Non touché car cohérent : la CTA de la page promet "ce qui est possible, en combien de temps, et pour combien" — c'est une promesse de devis, pas un argument de prix, donc sans conflit avec le "moins cher qu'un recrutement" retiré du service 04 le même jour
 
 ### Textes de la landing à affiner
 
