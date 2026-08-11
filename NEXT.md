@@ -93,10 +93,11 @@ Le logo principal existe (`/images/logo.svg`) mais il manque :
 - [x] **OG card dédié 1200×630** : `images/og-card.png` (fond cream, Fraunces italique, logo). Régénérable via `./tools/og-card/generate.sh`
 - [x] **Version monochrome blanche** pour fonds sombres (t-shirts, stickers, watermark) → `enveille-logo-mono-white.svg`, livrée le 2026-08-11
 - [x] **Version monochrome navy** pour impression monochrome → `enveille-logo-mono-navy.svg`, même jour
-  - Source : un export Figma **noir** fourni par Vincent, où les yeux sont déjà arbitrés en négatif — la seule vraie décision de dessin. Passé par `clean_figma_svg.py` (12 530 → 11 015 octets, rendu identique vérifié), `width`/`height` retirés de la racine pour s'aligner sur `enveille-logo-final.svg`
-  - Les deux déclinaisons en sont **dérivées par substitution**, pas redessinées. Le noir n'est pas committé : il est reproductible à tout moment depuis l'un des deux
-  - Deux pièges rencontrés, tous les deux documentés dans `DESIGN.md` : le `<mask>` des ailes porte des attributs de couleur qui ne peignent rien (un remplacement global transforme la chouette en masse pleine), et vider les remplissages doit se faire **avant** de recolorer, sinon le bec disparaît. Les deux ont été vus au rendu, pas devinés
-  - Vérifié sous Chrome : navy sur crème / blanc / cyan, blanc sur navy / noir / blue / gris t-shirt
+  - Source : un export Figma **noir à géométrie découpée** fourni par Vincent — anneaux et globes réellement interrompus au passage des sourcils. Passé par `clean_figma_svg.py` (14 233 → 12 483 octets), `width`/`height` retirés de la racine pour s'aligner sur `enveille-logo-final.svg`
+  - Les deux déclinaisons en sont **dérivées par substitution de couleur**, pas redessinées. Le noir n'est pas committé : reproductible depuis l'un des deux
+  - **Deux itérations ont été nécessaires, et la première était de mon fait.** J'avais dérivé les variantes en passant les remplissages à `none`, croyant vider un disque décoratif. Ce remplissage faisait l'occlusion : sans lui, les anneaux traversaient les sourcils et les globes continuaient dessous. Le logo couleur ne découpe rien non plus — le cercle de l'œil y est un chemin fermé complet, c'est le sourcil **plein** dessiné par-dessus qui masque. Un monochrome portable n'ayant pas de peinture opaque, la coupe devait passer dans la géométrie. Détaillé dans `DESIGN.md`
+  - Vérifié au rendu : navy sur crème / blanc / cyan / gris clair, blanc sur navy / noir / blue / gris t-shirt. Une seule couleur dans chaque fichier hors machinerie du `<mask>`
+  - **Plancher à 48px** pour les monochromes (contre 32 pour la couleur) : à 32 les anneaux concentriques fusionnent, le trait n'ayant pas la présence d'une masse pleine. `DESIGN.md` corrigé en conséquence
 - [ ] **Wordmark horizontal** : logo à gauche + "En Veille" en Fraunces 500 à droite — pour les en-têtes
 - [ ] **Version "stacked"** : logo en haut + "En Veille" en dessous — pour avatars carrés (Twitch, X, GitHub)
 
