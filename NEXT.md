@@ -13,8 +13,9 @@
 
 ### Textes de la landing à affiner
 
-- [ ] Valider ou réécrire le **lede du hero** (actuel : "Je suis Vincent. J'accompagne les équipes tech sur leurs projets de fond — backend JVM, front-end JS/TS, Android, et l'intégration concrète de l'IA dans les workflows de dev. Mission longue de préférence.")
-  - "Mission longue de préférence" → renforce l'option 01 trop tôt, ou OK assumé ?
+- [x] Valider ou réécrire le **lede du hero** → tranché le 2026-08-11 : la fin devient "Mission longue de préférence, **ponctuel possible**." Le reste du lede est validé tel quel
+  - **Le contexte commercial a bougé** : Vincent prend toujours quasi exclusivement des missions longues, mais cherche depuis peu à mettre en avant des développements plus courts, réalisés en parallèle d'une mission en cours. La restriction sèche du lede fermait exactement la porte qu'il veut ouvrir
+  - Le message "mission longue" est dit **trois fois** (lede, badge "la préférée" du service 01, `about.md:22`) : l'adoucir dans le lede ne le fait pas disparaître
 - [x] Trancher entre **"depuis 2011"** (tag hero) et **"15 ans"** (stat + about) → tranché le 2026-08-11, et les deux chiffres étaient **faux**, pas juste incohérents. Vincent développe depuis 2007 (19 ans) et est indépendant depuis 2016 (10 ans) : "15 ans" ne correspondait à rien, et "depuis 2011" datait le **blog**, pas le métier ni le statut
   - Tag hero et eyebrow de la carte OG passent à **"depuis 2007"**. La lecture "indé depuis 2007" est désambiguïsée par la stat "10 ans en indé" juste en dessous — c'est le couple qui rend le tag lisible, pas le tag seul
   - Les anciennetés sont **calculées au build** (`site.time | date: '%Y' | minus: 2007`), plus jamais écrites en dur : c'est exactement comme ça que "15 ans" a dérivé sans que personne ne le voie. Vérifié sur le build, Liquid rend bien des entiers (`19`, `10`) et non des décimaux
@@ -27,13 +28,15 @@
   - 03 IA dev : 4-8 semaines · livrable tournant
   - 04 Dev ponctuel : 2-6 semaines · forfait possible
   - 05 Formation/mentorat : 1j intensif · cycle 4×2h · mentorat hebdo
-- [ ] Service 04 : "Moins cher qu'un recrutement" → argument banal, à challenger
+- [x] Service 04 : "Moins cher qu'un recrutement" → remplacé le 2026-08-11 par "**Vous gardez le code, les tests et la doc.**" C'était le seul argument du site à vendre un prix comparé quand les 4 autres services vendent un résultat — et se positionner sur le prix invite à te comparer à un tarif journalier
+  - **On ne dit rien du "comment"** (soir et weekend, en parallèle des missions) : arbitré, le client achète un livrable et un délai, pas un planning. La méta reste "2-6 semaines · forfait possible"
 - [x] Stat **"8 technos en production"** → remplacée le 2026-08-11 par **"10 ans en indé"**. Le chiffre était mou *et* démenti sur place : le mur de logos juste en dessous en aligne 14. L'ancienneté en indépendant, elle, n'était affichée nulle part
   - Les 4 stats sont réordonnées pour grouper les deux durées : 19 ans dans le dev · 10 ans en indé · 46 posts · 5 formats
 - [x] Stack frontend : `Vue, Angular, Jest` — **confirmés le 2026-08-11**, c'est du vécu. Le bloc terminal se lit comme un inventaire de compétences, pas comme le contenu du sprint en cours. Rien à changer
 - [x] Stack mobile : `AOSP` — **confirmé le 2026-08-11**, réel. Reste aux deux endroits (mur de logos + `const mobile`)
 - [x] Section about (landing + page) : "**coups de main bénévoles**" → étayé le 2026-08-11. Ça couvre écoles et étudiants, assos toulousaines, open source et communautés locales. La landing garde la version courte ("écoles, assos, open source"), `/about/` déplie les trois
-- [x] Page `/about/` : 4 items vs 5 → **volontaire, mais l'intro le disait mal**. "Ce que je fais le plus souvent" laissait croire à un oubli ; c'est devenu "Le cœur de mes missions", qui assume la sélection. La ligne suivante renvoie déjà vers `/#services` pour l'offre complète. Le développement ponctuel reste hors liste, cohérent avec les "missions longues" affirmées juste au-dessus
+- [x] Page `/about/` : 4 items vs 5 → **volontaire, mais l'intro le disait mal**. "Ce que je fais le plus souvent" laissait croire à un oubli ; c'est devenu "Le cœur de mes missions", qui assume la sélection. La ligne suivante renvoie déjà vers `/#services` pour l'offre complète. 
+  - **Rouvert dans la foulée le même jour** : la liste passe bien à 5. Le premier arbitrage reposait sur "le ponctuel n'est pas ce que tu fais le plus" — toujours vrai, mais ce n'est plus ce que Vincent veut mettre en avant. L'item est formulé comme l'offre en plus ("en parallèle d'une mission longue"), donc "Le cœur de mes missions" reste juste. Ordre aligné sur la landing (01 → 05)
 
 ### Cohérence des partages sociaux (priorité haute, en prod *aujourd'hui*)
 
