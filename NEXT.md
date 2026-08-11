@@ -30,10 +30,10 @@
 - [ ] Service 04 : "Moins cher qu'un recrutement" → argument banal, à challenger
 - [x] Stat **"8 technos en production"** → remplacée le 2026-08-11 par **"10 ans en indé"**. Le chiffre était mou *et* démenti sur place : le mur de logos juste en dessous en aligne 14. L'ancienneté en indépendant, elle, n'était affichée nulle part
   - Les 4 stats sont réordonnées pour grouper les deux durées : 19 ans dans le dev · 10 ans en indé · 46 posts · 5 formats
-- [ ] Stack frontend : `Vue, Angular, Jest` annoncés "tous les jours" — vraiment ?
-- [ ] Stack mobile : `AOSP` — confirmer ou retirer si aspirationnel
-- [ ] Section about (landing + page) : "**coups de main bénévoles**" reste vague — étayer ou retirer
-- [ ] Page `/about/` : la liste des prestations a 4 items vs 5 sur la landing (manque "Développement ponctuel & POC") — volontaire ou à compléter ?
+- [x] Stack frontend : `Vue, Angular, Jest` — **confirmés le 2026-08-11**, c'est du vécu. Le bloc terminal se lit comme un inventaire de compétences, pas comme le contenu du sprint en cours. Rien à changer
+- [x] Stack mobile : `AOSP` — **confirmé le 2026-08-11**, réel. Reste aux deux endroits (mur de logos + `const mobile`)
+- [x] Section about (landing + page) : "**coups de main bénévoles**" → étayé le 2026-08-11. Ça couvre écoles et étudiants, assos toulousaines, open source et communautés locales. La landing garde la version courte ("écoles, assos, open source"), `/about/` déplie les trois
+- [x] Page `/about/` : 4 items vs 5 → **volontaire, mais l'intro le disait mal**. "Ce que je fais le plus souvent" laissait croire à un oubli ; c'est devenu "Le cœur de mes missions", qui assume la sélection. La ligne suivante renvoie déjà vers `/#services` pour l'offre complète. Le développement ponctuel reste hors liste, cohérent avec les "missions longues" affirmées juste au-dessus
 
 ### Cohérence des partages sociaux (priorité haute, en prod *aujourd'hui*)
 
