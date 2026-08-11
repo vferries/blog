@@ -17,8 +17,8 @@ Système de design partagé entre les différentes surfaces de la marque En Veil
 | Monochrome navy | `enveille-logo-mono-navy.svg` | Impression monochrome |
 | Favicon 32px et + | `favicon-main.svg` | Onglet, PWA — voir `assets/README.md` |
 | Favicon 16px | `favicon-small.svg` | Pixel art, très petits formats |
-| _(à produire)_ | `enveille-logo-wordmark.svg` | En-têtes avec texte "En Veille" |
-| _(à produire)_ | `enveille-logo-stacked.svg` | Avatars carrés (GitHub), supports imprimés |
+| Wordmark horizontal | `enveille-logo-wordmark.svg` | En-têtes, bannières, slides |
+| Wordmark empilé | `enveille-logo-stacked.svg` | Formats carrés (GitHub), supports imprimés |
 
 ### Règles d'usage
 
@@ -42,6 +42,18 @@ grep -o 'fill="[^"]*"\|stroke="[^"]*"' enveille-logo-mono-white.svg | sort -u
 S'il en sort un blanc alors qu'on attend du navy, c'est de la peinture qui masque : le logo cassera au premier fond coloré. Seule exception légitime, la machinerie du `<mask>` des sourcils (`<mask fill="black">` et son `<rect fill="white">`) — elle ne peint rien. C'est aussi pourquoi une dérivation par substitution de couleur doit **épargner le bloc `<mask>`** : un remplacement global l'emporte et le corps de la chouette devient une masse pleine.
 
 Une fois la géométrie découpée, décliner est trivial : une substitution de couleur, rien d'autre.
+
+### Les wordmarks
+
+Le texte y est **vectorisé** : ni `<text>`, ni `@font-face`, aucune dépendance à Fraunces. C'est obligatoire — un SVG autonome ne peut pas emprunter les fontes de la page qui l'affiche, et chargé en `<img>`, en PDF ou sur une plateforme tierce, un `<text font-family="Fraunces">` retombe sur une serif par défaut.
+
+Corollaire : **le site n'utilise aucun de ces deux fichiers**. Sa nav compose déjà logo + « En Veille » en HTML (`_includes/ev-nav.html`), où la fonte vient du CSS — donc texte sélectionnable, typo qui suit les réglages du visiteur, pas de dessin figé. Les wordmarks SVG servent les surfaces où CSS n'est pas là.
+
+Les proportions ne sont pas arbitraires, elles reprennent celles de cette nav (`enveille.css:175-182`) : Fraunces **500**, `opsz` **48**, texte à la moitié de la hauteur du logo, gouttière au tiers. Le rendu vectorisé a été comparé pixel à pixel à celui de Chrome avec les mêmes réglages — l'axe `WONK` doit valoir **0**, et non le `1` par défaut de la fonte, parce que c'est ce que sert Google Fonts.
+
+**La version empilée a son propre rapport.** Celui de la nav y donne un texte presque deux fois plus large que le logo, donc un bloc plus large que haut, inutilisable en carré. Le texte y est calé sur la largeur du logo et la gouttière vaut une largeur d'œil — l'espace de respect défini plus haut.
+
+**Ni l'un ni l'autre ne convient à un avatar Twitch ou X** : ces plateformes rognent en cercle et le texte y passe à la trappe (vérifié). Pour un avatar rond, la chouette seule.
 
 ---
 
