@@ -21,7 +21,7 @@ Deuxième sens : le **mode standby**. Quand on éteint un appareil électrique, 
 
 D'abord salarié, longtemps, dans des contextes très différents — du grand groupe au plus petit produit. Puis indépendant, et **En Veille** est devenue mon véhicule. Aujourd'hui je travaille presque exclusivement sur des **missions longues** : j'arrive dans une équipe, je comprends le contexte et les gens, je pose ma pierre, je transmets, je laisse l'équipe grandie.
 
-Ce que je fais le plus souvent :
+Le cœur de mes missions :
 
 - **Accompagnement d'équipe** sur 6 mois et plus, à temps partagé
 - **Audits & architecture** quand un regard extérieur est utile pour trancher
@@ -36,7 +36,7 @@ Pragmatisme avant dogmatisme. Les bonnes pratiques servent les équipes, pas l'i
 
 Et oui, j'utilise l'IA tous les jours. Pas pour remplacer le cerveau — pour aller plus vite là où c'est pertinent. La nuance n'est pas anodine.
 
-À côté du travail facturé, je streame parfois sur [twitch.tv/EnVeilleCode](https://www.twitch.tv/EnVeilleCode) (Advent of Code surtout, bidouilles en live), je donne des coups de main bénévoles, et j'écris ici quand j'ai un vrai angle à partager.
+À côté du travail facturé, je streame parfois sur [twitch.tv/EnVeilleCode](https://www.twitch.tv/EnVeilleCode) (Advent of Code surtout, bidouilles en live), je donne des coups de main bénévoles — écoles et étudiants, assos toulousaines, open source et communautés locales — et j'écris ici quand j'ai un vrai angle à partager.
 
 ## On se parle ?
 
