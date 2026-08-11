@@ -19,6 +19,7 @@ Système de design partagé entre les différentes surfaces de la marque En Veil
 | Favicon 16px | `favicon-small.svg` | Pixel art, très petits formats |
 | Wordmark horizontal | `enveille-logo-wordmark.svg` | En-têtes, bannières, slides |
 | Wordmark empilé | `enveille-logo-stacked.svg` | Formats carrés (GitHub), supports imprimés |
+| Wordmarks monochromes | `enveille-logo-{wordmark,stacked}-mono-{white,navy}.svg` | Mêmes usages sur fond sombre / en impression |
 
 ### Règles d'usage
 
@@ -54,6 +55,8 @@ Les proportions ne sont pas arbitraires, elles reprennent celles de cette nav (`
 **La version empilée a son propre rapport.** Celui de la nav y donne un texte presque deux fois plus large que le logo, donc un bloc plus large que haut, inutilisable en carré. Le texte y est calé sur la largeur du logo et la gouttière vaut une largeur d'œil — l'espace de respect défini plus haut.
 
 **Ni l'un ni l'autre ne convient à un avatar Twitch ou X** : ces plateformes rognent en cercle et le texte y passe à la trappe (vérifié). Pour un avatar rond, la chouette seule.
+
+Les deux verrouillages existent aussi en monochrome blanc et navy, composés sur le logo au trait — mêmes proportions, une seule couleur par fichier. C'est le blanc qui va sur une bannière Twitch ou une slide sombre.
 
 ---
 
