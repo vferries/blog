@@ -6,6 +6,13 @@ permalink: /
 author_profile: false
 ---
 
+{%- comment -%}
+Anciennetés calculées au build plutôt qu'écrites en dur : la valeur précédente
+avait dérivé de plusieurs années sans que personne ne s'en aperçoive.
+{%- endcomment -%}
+{%- assign annees_dev = site.time | date: '%Y' | minus: 2007 -%}
+{%- assign annees_indep = site.time | date: '%Y' | minus: 2016 -%}
+
 <div class="ev-landing">
 
 <div class="ev-progress"><div class="ev-progress__bar"></div></div>
@@ -35,7 +42,7 @@ author_profile: false
     <div class="ev-hero__scrim" aria-hidden="true"></div>
     <div class="ev-hero__grid">
       <div>
-        <div class="ev-hero__tag">Dev indé · Toulouse · depuis 2011</div>
+        <div class="ev-hero__tag">Dev indé · Toulouse · depuis 2007</div>
         <h1 class="ev-hero__title">
           Dev senior,<br>
           posture <em>tranquille</em>.<br>
@@ -68,16 +75,16 @@ author_profile: false
 <!-- STATS -->
 <section class="ev-stats">
   <div class="ev-stat">
-    <span class="ev-stat__num" data-count="15"><em>15</em><span class="unit">ans</span></span>
+    <span class="ev-stat__num" data-count="{{ annees_dev }}"><em>{{ annees_dev }}</em><span class="unit">ans</span></span>
     <span class="ev-stat__label">dans le dev</span>
+  </div>
+  <div class="ev-stat">
+    <span class="ev-stat__num" data-count="{{ annees_indep }}"><em>{{ annees_indep }}</em><span class="unit">ans</span></span>
+    <span class="ev-stat__label">en indé</span>
   </div>
   <div class="ev-stat">
     <span class="ev-stat__num" data-count="{{ site.posts | size }}"><em>{{ site.posts | size }}</em><span class="unit">posts</span></span>
     <span class="ev-stat__label">sur le blog</span>
-  </div>
-  <div class="ev-stat">
-    <span class="ev-stat__num" data-count="8"><em>8</em><span class="unit">technos</span></span>
-    <span class="ev-stat__label">en production</span>
   </div>
   <div class="ev-stat">
     <span class="ev-stat__num" data-count="5"><em>5</em><span class="unit">formats</span></span>
@@ -90,7 +97,7 @@ author_profile: false
   <div class="ev-intro ev-reveal">
     <p class="ev-intro__kicker">en quelques mots</p>
     <h2>Pas un <em>ninja full-stack</em>.<br>Un dev qui <em>livre</em>, et qui laisse l'équipe <em>grandie</em>.</h2>
-    <p>Le métier, je le pratique depuis quinze ans. La veille, la réflexion, la transmission — ce ne sont pas des à-côtés, c'est le cœur du job.</p>
+    <p>Le métier, je le pratique depuis {{ annees_dev }} ans. La veille, la réflexion, la transmission — ce ne sont pas des à-côtés, c'est le cœur du job.</p>
     <p>Et oui, j'utilise l'IA tous les jours. Pas pour remplacer le cerveau, pour aller plus vite là où c'est pertinent. Grosse différence.</p>
   </div>
 
