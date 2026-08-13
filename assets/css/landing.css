@@ -304,6 +304,7 @@ body.landing #main {
   --ev-border:        rgba(241, 235, 217, 0.18);
   --ev-bg-subtle:     rgba(6, 9, 26, 0.55);
   --ev-blue:          #43CFD6;
+  --ev-focus:         var(--brand-cyan);
   --ev-primary:       var(--brand-cyan);
   --ev-primary-hover: var(--cyan-200);
   --ev-on-primary:    var(--brand-navy);
@@ -1033,6 +1034,8 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
   color: #F1EBD9;
   position: relative; overflow: hidden;
   box-shadow: 12px 12px 0 var(--ev-blue);
+  /* Carte navy quel que soit le scheme : focus cyan comme le hero */
+  --ev-focus: var(--brand-cyan);
 }
 @media (prefers-color-scheme: dark) {
   .ev-cta {
