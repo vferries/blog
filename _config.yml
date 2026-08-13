@@ -20,6 +20,13 @@ twitter:
   username: VincentFERRIES
 minimal_mistakes_skin: default
 search: true
+# Liste vide mais présente : elle remplace le main.min.js du thème (jQuery +
+# plugins tous morts ici — SmoothScroll neutralisé par nav.js, GreedyNav sans
+# cible depuis le shadow masthead, MagnificPopup/Gumshoe/FitVids sans
+# consommateur, FitVids remplacé par une règle aspect-ratio d'enveille.css).
+# Le toggle de recherche vit dans nav.js, le câblage lunr dans ev-search.js,
+# chargés au premier clic sur la loupe.
+footer_scripts: []
 
 # Build settings
 markdown:    kramdown

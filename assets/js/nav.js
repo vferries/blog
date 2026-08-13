@@ -74,11 +74,12 @@
   })();
 
   // ==========================================================
-  // RECHERCHE — état ARIA + fermeture Escape
-  // Le panneau .search-content et son toggle viennent du thème
-  // (main.min.js s'accroche à .search__toggle) : il bascule les classes
-  // mais n'expose aucun état et n'écoute pas Escape. Le bouton étant à
-  // nous (shadow masthead), on complète ici sans toucher au thème.
+  // RECHERCHE — toggle, état ARIA, Escape, moteur paresseux
+  // Le panneau .search-content vient du thème, mais plus aucun script MM
+  // ne tourne (footer_scripts a retiré main.min.js — jQuery et plugins
+  // morts) : le toggle vit ici, et le moteur (lunr.min, lunr-store,
+  // ev-search) n'est chargé qu'à la première ouverture — 57 Ko + parse
+  // épargnés partout ailleurs.
   // ==========================================================
   (function initSearchToggle() {
     const btn = document.querySelector('.ev-nav__search');
@@ -86,16 +87,49 @@
     if (!btn || !panel) return;
     if (!panel.id) panel.id = 'search-content';
     btn.setAttribute('aria-controls', panel.id);
-    // setTimeout(0) : le handler du thème (jQuery) et le nôtre courent sur
-    // le même clic, on relit la classe une fois tout le monde passé.
-    const sync = () => btn.setAttribute('aria-expanded', String(panel.classList.contains('is--visible')));
-    btn.addEventListener('click', () => setTimeout(sync, 0));
+    const content = document.querySelector('.initial-content');
+    const input = panel.querySelector('input#search');
+
+    let enginePromise = null;
+    const loadScript = (src) => new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = () => reject(new Error('échec de chargement : ' + src));
+      document.head.appendChild(s);
+    });
+    // lunr-store définit `store`, consommé par ev-search : ordre strict.
+    // Chemins en dur : le site est servi à la racine (cf. ev-nav.html).
+    const ensureEngine = () => {
+      if (!enginePromise) {
+        enginePromise = loadScript('/assets/js/lunr/lunr.min.js')
+          .then(() => loadScript('/assets/js/lunr/lunr-store.js'))
+          .then(() => loadScript('/assets/js/ev-search.js'))
+          .catch((err) => {
+            enginePromise = null; // on retentera au prochain clic
+            console.warn('[ev-nav] moteur de recherche non chargé', err);
+          });
+      }
+      return enginePromise;
+    };
+
+    const setOpen = (open) => {
+      panel.classList.toggle('is--visible', open);
+      if (content) content.classList.toggle('is--hidden', open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (open) {
+        ensureEngine();
+        // Le markup MM livre l'input en tabindex="-1" (panneau caché) :
+        // on le rend au flux de tabulation une fois visible.
+        if (input) { input.tabIndex = 0; input.focus(); }
+      }
+    };
+    btn.addEventListener('click', () => setOpen(!panel.classList.contains('is--visible')));
     window.addEventListener('keydown', (e) => {
       if (e.key !== 'Escape' || !panel.classList.contains('is--visible')) return;
-      btn.click(); // repasse par le toggle du thème : rétablit .initial-content
-      setTimeout(() => { sync(); btn.focus(); }, 0);
+      setOpen(false);
+      btn.focus();
     });
-    sync();
   })();
 
   // ==========================================================

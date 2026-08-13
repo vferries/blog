@@ -1,0 +1,9 @@
+{% comment %}
+  Shadow du partial Minimal Mistakes 4.28.0 (6ᵉ) — à rediffer à chaque bump
+  de remote_theme. Upstream émet ici les 3 <script> lunr (lunr.min.js,
+  lunr-store.js, lunr-en.js) en dur sur chaque page MM : 57 Ko + parse pour
+  un panneau qui ne s'ouvre qu'au clic — et lunr-en.js dépend de jQuery,
+  parti avec main.min.js (footer_scripts dans _config.yml).
+  Ici : rien. nav.js (initSearchToggle) charge lunr.min.js, lunr-store.js
+  puis notre câblage vanilla assets/js/ev-search.js à la première ouverture.
+{% endcomment %}
