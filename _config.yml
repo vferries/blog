@@ -71,7 +71,9 @@ plugins:
 # Site owner
 author:
   name: Vincent Ferries
-  avatar: /images/profile_square.jpg
+  # Variante 220px dédiée (affichée 110px max par MM) — profile_square.jpg
+  # (800px, 69 Ko) reste la source de la photo .ev-photo de la landing
+  avatar: /images/profile_avatar.jpg
   bio: "Dev indé · JVM · JS/TS · Android · IA dans le dev · Toulouse"
   links:
     - label: "Services"
