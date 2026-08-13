@@ -631,8 +631,10 @@ i[class*="fa-"] {
   display: inline-block;
   width: 1.125em; height: 1em;
   background-color: currentColor;
-  -webkit-mask: var(--fa-icon) center / contain no-repeat;
-  mask: var(--fa-icon) center / contain no-repeat;
+  /* Repli : un fa-* hors des 13 glyphes ci-dessous rend invisible
+     (masque SVG vide) plutôt qu'un carré plein currentColor */
+  -webkit-mask: var(--fa-icon, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>")) center / contain no-repeat;
+  mask: var(--fa-icon, url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>")) center / contain no-repeat;
   vertical-align: -0.125em;
 }
 .fa-fw { width: 1.25em; }
