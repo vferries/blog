@@ -1,7 +1,6 @@
 ---
 title: "Vie privée"
 excerpt: "Ce que ce site sait — ou ne sait pas — de toi."
-sitemap: false
 permalink: /privacy
 header:
   og_image: /images/og-card.png
