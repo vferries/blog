@@ -1,0 +1,36 @@
+{% comment %}
+  Shadow du partial Minimal Mistakes 4.28.0 (8ᵉ) — à rediffer à chaque bump
+  de remote_theme. Delta : upstream rend include.posts (= site.related_posts,
+  qui sans --lsi, indisponible sur GitHub Pages, vaut « les plus récents ») —
+  les 4 mêmes vignettes sur les 46 billets, sans rapport thématique, et un
+  rappel permanent que rien n'a bougé depuis 2022. Ici : les billets qui
+  partagent au moins un tag avec la page, du plus récent au plus ancien,
+  complétés par les récents si la thématique n'en fournit pas 4.
+  include.posts est ignoré.
+{% endcomment %}
+{% assign locale = include.locale | default: site.locale %}
+{%- assign tag_related = "" | split: "" -%}
+{%- for tag in page.tags -%}
+  {%- for p in site.tags[tag] -%}
+    {%- if p.id != page.id and p.hidden != true -%}
+      {%- assign tag_related = tag_related | push: p -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- assign tag_related = tag_related | uniq | sort: "date" | reverse -%}
+{%- assign seen_urls = tag_related | map: "url" | join: "|" -%}
+{%- for p in site.posts -%}
+  {%- if tag_related.size >= 4 -%}{%- break -%}{%- endif -%}
+  {%- unless p.id == page.id or p.hidden == true or seen_urls contains p.url -%}
+    {%- assign tag_related = tag_related | push: p -%}
+  {%- endunless -%}
+{%- endfor -%}
+<div class="page__related">
+  {% include before-related.html %}
+  <h2 class="page__related-title">{{ site.data.ui-text[locale].related_label | default: "You May Also Enjoy" }}</h2>
+  <div class="grid__wrapper">
+    {% for post in tag_related limit:4 %}
+      {% include archive-single.html locale=locale type="grid" %}
+    {% endfor %}
+  </div>
+</div>
