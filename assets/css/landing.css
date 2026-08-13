@@ -203,11 +203,11 @@ body.landing #main {
   letter-spacing: -0.03em;
   margin: 0 0 36px;
   color: var(--ev-text);
-  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  font-variation-settings: 'opsz' 144;
 }
 .ev-hero__title em {
   font-style: italic; color: var(--ev-blue);
-  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  font-variation-settings: 'opsz' 144;
 }
 .ev-hero__title .ev-hl {
   position: relative; display: inline-block;
@@ -476,7 +476,7 @@ body.landing #main {
 }
 .ev-stat__num {
   font-family: var(--font-display); font-weight: 500;
-  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  font-variation-settings: 'opsz' 144;
   font-size: clamp(3rem, 6vw, 5rem);
   line-height: 0.95;
   color: var(--ev-text);
@@ -485,7 +485,7 @@ body.landing #main {
 }
 .ev-stat__num em {
   font-style: italic; color: var(--ev-blue);
-  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  font-variation-settings: 'opsz' 144;
 }
 .ev-stat__num .unit {
   font-size: 0.4em; font-weight: 400;
@@ -551,7 +551,7 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
   letter-spacing: -0.022em;
   margin: 0 0 28px;
 }
-.ev-intro h2 em { font-style: italic; color: var(--ev-blue); font-variation-settings: 'opsz' 144, 'SOFT' 100; }
+.ev-intro h2 em { font-style: italic; color: var(--ev-blue); font-variation-settings: 'opsz' 144; }
 .ev-intro p {
   font-size: 1.0625rem; line-height: 1.7;
   color: var(--ev-text-muted);
@@ -617,7 +617,7 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
 .ev-section-kicker::before { content: "// "; opacity: 0.6; }
 .ev-section-title {
   font-family: var(--font-display); font-weight: 400;
-  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  font-variation-settings: 'opsz' 144;
   font-size: clamp(2.25rem, 5vw + 0.5rem, 4.5rem);
   line-height: 0.98;
   letter-spacing: -0.025em;
@@ -625,7 +625,7 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
 }
 .ev-section-title em {
   font-style: italic; color: var(--ev-blue);
-  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  font-variation-settings: 'opsz' 144;
 }
 .ev-section-sub {
   font-size: 1.0625rem; color: var(--ev-text-muted);
@@ -677,7 +677,7 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
   top: -30px; right: -10px;
   font-family: var(--font-display);
   font-weight: 500;
-  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  font-variation-settings: 'opsz' 144;
   font-size: 14rem;
   line-height: 1;
   color: var(--ev-border);
@@ -894,12 +894,12 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
 
 .ev-about__content h2 {
   font-family: var(--font-display); font-weight: 400;
-  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  font-variation-settings: 'opsz' 144;
   font-size: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
   line-height: 1.02; letter-spacing: -0.022em;
   margin: 0 0 28px;
 }
-.ev-about__content h2 em { font-style: italic; color: var(--ev-blue); font-variation-settings: 'opsz' 144, 'SOFT' 100; }
+.ev-about__content h2 em { font-style: italic; color: var(--ev-blue); font-variation-settings: 'opsz' 144; }
 .ev-about__content p {
   font-size: 1.0625rem; line-height: 1.75;
   color: var(--ev-text-muted);
@@ -1088,7 +1088,7 @@ html[data-theme="dark"] .ev-cta {
   margin: 0 0 24px; color: inherit;
   max-width: 18ch;
 }
-.ev-cta h2 em { font-style: italic; color: var(--ev-cyan); font-variation-settings: 'opsz' 144, 'SOFT' 100; }
+.ev-cta h2 em { font-style: italic; color: var(--ev-cyan); font-variation-settings: 'opsz' 144; }
 .ev-cta p {
   font-size: 1.125rem; line-height: 1.55;
   max-width: 54ch; color: rgba(241, 235, 217, 0.82);
