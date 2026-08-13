@@ -659,3 +659,21 @@ i[class*="fa-"] {
 .page__content iframe[src*="dailymotion"] {
   width: 100%; height: auto; aspect-ratio: 16 / 9;
 }
+
+/* Pont commercial en fin de billet (ev-post-bridge.html, shadow single) */
+.ev-post-bridge {
+  /* MM floate .page__content et .page__meta (inline-start) : sans clear,
+     la boîte de l'aside démarre au sommet du float et son texte se rend
+     2000px plus bas, à côté du contenu — mesuré avant ce fix */
+  clear: both;
+  margin: 2.5em 0 1.5em;
+  padding: 1.1em 1.4em;
+  background: var(--ev-bg-subtle);
+  border-left: 3px solid var(--ev-cyan);
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+.ev-post-bridge p { margin: 0 0 0.5em; }
+.ev-post-bridge a { color: var(--ev-blue); text-decoration: none; }
+.ev-post-bridge a:hover { text-decoration: underline; }
+.ev-post-bridge__cta { font-family: var(--font-mono); font-size: 0.9em; }

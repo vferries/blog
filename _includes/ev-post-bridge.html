@@ -1,0 +1,13 @@
+{% comment %}
+  Pont commercial en fin de billet — copy validé le 2026-08-13. Un lecteur
+  arrivé par un moteur ou un backlink n'avait aucun signal qu'il lit le
+  site d'un prestataire disponible (revue UX). Liens normaux, donc follow :
+  règle aussi l'item SEO « le seul lien billets → landing était en
+  nofollow » (la sidebar auteur du thème force rel=nofollow).
+  Rendu par le shadow de _layouts/single.html (delta d'une ligne).
+  Aucune variable de page. Styles : bloc .ev-post-bridge d'enveille.css.
+{% endcomment %}
+<aside class="ev-post-bridge">
+  <p>Ce blog est tenu par <a href="{{ '/about/' | relative_url }}">Vincent Ferries</a>, dev indépendant à Toulouse — accompagnement d'équipes, audits, IA appliquée au dev.</p>
+  <a class="ev-post-bridge__cta" href="/#services">→ Voir les services</a>
+</aside>
