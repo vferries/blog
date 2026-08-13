@@ -33,7 +33,9 @@ fr-FR:
   meta_label                 :
   tags_label                 : "Tags :"
   categories_label           : "Catégories :"
-  date_label                 : "Mis à jour :"
+  # Divergence volontaire d'upstream ("Mis à jour :") : MM affiche page.date
+  # quand last_modified_at est absent — le libellé mentait sur les 46 billets
+  date_label                 : "Publié le :"
   comments_label             : "Laisser un commentaire"
   comments_title             : "Commentaires"
   more_label                 : "Lire plus"

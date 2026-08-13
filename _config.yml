@@ -30,6 +30,9 @@ footer_scripts: []
 # jekyll-feed plafonne à 10 billets par défaut — servir tout l'historique
 feed:
   posts_limit: 50
+# Sans lui, MM rend "%B %-d, %Y" : mois anglais sur un site fr (le %B de
+# Liquid n'est pas localisé). Numérique = neutre, aucun shadow nécessaire.
+date_format: "%d/%m/%Y"
 
 # Build settings
 markdown:    kramdown
