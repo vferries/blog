@@ -47,7 +47,11 @@
   --ev-border-strong: rgba(26, 24, 19, 0.18);
   --ev-grid:        rgba(26, 24, 19, 0.07);
 
-  --ev-blue: var(--brand-blue);
+  /* --brand-blue (#007DA5) tombait à 4,39:1 sur --ev-bg et 4,05:1 sur
+     --ev-bg-subtle, sous le seuil AA de 4,5 pour le texte normal (liens
+     de corps de billet, kickers). --blue-500 donne 5,80 / 5,35:1.
+     Le stop brand reste pour les aplats et le logo. */
+  --ev-blue: var(--blue-500);
   --ev-cyan: var(--brand-cyan);
   --ev-primary: var(--brand-navy);
   --ev-primary-hover: var(--navy-800);
