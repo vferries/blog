@@ -17,7 +17,7 @@
 
 ### ♿ Accessibilité (après le lot immédiat)
 
-- [ ] **Quick-nav : 6 liens vides** sans nom accessible (`index.html:21-28`, libellé en `::before content: attr(data-label)` que Firefox/Safari n'exposent pas), focusables alors que le conteneur est à `opacity: 0` avant le hero, et `<aside>` au lieu de `<nav>`. Bloquant AA · S
+- [x] **Quick-nav : 6 liens vides** sans nom accessible (`index.html:21-28`, libellé en `::before content: attr(data-label)` que Firefox/Safari n'exposent pas), focusables alors que le conteneur est à `opacity: 0` avant le hero, et `<aside>` au lieu de `<nav>`. Bloquant AA · S → corrigé le 2026-08-13 : `<nav>` + `aria-label` par lien + `visibility: hidden` synchronisée sur le fondu. Vérifié Playwright : hors tabulation en haut de page, visible après scroll
 - [ ] **Surligneur cyan sous texte crème dans le H1** : `.ev-hl::before` (`landing.css:209-217`) peint `--ev-cyan` sous un texte forcé `#F1EBD9` → 1,16:1, le bas des glyphes de « savoir-faire » disparaît. Gênant · S
 - [ ] **Reset reduced-motion vs animations scroll-driven** : `animation-duration: 0.01ms !important` sur `*` (`enveille.css:546-548`, `landing.css:1122-1127`) écrase la plage des deux animations à `animation-timeline: scroll(root)` — progress bar probablement rendue **pleine dès le haut de page** en reduced-motion. Vérifier au rendu puis exclure les deux. S
 - [ ] **5 animations JS hors `prefers-reduced-motion`** : compteurs (`landing.js:71-100`, remettent les stats à 0 puis animent — annule le fallback no-JS pour ces utilisateurs), titre magnétique, tilt cartes, curseur custom, pluie Matrix. Seuls hero owl et vidéos réalisations testent la query. S

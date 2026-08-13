@@ -109,10 +109,16 @@ body.landing #main {
   backdrop-filter: blur(12px);
   border: 1px solid var(--ev-border);
   border-radius: 999px;
-  opacity: 0; pointer-events: none;
-  transition: opacity 400ms var(--ease-out);
+  /* visibility sort les liens de l'ordre de tabulation et de l'arbre
+     d'accessibilité tant que la barre est invisible ; le délai la fait
+     basculer après le fondu de sortie */
+  opacity: 0; pointer-events: none; visibility: hidden;
+  transition: opacity 400ms var(--ease-out), visibility 0s 400ms;
 }
-.ev-quick-nav.on { opacity: 1; pointer-events: auto; }
+.ev-quick-nav.on {
+  opacity: 1; pointer-events: auto; visibility: visible;
+  transition: opacity 400ms var(--ease-out), visibility 0s;
+}
 @media (max-width: 900px) { .ev-quick-nav { display: none; } }
 .ev-quick-nav__dot {
   width: 10px; height: 10px; border-radius: 50%;
