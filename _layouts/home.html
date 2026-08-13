@@ -1,0 +1,28 @@
+---
+layout: archive
+---
+{% comment %}
+  Shadow du layout Minimal Mistakes 4.28.0 (9ᵉ) — à rediffer à chaque bump
+  de remote_theme. Delta unique : le sous-titre « Posts récents » passe de
+  h3 à h2 — upstream produit h1 (titre de page) → h3 → h2 (cartes), un
+  saut de niveau doublé d'une inversion (arbitré 2026-08-13). Le style
+  reste porté par la classe .archive__subtitle, insensible au niveau.
+{% endcomment %}
+{%- assign locale = page.locale | default: layout.locale | default: site.locale %}
+
+{{ content }}
+
+<h2 class="archive__subtitle">{{ site.data.ui-text[locale].recent_posts | default: "Recent Posts" }}</h2>
+
+{% if paginator %}
+  {% assign posts = paginator.posts %}
+{% else %}
+  {% assign posts = site.posts %}
+{% endif %}
+
+{% assign entries_layout = page.entries_layout | default: 'list' %}
+<div class="entries-{{ entries_layout }}">
+  {% include documents-collection.html locale=locale entries=posts type=entries_layout %}
+</div>
+
+{% include paginator.html locale=locale %}
