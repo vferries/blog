@@ -44,13 +44,24 @@
     const btn = document.querySelector('.ev-nav__burger');
     const menu = document.getElementById('ev-nav-menu');
     if (!nav || !btn || !menu) return;
-    const setOpen = (open) => {
+    // Le panneau précède le bouton dans le DOM (la barre garde l'ordre
+    // visuel desktop) : sans déplacement du focus, Tab après ouverture
+    // partait dans la page et il fallait Shift+Tab pour atteindre le menu.
+    // Pattern menu-button : focus sur le premier lien à l'ouverture, retour
+    // sur le bouton à la fermeture par Escape. Pas de vol de focus sur le
+    // clic extérieur — l'utilisateur vient de choisir une autre cible.
+    const setOpen = (open, focus) => {
       nav.classList.toggle('ev-nav--open', open);
       btn.setAttribute('aria-expanded', String(open));
+      if (open && focus) { const first = menu.querySelector('a'); if (first) first.focus(); }
+      if (!open && focus) btn.focus();
     };
-    btn.addEventListener('click', () => setOpen(!nav.classList.contains('ev-nav--open')));
+    btn.addEventListener('click', () => setOpen(!nav.classList.contains('ev-nav--open'), true));
     menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    window.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape' || !nav.classList.contains('ev-nav--open')) return;
+      setOpen(false, true);
+    });
     document.addEventListener('click', (e) => {
       if (!nav.classList.contains('ev-nav--open')) return;
       if (!e.target.closest('.ev-nav')) setOpen(false);
@@ -60,6 +71,31 @@
     matchMedia('(min-width: 1001px)').addEventListener('change', (e) => {
       if (e.matches) setOpen(false);
     });
+  })();
+
+  // ==========================================================
+  // RECHERCHE — état ARIA + fermeture Escape
+  // Le panneau .search-content et son toggle viennent du thème
+  // (main.min.js s'accroche à .search__toggle) : il bascule les classes
+  // mais n'expose aucun état et n'écoute pas Escape. Le bouton étant à
+  // nous (shadow masthead), on complète ici sans toucher au thème.
+  // ==========================================================
+  (function initSearchToggle() {
+    const btn = document.querySelector('.ev-nav__search');
+    const panel = document.querySelector('.search-content');
+    if (!btn || !panel) return;
+    if (!panel.id) panel.id = 'search-content';
+    btn.setAttribute('aria-controls', panel.id);
+    // setTimeout(0) : le handler du thème (jQuery) et le nôtre courent sur
+    // le même clic, on relit la classe une fois tout le monde passé.
+    const sync = () => btn.setAttribute('aria-expanded', String(panel.classList.contains('is--visible')));
+    btn.addEventListener('click', () => setTimeout(sync, 0));
+    window.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape' || !panel.classList.contains('is--visible')) return;
+      btn.click(); // repasse par le toggle du thème : rétablit .initial-content
+      setTimeout(() => { sync(); btn.focus(); }, 0);
+    });
+    sync();
   })();
 
   // ==========================================================
