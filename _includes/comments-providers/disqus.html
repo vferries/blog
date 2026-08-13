@@ -1,0 +1,41 @@
+{% comment %}
+  Shadow du partial Minimal Mistakes (4ᵉ, après footer.html, head/custom.html
+  et masthead.html) — à rediffer à chaque bump de remote_theme.
+  Delta unique vs upstream 4.28.0 : l'injection d'embed.js attend que
+  #disqus_thread approche du viewport (IntersectionObserver, marge 600px)
+  au lieu de partir au parse. Upstream chargeait ~56 Ko gzip de JS tiers
+  plus sa cascade (20-40 requêtes, traceurs) sur chaque lecture, y compris
+  celles qui ne descendent jamais jusqu'aux commentaires. La section
+  #disqus_thread est rendue par comments.html avant ce script : le
+  getElementById est sûr au parse.
+{% endcomment %}
+{% if site.comments.disqus.shortname %}
+  <script>
+    var disqus_config = function () {
+      this.page.url = "{{ page.url | absolute_url }}";
+      this.page.identifier = "{{ page.id }}";
+    };
+    (function() {
+      var loaded = false;
+      var load = function () {
+        if (loaded) return;
+        loaded = true;
+        var d = document, s = d.createElement('script');
+        s.src = 'https://{{ site.comments.disqus.shortname }}.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      };
+      var thread = document.getElementById('disqus_thread');
+      /* Sans observer (ou sans thread, cas théorique) : comportement
+         upstream, chargement immédiat */
+      if (!thread || !('IntersectionObserver' in window)) { load(); return; }
+      var io = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) { io.disconnect(); load(); return; }
+        }
+      }, { rootMargin: '600px 0px' });
+      io.observe(thread);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endif %}

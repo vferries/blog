@@ -6,7 +6,7 @@
 
 ## Stack
 
-- **Jekyll** + thème **Minimal Mistakes** via `remote_theme`, pinné sur `@4.28.0` (`_config.yml:16`) — les overrides `_includes/footer.html`, `_includes/head/custom.html` et `_includes/masthead.html` dépendent des partials upstream, donc pas de suivi de `master`
+- **Jekyll** + thème **Minimal Mistakes** via `remote_theme`, pinné sur `@4.28.0` (`_config.yml:16`) — les overrides `_includes/footer.html`, `_includes/head/custom.html`, `_includes/masthead.html` et `_includes/comments-providers/disqus.html` dépendent des partials upstream, donc pas de suivi de `master`. Attention : MM ne rend la **section** commentaires qu'en build production (`jekyll.environment`) — pour tester Disqus en local : `JEKYLL_ENV=production PAGES_REPO_NWO=vferries/blog bundle exec jekyll build`
 - Hébergé sur **GitHub Pages** (CNAME `www.enveille.info`)
 - Pas de build custom, GitHub Pages gère nativement
 - Commentaires : Disqus (`blogvincent`)
