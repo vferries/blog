@@ -129,7 +129,11 @@
    les couleurs.
    ============================================================ */
 
-html { font-size: 16px; }
+/* 100% et non 16px : même rendu au réglage par défaut, mais un utilisateur
+   qui monte la taille de police de son navigateur voit tout le site suivre
+   (tout est en rem). Écrase toujours les paliers 18/20px de MM — c'est le
+   rôle historique de cette règle. */
+html { font-size: 100%; }
 
 body {
   font-family: var(--font-sans) !important;
