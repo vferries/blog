@@ -195,12 +195,15 @@ html { scroll-behavior: smooth; }
   position: sticky; top: 0; z-index: 20;
   background: color-mix(in srgb, var(--ev-bg) 88%, transparent);
   border-bottom: 1px solid transparent;
-  animation: ev-nav-border linear;
-  animation-timeline: scroll(root);
-  animation-range: 0 200px;
+  transition: border-bottom-color 200ms var(--ease-out);
 }
-.ev-nav--scrolled { backdrop-filter: blur(14px); }
-@keyframes ev-nav-border { to { border-bottom-color: var(--ev-border); } }
+/* La bordure suit .ev-nav--scrolled (nav.js, scrollY > 4) et non une
+   animation scroll-driven : l'ancienne ev-nav-border s'éteignait passé son
+   animation-range de 200px (pas de fill-mode) et n'existait pas sur Firefox
+   (animation-timeline non supportée) — et un fill-mode: forwards l'aurait
+   peinte en permanence sur Firefox, l'animation 0s se terminant au
+   chargement. Un seul mécanisme, tous moteurs. */
+.ev-nav--scrolled { backdrop-filter: blur(14px); border-bottom-color: var(--ev-border); }
 .ev-nav__inner {
   max-width: 1200px; margin: 0 auto;
   padding: 14px 32px;
