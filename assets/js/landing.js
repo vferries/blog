@@ -12,6 +12,10 @@
   // ==========================================================
   (function initCursor() {
     if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    // La traînée est du mouvement permanent, et sans has-cursor le
+    // cursor: none du CSS ne s'applique pas : les réglages OS du pointeur
+    // (taille, contraste) restent intacts pour qui demande moins de motion.
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const body = document.body;
     const cursor = document.createElement('div');
     cursor.className = 'ev-cursor';
@@ -70,6 +74,10 @@
   // ==========================================================
   (function initCounters() {
     if (!('IntersectionObserver' in window)) return;
+    // Le HTML porte déjà les valeurs finales (fallback no-JS) : les remettre
+    // à 0 pour les animer imposerait 1,4s de chiffres qui défilent — on ne
+    // touche à rien.
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ease = t => 1 - Math.pow(1 - t, 3);
     const animateCount = (el, target) => {
       const em = el.querySelector('em');
@@ -104,6 +112,7 @@
   // ==========================================================
   (function initMagneticTitle() {
     if (!matchMedia('(hover: hover)').matches) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const el = document.querySelector('.ev-hero__title');
     const hero = document.querySelector('.ev-hero');
     if (!el || !hero) return;
@@ -223,6 +232,7 @@
   // ==========================================================
   (function initTilt() {
     if (!matchMedia('(hover: hover)').matches) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     document.querySelectorAll('.ev-service').forEach(card => {
       card.addEventListener('pointermove', (e) => {
         const r = card.getBoundingClientRect();
@@ -425,17 +435,29 @@
       const duration = 6000;
       let rafId;
 
+      const cleanup = () => {
+        canvas.style.opacity = '0';
+        overlayText.style.opacity = '0';
+        setTimeout(() => {
+          canvas.remove();
+          overlayText.remove();
+          window.removeEventListener('resize', resize);
+        }, 500);
+      };
+
+      // Reduced motion : la récompense sans la pluie — le fond assombri et
+      // le message restent (même durée de vie), la boucle plein écran de
+      // glyphes qui tombent, non.
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setTimeout(cleanup, duration);
+        return;
+      }
+
       const draw = () => {
         const elapsed = performance.now() - start;
         // Fade at the end
         if (elapsed > duration) {
-          canvas.style.opacity = '0';
-          overlayText.style.opacity = '0';
-          setTimeout(() => {
-            canvas.remove();
-            overlayText.remove();
-            window.removeEventListener('resize', resize);
-          }, 500);
+          cleanup();
           return;
         }
 
