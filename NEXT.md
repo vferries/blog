@@ -25,7 +25,7 @@
 - [x] **Bouton recherche sans état ARIA ni fermeture Escape** : `ev-nav.html:54` sans `aria-expanded`/`aria-controls`, le script MM ne pose rien. Le bouton est à nous (shadow masthead), corrigeable côté projet. S → corrigé le 2026-08-13 : `aria-expanded` synchronisé après le handler jQuery du thème, `aria-controls` posé (id donné au panneau par JS), Escape repasse par le toggle MM (rétablit `.initial-content`) et rend le focus au bouton. Vérifié Playwright
 - [x] **`html { font-size: 16px }`** (`enveille.css:96`) neutralise le réglage de taille de police du navigateur — tout le site est en `rem`. Passer à `100%`. S → fait le 2026-08-13. Vérifié CDP : 16px au réglage par défaut (rendu inchangé), 20px quand le navigateur le demande. La règle continue d'écraser les paliers 18/20px de MM, son rôle historique
 - [ ] **Mouvement automatique > 5 s sans pause** (SC 2.2.2, niveau A) : vidéos réalisations en `loop` sans contrôle, marquee 40s, aurore CTA 12s, pastille pulse 2,4s partout. Mécanisme pause/stop à concevoir → voir arbitrages
-- [ ] **Hiérarchie headings `/blog/`** : h1 → h3 « Posts récents » → h2 items (upstream MM, 4ᵉ shadow nécessaire). M
+- [x] **Hiérarchie headings `/blog/`** : h1 → h3 « Posts récents » → h2 items (upstream MM) → 9ᵉ shadow (`_layouts/home.html`, delta d'une ligne) le 2026-08-13 : le sous-titre passe en h2. Vérifié au build
 
 ### ⚡ Perf (landing 5,24 Mo dont 89 % vidéo · billet ~1 Mo hors Disqus · tout servi en `max-age=600`)
 
@@ -34,7 +34,7 @@
 - [ ] **12 JPEG q90-100 oubliés par la passe du 2026-08-04** (mtime 23 avril) : 1 334 Ko → 632 Ko en q82, mêmes noms/URLs. Les pires : `rabot.jpg` q99, `startup-weekend.jpg` q99, `open_space.jpg` q98, `staples.jpg` q98. S
 - [x] **FontAwesome sur chaque page MM** : 277 Ko (3 woff2 + CSS) pour ~15 icônes, URL `@latest` (cache 7 j) → remplacé le 2026-08-13 par des masques CSS (`enveille.css`, bloc « Icônes ») générés depuis les SVG officiels FA Free 6.5.2 (13 glyphes réellement rendus, inventoriés sur le build). `currentColor` : suivent light/dark et le fix contraste des icônes sociales. Shadow de `head.html` (5ᵉ) : delta = les 3 lignes CDN retirées. Vérifié au rendu deux thèmes, zéro requête jsDelivr
 - [x] **`main.min.js` : 124 Ko de jQuery + plugins quasi morts** — SmoothScroll neutralisé par `nav.js:25`, GreedyNav sans cible, MagnificPopup/Gumshoe/FitVids sans consommateur. Seul le toggle recherche vivait → retiré le 2026-08-13 via `footer_scripts: []` (config seule, pas de shadow — la liste vide remplace le script du thème). Le toggle vit dans nav.js, FitVids remplacé par une règle `aspect-ratio` (les vieux billets embarquent des YouTube — vérifié responsive à 500px). Zéro jQuery sur tout le site
-- [ ] **Fraunces demandé en `opsz 9..144`** (148,8 Ko les 2 styles) quand le CSS n'utilise que 48 et 144 — épinglé 144 seul : 75,6 Ko. **Reclassé arbitrage Vincent** le 2026-08-13 : épingler 144 abandonne l'opsz 48 de `.ev-nav__brand`, dont les wordmarks SVG sont dérivés — c'est un changement du dessin de la marque dans la nav, pas une optimisation neutre. Le self-host sous-ensemblé perdrait le cache immuable 1 an de fonts.gstatic contre le max-age 600s de Pages. Les `'SOFT'` inertes, eux, sont nettoyés (commit `960a685`)
+- [x] **Fraunces demandé en `opsz 9..144`** (148,8 Ko les 2 styles) quand le CSS n'utilise que 48 et 144 → **arbitré garder la plage** le 2026-08-13 : le dessin de la marque en nav (opsz 48, dont les wordmarks SVG sont dérivés) prime sur 73 Ko payés une fois par an de cache fonts.gstatic. Les `'SOFT'` inertes sont nettoyés (commit `960a685`)
 - [x] **Lunr chargé en dur sur toutes les pages MM** (57 Ko + parse, 3 balises sans `defer`) alors que le panneau ne s'ouvre qu'au clic → paresseux le 2026-08-13 : shadow (6ᵉ) de `search/lunr-search-scripts.html` qui n'émet plus rien, nav.js charge lunr.min + lunr-store + `ev-search.js` à la première ouverture. `ev-search.js` = port vanilla fidèle du lunr-en.js upstream (qui dépendait de jQuery, parti avec main.min.js) — même sémantique de requête, même markup, libellé FR. Vérifié bout en bout : « devoxx » → 10 résultats, Escape, zéro erreur. Le stemmer reste anglais comme avant — statu quo assumé, changer l'indexation est un autre chantier
 - [x] **Zéro `loading="lazy"`/`width`/`height` sur tout le build** : `/blog/` charge ses 12 vignettes d'un bloc (339 Ko), chaque billet tire les 4 vignettes « Vous aimerez aussi » (~124 Ko) → shadow `archive-single.html` (7ᵉ) le 2026-08-13 : `loading="lazy" decoding="async" width height` sur les vignettes de grille. Vérifié : sur un billet, 0/4 vignettes related au chargement, 4/4 après scroll. Sur `/blog/` Chrome précharge quand même tout en connexion rapide (son seuil de distance lazy est large) — le gain y dépend du réseau. Hors périmètre restant : les images de corps de billet (markdown pur, demanderait un plugin hors whitelist Pages) et les bandeaux `page__hero` (au-dessus de la ligne de flottaison, lazy nuirait)
 - [ ] **`profile_square.jpg` 800×800/69 Ko dans un avatar plafonné 110 px** sur chaque page MM. Attention : le même fichier sert `.ev-photo` (~640 px utiles) → deux fichiers. S
@@ -64,7 +64,7 @@
 - [ ] **`/blog/` n'affiche aucune date** (readtime seul) : 46 billets 2011→2022 sans repère chronologique. Date sur les cartes + regroupement par année = « archive de 15 ans » au lieu de « rien depuis 2022 ». M
 - [ ] **La recherche n'indexe que les billets** (store MM = collections seules : ni `/about/`, ni `/realisations/`, ni les services) et le bouton loupe est absent des 2 pages commerciales (pas de panneau dans le layout landing). M
 - [ ] **Les 5 cartes services portent une flèche `→` qui n'est ni lien ni ancre** — affordance de clic qui ne mène nulle part ; pas de point de conversion entre `#services` et la CTA finale (`index.html:317`). S
-- [ ] **LinkedIn absent du site** (`_data/social.yml` = GitHub/Twitch/X) alors que les billets proposent « Partager sur LinkedIn » — le réseau du prospect B2B. S
+- [ ] **LinkedIn absent du site** (`_data/social.yml` = GitHub/Twitch/X) alors que les billets proposent « Partager sur LinkedIn » — le réseau du prospect B2B. S → **acté oui** le 2026-08-13, en attente de l'URL exacte du profil (ne pas la deviner)
 
 ### 🔧 Dette code
 
@@ -81,11 +81,11 @@
 
 ### ⚖️ Arbitrages à trancher (Vincent)
 
-- [ ] **Title/h1 de la home sans « développeur », « indépendant » ni « Toulouse »** — le mot « développeur indépendant » n'existe en toutes lettres que dans `_config.yml:10`. C'est du copy : proposition à faire valider
-- [ ] **`cursor: none` sur toute la landing** (`landing.css:70-73`) : signature design vs réglages OS d'accessibilité du pointeur (taille, contraste) annulés sans opt-out. Le `mix-blend-mode: difference` rend en plus le disque quasi invisible sur luminance moyenne
-- [ ] **Mécanisme de pause des mouvements > 5 s** (SC 2.2.2) : quelle forme — bouton global, pause par vidéo, suppression du loop ?
-- [ ] **`mailto:vincent.ferries@gmail.com` partout** : adresse @enveille.info ? Repli copiable pour les configs sans client mail ?
-- [ ] **Témoignages clients** : champ `testimonial`/`result` dans `realisations.yml` — bloqué par les accords clients, pas par le code
+- [x] **Title/h1 de la home sans « développeur », « indépendant » ni « Toulouse »** → arbitré le 2026-08-13 : title enrichi (« En Veille — Vincent Ferries, développeur indépendant à Toulouse · JVM · JS/TS · IA »), le h1 (phrase de marque validée) ne bouge pas
+- [x] **`cursor: none` sur toute la landing** (`landing.css:70-73`) → **arbitré garder** le 2026-08-13 : signature assumée pour le public cible, reduced-motion sert de porte de sortie (curseur système préservé depuis les gardes JS). Écart résiduel assumé pour les réglages OS de pointeur
+- [x] **Mécanisme de pause des mouvements > 5 s** (SC 2.2.2) → arbitré le 2026-08-13 : les vidéos réalisations perdent leur `loop` (une lecture par passage à l'écran, rejeu au re-scroll — le plus gros de l'écart, fait). Marquee, aurore CTA et pastille restent assumés : décoratifs, faible amplitude, coupés en reduced-motion
+- [x] **`mailto:vincent.ferries@gmail.com` partout** → **arbitré ne rien changer** le 2026-08-13 : le mailto direct vers gmail est assumé, pas de bouton copier ni d'adresse domaine
+- [x] **Témoignages clients** → **reporté** le 2026-08-13 : « pas intéressé encore » — ne pas re-proposer, Vincent rouvrira s'il le souhaite
 - [ ] **Page « comment ça se passe »** (process premier échange → livraison) : l'objection n°1 d'un commerçant, absente du site — copy à écrire ensemble
 - [ ] **Choix des 3 billets `featured`** de la landing (remplace les 3 parties Devoxx 2022) — plan retenu le 2026-08-13 : les deux billets planifiés ci-dessous une fois publiés + un evergreen du fonds à choisir
 
