@@ -25,5 +25,9 @@ Produit `assets/video/hero-owl.mp4` (desktop), `assets/video/hero-owl-540.mp4`
 
 Cibles de poids : desktop ≤ 8 Mo, mobile ≤ 2,5 Mo, poster ≤ 250 Ko.
 
-**Encodage actuellement ajusté** : CRF 29 (desktop) / CRF 34 (mobile) + desktop 1440×810 + poster -q:v 6.
-Poids réels : desktop 7.6 Mo, mobile 2.5 Mo, poster 228 Ko.
+**Encodage actuellement ajusté** : CRF 31 (desktop) / CRF 34 (mobile) + desktop 1440×810 + poster -q:v 6.
+Poids réels : desktop 2,6 Mo, mobile 1,25 Mo, poster 131 Ko.
+CRF 31 arbitré le 2026-08-13 : −16 % vs CRF 29 sans perte visible (comparé
+image par image sur la portion scrubée et l'envol) ; CRF 33 sondé à −29 %,
+non retenu — la vidéo n'est plus sur le chemin critique depuis le preload
+différé, la qualité de l'asset signature prime sur les derniers 400 Ko.

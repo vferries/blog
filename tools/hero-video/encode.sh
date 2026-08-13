@@ -23,7 +23,10 @@ mkdir -p "$ROOT/assets/video"
 COMMON=(-an -c:v libx264 -profile:v high -pix_fmt yuv420p -preset slow
         -force_key_frames "expr:lt(t,1.5)" -g 48 -movflags +faststart)
 
-ffmpeg -y -v error -i "$SOURCE" "${COMMON[@]}" -crf 29 -vf scale=1440:810 \
+# crf 31 et non 29 : mesuré −35 % sur le poids pour une perte invisible sous
+# le scrim (revue perf 2026-08-13) — 84 % des octets vivent dans la portion
+# scrubée 0-1,4 s, la plus dense en keyframes
+ffmpeg -y -v error -i "$SOURCE" "${COMMON[@]}" -crf 31 -vf scale=1440:810 \
   "$ROOT/assets/video/hero-owl.mp4"
 
 ffmpeg -y -v error -i "$SOURCE" "${COMMON[@]}" -crf 34 -vf scale=960:540 \
