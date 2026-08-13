@@ -335,6 +335,18 @@ body.landing #main {
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: 62% 50%;
+  /* Poster en background et non en attribut : l'attribut poster n'a pas
+     de srcset, impossible de servir une variante mobile avec. Sans src
+     (no-JS, reduced-motion) la vidéo est transparente et le background
+     tient lieu de poster ; dès que la vidéo peint, ses frames couvrent.
+     Le seuil 720 est couplé au matchMedia de landing.js (data-src-mobile)
+     et aux preloads media-gatés de _layouts/landing.html. */
+  /* background-position doit suivre object-position (62% ici, 50% 42% dans
+     le bloc portrait plus bas) : le cadrage du poster = celui de la vidéo */
+  background: url('/images/hero-owl-poster.jpg') 62% 50% / cover no-repeat;
+}
+@media (max-width: 720px) {
+  .ev-hero__bg { background-image: url('/images/hero-owl-poster-540.jpg'); }
 }
 .ev-hero__scrim {
   position: absolute; inset: 0; z-index: 1;
@@ -392,7 +404,7 @@ body.landing #main {
   .ev-hero--video .ev-hero__title { margin-bottom: 16px; }
   .ev-hero--video .ev-hero__lede  { margin-bottom: 20px; }
   /* portrait : la chouette reste visible sous le texte empilé */
-  .ev-hero__bg { object-position: 50% 42%; }
+  .ev-hero__bg { object-position: 50% 42%; background-position: 50% 42%; }
   .ev-hero__scrim {
     background:
       linear-gradient(180deg, rgba(0, 3, 49, 0.65) 0%, rgba(0, 3, 49, 0.35) 45%, transparent 65%),

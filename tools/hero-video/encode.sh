@@ -32,9 +32,15 @@ ffmpeg -y -v error -i "$SOURCE" "${COMMON[@]}" -crf 31 -vf scale=1440:810 \
 ffmpeg -y -v error -i "$SOURCE" "${COMMON[@]}" -crf 34 -vf scale=960:540 \
   "$ROOT/assets/video/hero-owl-540.mp4"
 
-ffmpeg -y -v error -i "$SOURCE" -frames:v 1 -q:v 6 \
+# Posters aux résolutions des deux vidéos — servis en background CSS
+# (landing.css, seuil 720px) : l'attribut poster n'a pas de srcset
+ffmpeg -y -v error -i "$SOURCE" -frames:v 1 -q:v 6 -vf scale=1440:810 \
   "$ROOT/images/hero-owl-poster.jpg"
+
+ffmpeg -y -v error -i "$SOURCE" -frames:v 1 -q:v 6 -vf scale=960:540 \
+  "$ROOT/images/hero-owl-poster-540.jpg"
 
 du -h "$ROOT/assets/video/hero-owl.mp4" \
       "$ROOT/assets/video/hero-owl-540.mp4" \
-      "$ROOT/images/hero-owl-poster.jpg"
+      "$ROOT/images/hero-owl-poster.jpg" \
+      "$ROOT/images/hero-owl-poster-540.jpg"

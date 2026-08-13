@@ -23,6 +23,11 @@
 
   {% include head/ev-assets.html %}
   <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}">
+  <!-- Poster hero = LCP : découvert ici plutôt qu'au parse du CSS.
+       Un seul des deux part, selon le media (seuil couplé à landing.css
+       et au matchMedia de landing.js). -->
+  <link rel="preload" as="image" href="{{ '/images/hero-owl-poster.jpg' | relative_url }}" media="(min-width: 721px)" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ '/images/hero-owl-poster-540.jpg' | relative_url }}" media="(max-width: 720px)" fetchpriority="high">
 
   {%- comment %}
     Données structurées des deux pages commerciales (landing et

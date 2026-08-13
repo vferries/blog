@@ -13,7 +13,10 @@ source utilisée : `openart-02178476426334700000000000000000000ffffc0a8704528bb6
 ```
 
 Produit `assets/video/hero-owl.mp4` (desktop), `assets/video/hero-owl-540.mp4`
-(mobile ≤720px) et `images/hero-owl-poster.jpg` (frame 0, fallback statique).
+(mobile ≤720px) et les deux posters `images/hero-owl-poster.jpg` (1440×810)
+et `images/hero-owl-poster-540.jpg` (960×540) — frame 0, servis en
+background CSS par `landing.css` (l'attribut poster n'a pas de srcset),
+préchargés en media-gated par `_layouts/landing.html`.
 
 ## Pourquoi cet encodage
 
@@ -26,7 +29,7 @@ Produit `assets/video/hero-owl.mp4` (desktop), `assets/video/hero-owl-540.mp4`
 Cibles de poids : desktop ≤ 8 Mo, mobile ≤ 2,5 Mo, poster ≤ 250 Ko.
 
 **Encodage actuellement ajusté** : CRF 31 (desktop) / CRF 34 (mobile) + desktop 1440×810 + poster -q:v 6.
-Poids réels : desktop 2,6 Mo, mobile 1,25 Mo, poster 131 Ko.
+Poids réels : desktop 2,6 Mo, mobile 1,25 Mo, posters 93 Ko (1440) + 57 Ko (960).
 CRF 31 arbitré le 2026-08-13 : −16 % vs CRF 29 sans perte visible (comparé
 image par image sur la portion scrubée et l'envol) ; CRF 33 sondé à −29 %,
 non retenu — la vidéo n'est plus sur le chemin critique depuis le preload
