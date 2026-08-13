@@ -211,10 +211,17 @@ body.landing #main {
 }
 .ev-hero__title .ev-hl {
   position: relative; display: inline-block;
+  /* L'encre passe navy en même temps que la bande se peint (ev-hl-ink,
+     mêmes timing/délai qu'ev-hl-draw) : avant la bande, navy sur ciel
+     navy serait invisible. */
+  animation: ev-hl-ink 700ms var(--ease-out) 600ms forwards;
 }
 .ev-hero__title .ev-hl::before {
   content: ""; position: absolute;
-  inset: 62% -0.15em 3% -0.15em;
+  /* Surligneur plein : bande sur tout le mot, encre navy par-dessus
+     (arbitré 2026-08-13 — la bande basse à 62% mangeait le bas des
+     glyphes crème, 1,16:1 ; navy sur cyan ≈ 13:1). */
+  inset: 6% -0.18em 3% -0.18em;
   background: var(--ev-cyan);
   z-index: -1;
   transform: skewX(-8deg) scaleX(0);
@@ -222,6 +229,7 @@ body.landing #main {
   animation: ev-hl-draw 700ms var(--ease-out) 600ms forwards;
 }
 @keyframes ev-hl-draw { to { transform: skewX(-8deg) scaleX(1); } }
+@keyframes ev-hl-ink { to { color: var(--brand-navy); } }
 
 .ev-hero__lede {
   font-size: clamp(1.125rem, 1.3vw + 0.6rem, 1.375rem);
@@ -345,12 +353,17 @@ body.landing #main {
   color: inherit;
   transition: color 450ms var(--ease-out);
 }
+.ev-hero--scrub .ev-hero__title .ev-hl {
+  animation: none;
+  transition: color 450ms var(--ease-out);
+}
 .ev-hero--scrub .ev-hero__title .ev-hl::before {
   animation: none;
   transform: skewX(-8deg) scaleX(0);
   transition: transform 450ms var(--ease-out);
 }
 .ev-hero--scrub.is-powered .ev-hero__title em { color: var(--ev-blue); }
+.ev-hero--scrub.is-powered .ev-hero__title .ev-hl { color: var(--brand-navy); }
 .ev-hero--scrub.is-powered .ev-hero__title .ev-hl::before { transform: skewX(-8deg) scaleX(1); }
 
 /* Laptops 13"-15" (768-900px de hauteur d'écran typique) : le bloc
