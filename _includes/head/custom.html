@@ -2,3 +2,28 @@
 <!-- Anciennement : bandeau "Available for Mentoring" → supprimé au profit de la nouvelle landing -->
 <!-- Tout le contenu partagé avec le layout landing vit dans head/ev-assets.html -->
 {% include head/ev-assets.html %}
+
+{% comment %}
+  Données structurées des billets. Vit ici et non dans ev-assets.html :
+  dépend de variables de page, or ev-assets doit rester cachable.
+  dateModified reprend le front matter `modified` tel quel.
+{% endcomment %}
+{% if page.id %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ page.title | jsonify }},
+    "description": {{ page.excerpt | strip_html | strip_newlines | strip | jsonify }},
+    "url": "{{ page.url | absolute_url }}",
+    "mainEntityOfPage": "{{ page.url | absolute_url }}",
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "dateModified": "{{ page.modified | default: page.date | date_to_xmlschema }}",
+    "inLanguage": "fr-FR",
+    "image": "{{ page.header.og_image | default: site.og_image | absolute_url }}",
+    "author": { "@type": "Person", "name": "Vincent Ferries", "url": "{{ '/about/' | absolute_url }}" },
+    "publisher": { "@type": "Organization", "name": "En Veille", "url": "{{ '/' | absolute_url }}",
+                   "logo": { "@type": "ImageObject", "url": "{{ '/android-chrome-512.png' | absolute_url }}" } }
+  }
+</script>
+{% endif %}

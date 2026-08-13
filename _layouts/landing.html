@@ -24,6 +24,28 @@
   {% include head/ev-assets.html %}
   <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}">
 
+  {%- comment %}
+    Données structurées des deux pages commerciales (landing et
+    /realisations/). Faits repris de /mentions-legales/ (localité seule —
+    l'adresse complète reste sur la page légale) et de _data/social.yml.
+  {% endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "En Veille",
+    "url": "{{ '/' | absolute_url }}",
+    "image": "{{ '/images/og-card.png' | absolute_url }}",
+    "logo": "{{ '/android-chrome-512.png' | absolute_url }}",
+    "description": {{ site.description | jsonify }},
+    "founder": { "@type": "Person", "name": "Vincent Ferries", "jobTitle": "Développeur indépendant" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Launaguet", "postalCode": "31140", "addressCountry": "FR" },
+    "areaServed": ["Toulouse", "France"],
+    "knowsAbout": ["JVM", "JavaScript", "TypeScript", "Android", "IA appliquée au développement"],
+    "sameAs": [{% for s in site.data.social %}"{{ s.url }}"{% unless forloop.last %}, {% endunless %}{% endfor %}]
+  }
+  </script>
+
   {% feed_meta %}
 </head>
 <body class="landing">
