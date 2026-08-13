@@ -1,31 +1,4 @@
 <!-- En Veille — head custom -->
 <!-- Anciennement : bandeau "Available for Mentoring" → supprimé au profit de la nouvelle landing -->
-
-<!-- Favicons : SVG moderne + fallbacks PNG/ICO + apple-touch + manifest PWA -->
-<link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16.png' | relative_url }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32.png' | relative_url }}">
-<link rel="icon" type="image/png" sizes="48x48" href="{{ '/favicon-48.png' | relative_url }}">
-<link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
-<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
-
-<!-- Fonts : Fraunces (display + italic) + Inter (body) + JetBrains Mono (code) + Caveat (accents)
-     - Fraunces et Inter en ranged weights → 1 fichier variable par style au lieu d'1 par weight
-     - JetBrains Mono/Caveat : un seul weight chacun
-     - Chargement non-bloquant : preload + swap onload (fallback noscript) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..500;1,9..144,400..500&family=Inter:wght@400..500&family=JetBrains+Mono:wght@400&family=Caveat:wght@500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..500;1,9..144,400..500&family=Inter:wght@400..500&family=JetBrains+Mono:wght@400&family=Caveat:wght@500&display=swap"></noscript>
-
-<!-- Theme color (adresse-bar sur mobile) -->
-<meta name="theme-color" content="#001B3D" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000331" media="(prefers-color-scheme: dark)">
-
-<!-- En Veille design tokens + global theme adjustments -->
-<link rel="stylesheet" href="{{ '/assets/css/enveille.css' | relative_url }}">
-
-<!-- Barre du haut : burger + backdrop-filter au scroll. Chargé ici pour les
-     pages du thème ; le layout landing, autonome, le déclare de son côté. -->
-<script defer src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+<!-- Tout le contenu partagé avec le layout landing vit dans head/ev-assets.html -->
+{% include head/ev-assets.html %}

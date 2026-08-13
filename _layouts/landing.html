@@ -21,23 +21,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="{{ page.og_image | default: '/images/og-card.png' | absolute_url }}">
 
-  <meta name="theme-color" content="#001B3D" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#000331" media="(prefers-color-scheme: dark)">
-
-  <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16.png' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32.png' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="48x48" href="{{ '/favicon-48.png' | relative_url }}">
-  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
-  <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..500;1,9..144,400..500&family=Inter:wght@400..500&family=JetBrains+Mono:wght@400&family=Caveat:wght@500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..500;1,9..144,400..500&family=Inter:wght@400..500&family=JetBrains+Mono:wght@400&family=Caveat:wght@500&display=swap"></noscript>
-
-  <link rel="stylesheet" href="{{ '/assets/css/enveille.css' | relative_url }}">
+  {% include head/ev-assets.html %}
   <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}">
 
   {% feed_meta %}
@@ -47,7 +31,6 @@
 
   {{ content }}
 
-  <script defer src="{{ '/assets/js/nav.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/js/landing.js' | relative_url }}"></script>
 </body>
 </html>
