@@ -71,7 +71,7 @@
 - [ ] **Bordure nav sticky jamais affichée sans scroll-driven animations** (Firefox) : `enveille.css:161-167` ne pose la bordure que via `animation-timeline`, alors que `nav.js:34` calcule déjà `.ev-nav--scrolled` sans le consommer pour ça. 1 déclaration. S
 - [ ] **Hero : aucun `error` handler** — vidéo manquante/404 = 190vh de scroll mort (`landing.js:147-152` engage le pin avant de savoir si ça charge) ; source mobile choisie une fois, jamais réévaluée en rotation ; couple 720px JS/CSS non documenté (contrairement au 1000/1001). S
 - [ ] **Handler scroll quick-nav non throttlé** : jusqu'à 7 `getBoundingClientRect()` + `scrollHeight` par événement (`landing.js:299`), alors que le pattern rAF existe 90 lignes plus haut. S
-- [ ] **14 balises de `<head>` en double** entre `head/custom.html` et `landing.html:24-41` (favicons, fonts ×2, theme-color, enveille.css, nav.js) — corriger un seul fichier casse silencieusement l'autre moitié du site. Extraire `_includes/head/ev-assets.html`. M
+- [x] **14 balises de `<head>` en double** entre `head/custom.html` et `landing.html:24-41` (favicons, fonts ×2, theme-color, enveille.css, nav.js) — corriger un seul fichier casse silencieusement l'autre moitié du site → extrait le 2026-08-13 dans `_includes/head/ev-assets.html` (prérequis du toggle de thème : le script de pré-peinture devait vivre à un seul endroit). Vérifié au diff du rendu : pages MM identiques au commentaire près, landing à jeu de balises identique, `nav.js` passe dans le head (defer, ordre préservé)
 - [ ] **Hauteur de nav en 4 représentations** (84px ×2, 96px, `--ev-nav-h` posé seulement par le JS hero hors reduced-motion) + commentaires « ~65px ». Déclarer `--ev-nav-h` dans `:root`. S/M
 - [ ] **CTA et markup `<video>` dupliqués** entre `index.html` et `_pages/realisations.html` — les attributs vidéo sont le contrat no-JS/reduced-motion de `initWorkVideos`. Extraire en includes. M
 - [ ] **Code mort** : `.ev-container` défini, jamais utilisé, sa déclaration recopiée 13× ; `.ev-hero__scroll-hint` + 2 keyframes orphelins ; `.ev-clickable` dans le JS et le CSS, dans zéro template. S
@@ -285,7 +285,7 @@ Le script `docs/design/assets/clean_figma_svg.py` est à utiliser après chaque 
 - Un badge "Disponible jusqu'à tel mois" qui se met à jour automatiquement via un data file (remplace le `Disponible` statique de la nav)
 - Un "onglet" live Twitch qui apparaît uniquement quand le stream est on (via l'API Twitch)
 - ~~Une page `/projets/` avec mini-études de cas~~ → fait autrement : `/realisations/` (sites vitrines publics, 2026-07). Reste la piste « missions anonymisées » façon git log à y ajouter (matière à fournir par Vincent).
-- Un toggle dark/light manuel en plus du `prefers-color-scheme` auto
+- ~~Un toggle dark/light manuel en plus du `prefers-color-scheme` auto~~ → **fait le 2026-08-13**, arbitré **2 états** (pas de retour « auto » dans le cycle : un clic = choix manuel définitif, persisté en localStorage `ev-theme`). Bouton dans `ev-nav.html` (statique, include_cached ok), icône = thème cible en CSS pur, pré-peinture par script inline de `head/ev-assets.html`. Les blocs dark du CSS vont désormais **par paires jumelles** (`@media` + `[data-theme="dark"]`) — consigné dans AGENTS.md
 - Une version anglaise (ou au moins une bio EN dans le footer) pour clients non-FR
 
 ---

@@ -32,10 +32,10 @@ bundle exec jekyll serve --livereload
 
 - `_posts/` : 46 billets depuis 2011, URLs permaliens `/:categories/:title/` (stables, ne pas changer)
 - `_layouts/landing.html` : layout custom pour la landing (autonome, n'hérite d'aucun layout du thème)
-- `_includes/head/custom.html` : favicons, fontes, `enveille.css`, `nav.js`. Ne charge **pas** `landing.css`/`landing.js` — c'est `_layouts/landing.html`, autonome, qui les déclare
+- `_includes/head/ev-assets.html` : **source unique du head partagé** (script inline du thème, favicons, fontes, theme-color, `enveille.css`, `nav.js`), inclus par `_includes/head/custom.html` (pages MM) et `_layouts/landing.html`. Aucune variable de page dedans. Ne charge **pas** `landing.css`/`landing.js` — c'est `_layouts/landing.html`, autonome, qui les déclare
 - `_data/realisations.yml` : réalisations publiques (source unique de la section landing `#realisations` et de `/realisations/`)
 - `_includes/ev-nav.html` : **barre du haut, source unique de toutes les pages**. `_includes/masthead.html` (shadow du thème) la rend sur les pages Minimal Mistakes, `index.html` et `_pages/realisations.html` l'incluent directement. Le shadow passe par `include_cached` : n'y mettre aucune variable de page
-- `assets/js/nav.js` : burger + backdrop-filter au scroll. Chargé par `head/custom.html` **et** par `_layouts/landing.html`, ce dernier n'incluant pas le premier
+- `assets/js/nav.js` : burger + backdrop-filter au scroll + toggle de thème. Chargé partout via `head/ev-assets.html`
 - `_includes/footer.html` : shadow du partial Minimal Mistakes → source unique de la ligne footer (landing + pages MM). `_includes/ev-footer.html` n'est plus qu'un wrapper `<footer class="ev-footer">` qui l'inclut. Le thème l'appelle via `include_cached` : ne jamais y mettre de variable de page.
 - `assets/css/enveille.css` : design tokens + thème appliqué partout
 - `assets/css/landing.css` : styles spécifiques à la landing (classes `.ev-*`)
@@ -169,7 +169,7 @@ puis encodage ffmpeg. La capture fait ~1,5 s de pause sur le hero puis un scroll
 - Les URLs des billets existants **ne doivent jamais changer** (SEO, backlinks)
 - Le site est déployé automatiquement sur push master — tester en local d'abord
 - Les animations scroll-driven (`animation-timeline: scroll(...)`) ne sont pas supportées sur Firefox — dégradation gracieuse prévue
-- Le mode sombre est automatique via `prefers-color-scheme` (pas de toggle manuel)
+- Le mode sombre suit `prefers-color-scheme` par défaut, avec un **toggle manuel 2 états** dans la barre du haut (persisté en localStorage `ev-theme`, posé sur `<html data-theme>` avant la première peinture par `head/ev-assets.html`). Les blocs dark du CSS vont **par paires** (`@media` gardé par `:not([data-theme="light"])` + bloc jumeau `[data-theme="dark"]`) — toute modif d'un bloc dark se fait dans les deux
 
 ## Roadmap
 
