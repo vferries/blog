@@ -62,4 +62,46 @@
     });
   })();
 
+  // ==========================================================
+  // THÈME — toggle manuel jour/nuit, 2 états, persisté
+  // Défaut = système (aucun data-theme sur <html>). Le choix mémorisé est
+  // posé avant la première peinture par le script inline de
+  // head/ev-assets.html ; ici on ne gère que le clic et ses reflets
+  // (aria-label, meta theme-color). L'icône bascule en CSS pur via la
+  // paire de sélecteurs data-theme / media (bloc jumeau, enveille.css).
+  // ==========================================================
+  (function initThemeToggle() {
+    const btn = document.querySelector('.ev-nav__theme');
+    if (!btn) return;
+    const systemDark = matchMedia('(prefers-color-scheme: dark)');
+    const effective = () =>
+      document.documentElement.dataset.theme || (systemDark.matches ? 'dark' : 'light');
+    // Mêmes valeurs que les <meta name="theme-color"> de head/ev-assets.html
+    const BAR_COLORS = { light: '#001B3D', dark: '#000331' };
+    const sync = () => {
+      const theme = effective();
+      btn.setAttribute('aria-label',
+        theme === 'dark' ? 'Passer en thème clair' : 'Passer en thème sombre');
+      // Les deux metas portent un media= que l'override ne peut pas
+      // satisfaire : on aligne leur contenu sur le thème effectif pour que
+      // la barre d'adresse mobile suive aussi.
+      document.querySelectorAll('meta[name="theme-color"]')
+        .forEach((m) => { m.setAttribute('content', BAR_COLORS[theme]); });
+    };
+    btn.addEventListener('click', () => {
+      const next = effective() === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      try {
+        localStorage.setItem('ev-theme', next);
+      } catch (err) {
+        console.warn('[ev-nav] thème non persisté (storage indisponible)', err);
+      }
+      sync();
+    });
+    // L'OS peut changer de thème en cours de visite : tant qu'aucun choix
+    // manuel n'est posé, aria-label et theme-color doivent suivre.
+    systemDark.addEventListener('change', sync);
+    sync();
+  })();
+
 })();

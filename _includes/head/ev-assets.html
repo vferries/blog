@@ -5,6 +5,22 @@
   silence (corriger un seul côté passait le build et cassait l'autre moitié
   du site). Aucune variable de page ici : le fichier doit rester cachable.
 {% endcomment %}
+<!-- Thème : pose l'éventuel choix manuel avant la première peinture (pas de
+     flash). 2 états (light/dark), défaut = système — cf. initThemeToggle
+     dans nav.js et les blocs jumeaux data-theme d'enveille.css. -->
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('ev-theme');
+      if (t === 'light' || t === 'dark') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (err) {
+      console.warn('[ev-head] thème non lu (storage indisponible)', err);
+    }
+  })();
+</script>
+
 <!-- Favicons : SVG moderne + fallbacks PNG/ICO + apple-touch + manifest PWA -->
 <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16.png' | relative_url }}">

@@ -331,20 +331,36 @@ html { scroll-behavior: smooth; }
          box-shadow: 0 0 0 transparent; }
 }
 
-.ev-nav__search {
+.ev-nav__search,
+.ev-nav__theme {
   display: inline-flex; align-items: center; justify-content: center;
   width: 34px; height: 34px; padding: 0;
-  /* Le bouton porte .search__toggle pour que le script du thème s'y accroche,
-     et hérite au passage du `margin-inline: 1rem` que _search.scss pose sur
-     cette classe (pensé pour la masthead greedy-nav). On l'annule ici plutôt
-     que de compter dessus : le thème est pinné, mais une dépendance implicite
-     sur un partial upstream n'a pas à rester tacite. */
+  /* Le bouton de recherche porte .search__toggle pour que le script du thème
+     s'y accroche, et hérite au passage du `margin-inline: 1rem` que
+     _search.scss pose sur cette classe (pensé pour la masthead greedy-nav).
+     On l'annule ici plutôt que de compter dessus : le thème est pinné, mais
+     une dépendance implicite sur un partial upstream n'a pas à rester
+     tacite. */
   margin-inline: 0;
   background: none; border: 1px solid transparent; border-radius: 50%;
   color: var(--ev-text-muted); cursor: pointer;
   transition: color 200ms var(--ease-out), border-color 200ms var(--ease-out);
 }
-.ev-nav__search:hover { color: var(--ev-text); border-color: var(--ev-border-strong); }
+.ev-nav__search:hover,
+.ev-nav__theme:hover { color: var(--ev-text); border-color: var(--ev-border-strong); }
+
+/* Toggle thème : icône = thème *cible* (lune en clair, soleil en sombre).
+   BLOC JUMEAU du pattern data-theme des tokens — garder en phase. */
+.ev-nav__theme-sun { display: none; }
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .ev-nav__theme-sun { display: block; }
+  html:not([data-theme="light"]) .ev-nav__theme-moon { display: none; }
+}
+html[data-theme="dark"] .ev-nav__theme-sun { display: block; }
+html[data-theme="dark"] .ev-nav__theme-moon { display: none; }
+/* Sans JS le bouton est inerte : on ne le montre pas. Les deux surfaces
+   posent la classe js/no-js sur <html> (script inline landing + upstream MM). */
+html.no-js .ev-nav__theme { display: none; }
 
 /* Sous le seuil du burger, recherche et burger forment un groupe à droite.
    Le `justify-content: space-between` de la barre a été écrit pour deux
@@ -357,7 +373,11 @@ html { scroll-behavior: smooth; }
    spécificité égale et gagnerait par ordre de source si on remontait ce bloc
    avec les autres règles du burger. */
 @media (max-width: 1000px) {
-  .ev-nav__search { margin-inline-start: auto; }
+  /* La marge auto va au premier bouton du groupe : la loupe quand elle est
+     là (pages du thème), sinon le toggle thème (landing, qui n'a pas de
+     panneau de recherche). Deux marges auto sépareraient le groupe. */
+  .ev-nav__search, .ev-nav__theme { margin-inline-start: auto; }
+  .ev-nav__search ~ .ev-nav__theme { margin-inline-start: 0; }
 }
 
 /* Respect reduced transparency — la barre est translucide et floutée.
