@@ -342,8 +342,6 @@ body.landing #main {
   background:
     /* lisibilité du texte : voile navy sur la gauche */
     linear-gradient(90deg, rgba(0, 3, 49, 0.78) 0%, rgba(0, 3, 49, 0.42) 38%, transparent 62%),
-    /* vignette bas-droite : avale le watermark ✦ de la source */
-    radial-gradient(260px 150px at 96% 84%, rgba(0, 3, 49, 0.92), transparent 72%),
     /* fondu vers la section suivante, suit le scheme de la page */
     linear-gradient(180deg, transparent 82%, var(--ev-bg) 100%);
 }
@@ -398,7 +396,6 @@ body.landing #main {
   .ev-hero__scrim {
     background:
       linear-gradient(180deg, rgba(0, 3, 49, 0.65) 0%, rgba(0, 3, 49, 0.35) 45%, transparent 65%),
-      radial-gradient(200px 120px at 96% 86%, rgba(0, 3, 49, 0.92), transparent 72%),
       linear-gradient(180deg, transparent 80%, var(--ev-bg) 100%);
   }
 }
