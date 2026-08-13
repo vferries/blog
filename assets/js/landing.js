@@ -151,6 +151,14 @@
     pin.classList.add('ev-hero-pin--on');
     hero.classList.add('ev-hero--scrub');
 
+    // preload="metadata" côté HTML : les 3 Mo du mp4 ne doivent pas
+    // concurrencer le poster LCP et les fontes au chargement. Une fois
+    // la page chargée, on relève l'indice pour que le scrub trouve ses
+    // segments sans attendre le premier seek.
+    const warmVideo = () => { video.preload = 'auto'; };
+    if (document.readyState === 'complete') warmVideo();
+    else window.addEventListener('load', warmVideo, { once: true });
+
     // La nav sticky est dans le flux au-dessus du wrapper : sans correction,
     // le pin ne s'engage qu'après ~une hauteur de nav de scroll normal
     // (le hero "monte d'un cran" avant de se figer). On remonte le wrapper
