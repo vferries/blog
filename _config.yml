@@ -27,6 +27,9 @@ search: true
 # Le toggle de recherche vit dans nav.js, le câblage lunr dans ev-search.js,
 # chargés au premier clic sur la loupe.
 footer_scripts: []
+# jekyll-feed plafonne à 10 billets par défaut — servir tout l'historique
+feed:
+  posts_limit: 50
 
 # Build settings
 markdown:    kramdown

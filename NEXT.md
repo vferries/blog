@@ -46,11 +46,11 @@
 
 - [ ] **Zéro JSON-LD sur les 57 URLs** : ni `Person`, ni `ProfessionalService`/`LocalBusiness` (NAP déjà publiée dans `/mentions-legales/`), ni `BlogPosting`, ni `BreadcrumbList`. MM conditionne son bloc à `site.social`, clé absente de `_config.yml`. M
 - [ ] **Le seul lien billets → landing est en `rel="nofollow"`** (sidebar auteur, `_config.yml:70-72`) : 46 billets, 15 ans de backlinks, zéro signal transmis. Un lien follow en contenu ou footer = S ; shadow `author-profile.html` = M
-- [ ] **`/blog/` sans meta description propre** (sert la générique du site, comme 6 autres pages) et h1 « Blog — En Veille » qui répète la marque. S
+- [x] **`/blog/` sans meta description propre** (sert la générique du site, comme 6 autres pages) et h1 « Blog — En Veille » qui répète la marque → réglé le 2026-08-13 : `title: "Blog"` (seo.html suffixe la marque) + description dédiée (sans chiffre qui dériverait). `/tags/` reçoit aussi sa description
 - [ ] **41/46 billets : excerpt < 70 caractères** (« Petit tutorial », « Manuel de survie ») → snippets réécrits par Google. Structure saine (0 trou, 0 doublon), seul le contenu est faible. M
-- [ ] **`/categories/` rend 0 entrée** (aucun billet n'a de `categories:`) et `/posts/` est orpheline — toutes deux au sitemap. Lier ou `sitemap: false`. S
+- [x] **`/categories/` rend 0 entrée** (aucun billet n'a de `categories:`) et `/posts/` est orpheline — toutes deux au sitemap → réglé le 2026-08-13 : `/categories/` **supprimée** du build (page vide, zéro lien entrant, même politique que les archives /page2/), `/posts/` passe en `sitemap: false` en attendant que le regroupement par année de `/blog/` la relie ou la remplace
 - [ ] **`/tags/` : 102 tags dont 86 à usage unique**, doublons de casse (`agilité`/`Agilité`, `Devoxx`/`Devoxx France`) → 393 entrées, seul rebond thématique offert et inutilisable. M
-- [ ] **Feed RSS plafonné à 10 billets sur 46** : `feed: posts_limit: 46` dans `_config.yml`. S
+- [x] **Feed RSS plafonné à 10 billets sur 46** → `feed: posts_limit: 50` le 2026-08-13, vérifié : 46 entrées
 - [ ] **Head landing : jeu OG/Twitter partiel** — manquent `og:site_name`, `twitter:site`, `twitter:title`, `twitter:description` (que MM émet partout ailleurs) ; `og:image:alt` absent de tout le build. S
 - [ ] **Pagination `/blog/page2-4/` au sitemap** avec title/description quasi identiques, sans noindex. S
 - [ ] **`/privacy` : `sitemap: false`** alors que `/mentions-legales/` y est — deux pages légales traitées différemment sans raison. S
