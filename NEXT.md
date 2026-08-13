@@ -87,7 +87,15 @@
 - [ ] **`mailto:vincent.ferries@gmail.com` partout** : adresse @enveille.info ? Repli copiable pour les configs sans client mail ?
 - [ ] **Témoignages clients** : champ `testimonial`/`result` dans `realisations.yml` — bloqué par les accords clients, pas par le code
 - [ ] **Page « comment ça se passe »** (process premier échange → livraison) : l'objection n°1 d'un commerçant, absente du site — copy à écrire ensemble
-- [ ] **Choix des 3 billets `featured`** de la landing (remplace les 3 parties Devoxx 2022)
+- [ ] **Choix des 3 billets `featured`** de la landing (remplace les 3 parties Devoxx 2022) — plan retenu le 2026-08-13 : les deux billets planifiés ci-dessous une fois publiés + un evergreen du fonds à choisir
+
+### ✍️ Billets planifiés (2026-08-13)
+
+Deux brouillons scaffoldés dans `_drafts/` (ignorés par le build Jekyll — structure proposée, tout ce qui est opinion/tarif/recommandation est en TODO, à écrire dans la voix de Vincent) :
+
+- [ ] **« Des sites faits main : ce que je propose, et pourquoi »** (`_drafts/sites-vitrines-faits-main.md`) — l'offre landing/sites vitrines. Synergie : la section « comment ça se passe » est la page process identifiée manquante par la revue UX, le billet peut la nourrir
+- [ ] **« Mon setup IA en 2026 : outils, abonnements, workflows »** (`_drafts/workflows-ia-2026.md`) — génération d'images (la chouette OpenArt du site = démo concrète et démontrable), setups Claude Code/opencode, abonnements conseillés
+- À la publication : datér le fichier vers `_posts/`, relancer `./tools/og-card/generate-posts.py` (carte OG + vignette de grille auto), poser `featured: true`
 
 ---
 
