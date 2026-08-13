@@ -22,7 +22,9 @@ og_image: /images/og-realisations.png
   {% for r in site.data.realisations %}
   <article class="ev-work-detail ev-reveal" id="{{ r.slug }}">
     <a class="ev-work-detail__media" href="{{ r.url }}" rel="noopener" aria-label="Visiter {{ r.domain }}">
-      <video class="ev-work__video" muted loop playsinline preload="none"
+      {%- comment %} Pas de loop : cf. le commentaire du bloc jumeau
+          d'index.html (SC 2.2.2, arbitré 2026-08-13). {% endcomment -%}
+      <video class="ev-work__video" muted playsinline preload="none"
              poster="{{ r.poster | relative_url }}"
              src="{{ r.video | relative_url }}" aria-hidden="true"></video>
     </a>

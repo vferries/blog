@@ -194,7 +194,13 @@ Vincent Ferries <span class="ev-t-p">// dev indé, Toulouse</span><br>
     {% for r in site.data.realisations %}
     <article class="ev-work__card">
       <a class="ev-work__media" href="{{ r.url }}" rel="noopener" aria-label="Visiter {{ r.domain }}">
-        <video class="ev-work__video" muted loop playsinline preload="none"
+        {%- comment %} Pas de loop : une lecture par passage à l'écran
+            (SC 2.2.2, mouvement > 5 s sans bouton pause — arbitré
+            2026-08-13). play() après ended repart de zéro : re-scroller
+            rejoue. Markup dupliqué dans _pages/realisations.html — les
+            attributs sont le contrat de initWorkVideos, modifier les
+            deux ensemble. {% endcomment -%}
+        <video class="ev-work__video" muted playsinline preload="none"
                poster="{{ r.poster | relative_url }}"
                src="{{ r.video | relative_url }}" aria-hidden="true"></video>
       </a>
