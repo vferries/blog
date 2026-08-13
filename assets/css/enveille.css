@@ -70,8 +70,13 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Thème effectif = système, sauf override manuel via data-theme sur <html>
+   (toggle de la nav, persisté en localStorage — posé avant ce fichier par le
+   script inline de head/ev-assets.html, pas de flash).
+   BLOC JUMEAU : les mêmes déclarations existent juste en dessous pour
+   [data-theme="dark"] — toute modif se fait dans les deux. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --ev-bg:          #06091A;
     --ev-bg-subtle:   #0E1428;
     --ev-bg-muted:    #262F37;
@@ -93,6 +98,28 @@
     --ev-code-text: #8EE6EA;
     --ev-code-border: rgba(241, 235, 217, 0.12);
   }
+}
+
+/* BLOC JUMEAU du bloc média ci-dessus — mêmes valeurs, garder en phase.
+   S'applique quand l'utilisateur force le sombre depuis le toggle. */
+:root[data-theme="dark"] {
+  --ev-bg:          #06091A;
+  --ev-bg-subtle:   #0E1428;
+  --ev-bg-muted:    #262F37;
+  --ev-text:        #F1EBD9;
+  --ev-text-muted:  #C7BEA7;
+  --ev-text-subtle: #9A917C;
+  --ev-border:      rgba(241, 235, 217, 0.12);
+  --ev-border-strong: rgba(241, 235, 217, 0.2);
+  --ev-grid:        rgba(0, 242, 255, 0.06);
+  --ev-blue: #43CFD6;
+  --ev-focus: var(--brand-cyan);
+  --ev-primary: var(--brand-cyan);
+  --ev-primary-hover: var(--cyan-200);
+  --ev-on-primary: var(--brand-navy);
+  --ev-code-bg: #0E1428;
+  --ev-code-text: #8EE6EA;
+  --ev-code-border: rgba(241, 235, 217, 0.12);
 }
 
 /* ============================================================

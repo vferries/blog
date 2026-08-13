@@ -1043,12 +1043,19 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
   /* Carte navy quel que soit le scheme : focus cyan comme le hero */
   --ev-focus: var(--brand-cyan);
 }
+/* BLOC JUMEAU : mêmes déclarations dans le bloc média et sous
+   [data-theme="dark"] (toggle manuel) — garder en phase. */
 @media (prefers-color-scheme: dark) {
-  .ev-cta {
+  html:not([data-theme="light"]) .ev-cta {
     background: #06091A;
     box-shadow: 12px 12px 0 var(--ev-cyan);
     border: 1px solid var(--ev-cyan);
   }
+}
+html[data-theme="dark"] .ev-cta {
+  background: #06091A;
+  box-shadow: 12px 12px 0 var(--ev-cyan);
+  border: 1px solid var(--ev-cyan);
 }
 .ev-cta::before {
   content: ""; position: absolute; inset: 0;
