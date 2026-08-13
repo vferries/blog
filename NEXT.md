@@ -1,6 +1,93 @@
 # NEXT — roadmap En Veille
 
-État au 27 avril 2026, après audit complet du site. Priorités de haut en bas.
+État au 13 août 2026, après la revue quintuple (a11y · perf · SEO · code · UX). Priorités de haut en bas.
+
+---
+
+## 🔬 Revue du 2026-08-13 — à dépiler
+
+5 agents en parallèle sur les sources, le build `_site/` et la prod. Les arbitrages déjà rendus plus bas dans ce fichier n'ont pas été re-signalés. Chiffres mesurés (ffprobe, curl, calculs WCAG), pas estimés.
+
+### 🚑 Immédiat (bugs réels, effort S)
+
+- [ ] **« Quinze ans dans le développement » en dur** dans `index.html:230` — faux (19 ans), et c'est le mécanisme de dérive que l'arbitrage du 2026-08-11 (`NEXT.md`, section anciennetés) était censé éradiquer. Passer par le calcul `site.time | minus: 2007` déjà en place à `index.html:100`
+- [ ] **Focus ring cyan illisible en light mode** sur `/` et `/realisations/` : `:focus-visible { outline: 2px solid var(--ev-cyan) }` (`enveille.css:431-434`) → **1,30:1** sur `--ev-bg` crème (SC 1.4.11 exige 3:1). Les pages MM sont sauvées par la spécificité supérieure du `main.css` du thème ; les deux pages commerciales ne chargent que `enveille.css` + `landing.css`. Bloquant AA
+- [ ] **`--ev-blue` (#007DA5) sous le seuil AA en light mode** : 4,39:1 sur `--ev-bg`, 4,05:1 sur `--ev-bg-subtle` (seuil 4,5). Colore tous les liens de corps de billet (`enveille.css:341`) + ~8 usages landing en texte normal. Remplaçant déjà dans la palette : `--blue-500` #006891 (5,80/5,35:1). Dark sain (10,49:1), ne pas y toucher. Bloquant AA
+- [ ] **Vidéo hero téléchargée intégralement au chargement** : `landing.js:147-150` pose `video.src` + `load()` sans condition avec `preload="auto"` (`index.html:37`) → 3,05 Mo (desktop) en concurrence avec le poster LCP et les fontes. Différer (metadata + warm après `load`), le poster couvre l'attente
+
+### ♿ Accessibilité (après le lot immédiat)
+
+- [ ] **Quick-nav : 6 liens vides** sans nom accessible (`index.html:21-28`, libellé en `::before content: attr(data-label)` que Firefox/Safari n'exposent pas), focusables alors que le conteneur est à `opacity: 0` avant le hero, et `<aside>` au lieu de `<nav>`. Bloquant AA · S
+- [ ] **Surligneur cyan sous texte crème dans le H1** : `.ev-hl::before` (`landing.css:209-217`) peint `--ev-cyan` sous un texte forcé `#F1EBD9` → 1,16:1, le bas des glyphes de « savoir-faire » disparaît. Gênant · S
+- [ ] **Reset reduced-motion vs animations scroll-driven** : `animation-duration: 0.01ms !important` sur `*` (`enveille.css:546-548`, `landing.css:1122-1127`) écrase la plage des deux animations à `animation-timeline: scroll(root)` — progress bar probablement rendue **pleine dès le haut de page** en reduced-motion. Vérifier au rendu puis exclure les deux. S
+- [ ] **5 animations JS hors `prefers-reduced-motion`** : compteurs (`landing.js:71-100`, remettent les stats à 0 puis animent — annule le fallback no-JS pour ces utilisateurs), titre magnétique, tilt cartes, curseur custom, pluie Matrix. Seuls hero owl et vidéos réalisations testent la query. S
+- [ ] **Panneau burger : liens avant le bouton dans le DOM** (`ev-nav.html:28` vs `:62`) → au clavier il faut Shift+Tab pour atteindre le menu qu'on vient d'ouvrir ; et Escape/clic extérieur ferment sans rendre le focus au bouton (`nav.js:53-57`). 2.4.3 · M
+- [ ] **Bouton recherche sans état ARIA ni fermeture Escape** : `ev-nav.html:54` sans `aria-expanded`/`aria-controls`, le script MM ne pose rien. Le bouton est à nous (shadow masthead), corrigeable côté projet. S
+- [ ] **`html { font-size: 16px }`** (`enveille.css:96`) neutralise le réglage de taille de police du navigateur — tout le site est en `rem`. Passer à `100%`. S
+- [ ] **Mouvement automatique > 5 s sans pause** (SC 2.2.2, niveau A) : vidéos réalisations en `loop` sans contrôle, marquee 40s, aurore CTA 12s, pastille pulse 2,4s partout. Mécanisme pause/stop à concevoir → voir arbitrages
+- [ ] **Hiérarchie headings `/blog/`** : h1 → h3 « Posts récents » → h2 items (upstream MM, 4ᵉ shadow nécessaire). M
+
+### ⚡ Perf (landing 5,24 Mo dont 89 % vidéo · billet ~1 Mo hors Disqus · tout servi en `max-age=600`)
+
+- [ ] **Ré-encoder `hero-owl.mp4`** : 84 % du poids (2,55 Mo) sur les 1,4 s scrubées, sous un scrim à 42-78 %. Mesuré : `crf 31 -g 3` → 1,90 Mo (−39 %), granularité de seek intacte. La 540 est déjà à son plancher. S
+- [ ] **Disqus injecté au parse de chaque billet** : ~56 Ko gzip + cascade (20-40 requêtes, traceurs) avant toute interaction, sur des billets majoritairement sans commentaire. IntersectionObserver sur `#disqus_thread` ou bouton « Afficher les commentaires ». S
+- [ ] **12 JPEG q90-100 oubliés par la passe du 2026-08-04** (mtime 23 avril) : 1 334 Ko → 632 Ko en q82, mêmes noms/URLs. Les pires : `rabot.jpg` q99, `startup-weekend.jpg` q99, `open_space.jpg` q98, `staples.jpg` q98. S
+- [ ] **FontAwesome sur chaque page MM** : 277 Ko (3 woff2 + CSS) pour ~15 icônes, URL `@latest` (cache 7 j). Passer aux SVG inline comme la landing → 4ᵉ shadow (`head.html`). M
+- [ ] **`main.min.js` : 124 Ko de jQuery + plugins quasi morts** — SmoothScroll neutralisé par `nav.js:25`, GreedyNav sans cible, MagnificPopup/Gumshoe/FitVids sans consommateur. Seul le toggle recherche vit (~10 lignes). M
+- [ ] **Fraunces demandé en `opsz 9..144`** (148,8 Ko les 2 styles) quand le CSS n'utilise que 48 et 144 — épinglé 144 seul : 75,6 Ko. Au passage : les 12 `font-variation-settings: 'SOFT'` sont **inertes**, l'axe n'existe pas dans le woff2 Google. M
+- [ ] **Lunr chargé en dur sur toutes les pages MM** (57 Ko + parse, 3 balises sans `defer`) alors que le panneau ne s'ouvre qu'au clic — et c'est le stemmer **anglais** sur un corpus FR. Charger au premier clic. S/M
+- [ ] **Zéro `loading="lazy"`/`width`/`height` sur tout le build** : `/blog/` charge ses 12 vignettes d'un bloc (339 Ko), chaque billet tire les 4 vignettes « Vous aimerez aussi » (~124 Ko). Shadow `archive-single.html`. M
+- [ ] **`profile_square.jpg` 800×800/69 Ko dans un avatar plafonné 110 px** sur chaque page MM. Attention : le même fichier sert `.ev-photo` (~640 px utiles) → deux fichiers. S
+- [ ] **Caveat : 50,9 Ko pour deux chaînes décoratives** (landing seule) — sous-ensemble `&text=` mesuré à 13,9 Ko. S
+- [ ] **Poster hero 1920×1080/128 Ko servi tel quel au mobile**, découvert tard (pas de preload). WebP 960 = 48 Ko. `poster` sans srcset → `image-set()` ou bascule JS. M
+- [ ] `images/peinard.jpg` (114 Ko) : plus aucune référence, toujours publié. Poids mort de dépôt. S
+
+### 🔍 SEO (techniquement propre, sémantiquement muet)
+
+- [ ] **Zéro JSON-LD sur les 57 URLs** : ni `Person`, ni `ProfessionalService`/`LocalBusiness` (NAP déjà publiée dans `/mentions-legales/`), ni `BlogPosting`, ni `BreadcrumbList`. MM conditionne son bloc à `site.social`, clé absente de `_config.yml`. M
+- [ ] **Le seul lien billets → landing est en `rel="nofollow"`** (sidebar auteur, `_config.yml:70-72`) : 46 billets, 15 ans de backlinks, zéro signal transmis. Un lien follow en contenu ou footer = S ; shadow `author-profile.html` = M
+- [ ] **`/blog/` sans meta description propre** (sert la générique du site, comme 6 autres pages) et h1 « Blog — En Veille » qui répète la marque. S
+- [ ] **41/46 billets : excerpt < 70 caractères** (« Petit tutorial », « Manuel de survie ») → snippets réécrits par Google. Structure saine (0 trou, 0 doublon), seul le contenu est faible. M
+- [ ] **`/categories/` rend 0 entrée** (aucun billet n'a de `categories:`) et `/posts/` est orpheline — toutes deux au sitemap. Lier ou `sitemap: false`. S
+- [ ] **`/tags/` : 102 tags dont 86 à usage unique**, doublons de casse (`agilité`/`Agilité`, `Devoxx`/`Devoxx France`) → 393 entrées, seul rebond thématique offert et inutilisable. M
+- [ ] **Feed RSS plafonné à 10 billets sur 46** : `feed: posts_limit: 46` dans `_config.yml`. S
+- [ ] **Head landing : jeu OG/Twitter partiel** — manquent `og:site_name`, `twitter:site`, `twitter:title`, `twitter:description` (que MM émet partout ailleurs) ; `og:image:alt` absent de tout le build. S
+- [ ] **Pagination `/blog/page2-4/` au sitemap** avec title/description quasi identiques, sans noindex. S
+- [ ] **`/privacy` : `sitemap: false`** alors que `/mentions-legales/` y est — deux pages légales traitées différemment sans raison. S
+
+### 🧭 UX structurel
+
+- [ ] **Les 3 billets vitrines de la landing = les 3 parties du même compte-rendu Devoxx 2022** (tri par date, `index.html:302-309`). Flag `featured: true` en front matter avec repli sur les récents → voir arbitrages pour le choix des 3
+- [ ] **« Vous pourriez aimer aussi » : les 4 mêmes billets sur les 46 pages** (`related: true` sans LSI = les plus récents). Un related par tags partagés recycle enfin le corpus. M
+- [ ] **« Mis à jour : May 17, 2022 »** : dates en anglais sur site FR (pas de table de mois, `%b` non localisé) **et** libellé mensonger — 46/46 billets ont `modified:` = date de publication (2 sont même antérieurs). Afficher « Publié le » + mois FR. S/M
+- [ ] **Aucun pont commercial en fin de billet** : un billet se termine par tags → partage → Disqus. Piste sans shadow : `page.sidebar` custom via `defaults` ; encart après contenu = 4ᵉ shadow (`single.html`). S/M
+- [ ] **`/blog/` n'affiche aucune date** (readtime seul) : 46 billets 2011→2022 sans repère chronologique. Date sur les cartes + regroupement par année = « archive de 15 ans » au lieu de « rien depuis 2022 ». M
+- [ ] **La recherche n'indexe que les billets** (store MM = collections seules : ni `/about/`, ni `/realisations/`, ni les services) et le bouton loupe est absent des 2 pages commerciales (pas de panneau dans le layout landing). M
+- [ ] **Les 5 cartes services portent une flèche `→` qui n'est ni lien ni ancre** — affordance de clic qui ne mène nulle part ; pas de point de conversion entre `#services` et la CTA finale (`index.html:317`). S
+- [ ] **LinkedIn absent du site** (`_data/social.yml` = GitHub/Twitch/X) alors que les billets proposent « Partager sur LinkedIn » — le réseau du prospect B2B. S
+
+### 🔧 Dette code
+
+- [ ] **Bordure nav sticky jamais affichée sans scroll-driven animations** (Firefox) : `enveille.css:161-167` ne pose la bordure que via `animation-timeline`, alors que `nav.js:34` calcule déjà `.ev-nav--scrolled` sans le consommer pour ça. 1 déclaration. S
+- [ ] **Hero : aucun `error` handler** — vidéo manquante/404 = 190vh de scroll mort (`landing.js:147-152` engage le pin avant de savoir si ça charge) ; source mobile choisie une fois, jamais réévaluée en rotation ; couple 720px JS/CSS non documenté (contrairement au 1000/1001). S
+- [ ] **Handler scroll quick-nav non throttlé** : jusqu'à 7 `getBoundingClientRect()` + `scrollHeight` par événement (`landing.js:299`), alors que le pattern rAF existe 90 lignes plus haut. S
+- [ ] **14 balises de `<head>` en double** entre `head/custom.html` et `landing.html:24-41` (favicons, fonts ×2, theme-color, enveille.css, nav.js) — corriger un seul fichier casse silencieusement l'autre moitié du site. Extraire `_includes/head/ev-assets.html`. M
+- [ ] **Hauteur de nav en 4 représentations** (84px ×2, 96px, `--ev-nav-h` posé seulement par le JS hero hors reduced-motion) + commentaires « ~65px ». Déclarer `--ev-nav-h` dans `:root`. S/M
+- [ ] **CTA et markup `<video>` dupliqués** entre `index.html` et `_pages/realisations.html` — les attributs vidéo sont le contrat no-JS/reduced-motion de `initWorkVideos`. Extraire en includes. M
+- [ ] **Code mort** : `.ev-container` défini, jamais utilisé, sa déclaration recopiée 13× ; `.ev-hero__scroll-hint` + 2 keyframes orphelins ; `.ev-clickable` dans le JS et le CSS, dans zéro template. S
+- [ ] **Reset landing.css:39-51 cible des classes MM que la landing ne rend jamais** (`.masthead`, `.sidebar`, `.initial-content` — vérifié : 0 occurrence dans `_site/index.html`). Faux positif permanent de la procédure de bump. S
+- [ ] **Couleurs de marque en dur hors tokens** : palette rejouée dans le canvas Matrix et le message console (`landing.js:371-511`), `#22c55e` « Disponible » réparti sur les 2 feuilles, `rgba(0,27,61,.2)` en box-shadow invisible en dark. M
+- [ ] **`_config.yml` : `jekyll-gist` sans aucun `{% gist %}`** et `twitter_username` à plat mort (MM lit la forme imbriquée) — illusion de source unique pour le pseudo X. S
+
+### ⚖️ Arbitrages à trancher (Vincent)
+
+- [ ] **Title/h1 de la home sans « développeur », « indépendant » ni « Toulouse »** — le mot « développeur indépendant » n'existe en toutes lettres que dans `_config.yml:10`. C'est du copy : proposition à faire valider
+- [ ] **`cursor: none` sur toute la landing** (`landing.css:70-73`) : signature design vs réglages OS d'accessibilité du pointeur (taille, contraste) annulés sans opt-out. Le `mix-blend-mode: difference` rend en plus le disque quasi invisible sur luminance moyenne
+- [ ] **Mécanisme de pause des mouvements > 5 s** (SC 2.2.2) : quelle forme — bouton global, pause par vidéo, suppression du loop ?
+- [ ] **`mailto:vincent.ferries@gmail.com` partout** : adresse @enveille.info ? Repli copiable pour les configs sans client mail ?
+- [ ] **Témoignages clients** : champ `testimonial`/`result` dans `realisations.yml` — bloqué par les accords clients, pas par le code
+- [ ] **Page « comment ça se passe »** (process premier échange → livraison) : l'objection n°1 d'un commerçant, absente du site — copy à écrire ensemble
+- [ ] **Choix des 3 billets `featured`** de la landing (remplace les 3 parties Devoxx 2022)
 
 ---
 
