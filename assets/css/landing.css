@@ -36,20 +36,6 @@ body.landing {
   margin-top: 0 !important;
 }
 
-/* Masque la masthead de Minimal Mistakes sur la landing (on utilise notre propre nav) */
-body.landing .masthead,
-body.landing .sidebar,
-body.landing .sidebar__right,
-body.landing #main > .sidebar { display: none !important; }
-
-/* Vire les contraintes de width de main sur la landing */
-body.landing .initial-content,
-body.landing #main {
-  max-width: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
 /* Scroll progress bar */
 .ev-progress {
   position: fixed; top: 0; left: 0; right: 0;
