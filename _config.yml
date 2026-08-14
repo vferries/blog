@@ -9,7 +9,6 @@ email: vincent.ferries@gmail.com
 description: >-
   Vincent Ferries, développeur indépendant basé à Toulouse. Accompagnement
   d'équipes tech, architecture, IA dans le dev. Billets de veille depuis 2011.
-twitter_username: VincentFERRIES
 github_username: vferries
 
 # Minimal Mistakes lit `twitter.username` imbriqué, pas le `twitter_username`
@@ -69,7 +68,6 @@ exclude:
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-gist
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
