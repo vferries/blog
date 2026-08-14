@@ -4,6 +4,15 @@
 {% include head/ev-assets.html %}
 
 {% comment %}
+  /blog/page2+ : title et description quasi identiques à /blog/, aucun
+  contenu propre — noindex plutôt que du quasi-doublon à l'index. Les
+  liens restent suivis, Google atteint toujours les vieux billets.
+  Double if : paginator n'existe que sur les pages de jekyll-paginate,
+  et Liquid ne court-circuite pas les comparaisons sur nil.
+{% endcomment %}
+{% if paginator %}{% if paginator.page > 1 %}<meta name="robots" content="noindex">{% endif %}{% endif %}
+
+{% comment %}
   Données structurées des billets. Vit ici et non dans ev-assets.html :
   dépend de variables de page, or ev-assets doit rester cachable.
   dateModified reprend le front matter `modified` tel quel.
