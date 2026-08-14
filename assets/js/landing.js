@@ -153,6 +153,11 @@
     const video = hero ? hero.querySelector('.ev-hero__bg') : null;
     if (!pin || !hero || !video) return;
 
+    // 720 = le breakpoint mobile des feuilles CSS (mise en page hero, poster
+    // 960×540 en background) : les deux valeurs vont ensemble, comme le
+    // couple 1000/1001 de la nav. Choix figé au chargement — une rotation ne
+    // re-choisit pas la source, assumé : les deux fichiers portent la même
+    // séquence, seule la définition change.
     video.src = matchMedia('(max-width: 720px)').matches
       ? video.dataset.srcMobile
       : video.dataset.src;
@@ -185,6 +190,7 @@
 
     let flying = false;
     let ticking = false;
+    let dead = false;
 
     const progress = () => {
       const r = pin.getBoundingClientRect();
@@ -195,6 +201,7 @@
 
     const update = () => {
       ticking = false;
+      if (dead) return;
       const p = progress();
       hero.classList.toggle('is-powered', p >= POWER_THRESHOLD);
       if (p >= 1) {
@@ -220,10 +227,26 @@
       }
     };
 
-    window.addEventListener('scroll', () => {
+    const onScroll = () => {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
     video.addEventListener('loadedmetadata', update, { once: true });
+
+    // Vidéo absente ou réseau coupé : sans ce garde-fou le pin resterait
+    // engagé et n'offrirait que ~2 écrans de scroll mort. On rend au hero
+    // sa mise en page no-JS : poster statique (background CSS), pas de pin,
+    // accents allumés d'office.
+    video.addEventListener('error', () => {
+      console.warn('hero owl: vidéo indisponible, pin libéré', video.error);
+      dead = true;
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', fitUnderNav);
+      pin.classList.remove('ev-hero-pin--on');
+      hero.classList.remove('ev-hero--scrub', 'is-powered');
+      pin.style.marginTop = '';
+    }, { once: true });
+
     update();
   })();
 
