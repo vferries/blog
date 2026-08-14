@@ -44,7 +44,7 @@
 
     const activate = () => cursor.classList.add('active');
     const deactivate = () => cursor.classList.remove('active');
-    document.querySelectorAll('a, button, .ev-service, .ev-post, .ev-photo, .ev-nav__brand, .ev-clickable').forEach(el => {
+    document.querySelectorAll('a, button, .ev-service, .ev-post, .ev-photo, .ev-nav__brand').forEach(el => {
       el.addEventListener('pointerenter', activate);
       el.addEventListener('pointerleave', deactivate);
     });
