@@ -314,8 +314,15 @@
       setActive(active);
     };
 
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update, { passive: true });
+    // Jusqu'à 7 getBoundingClientRect + scrollHeight par événement, pour un
+    // état qui ne peut changer qu'une fois par frame : même pattern rAF que
+    // le scrub du hero.
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; update(); }); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
     update();
   })();
 
