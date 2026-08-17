@@ -9,7 +9,7 @@
     qui goutte, comparateur avant/après sur un ravalement, et un pot qui se
     renverse en ouverture.
   stack: [HTML, CSS, JS, Images générées]
-  image: /demos/vert-et-contre-tout/og.jpg
+  image: /images/demo-vert-et-contre-tout.jpg
   url: /demos/vert-et-contre-tout/
 
 - slug: ampere-et-fils
@@ -19,7 +19,7 @@
     Un site qui s'allume section par section : interrupteur en héros, services
     présentés en tableau électrique, carte de secteur câblée comme un circuit.
   stack: [HTML, CSS, JS, Images générées]
-  image: /demos/ampere-et-fils/og.jpg
+  image: /images/demo-ampere-et-fils.jpg
   url: /demos/ampere-et-fils/
 
 - slug: l-aplat-pays
@@ -30,7 +30,7 @@
     de chantier heure par heure, et un vieux mur à repeindre au rouleau, à la
     souris.
   stack: [HTML, CSS, JS, Canvas, Images générées]
-  image: /demos/l-aplat-pays/og.jpg
+  image: /images/demo-l-aplat-pays.jpg
   url: /demos/l-aplat-pays/
 
 - slug: carreau-sur-table
@@ -40,7 +40,7 @@
     Tout est carré : mur de carreaux posé sous vos yeux, niveau à bulle piloté
     au gyroscope du téléphone, plan de calepinage tiré au cordeau.
   stack: [HTML, CSS, JS, Images générées]
-  image: /demos/carreau-sur-table/og.jpg
+  image: /images/demo-carreau-sur-table.jpg
   url: /demos/carreau-sur-table/
 
 - slug: chaud-devant
@@ -50,5 +50,5 @@
     Deux mondes sur une seule page : le chaud braise et le froid givre,
     séparés par un curseur de température à faire glisser.
   stack: [HTML, CSS, JS, Images générées]
-  image: /demos/chaud-devant/og.jpg
+  image: /images/demo-chaud-devant.jpg
   url: /demos/chaud-devant/
