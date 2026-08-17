@@ -26,7 +26,8 @@ bundle exec jekyll serve --livereload
 /blog/               # archive paginée des billets
 /<slug>/             # billets individuels
 /about/              # à propos
-/realisations/       # page réalisations (offre sites vitrines)
+/realisations/       # page réalisations (offre sites vitrines + atelier de démos)
+/demos/<slug>/       # démos d'enseignes fictives (statique, hors sitemap, noindex)
 /feed.xml            # RSS
 ```
 
@@ -34,6 +35,7 @@ bundle exec jekyll serve --livereload
 - `_layouts/landing.html` : layout custom pour la landing (autonome, n'hérite d'aucun layout du thème)
 - `_includes/head/ev-assets.html` : **source unique du head partagé** (script inline du thème, favicons, fontes, theme-color, `enveille.css`, `nav.js`), inclus par `_includes/head/custom.html` (pages MM) et `_layouts/landing.html`. Aucune variable de page dedans. Ne charge **pas** `landing.css`/`landing.js` — c'est `_layouts/landing.html`, autonome, qui les déclare
 - `_data/realisations.yml` : réalisations publiques (source unique de la section landing `#realisations` et de `/realisations/`)
+- `_data/demos.yml` : l'atelier — démos d'enseignes **fictives**, affichées uniquement sur `/realisations/` (jamais sur la landing). Les sites vivent dans `demos/<slug>/` (copies verbatim, `sitemap: false` via `_config.yml`, `noindex` injecté) ; source de vérité `../prospection/demos/`, synchro par `./tools/demos-sync/sync.sh`
 - `_includes/ev-nav.html` : **barre du haut, source unique de toutes les pages**. `_includes/masthead.html` (shadow du thème) la rend sur les pages Minimal Mistakes, `index.html` et `_pages/realisations.html` l'incluent directement. Le shadow passe par `include_cached` : n'y mettre aucune variable de page
 - `assets/js/nav.js` : burger + backdrop-filter au scroll + toggle de thème. Chargé partout via `head/ev-assets.html`
 - `_includes/footer.html` : shadow du partial Minimal Mistakes → source unique de la ligne footer (landing + pages MM). `_includes/ev-footer.html` n'est plus qu'un wrapper `<footer class="ev-footer">` qui l'inclut. Le thème l'appelle via `include_cached` : ne jamais y mettre de variable de page.
@@ -84,6 +86,20 @@ Dans `assets/js/landing.js`, organisées en IIFE :
 - **Responsive** : mobile ≤ 720px, tablette ≤ 1000px, desktop au-delà
 
 ## Outillage
+
+### Démos de l'atelier (sync depuis prospection)
+
+```bash
+./tools/demos-sync/sync.sh
+# ../prospection/demos/ → demos/<slug>/ (index.html + assets) + demos/fonts/
+```
+
+Rejouable : repart de la source et écrase la copie. Réécrit les chemins de
+fontes (`fonts/` → `../fonts/`), absolutise les `og:image`
+(`https://www.enveille.info/demos/<slug>/og.jpg`) et injecte
+`<meta name="robots" content="noindex">`. Après modification d'une démo côté
+prospection : relancer le script, rien d'autre à toucher. Source overridable :
+`DEMOS_SRC=/chemin ./tools/demos-sync/sync.sh`.
 
 ### OG card (image de partage social)
 

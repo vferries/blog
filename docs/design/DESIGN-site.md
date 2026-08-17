@@ -16,6 +16,8 @@ Document local au site **enveille.info**. Il hérite du design system global (vo
 | `/<slug>/` | Billets individuels | `single` (Minimal Mistakes) |
 | `/about/` | À propos | `single` |
 | `/tags/`, `/categories/` | Archives par tag/catégorie | `tags`, `categories` |
+| `/realisations/` | Réalisations + atelier de démos | `landing` |
+| `/demos/<slug>/` | Démos d'enseignes fictives (statique, hors sitemap, `noindex`) | — (copie verbatim) |
 | `/feed.xml` | RSS | — |
 
 **Important** : les URLs des billets existants (`permalink: /:categories/:title/`) sont **préservées**. La pagination passe de `/page:num/` à `/blog/page:num/`.
