@@ -829,6 +829,25 @@ html:not(.js) .ev-reveal--stagger > * { opacity: 1; transform: none; }
   padding: 4px 12px;
 }
 
+/* --- l'atelier : démos d'entreprises fictives (seconde .ev-work-list) --- */
+.ev-atelier-head {
+  max-width: 1200px; margin: 0 auto;
+  padding: 72px 32px 0;
+  border-top: 1px solid var(--ev-border-strong);
+}
+.ev-work-list--atelier { padding-top: 48px; }
+.ev-work__still { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* pilule générique (même dessin que les tags de stack) + variante démo */
+.ev-pill {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--ev-text-subtle);
+  border: 1px solid var(--ev-border-strong); border-radius: 999px;
+  padding: 4px 12px;
+}
+.ev-pill--demo { border-style: dashed; color: var(--ev-blue); border-color: var(--ev-blue); }
+.ev-work-detail__badge { margin: 0 0 10px; }
+
 /* ============================================================
    ABOUT
    ============================================================ */

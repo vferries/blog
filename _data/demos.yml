@@ -1,0 +1,54 @@
+# L'atelier — démos d'entreprises fictives (section dédiée de /realisations/).
+# Source des sites : repo prospection, synchro via ./tools/demos-sync/sync.sh
+# Volontairement séparé de realisations.yml : la landing ne lit que les vrais clients.
+- slug: vert-et-contre-tout
+  name: Vert & Contre-Tout
+  kind: Peintres en bâtiment
+  pitch: >
+    Une entreprise de peinture qui ne jure que par le vert : nuancier maison
+    qui goutte, comparateur avant/après sur un ravalement, et un pot qui se
+    renverse en ouverture.
+  stack: [HTML, CSS, JS, Images générées]
+  image: /demos/vert-et-contre-tout/og.jpg
+  url: /demos/vert-et-contre-tout/
+
+- slug: ampere-et-fils
+  name: Ampère & Fils
+  kind: Électriciens
+  pitch: >
+    Un site qui s'allume section par section : interrupteur en héros, services
+    présentés en tableau électrique, carte de secteur câblée comme un circuit.
+  stack: [HTML, CSS, JS, Images générées]
+  image: /demos/ampere-et-fils/og.jpg
+  url: /demos/ampere-et-fils/
+
+- slug: l-aplat-pays
+  name: L'Aplat Pays
+  kind: Peintres décorateurs
+  pitch: >
+    Un magazine plus qu'un site : chapitres numérotés, reportage d'une journée
+    de chantier heure par heure, et un vieux mur à repeindre au rouleau, à la
+    souris.
+  stack: [HTML, CSS, JS, Canvas, Images générées]
+  image: /demos/l-aplat-pays/og.jpg
+  url: /demos/l-aplat-pays/
+
+- slug: carreau-sur-table
+  name: Carreau sur Table
+  kind: Carreleur-faïenciste
+  pitch: >
+    Tout est carré : mur de carreaux posé sous vos yeux, niveau à bulle piloté
+    au gyroscope du téléphone, plan de calepinage tiré au cordeau.
+  stack: [HTML, CSS, JS, Images générées]
+  image: /demos/carreau-sur-table/og.jpg
+  url: /demos/carreau-sur-table/
+
+- slug: chaud-devant
+  name: Chaud Devant
+  kind: Chauffagiste-climaticien
+  pitch: >
+    Deux mondes sur une seule page : le chaud braise et le froid givre,
+    séparés par un curseur de température à faire glisser.
+  stack: [HTML, CSS, JS, Images générées]
+  image: /demos/chaud-devant/og.jpg
+  url: /demos/chaud-devant/

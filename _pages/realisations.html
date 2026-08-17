@@ -1,7 +1,7 @@
 ---
 layout: landing
 title: "Réalisations — sites vitrines faits main · En Veille"
-description: "Sites vitrines pour commerçants et artisans, conçus et développés en direct par Vincent Ferries. Librairie Escalire, Just Bordas."
+description: "Sites vitrines pour commerçants et artisans, conçus et développés en direct par Vincent Ferries. Librairie Escalire, Just Bordas — et l'atelier : cinq démos d'enseignes fictives à explorer."
 permalink: /realisations/
 og_image: /images/og-realisations.png
 ---
@@ -35,6 +35,36 @@ og_image: /images/og-realisations.png
       {{ r.story | markdownify }}
       <div class="ev-work-detail__stack">
         {% for s in r.stack %}<span>{{ s }}</span>{% endfor %}
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+<header class="ev-atelier-head ev-reveal">
+  <p class="ev-section-kicker">l'atelier</p>
+  <h2 class="ev-section-title">Cinq commerces <em>inventés</em></h2>
+  <p class="ev-section-sub">Des démos d'atelier : les enseignes sont fictives, les sites sont vrais.
+  Tout se clique, rien n'est à vendre — c'est le terrain de jeu où je montre le geste.</p>
+</header>
+
+{%- comment %} Seconde .ev-work-list volontaire : l'alternance des médias est
+    en :nth-child(even) (landing.css), un intertitre inséré dans la première
+    liste inverserait l'alternance de tout ce qui suit. {% endcomment -%}
+<div class="ev-work-list ev-work-list--atelier">
+  {% for d in site.data.demos %}
+  <article class="ev-work-detail ev-reveal" id="{{ d.slug }}">
+    <a class="ev-work-detail__media" href="{{ d.url | relative_url }}" aria-label="Voir la démo {{ d.name }}">
+      <img class="ev-work__still" src="{{ d.image | relative_url }}" alt="" loading="lazy" width="1200" height="630">
+    </a>
+    <div class="ev-work-detail__body">
+      <h2 class="ev-work-detail__name">{{ d.name }}</h2>
+      <p class="ev-work-detail__badge"><span class="ev-pill ev-pill--demo">démo — entreprise fictive</span></p>
+      <a class="ev-work__domain" href="{{ d.url | relative_url }}">voir la démo ↗</a>
+      <div class="ev-work__meta"><span>{{ d.kind }}</span></div>
+      <p>{{ d.pitch }}</p>
+      <div class="ev-work-detail__stack">
+        {% for s in d.stack %}<span>{{ s }}</span>{% endfor %}
       </div>
     </div>
   </article>
