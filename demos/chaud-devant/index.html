@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaud Devant — Plombier chauffagiste-climaticien à Toulouse</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Chaud Devant, plombier chauffagiste et climaticien à Toulouse. Chauffage l'hiver, climatisation l'été : dépannage, installation, entretien annuel. Site de démonstration (données fictives).">
+<meta property="og:title" content="Chaud Devant — Plombier chauffagiste-climaticien à Toulouse">
+<meta property="og:description" content="L'hiver vous glace, l'été vous étouffe ? On inverse. Chauffage, climatisation, plomberie à Toulouse.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.enveille.info/demos/chaud-devant/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%230b2b40"/><path d="M32 0h18c8 0 14 6 14 14v36c0 8-6 14-14 14H32z" fill="%232a1207"/><path d="M32 12v40" stroke="%23fff1e0" stroke-width="2" stroke-dasharray="3 4" stroke-linecap="round"/><g fill="none" stroke="%23a8d8ec" stroke-width="2.4" stroke-linecap="round"><path d="M16 20v24M6 26l20 12M26 26L6 38"/></g><path d="M46 16c5 7-2 9 1 14 2-4 6-3 6 2 0 6-3.6 10-8 10s-8-4-8-10c0-8 7-8 9-16z" fill="%23ff8a3d"/></svg>' type="image/svg+xml">
+<script>
+(function(){
+  var d = document.documentElement;
+  d.classList.add('js');
+  /* ?plat : mode capture headless — pas de 100svh, tout révélé, frontière figée à 50 % */
+  if (/[?&]plat/.test(location.search)) d.classList.add('essai');
+})();
+</script>
+<style>
+/* polices auto-hébergées (sous-ensemble latin de Google Fonts) */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src:url('../fonts/bricolage-grotesque-normal-200-800.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Chivo Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:url('../fonts/chivo-mono-normal-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Chivo Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:url('../fonts/chivo-mono-normal-500.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: swap;
+  src:url('../fonts/schibsted-grotesk-italic-400-900.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src:url('../fonts/schibsted-grotesk-normal-400-900.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+:root{
+  /* monde ambre */
+  --nuit:#1c0d05;
+  --nuit-2:#2a1207;
+  --braise:#ff6b1a;
+  --ambre:#ffb054;
+  --creme:#fff1e0;
+  /* monde givre */
+  --givre:#eaf5fa;
+  --givre-2:#d3e9f4;
+  --glace:#a8d8ec;
+  --cyan:#2e8fb8;
+  --cyan-fonce:#1e6f94;
+  --polaire:#0b2b40;
+  --nuit-froide:#0a2334;
+  --or:#e8a83c;
+  --f-disp:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --f-txt:"Schibsted Grotesk",system-ui,sans-serif;
+  --f-mono:"Chivo Mono",ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{
+  font-family:var(--f-txt);
+  background:var(--nuit);
+  color:var(--creme);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+::selection{background:var(--braise);color:var(--nuit)}
+a{color:inherit}
+img,svg,video{max-width:100%}
+h1,h2,h3,.titre-hero{font-family:var(--f-disp);line-height:1.05;font-weight:640}
+.ico{width:1em;height:1em;display:inline-block;vertical-align:-.12em;fill:currentColor}
+
+/* ---------- barre haute ---------- */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;gap:1rem;
+  padding:.75rem clamp(1rem,4vw,2.4rem);
+  background:linear-gradient(180deg,rgba(12,8,6,.6),rgba(12,8,6,.28));
+  transition:background .4s ease,box-shadow .4s ease,opacity .6s ease,transform .6s ease;
+}
+@supports (backdrop-filter: blur(10px)){ .topbar{backdrop-filter:blur(10px) saturate(1.2)} }
+.topbar.fond{background:rgba(16,9,5,.86);box-shadow:0 1px 0 rgba(255,241,224,.12)}
+html.js .topbar{opacity:0;transform:translateY(-10px)}
+html.js body.go .topbar{opacity:1;transform:none}
+.marque{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.marque svg{width:32px;height:32px;flex:none;display:block}
+.marque b{font-family:var(--f-disp);font-weight:720;font-size:1.1rem;letter-spacing:.01em;white-space:nowrap;color:var(--creme)}
+.topnav{margin-left:auto;display:flex;gap:1.5rem;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+.topnav a{text-decoration:none;opacity:.85;padding:.3em 0;border-bottom:2px solid transparent;transition:border-color .25s,opacity .25s}
+.topnav a:hover{opacity:1;border-color:var(--braise)}
+.tel-mini{
+  margin-left:1.3rem;text-decoration:none;font-family:var(--f-mono);font-size:.8rem;
+  border:1px solid rgba(255,241,224,.45);border-radius:999px;padding:.5em 1.05em;white-space:nowrap;
+  transition:background .25s,color .25s,border-color .25s;
+}
+.tel-mini:hover{background:var(--braise);border-color:var(--braise);color:var(--nuit)}
+@media (max-width:900px){ .topnav{display:none} .tel-mini{margin-left:auto} }
+
+/* ---------- hero scindé chaud / froid ---------- */
+.hero{
+  --x:50%;
+  position:relative;min-height:100svh;overflow:hidden;
+  display:grid; /* la couche ambre (en flux) s'étire à la hauteur du hero */
+}
+.monde{
+  position:absolute;inset:0;
+  display:grid;place-items:center;
+  padding:clamp(5.5rem,14vh,8rem) clamp(1rem,4vw,3rem) clamp(4.6rem,10vh,6rem);
+  overflow:hidden;
+}
+.monde.ambre{
+  position:relative; /* couche de base : donne sa hauteur au hero */
+  background:
+    radial-gradient(120% 85% at 85% 110%, #55220b, transparent 60%),
+    radial-gradient(70% 55% at 100% 55%, rgba(255,107,26,.22), transparent 70%),
+    var(--nuit);
+  color:var(--creme);
+}
+.monde.givre{
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.3) 0 2px, transparent 2px 20px),
+    radial-gradient(90% 70% at 0% 0%, #ffffff, transparent 55%),
+    linear-gradient(205deg,#f4fafd,#d3e9f4 48%,#b9dcee);
+  color:var(--polaire);
+  pointer-events:none;
+  will-change:clip-path;
+  z-index:3; /* au-dessus du contenu ambre (z2) : will-change crée un stacking context */
+  /* lisière dentelée : le givre s'accroche autour de la frontière --x */
+  clip-path:polygon(
+    0 0,
+    calc(var(--x) + 14px) 0,
+    calc(var(--x) - 10px) 9%,
+    calc(var(--x) + 8px) 17%,
+    calc(var(--x) - 14px) 26%,
+    calc(var(--x) + 12px) 34%,
+    calc(var(--x) - 8px) 43%,
+    calc(var(--x) + 15px) 52%,
+    calc(var(--x) - 12px) 61%,
+    calc(var(--x) + 9px) 70%,
+    calc(var(--x) - 15px) 79%,
+    calc(var(--x) + 11px) 88%,
+    calc(var(--x) - 9px) 96%,
+    calc(var(--x) + 13px) 100%,
+    0 100%);
+}
+/* décor ambre */
+.halos{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(46% 40% at 78% 100%, rgba(255,107,26,.4), transparent 70%),
+    radial-gradient(30% 30% at 58% 104%, rgba(255,176,84,.28), transparent 70%);
+}
+.four{position:absolute;right:0;bottom:0;width:72%;height:58%;pointer-events:none;
+  background:
+    radial-gradient(55% 70% at 70% 100%, rgba(255,107,26,.5), transparent 68%),
+    radial-gradient(35% 55% at 38% 102%, rgba(255,176,84,.32), transparent 70%);
+  filter:url(#chaleur);
+  mix-blend-mode:screen;
+}
+.spark{position:absolute;bottom:6%;width:5px;height:5px;border-radius:50%;
+  background:var(--ambre);box-shadow:0 0 8px 2px rgba(255,138,61,.55);
+  opacity:0;animation:monter 7s linear infinite;pointer-events:none;
+}
+@keyframes monter{
+  0%{transform:none;opacity:0}
+  12%{opacity:.9}
+  100%{transform:translateY(-52vh) translateX(18px);opacity:0}
+}
+/* décor givre */
+.cristal{position:absolute;color:rgba(114,178,206,.55);pointer-events:none;animation:tournoie 70s linear infinite}
+.cristal.c1{top:12%;left:5%;width:76px;height:76px}
+.cristal.c2{top:52%;left:15%;width:150px;height:150px;color:rgba(114,178,206,.3);animation-duration:110s;animation-direction:reverse}
+.cristal.c3{bottom:9%;left:4%;width:56px;height:56px}
+.cristal.c4{top:36%;left:20%;width:38px;height:38px;color:rgba(114,178,206,.4)}
+@keyframes tournoie{to{transform:rotate(360deg)}}
+.brume{position:absolute;left:-12%;bottom:-14%;width:70%;height:55%;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,.55), transparent 70%);
+  filter:blur(30px);
+}
+/* contenu (dupliqué dans chaque monde, aligné au pixel) */
+.hero-contenu{max-width:900px;width:100%;text-align:center;position:relative;z-index:2}
+.sur-titre{
+  font-family:var(--f-mono);font-size:clamp(.68rem,1.5vw,.82rem);
+  letter-spacing:.22em;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:.8em;margin-bottom:1.5rem;
+}
+.sur-titre::before,.sur-titre::after{content:"";width:2.4em;height:1px;background:currentColor;opacity:.7}
+.monde.ambre .sur-titre{color:var(--ambre)}
+.monde.givre .sur-titre{color:var(--cyan-fonce)}
+.titre-hero{font-size:clamp(2.1rem,6.4vw,4.9rem);letter-spacing:-.015em}
+.titre-hero .l{display:block;font-weight:380;font-variation-settings:"opsz" 60}
+.titre-hero .coup{display:block;font-weight:800;font-variation-settings:"opsz" 96;font-size:1.32em;margin-top:.1em}
+.monde.ambre .titre-hero .coup{color:var(--ambre)}
+.monde.givre .titre-hero .coup{color:var(--cyan-fonce)}
+.sous-titre{margin:1.4rem auto 0;max-width:36em;font-size:clamp(.98rem,2.1vw,1.15rem);font-weight:420}
+.monde.ambre .sous-titre{color:rgba(255,241,224,.85)}
+.monde.givre .sous-titre{color:rgba(11,43,64,.82)}
+.cta-rang{display:flex;flex-wrap:wrap;gap:1rem 1.6rem;margin-top:2.2rem;align-items:center;justify-content:center}
+.cta{
+  display:inline-flex;align-items:center;gap:.65em;text-decoration:none;
+  font-weight:700;font-size:clamp(1.02rem,2.4vw,1.18rem);letter-spacing:.01em;
+  padding:.95em 1.6em;border-radius:999px;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.cta:hover{transform:translateY(-3px)}
+.monde.ambre .cta{
+  color:var(--nuit);
+  background:linear-gradient(140deg,var(--ambre),var(--braise) 70%);
+  box-shadow:0 12px 32px rgba(255,107,26,.35), inset 0 1px 0 rgba(255,255,255,.4);
+}
+.monde.ambre .cta:hover{box-shadow:0 18px 42px rgba(255,107,26,.45), inset 0 1px 0 rgba(255,255,255,.5)}
+.monde.givre .cta{
+  color:var(--givre);
+  background:linear-gradient(140deg,#155a80,var(--polaire) 70%);
+  box-shadow:0 12px 32px rgba(11,43,64,.3), inset 0 1px 0 rgba(255,255,255,.22);
+}
+.cta-ligne{
+  font-weight:560;text-decoration:none;font-size:.96rem;
+  border-bottom:1px solid currentColor;padding-bottom:.14em;opacity:.9;
+  transition:opacity .25s;
+}
+.cta-ligne:hover{opacity:1}
+.monde.givre .cta-ligne{color:var(--cyan-fonce)}
+.preuve{display:flex;align-items:center;justify-content:center;gap:.6em;margin-top:1.9rem;font-size:.92rem}
+.preuve .etoiles{letter-spacing:.14em;font-size:1rem}
+.monde.ambre .preuve{color:rgba(255,241,224,.85)}
+.monde.ambre .etoiles{color:var(--ambre)}
+.monde.givre .preuve{color:rgba(11,43,64,.85)}
+.monde.givre .etoiles{color:var(--or)}
+.preuve b{font-weight:740}
+/* étiquettes de monde */
+.etiquette{
+  position:absolute;bottom:1.3rem;z-index:2;
+  display:inline-flex;align-items:center;gap:.55em;
+  font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid;border-radius:999px;padding:.5em 1em;white-space:nowrap;
+}
+.etiquette .ico{width:1.15em;height:1.15em}
+.etiquette.gauche{left:clamp(.8rem,3vw,2.2rem);color:var(--cyan-fonce);border-color:rgba(30,111,148,.45);background:rgba(255,255,255,.5)}
+.etiquette.droite{right:clamp(.8rem,3vw,2.2rem);color:var(--ambre);border-color:rgba(255,176,84,.45);background:rgba(28,13,5,.5)}
+.etiquette small{font-size:.92em;opacity:.75;font-family:inherit}
+@media (max-width:700px){ .etiquette small{display:none} }
+/* lisière : buée côté givre, halo braise côté ambre + poignée */
+.lisiere{position:absolute;top:0;bottom:0;left:var(--x);width:0;z-index:4;pointer-events:none}
+.lisiere .fondu{
+  position:absolute;top:0;bottom:0;left:-30px;width:60px;
+  background:
+    linear-gradient(90deg, rgba(233,246,251,.0) 0%, rgba(233,246,251,.5) 42%, rgba(255,138,61,.4) 58%, rgba(255,138,61,0) 100%);
+  filter:blur(8px);
+}
+.poignee{
+  display:none;
+  position:absolute;top:50%;left:0;transform:translate(-50%,-50%);
+  width:46px;height:46px;border-radius:50%;
+  align-items:center;justify-content:center;gap:2px;
+  background:rgba(20,12,8,.55);color:var(--creme);
+  border:2px solid rgba(255,241,224,.75);
+  cursor:ew-resize;touch-action:none;pointer-events:auto;
+  box-shadow:0 6px 20px rgba(0,0,0,.35);
+}
+@supports (backdrop-filter: blur(8px)){ .poignee{backdrop-filter:blur(8px)} }
+html.js .poignee{display:flex}
+.poignee:focus-visible{outline:3px solid var(--ambre);outline-offset:3px}
+.poignee svg{width:22px;height:22px;flex:none}
+/* révélations à l'arrivée — état caché ET révélé scopés html.js */
+html.js .h-in{opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease}
+html.js body.go .h-in{opacity:1;transform:none}
+html.js body.go .d2{transition-delay:.12s}
+html.js body.go .d3{transition-delay:.26s}
+html.js body.go .d4{transition-delay:.4s}
+html.js body.go .d5{transition-delay:.55s}
+
+/* ---------- bande d'état ---------- */
+.bande-etat{
+  background:#140b06;color:rgba(255,241,224,.85);
+  border-top:1px solid rgba(255,176,84,.22);border-bottom:1px solid rgba(255,176,84,.22);
+  padding:1rem clamp(1rem,4vw,2.5rem);
+  display:flex;flex-wrap:wrap;gap:.7rem 2.4rem;justify-content:center;
+  font-family:var(--f-mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+}
+.bande-etat span{display:inline-flex;align-items:center;gap:.6em}
+.bande-etat .ico{color:var(--braise)}
+
+/* ---------- sections communes ---------- */
+.section{padding:clamp(4.2rem,9vw,7.5rem) clamp(1.1rem,5vw,6rem);position:relative;overflow:hidden}
+.entete-sec{max-width:56em;margin-bottom:clamp(2rem,5vw,3.4rem);position:relative;z-index:1}
+.entete-sec .sur-titre{justify-content:flex-start;margin-bottom:1rem}
+.entete-sec .sur-titre::after{display:none}
+.entete-sec h2{font-size:clamp(1.85rem,4.4vw,3.2rem);letter-spacing:-.01em;font-weight:700}
+.entete-sec h2 em{font-style:italic;font-weight:480}
+.entete-sec p{margin-top:.9rem;max-width:40em;font-size:1rem}
+/* reveal au scroll — état caché ET révélé scopés html.js (piège de spécificité) */
+html.js .rev{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+html.js .rev.vu{opacity:1;transform:none}
+
+/* ---------- monde chaud : chauffage ---------- */
+.sec-chaud{
+  background:
+    radial-gradient(60% 45% at 100% 0%, rgba(255,107,26,.14), transparent 65%),
+    radial-gradient(50% 40% at 0% 100%, rgba(255,138,61,.1), transparent 65%),
+    var(--nuit);
+  color:var(--creme);
+}
+.sec-chaud .sur-titre{color:var(--ambre)}
+.sec-chaud h2 em{color:var(--ambre)}
+.sec-chaud .entete-sec p{color:rgba(255,241,224,.75)}
+.grille-cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,265px),1fr));gap:clamp(1rem,2.4vw,1.7rem);position:relative;z-index:1}
+.carte{
+  border-radius:18px;padding:1.9rem 1.6rem 1.8rem;position:relative;
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.carte:hover{transform:translateY(-6px)}
+.carte .pic{width:46px;height:46px;display:grid;place-items:center;border-radius:12px;margin-bottom:1.1rem}
+.carte .pic svg{width:26px;height:26px}
+.carte h3{font-size:1.4rem;font-weight:700;margin-bottom:.4rem}
+.carte p{font-size:.95rem}
+.carte-chaude{
+  background:linear-gradient(170deg,#31150a,#241006 60%);
+  border:1px solid rgba(255,176,84,.22);
+}
+.carte-chaude:hover{box-shadow:0 18px 44px rgba(255,107,26,.18);border-color:rgba(255,176,84,.45)}
+.carte-chaude .pic{background:rgba(255,107,26,.14);color:var(--braise)}
+.carte-chaude h3{color:var(--creme)}
+.carte-chaude p{color:rgba(255,241,224,.72)}
+
+/* ---------- transitions thermiques ---------- */
+.transi{position:relative;height:clamp(96px,13vw,160px)}
+.transi .regle{
+  position:absolute;left:50%;top:10%;bottom:10%;width:0;
+  border-left:1px dashed rgba(150,150,160,.55);
+}
+.transi .deg{
+  position:absolute;left:12px;transform:translateY(-50%);
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;white-space:nowrap;
+}
+.transi .deg::before{content:"";position:absolute;left:-12px;top:50%;width:8px;height:1px;background:currentColor}
+.t-chaud-froid{background:linear-gradient(180deg,var(--nuit) 0%, #4a3a36 45%, #a8c4d2 80%, var(--givre) 100%)}
+.t-chaud-nuit{background:linear-gradient(180deg,#ffe6c8 0%, #b0a091 35%, #47586a 75%, var(--nuit-froide) 100%)}
+
+/* ---------- monde froid : climatisation ---------- */
+.sec-froid{
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.4) 0 2px, transparent 2px 22px),
+    radial-gradient(70% 55% at 100% 100%, rgba(168,216,236,.5), transparent 65%),
+    var(--givre);
+  color:var(--polaire);
+}
+.sec-froid .sur-titre{color:var(--cyan-fonce)}
+.sec-froid h2 em{color:var(--cyan-fonce)}
+.sec-froid .entete-sec p{color:rgba(11,43,64,.72)}
+.carte-froide{
+  background:#fff;
+  border:1px solid rgba(46,143,184,.2);
+}
+.carte-froide:hover{box-shadow:0 18px 44px rgba(30,111,148,.16);border-color:rgba(46,143,184,.5)}
+.carte-froide .pic{background:rgba(168,216,236,.35);color:var(--cyan-fonce)}
+.carte-froide h3{color:var(--polaire)}
+.carte-froide p{color:rgba(11,43,64,.72)}
+.sec-froid .flocon-fond{position:absolute;right:-40px;top:-40px;width:240px;height:240px;color:rgba(114,178,206,.18);pointer-events:none}
+
+/* ---------- bande plomberie ---------- */
+.bande-plomberie{
+  background:linear-gradient(90deg,var(--givre-2),var(--creme) 60%);
+  color:var(--polaire);
+  padding:1.6rem clamp(1.1rem,5vw,6rem);
+  display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.4rem;
+  border-top:1px solid rgba(46,143,184,.18);border-bottom:1px solid rgba(200,140,60,.25);
+}
+.bande-plomberie .ico{width:1.6em;height:1.6em;color:var(--cyan-fonce);flex:none}
+.bande-plomberie p{font-size:.98rem;max-width:52em}
+.bande-plomberie b{font-weight:740}
+
+/* ---------- monde chaud clair : entretien ---------- */
+.sec-entretien{
+  background:
+    radial-gradient(60% 45% at 0% 0%, rgba(255,176,84,.28), transparent 60%),
+    linear-gradient(180deg,var(--creme),#ffe6c8);
+  color:var(--nuit-2);
+}
+.sec-entretien .sur-titre{color:#b25510}
+.sec-entretien h2 em{color:#b25510}
+.sec-entretien .entete-sec p{color:rgba(42,18,7,.72)}
+.duel{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(1rem,2.4vw,1.8rem);align-items:stretch;position:relative;z-index:1}
+@media (max-width:880px){ .duel{grid-template-columns:1fr} }
+.formule{
+  border-radius:20px;padding:2rem 1.7rem;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.formule:hover{transform:translateY(-5px)}
+.formule .sur-titre{justify-content:flex-start;margin-bottom:.6rem;font-size:.68rem}
+.formule .sur-titre::after{display:none}
+.formule h3{font-size:1.6rem;font-weight:740;margin-bottom:1rem;display:flex;align-items:center;gap:.5em}
+.formule h3 .ico{width:1.05em;height:1.05em}
+.formule ul{list-style:none}
+.formule li{padding:.5em 0 .5em 1.6em;position:relative;font-size:.96rem}
+.formule li::before{content:"";position:absolute;left:0;top:1.05em;width:.9em;height:.9em;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%, currentColor 0 3px, transparent 3.5px);border:1.5px solid currentColor}
+.formule-braise{background:linear-gradient(170deg,#3a1808,#26100a 65%);color:var(--creme);border:1px solid rgba(255,176,84,.3)}
+.formule-braise:hover{box-shadow:0 20px 48px rgba(255,107,26,.22)}
+.formule-braise .sur-titre{color:var(--ambre)}
+.formule-braise h3 .ico{color:var(--braise)}
+.formule-braise li{color:rgba(255,241,224,.85)}
+.formule-braise li::before{color:var(--braise)}
+.formule-givre{background:#fff;color:var(--polaire);border:1px solid rgba(46,143,184,.25)}
+.formule-givre:hover{box-shadow:0 20px 48px rgba(30,111,148,.18)}
+.formule-givre .sur-titre{color:var(--cyan-fonce)}
+.formule-givre h3 .ico{color:var(--cyan)}
+.formule-givre li{color:rgba(11,43,64,.85)}
+.formule-givre li::before{color:var(--cyan)}
+.ou-bien{
+  align-self:center;justify-self:center;
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:#8a5a2a;border:1px dashed rgba(138,90,42,.5);border-radius:999px;padding:.7em 1.2em;
+  background:rgba(255,255,255,.55);white-space:nowrap;
+}
+.note-entretien{margin-top:1.8rem;font-size:.94rem;font-style:italic;color:rgba(42,18,7,.65);position:relative;z-index:1}
+
+/* ---------- monde froid sombre : avis ---------- */
+.sec-avis{
+  background:
+    radial-gradient(60% 50% at 100% 0%, rgba(46,143,184,.2), transparent 65%),
+    var(--nuit-froide);
+  color:var(--givre);
+}
+.sec-avis .sur-titre{color:var(--glace)}
+.sec-avis h2 em{color:var(--glace)}
+.sec-avis .entete-sec p{color:rgba(234,245,250,.72)}
+.grille-avis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,285px),1fr));gap:clamp(1rem,2.2vw,1.6rem);position:relative;z-index:1}
+.avis{
+  border-radius:18px;padding:1.7rem 1.5rem;
+  display:flex;flex-direction:column;gap:.8rem;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.avis:hover{transform:translateY(-5px)}
+.avis .etoiles{letter-spacing:.16em;font-size:.95rem}
+.avis blockquote{font-size:.97rem;font-style:italic;flex:1}
+.avis figcaption{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.avis-froid{background:rgba(234,245,250,.1);border:1px solid rgba(168,216,236,.35)}
+.avis-froid .etoiles{color:var(--glace)}
+.avis-froid:hover{box-shadow:0 16px 40px rgba(0,0,0,.3);border-color:rgba(168,216,236,.5)}
+.avis-chaud{background:rgba(42,18,7,.55);border:1px solid rgba(255,176,84,.28)}
+.avis-chaud .etoiles{color:var(--ambre)}
+.avis-chaud:hover{box-shadow:0 16px 40px rgba(0,0,0,.3);border-color:rgba(255,176,84,.55)}
+.note-google{
+  margin-top:2rem;display:inline-flex;align-items:center;gap:.7em;position:relative;z-index:1;
+  font-family:var(--f-mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid rgba(234,245,250,.3);border-radius:999px;padding:.6em 1.2em;color:rgba(234,245,250,.85);
+}
+.note-google b{color:var(--or);font-weight:640}
+
+/* ---------- final : fusion des deux mondes ---------- */
+.final{
+  text-align:center;
+  padding:clamp(5rem,11vw,9rem) clamp(1.1rem,5vw,6rem) clamp(4.5rem,9vw,7rem);
+  background:
+    radial-gradient(640px 420px at 10% 28%, rgba(46,143,184,.4), transparent 65%),
+    radial-gradient(640px 420px at 90% 72%, rgba(255,107,26,.38), transparent 65%),
+    linear-gradient(90deg,#0b2334,#241017);
+  color:var(--creme);
+  position:relative;overflow:hidden;
+}
+.final::before{
+  content:"";position:absolute;left:50%;top:8%;bottom:8%;width:2px;transform:translateX(-50%);
+  background:linear-gradient(180deg,transparent,rgba(255,241,224,.55) 30% 70%,transparent);
+  filter:blur(1px);pointer-events:none;
+}
+.final::after{
+  content:"";position:absolute;left:50%;top:30%;width:140px;height:40%;transform:translateX(-50%);
+  background:radial-gradient(50% 50% at 50% 50%, rgba(255,241,224,.16), transparent 70%);
+  pointer-events:none;
+}
+.final .sur-titre{color:rgba(255,241,224,.7)}
+.final h2{font-size:clamp(2.2rem,6.4vw,4.6rem);font-weight:760;letter-spacing:-.015em;position:relative;z-index:1}
+.final h2 .froid-mot{color:var(--glace)}
+.final h2 .chaud-mot{color:var(--ambre)}
+.final p{margin:1.2rem auto 0;max-width:36em;color:rgba(255,241,224,.85);position:relative;z-index:1}
+.final .cta-rang{margin-top:2.4rem;position:relative;z-index:1}
+.final .cta{
+  color:var(--nuit);
+  background:linear-gradient(140deg,var(--ambre),var(--braise) 70%);
+  box-shadow:0 14px 36px rgba(255,107,26,.4), inset 0 1px 0 rgba(255,255,255,.4);
+}
+.final .coordonnees{
+  margin-top:2.6rem;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.1em;
+  color:rgba(255,241,224,.65);display:flex;flex-wrap:wrap;gap:.6em 2em;justify-content:center;position:relative;z-index:1;
+}
+.zone{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:.5em;justify-content:center;max-width:52em;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+.zone span{
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid rgba(255,241,224,.28);border-radius:999px;padding:.4em .95em;color:rgba(255,241,224,.75);
+}
+
+/* ---------- pied ---------- */
+footer{
+  background:#120806;color:rgba(255,241,224,.65);
+  padding:2.2rem clamp(1.1rem,5vw,6rem);
+  font-size:.82rem;
+  display:flex;flex-wrap:wrap;gap:1rem 2.4rem;align-items:center;justify-content:space-between;
+}
+footer .demo-badge{
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  border:1px dashed rgba(255,241,224,.4);border-radius:999px;padding:.5em 1.1em;
+  color:rgba(255,241,224,.8);white-space:nowrap;
+}
+@media (max-width:520px){ footer .demo-badge{white-space:normal;text-align:center} }
+footer .demo-badge b{color:var(--ambre);font-weight:640}
+
+/* ---------- thermomètre de scroll (fil conducteur, desktop) ---------- */
+.thermo{display:none;position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:40;pointer-events:none}
+@media (min-width:1100px){ html.js .thermo{display:block} }
+.thermo svg{width:26px;height:150px;display:block}
+.thermo .tube{fill:none;stroke:rgba(255,241,224,.5);stroke-width:1.5}
+.thermo .mercure{fill:var(--braise);transition:fill .5s ease}
+.thermo .cuve{fill:var(--braise);transition:fill .5s ease}
+.thermo.froid .mercure,.thermo.froid .cuve{fill:var(--glace)}
+.thermo .cran{stroke:rgba(255,241,224,.45);stroke-width:1}
+
+/* ---------- accessibilité & modes ---------- */
+/* ---------- photos de monde : une image par ambiance ---------- */
+.photo-monde{margin:clamp(1.8rem,4vw,2.8rem) auto 0;max-width:880px;border-radius:18px;overflow:hidden}
+.sec-chaud .photo-monde{border:1px solid rgba(255,176,84,.28);box-shadow:0 22px 50px rgba(0,0,0,.35)}
+.sec-froid .photo-monde{border:1px solid rgba(46,143,184,.25);box-shadow:0 22px 50px rgba(11,43,64,.18)}
+.photo-monde img{display:block;width:100%;height:auto}
+.photo-monde figcaption{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;padding:.65rem 1rem}
+.sec-chaud .photo-monde figcaption{color:var(--ambre);background:rgba(28,13,5,.55);border-top:1px solid rgba(255,176,84,.22)}
+.sec-froid .photo-monde figcaption{color:var(--cyan-fonce);background:rgba(255,255,255,.6);border-top:1px solid rgba(46,143,184,.2)}
+
+/* les pictos des formules se tamponnent à l'apparition */
+html.js .formule .ico{opacity:0;transform:scale(1.8) rotate(-14deg);transition:transform .45s cubic-bezier(.2,1.4,.4,1) .35s,opacity .3s ease .35s}
+html.js .formule.vu .ico{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  html.js .h-in,html.js .rev,html.js .topbar{opacity:1;transform:none;transition:none}
+  html.js .formule .ico{opacity:1;transform:none}
+  .four,.spark{display:none}
+  *{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+}
+/* ?plat : capture headless — tout à plat, frontière à 50 % */
+html.essai .hero{min-height:auto}
+html.essai .hero{--x:50% !important}
+html.essai .h-in,html.essai .rev,html.essai .topbar{opacity:1 !important;transform:none !important;transition:none !important}
+html.essai .formule .ico{opacity:1 !important;transform:none !important}
+html.essai .four,html.essai .spark,html.essai .thermo{display:none !important}
+html.essai *{animation:none !important}
+@media (max-width:760px){
+  .monde{padding-top:6rem;padding-bottom:5rem}
+  .cta{width:100%;justify-content:center}
+  .cristal.c2{display:none}
+  .poignee{top:58%} /* dégage le sous-titre, entre texte et CTA */
+}
+@media (max-width:700px){
+  .hero .sur-titre::before,.hero .sur-titre::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- symboles SVG partagés + filtre d'ondulation de chaleur -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="chaleur" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.05" numOctaves="2" seed="7" result="t">
+        <animate attributeName="baseFrequency" dur="9s" values="0.008 0.05;0.011 0.064;0.008 0.05" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="20"/>
+    </filter>
+    <symbol id="flocon" viewBox="0 0 32 32">
+      <!-- une branche dessinée, 6 rotations : symétrie exacte des barbillons -->
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path id="flocon-brin" d="M16 16V2M16 2l-3.2 4.2M16 2l3.2 4.2M16 11.2l-2.9-2.4M16 11.2l2.9-2.4"/>
+        <use href="#flocon-brin" transform="rotate(60 16 16)"/>
+        <use href="#flocon-brin" transform="rotate(120 16 16)"/>
+        <use href="#flocon-brin" transform="rotate(180 16 16)"/>
+        <use href="#flocon-brin" transform="rotate(240 16 16)"/>
+        <use href="#flocon-brin" transform="rotate(300 16 16)"/>
+      </g>
+    </symbol>
+    <symbol id="flamme" viewBox="0 0 24 24">
+      <path d="M12 2c1.2 4.6-4.4 6.6-3.4 11 .4 1.9 1.6 3 1.6 3-.3-2.6 1-4.3 2.6-5.4 2.6 2 4.2 4.3 4.2 6.4a5 5 0 0 1-10 0C7 12.6 13.6 10.8 12 2z"/>
+      <path d="M12 2c4.4 3.6 7 7.6 7 11.6 0 2.4-1 4.6-2.6 6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="tel-ico" viewBox="0 0 24 24">
+      <path d="M6.8 2.5h2.6l1.7 4.5-2 1.6a13.8 13.8 0 0 0 6.3 6.3l1.6-2 4.5 1.7v2.6c0 1.9-1.6 3.5-3.5 3.2C10 19.3 4.7 14 3.6 6c-.3-1.9 1.3-3.5 3.2-3.5z"/>
+    </symbol>
+    <symbol id="goutte" viewBox="0 0 24 24">
+      <path d="M12 2.5c3.8 5.6 6.5 9 6.5 12.3a6.5 6.5 0 0 1-13 0C5.5 11.5 8.2 8.1 12 2.5z"/>
+    </symbol>
+    <symbol id="radiateur" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+        <path d="M4 5v14M9.3 5v14M14.7 5v14M20 5v14"/>
+        <path d="M2.5 12h19"/>
+      </g>
+    </symbol>
+    <symbol id="eclair" viewBox="0 0 24 24">
+      <path d="M13.5 2 4.5 14h6l-1.5 8 9.5-12.5h-6z"/>
+    </symbol>
+    <symbol id="unite" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+        <rect x="2.5" y="5" width="19" height="9" rx="2.5"/>
+        <path d="M6 11h12"/>
+        <path d="M8 17c0 1.6-1.4 1.8-1.4 3M12 17c0 1.6-1.4 1.8-1.4 3M16 17c0 1.6-1.4 1.8-1.4 3"/>
+      </g>
+    </symbol>
+    <symbol id="cycle" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 12a8 8 0 0 1-14.5 4.6M4 12A8 8 0 0 1 18.5 7.4"/>
+        <path d="M18.5 3.5v4h-4M5.5 20.5v-4h4"/>
+      </g>
+    </symbol>
+    <symbol id="vent" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+        <path d="M3 8h10.5a2.8 2.8 0 1 0-2.8-2.8M3 13h15a2.8 2.8 0 1 1-2.8 2.8M3 18h7.5a2.4 2.4 0 1 1-2.4 2.4"/>
+      </g>
+    </symbol>
+    <symbol id="thermometre" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+        <path d="M10 4a2.5 2.5 0 0 1 5 0v9.3a4.8 4.8 0 1 1-5 0z"/>
+        <path d="M12.5 8v7"/>
+      </g>
+      <circle cx="12.5" cy="17.3" r="2.1"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- barre haute -->
+<nav class="topbar" id="topbar" aria-label="Navigation principale">
+  <a class="marque" href="#hero">
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <rect width="64" height="64" rx="16" fill="#0b2b40"/>
+      <path d="M32 0h16c9 0 16 7 16 16v32c0 9-7 16-16 16H32z" fill="#2a1207"/>
+      <path d="M32 12v40" stroke="#fff1e0" stroke-width="2" stroke-dasharray="3 4" stroke-linecap="round"/>
+      <g fill="none" stroke="#a8d8ec" stroke-width="2.4" stroke-linecap="round"><path d="M16 20v24M6 26l20 12M26 26L6 38"/></g>
+      <path d="M46 16c5 7-2 9 1 14 2-4 6-3 6 2 0 6-3.6 10-8 10s-8-4-8-10c0-8 7-8 9-16z" fill="#ff8a3d"/>
+    </svg>
+    <b>Chaud Devant</b>
+  </a>
+  <div class="topnav">
+    <a href="#chauffage">Chauffage</a>
+    <a href="#climatisation">Climatisation</a>
+    <a href="#entretien">Entretien</a>
+    <a href="#avis">Avis</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="tel-mini" href="tel:+33536490517">05 36 49 05 17</a>
+</nav>
+
+<!-- hero scindé : monde ambre (base) / monde givre (calque découpé) -->
+<header class="hero" id="hero" data-monde="chaud">
+  <div class="monde ambre">
+    <div class="halos" aria-hidden="true"></div>
+    <div class="four" aria-hidden="true"></div>
+    <span class="spark" style="left:56%;animation-delay:0s" aria-hidden="true"></span>
+    <span class="spark" style="left:64%;animation-delay:2.1s" aria-hidden="true"></span>
+    <span class="spark" style="left:73%;animation-delay:.9s" aria-hidden="true"></span>
+    <span class="spark" style="left:81%;animation-delay:3.4s" aria-hidden="true"></span>
+    <span class="spark" style="left:88%;animation-delay:1.6s" aria-hidden="true"></span>
+    <span class="spark" style="left:94%;animation-delay:4.6s" aria-hidden="true"></span>
+    <div class="hero-contenu">
+      <p class="sur-titre h-in">Plomberie · Chauffage · Climatisation — Toulouse</p>
+      <h1 class="titre-hero h-in d2">
+        <span class="l">L'hiver vous glace,</span>
+        <span class="l">l'été vous étouffe&nbsp;?</span>
+        <strong class="coup">On inverse.</strong>
+      </h1>
+      <p class="sous-titre h-in d3">Chaud Devant installe, entretient et dépanne vos chauffages
+      et climatisations à Toulouse. Le juste degré, toute l'année — et toujours la plomberie.</p>
+      <div class="cta-rang h-in d4">
+        <a class="cta" href="tel:+33536490517"><svg class="ico" aria-hidden="true"><use href="#tel-ico"/></svg>05&nbsp;36&nbsp;49&nbsp;05&nbsp;17</a>
+        <a class="cta-ligne" href="#chauffage">Découvrir nos interventions</a>
+      </div>
+      <p class="preuve h-in d5"><span class="etoiles" aria-hidden="true">★★★★★</span> <b>4,8</b>&nbsp;sur Google — 127 avis</p>
+    </div>
+    <p class="etiquette droite"><svg class="ico" aria-hidden="true"><use href="#flamme"/></svg>Chauffage <small>— chaleur d'hiver</small></p>
+  </div>
+
+  <div class="monde givre" aria-hidden="true">
+    <div class="brume"></div>
+    <svg class="cristal c1"><use href="#flocon"/></svg>
+    <svg class="cristal c2"><use href="#flocon"/></svg>
+    <svg class="cristal c3"><use href="#flocon"/></svg>
+    <svg class="cristal c4"><use href="#flocon"/></svg>
+    <div class="hero-contenu">
+      <p class="sur-titre h-in">Plomberie · Chauffage · Climatisation — Toulouse</p>
+      <div class="titre-hero h-in d2">
+        <span class="l">L'hiver vous glace,</span>
+        <span class="l">l'été vous étouffe&nbsp;?</span>
+        <strong class="coup">On inverse.</strong>
+      </div>
+      <p class="sous-titre h-in d3">Chaud Devant installe, entretient et dépanne vos chauffages
+      et climatisations à Toulouse. Le juste degré, toute l'année — et toujours la plomberie.</p>
+      <div class="cta-rang h-in d4">
+        <span class="cta"><svg class="ico"><use href="#tel-ico"/></svg>05&nbsp;36&nbsp;49&nbsp;05&nbsp;17</span>
+        <span class="cta-ligne">Découvrir nos interventions</span>
+      </div>
+      <p class="preuve h-in d5"><span class="etoiles">★★★★★</span> <b>4,8</b>&nbsp;sur Google — 127 avis</p>
+    </div>
+    <p class="etiquette gauche"><svg class="ico"><use href="#flocon"/></svg>Climatisation <small>— fraîcheur d'été</small></p>
+  </div>
+
+  <div class="lisiere">
+    <div class="fondu" aria-hidden="true"></div>
+    <button class="poignee" id="poignee" type="button" role="slider"
+            aria-label="Équilibre entre les mondes chauffage et climatisation"
+            aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- bande d'état -->
+<div class="bande-etat" role="note">
+  <span><svg class="ico" aria-hidden="true"><use href="#eclair"/></svg>Dépannage 7 j/7 — Toulouse &amp; alentours</span>
+  <span><svg class="ico" aria-hidden="true"><use href="#thermometre"/></svg>Devis clair, annoncé avant l'intervention</span>
+  <span><svg class="ico" aria-hidden="true"><use href="#cycle"/></svg>Entretien annuel chaudière &amp; clim</span>
+</div>
+
+<!-- monde chaud : chauffage -->
+<section class="section sec-chaud" id="chauffage" data-monde="chaud">
+  <header class="entete-sec rev">
+    <p class="sur-titre">Côté braise — chauffage</p>
+    <h2>L'hiver n'a qu'à <em>bien se tenir.</em></h2>
+    <p>Chaudière, radiateurs, eau chaude : on installe, on règle, on répare.
+    La chaleur au rendez-vous, la facture sous contrôle.</p>
+  </header>
+  <div class="grille-cartes">
+    <article class="carte carte-chaude rev">
+      <div class="pic"><svg aria-hidden="true"><use href="#flamme"/></svg></div>
+      <h3>Chaudière &amp; eau chaude</h3>
+      <p>Pose, remplacement et réglage de chaudières gaz à condensation. Ballon d'eau chaude
+      dimensionné à la maisonnée : fini la douche froide du matin.</p>
+    </article>
+    <article class="carte carte-chaude rev">
+      <div class="pic"><svg aria-hidden="true"><use href="#radiateur"/></svg></div>
+      <h3>Radiateurs &amp; plancher chauffant</h3>
+      <p>Équilibrage, purge, désembouage, thermostats : chaque pièce à la bonne température,
+      sans radiateur tiède au fond du couloir.</p>
+    </article>
+    <article class="carte carte-chaude rev">
+      <div class="pic"><svg aria-hidden="true"><use href="#eclair"/></svg></div>
+      <h3>Dépannage chauffage</h3>
+      <p>Chaudière en panne un dimanche de janvier ? On décroche, on diagnostique, on répare.
+      Le chauffage n'attend pas lundi.</p>
+    </article>
+  </div>
+  <figure class="photo-monde rev">
+    <img src="chaud_devant_chaudiere.webp" alt="Chaudière murale récente, tuyauterie cuivre soignée" loading="lazy" width="1600" height="893">
+    <figcaption>Chaudière posée, purgée, réglée — prête pour janvier</figcaption>
+  </figure>
+</section>
+
+<!-- transition thermique : on descend en température -->
+<div class="transi t-chaud-froid" aria-hidden="true">
+  <div class="regle">
+    <span class="deg" style="top:16%;color:rgba(255,241,224,.75)">21°</span>
+    <span class="deg" style="top:52%;color:rgba(60,60,70,.8)">19°</span>
+    <span class="deg" style="top:86%;color:rgba(11,43,64,.75)">17°</span>
+  </div>
+</div>
+
+<!-- monde froid : climatisation -->
+<section class="section sec-froid" id="climatisation" data-monde="froid">
+  <svg class="flocon-fond" aria-hidden="true"><use href="#flocon"/></svg>
+  <header class="entete-sec rev">
+    <p class="sur-titre">Côté givre — climatisation</p>
+    <h2>L'été, gardez la <em>tête froide.</em></h2>
+    <p>Clim réversible et pompe à chaleur air/air, dimensionnées pour vos pièces —
+    ni sous-taillées, ni surdimensionnées. Du frais sans courant d'air.</p>
+  </header>
+  <div class="grille-cartes">
+    <article class="carte carte-froide rev">
+      <div class="pic"><svg aria-hidden="true"><use href="#unite"/></svg></div>
+      <h3>Climatisation réversible</h3>
+      <p>Étude de vos pièces, pose murale ou gainable discrète, mise en service soignée :
+      du frais l'été, un appoint doux à l'intersaison.</p>
+    </article>
+    <article class="carte carte-froide rev">
+      <div class="pic"><svg aria-hidden="true"><use href="#cycle"/></svg></div>
+      <h3>Pompe à chaleur air/air</h3>
+      <p>Un dimensionnement honnête, calculé pièce par pièce, pour un confort constant
+      et des consommations raisonnables.</p>
+    </article>
+    <article class="carte carte-froide rev">
+      <div class="pic"><svg aria-hidden="true"><use href="#vent"/></svg></div>
+      <h3>Entretien &amp; qualité d'air</h3>
+      <p>Filtres nettoyés, étanchéité contrôlée, performance vérifiée : un air sain
+      et une machine qui dure des étés entiers.</p>
+    </article>
+  </div>
+  <figure class="photo-monde rev">
+    <img src="chaud_devant_clim.webp" alt="Unité extérieure de climatisation posée sur une façade claire" loading="lazy" width="1600" height="893">
+    <figcaption>Unité extérieure posée dans les règles — prête pour juillet</figcaption>
+  </figure>
+</section>
+
+<!-- pont plomberie entre les deux mondes -->
+<aside class="bande-plomberie rev">
+  <svg class="ico" aria-hidden="true"><use href="#goutte"/></svg>
+  <p><b>Et toujours la plomberie.</b> Fuite, ballon d'eau chaude, robinetterie, WC :
+  Chaud Devant reste avant tout plombier — le geste sûr, l'outillage au complet.</p>
+</aside>
+
+<!-- monde chaud clair : entretien annuel -->
+<section class="section sec-entretien" id="entretien" data-monde="chaud">
+  <header class="entete-sec rev">
+    <p class="sur-titre">Entretien annuel</p>
+    <h2>Une visite par an, <em>zéro sueur froide.</em></h2>
+    <p>On vous appelle, on vient, on contrôle, on repart — et vous passez la saison tranquille.</p>
+  </header>
+  <div class="duel">
+    <article class="formule formule-braise rev">
+      <p class="sur-titre">Chaudière</p>
+      <h3><svg class="ico" aria-hidden="true"><use href="#flamme"/></svg>Formule Braise</h3>
+      <ul>
+        <li>Visite annuelle complète, à date fixe</li>
+        <li>Nettoyage du corps de chauffe et réglages</li>
+        <li>Contrôles de sécurité et de combustion</li>
+        <li>Priorité dépannage en plein hiver</li>
+      </ul>
+    </article>
+    <p class="ou-bien rev">ou les deux —<br>visites synchronisées</p>
+    <article class="formule formule-givre rev">
+      <p class="sur-titre">Climatisation</p>
+      <h3><svg class="ico" aria-hidden="true"><use href="#flocon"/></svg>Formule Givre</h3>
+      <ul>
+        <li>Filtres nettoyés et assainis</li>
+        <li>Contrôle d'étanchéité du circuit</li>
+        <li>Performances mesurées avant l'été</li>
+        <li>Priorité dépannage en pleine canicule</li>
+      </ul>
+    </article>
+  </div>
+  <p class="note-entretien rev">Tarif annuel annoncé avant signature — pas de surprise sur la facture.</p>
+</section>
+
+<!-- transition thermique : le soir tombe -->
+<div class="transi t-chaud-nuit" aria-hidden="true">
+  <div class="regle">
+    <span class="deg" style="top:16%;color:rgba(90,60,30,.75)">26°</span>
+    <span class="deg" style="top:52%;color:rgba(50,55,65,.85)">22°</span>
+    <span class="deg" style="top:86%;color:rgba(234,245,250,.75)">19°</span>
+  </div>
+</div>
+
+<!-- monde froid sombre : avis -->
+<section class="section sec-avis" id="avis" data-monde="froid">
+  <header class="entete-sec rev">
+    <p class="sur-titre">Ils ont trouvé leur température</p>
+    <h2>Des clients <em>au degré près.</em></h2>
+  </header>
+  <div class="grille-avis">
+    <figure class="avis avis-chaud rev">
+      <span class="etoiles" aria-label="5 étoiles sur 5">★★★★★</span>
+      <blockquote>« Chaudière remplacée en une journée, maison réchauffée le soir même.
+      Réglages expliqués simplement, sans jargon. »</blockquote>
+      <figcaption>Thierry Mostat — Saint-Cyprien</figcaption>
+    </figure>
+    <figure class="avis avis-froid rev">
+      <span class="etoiles" aria-label="5 étoiles sur 5">★★★★★</span>
+      <blockquote>« Clim posée en juin, juste avant la canicule. Discrète, silencieuse :
+      on dort enfin l'été. »</blockquote>
+      <figcaption>Angèle Hivert — Côte Pavée</figcaption>
+    </figure>
+    <figure class="avis avis-chaud rev">
+      <span class="etoiles" aria-label="4 étoiles sur 5">★★★★☆</span>
+      <blockquote>« Entretien annuel sans y penser : ils appellent, ils viennent, tout est propre
+      en partant. Le devis annoncé est la facture payée. »</blockquote>
+      <figcaption>Rémi Chaufour — Minimes</figcaption>
+    </figure>
+    <figure class="avis avis-froid rev">
+      <span class="etoiles" aria-label="5 étoiles sur 5">★★★★★</span>
+      <blockquote>« Ballon d'eau chaude qui fuyait un dimanche matin. Dépannée l'après-midi même,
+      avec le sourire. Rare. »</blockquote>
+      <figcaption>Claire Fontaine — Blagnac</figcaption>
+    </figure>
+  </div>
+  <p class="note-google rev">Note moyenne <b>4,8 / 5</b> — 127 avis Google</p>
+</section>
+
+<!-- final : les deux mondes se rejoignent -->
+<section class="final" id="contact" data-monde="chaud">
+  <p class="sur-titre rev">Un seul numéro, deux saisons réglées</p>
+  <h2 class="rev">Trouvez la <span class="froid-mot">bonne</span> <span class="chaud-mot">température.</span></h2>
+  <p class="rev">Un coup de chaud, un coup de froid, un projet ? On écoute, on chiffre clairement,
+  on intervient. À Toulouse et tout autour.</p>
+  <div class="cta-rang rev">
+    <a class="cta" href="tel:+33536490517"><svg class="ico" aria-hidden="true"><use href="#tel-ico"/></svg>05&nbsp;36&nbsp;49&nbsp;05&nbsp;17</a>
+  </div>
+  <div class="coordonnees rev">
+    <span>24 rue des Deux-Saisons, 31200 Toulouse</span>
+    <span>Lun–Sam 8 h–19 h</span>
+    <span>Dépannage 7 j/7</span>
+  </div>
+  <div class="zone rev" aria-label="Zone d'intervention">
+    <span>Toulouse</span><span>Balma</span><span>Blagnac</span><span>Colomiers</span>
+    <span>Ramonville</span><span>Tournefeuille</span><span>L'Union</span><span>Saint-Orens</span>
+  </div>
+</section>
+
+<footer>
+  <span>© Chaud Devant — entreprise fictive, qui souffle le chaud et le froid.</span>
+  <span class="demo-badge">Site de démonstration — <b>En Veille</b> · données fictives</span>
+</footer>
+
+<!-- thermomètre : fil conducteur du scroll -->
+<div class="thermo" id="thermo" aria-hidden="true">
+  <svg viewBox="0 0 26 150">
+    <rect class="tube" x="9" y="6" width="8" height="116" rx="4"/>
+    <line class="cran" x1="19" y1="24" x2="23" y2="24"/>
+    <line class="cran" x1="19" y1="48" x2="23" y2="48"/>
+    <line class="cran" x1="19" y1="72" x2="23" y2="72"/>
+    <line class="cran" x1="19" y1="96" x2="23" y2="96"/>
+    <rect class="mercure" id="mercure" x="11" y="110" width="4" height="8" rx="2"/>
+    <circle class="cuve" cx="13" cy="131" r="9"/>
+  </svg>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var d = document.documentElement;
+  var corps = document.body;
+  var rm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var essai = d.classList.contains("essai");
+
+  /* entrée en scène */
+  requestAnimationFrame(function () { requestAnimationFrame(function () { corps.classList.add("go"); }); });
+
+  /* barre haute : fond au scroll */
+  var barre = document.getElementById("topbar");
+  function surScroll() { barre.classList.toggle("fond", window.scrollY > 40); }
+  addEventListener("scroll", surScroll, { passive: true });
+  surScroll();
+
+  /* frontière chaud / froid : suit la souris, poignée draggable au doigt */
+  var hero = document.getElementById("hero");
+  var poignee = document.getElementById("poignee");
+  if (hero && poignee && !rm && !essai) {
+    var cur = 50, cible = 50, anime = false, glisse = false;
+    var pose = function (v) {
+      hero.style.setProperty("--x", v + "%");
+      poignee.setAttribute("aria-valuenow", String(Math.round(v)));
+    };
+    var boucle = function () {
+      cur += (cible - cur) * 0.14;
+      if (Math.abs(cible - cur) < 0.05) { cur = cible; pose(cur); anime = false; return; }
+      pose(cur);
+      requestAnimationFrame(boucle);
+    };
+    var vise = function (v) {
+      cible = Math.max(14, Math.min(86, v));
+      if (!anime) { anime = true; requestAnimationFrame(boucle); }
+    };
+    var pctDe = function (e) {
+      var r = hero.getBoundingClientRect();
+      return (e.clientX - r.left) / r.width * 100;
+    };
+    hero.addEventListener("pointermove", function (e) {
+      if (e.pointerType === "mouse" && !glisse) vise(pctDe(e));
+    });
+    hero.addEventListener("pointerleave", function (e) {
+      if (e.pointerType === "mouse" && !glisse) vise(50);
+    });
+    poignee.addEventListener("pointerdown", function (e) {
+      glisse = true;
+      try { poignee.setPointerCapture(e.pointerId); } catch (err) { /* capture indisponible : le drag suit quand même */ }
+      e.preventDefault();
+    });
+    poignee.addEventListener("pointermove", function (e) { if (glisse) vise(pctDe(e)); });
+    poignee.addEventListener("pointerup", function () { glisse = false; });
+    poignee.addEventListener("pointercancel", function () { glisse = false; });
+    poignee.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { vise(cible - 6); e.preventDefault(); }
+      else if (e.key === "ArrowRight") { vise(cible + 6); e.preventDefault(); }
+      else if (e.key === "Home") { vise(50); e.preventDefault(); }
+    });
+    /* petit sursaut d'accueil : la frontière est vivante */
+    setTimeout(function () { if (!glisse) vise(36); }, 500);
+    setTimeout(function () { if (!glisse) vise(50); }, 1400);
+  }
+
+  /* reveal au scroll */
+  var revs = [].slice.call(document.querySelectorAll(".rev"));
+  if ("IntersectionObserver" in window && !rm && !essai) {
+    var io = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("vu"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    revs.forEach(function (el) { io.observe(el); });
+  } else {
+    revs.forEach(function (el) { el.classList.add("vu"); });
+  }
+
+  /* thermomètre : niveau = progression du scroll, teinte = monde courant */
+  var thermo = document.getElementById("thermo");
+  var mercure = document.getElementById("mercure");
+  if (thermo && mercure) {
+    var zones = [].slice.call(document.querySelectorAll("[data-monde]"));
+    var niveau = function () {
+      var max = d.scrollHeight - innerHeight;
+      var p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+      var h = 8 + p * 104;
+      mercure.setAttribute("y", String(118 - h));
+      mercure.setAttribute("height", String(h));
+      var monde = "chaud";
+      var milieu = innerHeight * 0.5;
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (r.top <= milieu && r.bottom >= milieu) { monde = zones[i].getAttribute("data-monde"); break; }
+      }
+      thermo.classList.toggle("froid", monde === "froid");
+    };
+    addEventListener("scroll", niveau, { passive: true });
+    addEventListener("resize", niveau);
+    niveau();
+  }
+})();
+</script>
+</body>
+</html>

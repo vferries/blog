@@ -121,6 +121,12 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # démos de l'atelier : fichiers statiques, hors sitemap (pas de type: —
+  # un StaticFile a type nil, un scope typé ne le matcherait pas)
+  - scope:
+      path: "demos"
+    values:
+      sitemap: false
 
 category_archive:
   type: liquid
